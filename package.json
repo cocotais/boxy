@@ -1,0 +1,33 @@
+{
+  "name": "boxy",
+  "version": "0.0.1",
+  "description": "Basic available instance built on Google Blockly.",
+  "private": true,
+  "mode": "development",
+  "scripts": {
+    "start": "webpack-dev-server --open",
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "clean": "rimraf node_modules & rimraf dist & rimraf package-lock.json & npm cache clear --force"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/coco-central/boxy.git"
+  },
+  "author": "CoCo Central",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "css-loader": "^6.7.1",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "dependencies": {
+    "@blockly/block-plus-minus": "^4.0.2",
+    "@blockly/field-colour-hsv-sliders": "^2.0.2",
+    "@blockly/plugin-scroll-options": "^3.0.2",
+    "@blockly/plugin-workspace-search": "^6.0.2",
+    "blockly": "^9.0.1",
+    "jquery": "^3.6.1"
+  }
+}
