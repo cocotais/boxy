@@ -1,0 +1,79 @@
+/*样式保护*/
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/*隐藏浏览器滚动条*/
+*::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/*注入样式*/
+#blocklyArea {
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+}
+
+#blocklyDiv {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.blocklySvg {
+  background: var(--workspace-background);
+}
+
+#toolbox {
+  display: none;
+}
+
+/*下拉菜单*/
+.blocklyWidgetDiv .blocklyMenu {
+  padding: 0px;
+  border: 0px;
+}
+
+.blocklyDropDownDiv {
+  padding: 0px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px 0px rgb(128 128 128 / 20%) !important;
+  border: 0px;
+}
+
+.blocklyMenu {
+  border-radius: 8px;
+}
+
+.blocklyMenuItem {
+  border-radius: 0px;
+  transition: background 0.2s;
+}
+
+.blocklyMenuItem:nth-child(1) {
+  border-radius: 8px 8px 0 0;
+}
+
+.blocklyMenuItem:nth-last-child(1) {
+  border-radius: 0 0 8px 8px;
+}
+
+/*颜色弹出框*/
+.fieldColourSlider {
+  height: 16px;
+}
+
+.fieldColourSliderContainer {
+  padding: 14px 12px 12px 12px;
+}
+
+.fieldColourSliderLabel {
+  padding: 0 8px;
+}
