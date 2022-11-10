@@ -1,37 +1,44 @@
 import Blockly from "blockly";
-import $ from "jquery";
+import toolboxConfig from "../toolbox/toolbox.json";
+import {
+  ScrollOptions,
+  ScrollBlockDragger,
+  ScrollMetricsManager,
+} from "@blockly/plugin-scroll-options";
+import { WorkspaceSearch } from "@blockly/plugin-workspace-search";
+import "@blockly/block-plus-minus";
 
-function loadToolbox() {
-  $.ajax({
-    url: "./src/toolbox/toolbox.xml",
-    type: "get",
-    async: true,
-    dataType: "xml",
-    success: function (data) {
-      let xmlDoc = $(data).find("toolbox").html();
-      $("#toolbox").html(xmlDoc);
-      localStorage.setItem("toolbox", xmlDoc);
-      return;
-    },
-    error: function (jqXHR, textStatus, errorThrown) {
-      $("#toolbox").html(localStorage.getItem("toolbox") || "");
-      console.error("Boxy Error: An unknown error occurred in toolbox.");
-      console.error("Boxy is loading the data from the storage instead.");
-      console.error("Please check your settings and try again.");
-      console.error(jqXHR);
-      console.error("ErrorType:", textStatus);
-      console.error(errorThrown);
-      return;
-    },
-  });
-}
-
-function loadWorkspace() {
+export function loadWorkspace() {
   var blocklyArea = document.getElementById("blocklyArea");
   var blocklyDiv = document.getElementById("blocklyDiv");
   var workspace = Blockly.inject(blocklyDiv, {
-    toolbox: document.getElementById("toolbox"),
+    toolbox: toolboxConfig,
+    trashcan: false,
+    plugins: {
+      blockDragger: ScrollBlockDragger,
+      metricsManager: ScrollMetricsManager,
+    },
+    zoom: {
+      controls: true,
+      wheel: true,
+      startScale: 0.8,
+      maxScale: 1.6,
+      minScale: 0.4,
+      scaleSpeed: 1.5,
+    },
+    move: {
+      scrollbars: true,
+      drag: true,
+      wheel: true,
+    },
+    theme: "zelos",
+    renderer: "zelos",
   });
+
+  const plugin = new ScrollOptions(workspace);
+  plugin.init();
+  const workspaceSearch = new WorkspaceSearch(workspace);
+  workspaceSearch.init();
 
   var onresize = function (e) {
     let element = blocklyArea;
@@ -53,9 +60,4 @@ function loadWorkspace() {
   window.addEventListener("resize", onresize, false);
   onresize();
   Blockly.svgResize(workspace);
-}
-
-export function loadBlockly() {
-  loadToolbox();
-  loadWorkspace();
 }

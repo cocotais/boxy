@@ -1,6 +1,6 @@
 <p align="center">
    <br>
-   <img width="100" src="https://gitee.com/coco-central/boxy/raw/master/src/icon/logo/boxy.svg" alt="Boxy-logo"/>
+   <img width="100" src="https://gitee.com/coco-central/boxy/raw/master/src/resource/icon/logo/boxy.svg" alt="Boxy-logo"/>
 </p>
 
 <h1 align="center">
@@ -42,22 +42,24 @@ Boxy 是 Google Blockly 的一个应用实例，
    npm install
    ```
 
+4. **构建：WebPack 项目构建。**
+
+   ```
+   npm run build
+   ```
+
 #### 开发
 
-- **构建：WebPack 项目构建。**
-
-  ```
-  npm run build
-  ```
-
 - **运行：搭建本地服务。**
+如果你的开发工具没有能力建立本地服务，请使用此命令。
 
-  ```
-  npm run start
-  ```
+   ```
+   npm run start
+   ```
 
 - **守候：自动检测文件更改，并重新编译。**
+如果你的开发工具可以建立本地服务，请使用此命令。
 
-  ```
-  npm run watch
-  ```
+   ```
+   npm run watch
+   ```
