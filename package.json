@@ -18,16 +18,18 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "css-loader": "^6.7.1",
+    "html-webpack-plugin": "^5.5.0",
+    "rimraf": "^3.0.2",
     "style-loader": "^3.3.1",
     "webpack": "^5.75.0",
-    "webpack-cli": "^4.10.0"
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
     "@blockly/block-plus-minus": "^4.0.2",
     "@blockly/field-colour-hsv-sliders": "^2.0.2",
     "@blockly/plugin-scroll-options": "^3.0.2",
     "@blockly/plugin-workspace-search": "^6.0.2",
-    "blockly": "^9.0.1",
-    "jquery": "^3.6.1"
+    "blockly": "^9.0.1"
   }
 }

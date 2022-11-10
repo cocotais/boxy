@@ -1,4 +1,4 @@
+import { loadWorkspace } from "./workspace/workspace";
 import "./workspace/workspace.css";
-import { loadBlockly } from "./workspace/workspace.js";
 
-loadBlockly();
+loadWorkspace();
