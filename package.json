@@ -7,6 +7,7 @@
   "scripts": {
     "start": "webpack-dev-server --open",
     "build": "webpack",
+    "rebuild": "rimraf dist & webpack",
     "watch": "webpack --watch",
     "clean": "rimraf node_modules & rimraf dist & rimraf package-lock.json & npm cache clear --force"
   },
@@ -17,7 +18,9 @@
   "author": "CoCo Central",
   "license": "Apache-2.0",
   "devDependencies": {
+    "compression-webpack-plugin": "^10.0.0",
     "css-loader": "^6.7.1",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "rimraf": "^3.0.2",
     "style-loader": "^3.3.1",

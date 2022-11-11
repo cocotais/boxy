@@ -1,5 +1,5 @@
 import Blockly from "blockly";
-import toolboxConfig from "../toolbox/toolbox.json";
+import * as zh from "blockly/msg/zh-hans";
 import {
   ScrollOptions,
   ScrollBlockDragger,
@@ -7,8 +7,10 @@ import {
 } from "@blockly/plugin-scroll-options";
 import { WorkspaceSearch } from "@blockly/plugin-workspace-search";
 import "@blockly/block-plus-minus";
+import toolboxConfig from "../toolbox/toolbox.json";
 
 export function loadWorkspace() {
+  Blockly.setLocale(zh);
   var blocklyArea = document.getElementById("blocklyArea");
   var blocklyDiv = document.getElementById("blocklyDiv");
   var workspace = Blockly.inject(blocklyDiv, {

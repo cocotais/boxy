@@ -4,6 +4,9 @@
     {
       "kind": "category",
       "name": "控制",
+      "cssConfig": {
+        "icon": "controller"
+      },
       "contents": [
         {
           "kind": "block",
@@ -18,6 +21,9 @@
     {
       "kind": "category",
       "name": "逻辑",
+      "cssConfig": {
+        "icon": "calculation"
+      },
       "contents": [
         {
           "kind": "block",
