@@ -3,10 +3,10 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
-  devtool: "inline-source-map",
+  devtool: "source-map",
   entry: "./src/index.js",
   output: {
-    filename: "[name].js",
+    filename: "[name].[contenthash:6].js",
     path: path.resolve(__dirname, "dist"),
   },
   module: {
@@ -14,6 +14,10 @@ module.exports = {
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.svg/,
+        use: ["file-loader"],
       },
     ],
   },
@@ -28,8 +32,31 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      favicon: path.resolve("src/icon/logo/favicon.ico"),
       template: "src/index.html",
       filename: "index.html",
+      inject: "body",
     }),
   ],
+  optimization: {
+    runtimeChunk: "single",
+    chunkIds: "size",
+    splitChunks: {
+      chunks: "all",
+      maxInitialRequests: Infinity,
+      minSize: 0,
+      cacheGroups: {
+        venders: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          reuseExistingChunk: true,
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+      },
+    },
+  },
 };

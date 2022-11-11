@@ -1,6 +1,6 @@
 <p align="center">
    <br>
-   <img width="100" src="https://gitee.com/coco-central/boxy/raw/master/src/resource/icon/logo/boxy.svg" alt="Boxy-logo"/>
+   <img width="100" src="https://gitee.com/coco-central/boxy/raw/master/src/icon/logo/boxy.svg" alt="Boxy-logo"/>
 </p>
 
 <h1 align="center">
@@ -9,8 +9,8 @@
 
 <div align="center">
 
-[![star](https://gitee.com/coco-central/boxy/badge/star.svg?theme=dark)](https://gitee.com/coco-central/boxy/stargazers)
-[![fork](https://gitee.com/coco-central/boxy/badge/fork.svg?theme=dark)](https://gitee.com/coco-central/boxy/members)
+<!-- [![star](https://gitee.com/coco-central/boxy/badge/star.svg?theme=dark)](https://gitee.com/coco-central/boxy/stargazers)
+[![fork](https://gitee.com/coco-central/boxy/badge/fork.svg?theme=dark)](https://gitee.com/coco-central/boxy/members) -->
 
 </div>
 
@@ -59,6 +59,7 @@ Boxy 是 Google Blockly 的一个应用实例，
 
 - **守候：自动检测文件更改，并重新编译。**
 如果你的开发工具可以建立本地服务，请使用此命令。
+生成的内容在 `http://localhost:8000/dist/index.html` 中。
 
    ```
    npm run watch
