@@ -10,10 +10,11 @@ import "@blockly/block-plus-minus";
 import toolboxConfig from "../toolbox/toolbox.json";
 
 export function loadWorkspace() {
+  // noinspection JSCheckFunctionSignatures
   Blockly.setLocale(zh);
-  var blocklyArea = document.getElementById("blocklyArea");
-  var blocklyDiv = document.getElementById("blocklyDiv");
-  var workspace = Blockly.inject(blocklyDiv, {
+  const blocklyArea = document.getElementById("blocklyArea");
+  const blocklyDiv = document.getElementById("blocklyDiv");
+  const workspace = Blockly.inject(blocklyDiv, {
     toolbox: toolboxConfig,
     trashcan: false,
     plugins: {
@@ -42,7 +43,7 @@ export function loadWorkspace() {
   const workspaceSearch = new WorkspaceSearch(workspace);
   workspaceSearch.init();
 
-  var onresize = function (e) {
+  let onresize = function () {
     let element = blocklyArea;
     let x = 0;
     let y = 0;

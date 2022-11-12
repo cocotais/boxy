@@ -3,6 +3,7 @@ import superellipse from "../icon/category/superellipse.svg";
 
 // https://blocklycodelabs.dev/codelabs/custom-toolbox/index.html?index=..%2F..index#0
 
+// noinspection JSValidateTypes
 class BoxyCategory extends Blockly.ToolboxCategory {
   constructor(categoryDef, toolbox, opt_parent) {
     super(categoryDef, toolbox, opt_parent);
@@ -13,7 +14,7 @@ class BoxyCategory extends Blockly.ToolboxCategory {
   }
 
   setSelected(isSelected) {
-    var labelDom = this.rowDiv_.getElementsByClassName("blocklyTreeLabel")[0];
+    let labelDom = this.rowDiv_.getElementsByClassName("blocklyTreeLabel")[0];
     if (isSelected) {
       this.rowDiv_.style.backgroundColor = "#fff";
       labelDom.style.color = "#000";
