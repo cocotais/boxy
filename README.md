@@ -9,8 +9,8 @@
 
 <div align="center">
 
-<!-- [![star](https://gitee.com/coco-central/boxy/badge/star.svg?theme=dark)](https://gitee.com/coco-central/boxy/stargazers)
-[![fork](https://gitee.com/coco-central/boxy/badge/fork.svg?theme=dark)](https://gitee.com/coco-central/boxy/members) -->
+[![star](https://gitee.com/coco-central/boxy/badge/star.svg?theme=dark)](https://gitee.com/coco-central/boxy/stargazers)
+[![fork](https://gitee.com/coco-central/boxy/badge/fork.svg?theme=dark)](https://gitee.com/coco-central/boxy/members)
 
 </div>
 
@@ -51,16 +51,31 @@ Boxy 是 Google Blockly 的一个应用实例，
 #### 开发
 
 - **运行：搭建本地服务。**
-如果你的开发工具没有能力建立本地服务，请使用此命令。
+   如果你的开发工具没有能力建立本地服务，请使用此命令。
 
    ```
    npm run start
    ```
 
 - **守候：自动检测文件更改，并重新编译。**
-如果你的开发工具可以建立本地服务，请使用此命令。
-生成的内容在 `http://localhost:8000/dist/index.html` 中。
+   如果你的开发工具可以建立本地服务，请使用此命令。
+   此命令生成的内容在 `http://localhost:8000/dist/index.html` 中。
 
    ```
    npm run watch
+   ```
+
+- **清理：清除软件包和构建，并重置缓存。**
+   清除 `/dist/` 和 `node_modules` 下的内容，重置 npm 的缓存。
+
+   ```
+   npm run clean
+   ```
+
+- **重构：清除原有构建内容，并重新构建。**
+   清除 `/dist/` 文件夹下的内容，
+   重新构建项目。
+
+   ```
+   npm run remake
    ```
