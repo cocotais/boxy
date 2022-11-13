@@ -8,7 +8,27 @@
     <title>Boxy</title>
   </head>
   <body>
-    <img id="navigation" src="./icon/logo/boxy.svg" alt="logo" width="0" height="0" />
+    <img id="navigation" src="icon/logo/boxy.svg" alt="logo" width="0" height="0" />
+    <div class="boxyMenuPosition">
+      <div class="boxyMenu" style="visibility: hidden;">
+        <div class="boxyMenuItem" onclick="navigationNew()">
+          <div class="boxyMenuItemContent">新建</div>
+        </div>
+        <div class="boxyMenuItem" onclick="navigationOpen()">
+          <div class="boxyMenuItemContent">打开</div>
+        </div>
+        <div class="boxyMenuItem" onclick="navigationSave()">
+          <div class="boxyMenuItemContent">保存到本地</div>
+        </div>
+        <div class="boxyMenuItem" onclick="navigationExport()">
+          <div class="boxyMenuItemContent">导出为目标文件</div>
+        </div>
+        <div class="boxyMenuItem" onclick="navigationSettings()">
+          <div class="boxyMenuItemContent">选项</div>
+        </div>
+      </div>
+    </div>
+
     <div id="blocklyArea"></div>
     <div id="blocklyDiv"></div>
   </body>
