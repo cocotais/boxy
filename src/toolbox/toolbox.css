@@ -4,6 +4,7 @@
   width: 60px;
   z-index: 4;
   background: #fff;
+  padding: 0;
 }
 
 .blocklyFlyout .blocklyFlyoutBackground {
@@ -12,7 +13,7 @@
 
 .blocklyFlyout {
   width: 320px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 8px 8px 0px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 8px 8px 0;
   background-color: #fff;
 }
 
@@ -40,8 +41,7 @@
 .blocklyTreeRow {
   height: initial;
   margin: 0 4px;
-  padding: 0px;
-  padding-left: 0px !important;
+  padding: 0 !important;
   border-radius: 4px;
 }
 
@@ -52,7 +52,7 @@
 
 .blocklyTreeRowContentContainer {
   display: flex;
-  padding: 11px 0px 6px 0;
+  padding: 11px 0 6px 0;
   flex-direction: column;
   align-items: center;
 }

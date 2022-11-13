@@ -23,11 +23,7 @@ class BoxyCategory extends Blockly.ToolboxCategory {
       labelDom.style.color = "#000";
     }
 
-    Blockly.utils.aria.setState(
-      /** @type {!Element} */ (this.htmlDiv_),
-      Blockly.utils.aria.State.SELECTED,
-      isSelected
-    );
+    Blockly.utils.aria.setState(/** @type {!Element} */ (this.htmlDiv_), Blockly.utils.aria.State.SELECTED, isSelected);
   }
 
   createIconDom_() {
