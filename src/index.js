@@ -5,6 +5,7 @@ import "./icon/category/category.css";
 import "./toolbox/toolbox.css";
 import { setBoxyCategory } from "./toolbox/toolbox";
 import "./search/search.css";
+import "./navigation/navigation.css";
 
 setBoxyCategory();
 loadWorkspace();

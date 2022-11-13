@@ -1,10 +1,6 @@
 import Blockly from "blockly";
 import * as zh from "blockly/msg/zh-hans";
-import {
-  ScrollOptions,
-  ScrollBlockDragger,
-  ScrollMetricsManager,
-} from "@blockly/plugin-scroll-options";
+import { ScrollOptions, ScrollBlockDragger, ScrollMetricsManager } from "@blockly/plugin-scroll-options";
 import { WorkspaceSearch } from "@blockly/plugin-workspace-search";
 import "@blockly/block-plus-minus";
 import toolboxConfig from "../toolbox/toolbox.json";
