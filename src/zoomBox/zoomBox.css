@@ -1,0 +1,5 @@
+.blocklyZoom,
+.blocklyTrash {
+  display: block;
+  opacity: 0;
+}

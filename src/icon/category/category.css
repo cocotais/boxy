@@ -15,7 +15,7 @@ iconpark-icon[name="utility"] {
 }
 
 iconpark-icon[name="variable"] {
-  background-color: #ffbb55;
+  background-color: #fb5;
 }
 
 iconpark-icon[name="list"] {
@@ -31,6 +31,6 @@ iconpark-icon[name="color"] {
 }
 
 iconpark-icon[name="testing"] {
-  opacity: 50%;
+  opacity: 0.5;
   filter: blur(3px);
 }

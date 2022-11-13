@@ -1,4 +1,5 @@
 import Blockly from "blockly";
+
 import superellipse from "../icon/category/superellipse.svg";
 
 // https://blocklycodelabs.dev/codelabs/custom-toolbox/index.html?index=..%2F..index#0

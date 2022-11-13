@@ -1,10 +1,10 @@
-/*样式保护*/
+/* 样式保护 */
 body {
   margin: 0;
   padding: 0;
 }
 
-/*隐藏浏览器滚动条*/
+/* 隐藏浏览器滚动条 */
 *::-webkit-scrollbar {
   display: none;
 }
@@ -14,7 +14,7 @@ body {
   scrollbar-width: none;
 }
 
-/*注入样式*/
+/* 注入样式 */
 #blocklyArea {
   width: 100vw;
   height: 100vh;
@@ -35,7 +35,7 @@ body {
   display: none;
 }
 
-/*下拉菜单*/
+/* 下拉菜单 */
 .blocklyWidgetDiv .blocklyMenu {
   padding: 0;
   border: 0;
@@ -65,13 +65,13 @@ body {
   border-radius: 0 0 8px 8px;
 }
 
-/*颜色弹出框*/
+/* 颜色弹出框 */
 .fieldColourSlider {
   height: 16px;
 }
 
 .fieldColourSliderContainer {
-  padding: 14px 12px 12px 12px;
+  padding: 14px 12px 12px;
 }
 
 .fieldColourSliderLabel {

@@ -1,4 +1,4 @@
-/*搜索设置*/
+/* 搜索设置 */
 .blockly-ws-search {
   right: 50px !important;
   top: 40px !important;
@@ -6,7 +6,7 @@
   transition: all 0.5s;
   width: 300px;
   border-radius: 50px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 4px 0px;
+  box-shadow: rgb(0 0 0 / 20%) 0 4px 4px 0;
 }
 
 .blockly-ws-search-input input {
@@ -22,6 +22,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .blockly-ws-search-container button {
   width: 10%;
   height: 30px;
@@ -44,6 +45,7 @@
   height: 100%;
   align-items: center;
 }
+
 .blockly-ws-search-actions {
   width: 35%;
 }
