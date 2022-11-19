@@ -1,26 +1,26 @@
 /* 搜索设置 */
 .blockly-ws-search {
-  right: 50px !important;
   top: 40px !important;
-  height: 40px;
-  transition: all 0.5s;
-  width: 300px;
+  right: 50px !important;
   border-radius: 50px;
+  width: 300px;
+  height: 40px;
   box-shadow: rgb(0 0 0 / 20%) 0 4px 4px 0;
+  transition: all 0.5s;
 }
 
 .blockly-ws-search-input input {
+  border-radius: 10px;
   width: 90%;
   height: 80%;
-  border-radius: 10px;
 }
 
 .blockly-ws-search-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .blockly-ws-search-container button {
@@ -41,17 +41,14 @@
 }
 
 .blockly-ws-search-content {
+  align-items: center;
   width: 100%;
   height: 100%;
-  align-items: center;
 }
 
 .blockly-ws-search-actions {
+  align-items: center;
   width: 35%;
-}
-
-.blockly-ws-search-actions {
-  align-items: center;
 }
 
 .blockly-ws-search-input input:hover {

@@ -36,18 +36,6 @@ body {
 }
 
 /* 下拉菜单 */
-.blocklyWidgetDiv .blocklyMenu {
-  padding: 0;
-  border: 0;
-}
-
-.blocklyDropDownDiv {
-  padding: 0;
-  border-radius: 8px;
-  box-shadow: 0 0 8px 0 rgb(128 128 128 / 20%) !important;
-  border: 0;
-}
-
 .blocklyMenu {
   border-radius: 8px;
 }
@@ -63,6 +51,18 @@ body {
 
 .blocklyMenuItem:nth-last-child(1) {
   border-radius: 0 0 8px 8px;
+}
+
+.blocklyWidgetDiv .blocklyMenu {
+  border: 0;
+  padding: 0;
+}
+
+.blocklyDropDownDiv {
+  border: 0;
+  border-radius: 8px;
+  padding: 0;
+  box-shadow: 0 0 8px 0 rgb(128 128 128 / 20%) !important;
 }
 
 /* 颜色弹出框 */
