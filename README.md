@@ -1,3 +1,4 @@
+<!--suppress HtmlDeprecatedAttribute -->
 <p align="center">
    <br>
    <img width="100" src="https://gitee.com/coco-central/boxy/raw/master/src/icon/logo/boxy.svg" alt="Boxy-logo"/>
@@ -78,4 +79,11 @@ Boxy 是 Google Blockly 的一个应用实例，
 
    ```
    npm run remake
+   ```
+
+- **格式化：标准化项目文件。**
+   在 `commit` 前标准化代码。
+
+   ```
+   npm run lint
    ```
