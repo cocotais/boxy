@@ -3,3 +3,38 @@
   display: block;
   opacity: 0;
 }
+
+#zoomBox {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+  z-index: 100;
+  display: inline-flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 1px solid rgb(211 208 223 / 50%);
+  border-radius: 77px;
+  width: 275px;
+  height: 45px;
+  background: #fff;
+  box-shadow: 0 3px 6px 2px rgb(0 0 0 / 30%);
+  backdrop-filter: blur(5px) saturate(200%);
+}
+
+#switchThemeDay {
+  display: none;
+}
+
+#switchThemeNight {
+  display: block;
+}
+
+#zoomBoxSeparate {
+  width: 2px;
+  height: 30px;
+  background-color: #9c89ff7f;
+}
+
+#zoomBoxReset {
+  user-select: none;
+}

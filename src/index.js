@@ -5,6 +5,7 @@ import "./toolbox/toolbox.css";
 import "./search/search.css";
 import "./navigation/navigation";
 import "./navigation/navigation.css";
+import "./zoomBox/zoomBox";
 import "./zoomBox/zoomBox.css";
 
 import { setBoxyCategory } from "./toolbox/toolbox";
@@ -14,7 +15,7 @@ setBoxyCategory();
 loadWorkspace();
 
 //监听器
-var observer = new window.MutationObserver(function (mutations) {
+const toolboxFlyoutObserver = new window.MutationObserver(function (mutations) {
   mutations.forEach(function (mutation) {
     if (mutation.type === "attributes") {
       let element = document.querySelector("#blocklyDiv > div > svg.blocklyFlyout");
@@ -26,7 +27,7 @@ var observer = new window.MutationObserver(function (mutations) {
     }
   });
 });
-observer.observe(document.querySelector("#blocklyDiv > div > svg.blocklyFlyout"), {
+toolboxFlyoutObserver.observe(document.querySelector("#blocklyDiv > div > svg.blocklyFlyout"), {
   attributes: true,
   attributeFilter: ["style"],
 });

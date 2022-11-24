@@ -2,12 +2,12 @@ import $ from "jquery";
 
 // 导航栏菜单
 $(document).ready(function () {
-  $("#navigation").click(function (e) {
+  $("#navigation").on("click", function (e) {
     let boxyMenu = $(".boxyMenu");
     e.stopPropagation();
     boxyMenu.toggle(100);
     if (boxyMenu.is(":visible")) {
-      $(document).one("click", function () {
+      $(document).on("click", function () {
         boxyMenu.hide(100);
       });
     }

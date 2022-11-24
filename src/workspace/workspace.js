@@ -60,7 +60,6 @@ export function loadWorkspace() {
     blocklyDiv.style.top = y + "px";
     blocklyDiv.style.width = blocklyArea.offsetWidth + "px";
     blocklyDiv.style.height = blocklyArea.offsetHeight + "px";
-    console.log(blocklyArea.offsetWidth, blocklyArea.offsetHeight);
     Blockly.svgResize(workspace);
   };
   window.addEventListener("resize", onresize, false);
