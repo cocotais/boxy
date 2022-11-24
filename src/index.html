@@ -10,7 +10,7 @@
   <body>
     <img id="navigation" src="icon/logo/boxy.svg" alt="logo" width="0" height="0" />
     <div class="boxyMenuPosition">
-      <div class="boxyMenu" style="visibility: hidden;">
+      <div class="boxyMenu" style="visibility: hidden">
         <div class="boxyMenuItem" onclick="navigationNew()">
           <div class="boxyMenuItemContent">新建</div>
         </div>
@@ -31,5 +31,25 @@
 
     <div id="blocklyArea"></div>
     <div id="blocklyDiv"></div>
+
+    <div id="zoomBox">
+      <div data-title="切换主题">
+        <iconpark-icon name="day" id="switchThemeDay" class="zoomFunctions"></iconpark-icon>
+        <iconpark-icon name="night" id="switchThemeNight" class="zoomFunctions"></iconpark-icon>
+      </div>
+      <div data-title="转换代码">
+        <iconpark-icon name="code" id="switchCode" class="zoomFunctions"></iconpark-icon>
+      </div>
+      <div id="zoomBoxSeparate"></div>
+      <div data-title="缩小">
+        <iconpark-icon name="smaller" id="zoomBoxSmaller" class="zoomFunctions"></iconpark-icon>
+      </div>
+      <div data-title="恢复为100%">
+        <span id="zoomBoxReset">100%</span>
+      </div>
+      <div data-title="放大">
+        <iconpark-icon name="bigger" id="zoomBoxBigger" class="zoomFunctions"></iconpark-icon>
+      </div>
+    </div>
   </body>
 </html>
