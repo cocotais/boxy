@@ -4,7 +4,6 @@ import superellipse from "../icon/category/superellipse.svg";
 
 // https://blocklycodelabs.dev/codelabs/custom-toolbox/index.html?index=..%2F..index#0
 
-// noinspection JSValidateTypes
 class BoxyCategory extends Blockly.ToolboxCategory {
   constructor(categoryDef, toolbox, opt_parent) {
     super(categoryDef, toolbox, opt_parent);
@@ -42,6 +41,7 @@ class BoxyCategory extends Blockly.ToolboxCategory {
   }
 }
 
+// 注册积木栏的自定义类
 export function setBoxyCategory() {
   Blockly.registry.register(
     Blockly.registry.Type.TOOLBOX_ITEM,

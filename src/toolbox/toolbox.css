@@ -14,6 +14,7 @@
 .blocklyFlyout {
   position: absolute;
   z-index: 3;
+  display: block !important;
   overflow: hidden;
   width: 320px;
   height: 100vh;

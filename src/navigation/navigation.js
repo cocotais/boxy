@@ -19,12 +19,22 @@ $(document).ready(function () {
 $(".boxyMenu").hide();
 
 // 导航栏功能
-function navigationNew() {}
+window.navigationNew = function () {
+  $(".boxyMenu").hide();
+};
 
-function navigationOpen() {}
+window.navigationOpen = function () {
+  $(".boxyMenu").hide();
+};
 
-function navigationSave() {}
+window.navigationSave = function () {
+  $(".boxyMenu").hide();
+};
 
-function navigationExport() {}
+window.navigationExport = function () {
+  $(".boxyMenu").hide();
+};
 
-function navigationSettings() {}
+window.navigationSettings = function () {
+  $(".boxyMenu").hide();
+};

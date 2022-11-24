@@ -67,7 +67,7 @@ Boxy 是 Google Blockly 的一个应用实例，
    ```
 
 - **清理：清除软件包和构建，并重置缓存。**
-   清除 `/dist/` 和 `node_modules` 下的内容，重置 npm 的缓存。
+   清除 `/dist/` 和 `/node_modules/` 下的内容，重置 npm 的缓存。
 
    ```
    npm run clean
@@ -82,7 +82,7 @@ Boxy 是 Google Blockly 的一个应用实例，
    ```
 
 - **格式化：标准化项目文件。**
-   在 `commit` 前标准化代码。
+   请在 `commit` 运行以保证符合代码规范。
 
    ```
    npm run lint

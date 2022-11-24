@@ -7,13 +7,16 @@ import * as zh from "blockly/msg/zh-hans";
 
 import toolboxConfig from "../toolbox/toolbox.json";
 
+// 加载工具箱
 export function loadWorkspace() {
-  // noinspection JSCheckFunctionSignatures
+  // 本地语言设置
   Blockly.setLocale(zh);
+  // 注册工作区
   const blocklyArea = document.getElementById("blocklyArea");
   const blocklyDiv = document.getElementById("blocklyDiv");
   const workspace = Blockly.inject(blocklyDiv, {
     toolbox: toolboxConfig,
+    media: "https://unpkg.com/blockly@9.1.1/media",
     trashcan: false,
     plugins: {
       blockDragger: ScrollBlockDragger,
@@ -35,14 +38,14 @@ export function loadWorkspace() {
     theme: "zelos",
     renderer: "zelos",
   });
-
+  // 配置滚动条
   Blockly.Scrollbar.scrollbarThickness = 10;
-
+  // 加载插件
   const plugin = new ScrollOptions(workspace);
   plugin.init();
   const workspaceSearch = new WorkspaceSearch(workspace);
   workspaceSearch.init();
-
+  // 动态大小
   let onresize = function () {
     let element = blocklyArea;
     let x = 0;

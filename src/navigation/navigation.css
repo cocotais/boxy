@@ -33,6 +33,10 @@
   user-select: none;
 }
 
+.boxyMenu:hover {
+  box-shadow: 0 0 6px 1px rgb(0 0 0 / 30%);
+}
+
 .boxyMenuItem {
   margin: 0;
   border: none;
@@ -58,7 +62,7 @@
 }
 
 .boxyMenuItemContent {
-  font-family: "Helvetica Neue", "Segoe UI", Helvetica, sans-serif;
+  font: normal 13px Arial, sans-serif;
   white-space: nowrap;
   color: #000;
   list-style: none;
