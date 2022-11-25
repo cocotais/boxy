@@ -1,12 +1,13 @@
 import "@blockly/block-plus-minus";
 
-import { ScrollBlockDragger, ScrollMetricsManager, ScrollOptions } from "@blockly/plugin-scroll-options";
-import { WorkspaceSearch } from "@blockly/plugin-workspace-search";
+import {ScrollBlockDragger, ScrollMetricsManager, ScrollOptions} from "@blockly/plugin-scroll-options";
+import {WorkspaceSearch} from "@blockly/plugin-workspace-search";
 import Blockly from "blockly";
 import * as zh from "blockly/msg/zh-hans";
 
 import toolboxConfig from "../toolbox/toolbox.json";
-import { trashcanCoverOff, trashcanSwitchOff, trashcanSwitchOn } from "../transhcan/trashcan";
+
+export var workspace;
 
 // 加载工具箱
 export function loadWorkspace() {
@@ -15,7 +16,7 @@ export function loadWorkspace() {
   // 注册工作区
   const blocklyArea = document.getElementById("blocklyArea");
   const blocklyDiv = document.getElementById("blocklyDiv");
-  var workspace = Blockly.inject(blocklyDiv, {
+  const inject = Blockly.inject(blocklyDiv, {
     toolbox: toolboxConfig,
     media: "https://unpkg.com/blockly@9.1.1/media",
     trashcan: false,
@@ -42,9 +43,9 @@ export function loadWorkspace() {
   // 配置滚动条
   Blockly.Scrollbar.scrollbarThickness = 10;
   // 加载插件
-  const plugin = new ScrollOptions(workspace);
+  const plugin = new ScrollOptions(inject);
   plugin.init();
-  const workspaceSearch = new WorkspaceSearch(workspace);
+  const workspaceSearch = new WorkspaceSearch(inject);
   workspaceSearch.init();
   // 动态大小
   let onresize = function () {
@@ -61,19 +62,10 @@ export function loadWorkspace() {
     blocklyDiv.style.top = y + "px";
     blocklyDiv.style.width = blocklyArea.offsetWidth + "px";
     blocklyDiv.style.height = blocklyArea.offsetHeight + "px";
-    Blockly.svgResize(workspace);
+    Blockly.svgResize(inject);
   };
   window.addEventListener("resize", onresize, false);
   onresize();
-  Blockly.svgResize(workspace);
-
-  // 垃圾桶监听器
-  workspace.addChangeListener(function (event) {
-    if (event.type === "drag") {
-      trashcanSwitchOn();
-    } else if (event.type === "move") {
-      trashcanSwitchOff();
-      trashcanCoverOff();
-    }
-  });
+  Blockly.svgResize(inject);
+  workspace = inject;
 }
