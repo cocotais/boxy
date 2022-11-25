@@ -22,15 +22,15 @@
 
 #trashcan-lid {
   position: absolute;
-  left: 15px;
+  left: 12.5px;
   margin-top: -42.5px;
-  width: 30px;
+  width: 35px;
   transition: all 0.5s cubic-bezier(0.1, 1, 0.5, 1);
 }
 
 #trashcan-body {
   position: absolute;
-  left: 17.5px;
-  margin-top: -32px;
-  width: 25px;
+  left: 15px;
+  margin-top: -30px;
+  width: 30px;
 }
