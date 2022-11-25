@@ -7,8 +7,10 @@ import "./navigation/navigation";
 import "./navigation/navigation.css";
 import "./zoomBox/zoomBox";
 import "./zoomBox/zoomBox.css";
+import "./transhcan/trashcan.css";
 
 import { setBoxyCategory } from "./toolbox/toolbox";
+import { trashcanCoverOff, trashcanCoverOn } from "./transhcan/trashcan";
 import { loadWorkspace } from "./workspace/workspace";
 
 setBoxyCategory();
@@ -27,7 +29,26 @@ const toolboxFlyoutObserver = new window.MutationObserver(function (mutations) {
     }
   });
 });
+
 toolboxFlyoutObserver.observe(document.querySelector("#blocklyDiv > div > svg.blocklyFlyout"), {
   attributes: true,
   attributeFilter: ["style"],
+});
+
+const trashcanObserver = new window.MutationObserver(function (mutations) {
+  mutations.forEach(function (mutation) {
+    if (mutation.type === "attributes") {
+      let element = document.querySelector("#blocklyDiv > div > div.blocklyToolboxDiv.blocklyNonSelectable");
+      if (element.classList.contains("blocklyToolboxDelete")) {
+        trashcanCoverOn();
+      } else {
+        trashcanCoverOff();
+      }
+    }
+  });
+});
+
+trashcanObserver.observe(document.querySelector("#blocklyDiv > div > div.blocklyToolboxDiv.blocklyNonSelectable"), {
+  attributes: true,
+  attributeFilter: ["class"],
 });

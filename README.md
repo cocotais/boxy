@@ -46,44 +46,44 @@ Boxy 是 Google Blockly 的一个应用实例，
 4. **构建：WebPack 项目构建。**
 
    ```
-   npm run build
+   npm hold build
    ```
 
 #### 开发
 
 - **运行：搭建本地服务。**
-   如果你的开发工具没有能力建立本地服务，请使用此命令。
+  如果你的开发工具没有能力建立本地服务，请使用此命令。
 
-   ```
-   npm run start
-   ```
+  ```
+  npm hold start
+  ```
 
 - **守候：自动检测文件更改，并重新编译。**
-   如果你的开发工具可以建立本地服务，请使用此命令。
-   此命令生成的内容在 `http://localhost:8000/dist/index.html` 中。
+  如果你的开发工具可以建立本地服务，请使用此命令。
+  此命令生成的内容在 `http://localhost:8000/dist/index.html` 中。
 
-   ```
-   npm run watch
-   ```
+  ```
+  npm hold watch
+  ```
 
 - **清理：清除软件包和构建，并重置缓存。**
-   清除 `/dist/` 和 `/node_modules/` 下的内容，重置 npm 的缓存。
+  清除 `/dist/` 和 `/node_modules/` 下的内容，重置 npm 的缓存。
 
-   ```
-   npm run clean
-   ```
+  ```
+  npm hold clean
+  ```
 
 - **重构：清除原有构建内容，并重新构建。**
-   清除 `/dist/` 文件夹下的内容，
-   重新构建项目。
+  清除 `/dist/` 文件夹下的内容，
+  重新构建项目。
 
-   ```
-   npm run remake
-   ```
+  ```
+  npm hold remake
+  ```
 
 - **格式化：标准化项目文件。**
-   请在 `commit` 运行以保证符合代码规范。
+  请在 `commit` 运行以保证符合代码规范。
 
-   ```
-   npm run lint
-   ```
+  ```
+  npm hold lint
+  ```

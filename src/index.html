@@ -8,6 +8,7 @@
     <title>Boxy</title>
   </head>
   <body>
+    <!--  导航栏-->
     <img id="navigation" src="icon/logo/boxy.svg" alt="logo" width="0" height="0" />
     <div class="boxyMenuPosition">
       <div class="boxyMenu" style="visibility: hidden">
@@ -28,10 +29,15 @@
         </div>
       </div>
     </div>
-
+    <!--工作区-->
     <div id="blocklyArea"></div>
     <div id="blocklyDiv"></div>
-
+    <!--垃圾桶-->
+    <div id="trashcan" class="blocklyToolboxDelete">
+      <img src="./icon/trashcan/lid.svg" id="trashcan-lid" class="trashcan" alt="垃圾桶盖" />
+      <img src="./icon/trashcan/body.svg" id="trashcan-body" class="trashcan" alt="垃圾桶身" />
+    </div>
+    <!--缩放栏-->
     <div id="zoomBox">
       <div data-title="切换主题">
         <iconpark-icon name="day" id="switchThemeDay" class="zoomFunctions"></iconpark-icon>

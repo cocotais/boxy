@@ -1,10 +1,10 @@
 /* 搜索设置 */
 .blockly-ws-search {
   top: 40px !important;
-  right: 50px !important;
+  right: 40px !important;
   border-radius: 50px;
-  width: 300px;
-  height: 40px;
+  width: 275px;
+  height: 35px;
   box-shadow: rgb(0 0 0 / 20%) 0 4px 4px 0;
   transition: all 0.5s;
 }
