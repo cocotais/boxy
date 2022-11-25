@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
   mode: "development",
@@ -13,12 +14,25 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.html$/,
+        loader: "html-loader",
+      },
+      {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
-        test: /\.svg/,
-        use: ["file-loader"],
+        test: /\.(jpg|png|gif|svg)$/,
+        type: "asset",
+        parser: {
+          dataUrlCondition: {
+            maxSize: 10 * 1024,
+          },
+        },
+        generator: {
+          filename: "img/[name].[hash:6][ext]",
+          publicPath: "./",
+        },
       },
     ],
   },
@@ -62,5 +76,17 @@ module.exports = {
         },
       },
     },
+    // // 打包
+    // minimize: true,
+    // minimizer: [
+    //   new TerserPlugin({
+    //     parallel: true,
+    //     terserOptions: {
+    //       toplevel: true,
+    //       ie8: true,
+    //       safari10: true,
+    //     },
+    //   }),
+    // ],
   },
 };
