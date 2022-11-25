@@ -10,11 +10,12 @@ import "./zoomBox/zoomBox.css";
 import "./transhcan/trashcan.css";
 
 import { setBoxyCategory } from "./toolbox/toolbox";
-import { trashcanCoverOff, trashcanCoverOn } from "./transhcan/trashcan";
+import {setTrashcan, trashcanCoverOff, trashcanCoverOn} from "./transhcan/trashcan";
 import { loadWorkspace } from "./workspace/workspace";
 
 setBoxyCategory();
 loadWorkspace();
+setTrashcan();
 
 //监听器
 const toolboxFlyoutObserver = new window.MutationObserver(function (mutations) {
