@@ -21,11 +21,12 @@ $(document).ready(function () {
 });
 $(".boxyMenu").hide();
 
-// 导航栏功能
+// 新建
 window.navigationNew = function () {
   $(".boxyMenu").hide();
 };
 
+// 打开
 window.navigationOpen = function () {
   $(".boxyMenu").hide();
   const input = document.createElement("input");
@@ -47,6 +48,7 @@ window.navigationOpen = function () {
   input.click();
 };
 
+// 保存
 window.navigationSave = function () {
   $(".boxyMenu").hide();
   const json = Blockly.serialization.workspaces.save(workspace);
@@ -61,9 +63,9 @@ window.navigationSave = function () {
   console.log(text);
 };
 
+// 导出
 window.navigationExport = function () {
   $(".boxyMenu").hide();
-  // 选择你所需要的
   const jsCode = javascriptGenerator.workspaceToCode(workspace);
   const blob = new Blob([jsCode], { type: "text/plain;charset=utf-8" });
   const url = URL.createObjectURL(blob);
@@ -75,6 +77,7 @@ window.navigationExport = function () {
   console.log(jsCode);
 };
 
-window.navigationSettings = function () {
+// 设置
+window.navigationOptions = function () {
   $(".boxyMenu").hide();
 };
