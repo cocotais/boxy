@@ -1,3 +1,5 @@
+import { workspace } from "../workspace/workspace";
+
 let zoomBox = document.querySelector("#zoomBox");
 
 // sigmoid 函数
@@ -19,9 +21,24 @@ function zoomBoxSizeManager() {
   // 仅作基础适配
   let size = zoomBox.getBoundingClientRect();
   let unit = 55 - 10 * sigmoid(0.005 * size.left - 2);
-  zoomBox.style.width = 5.5 * unit + 'px';
-  zoomBox.style.height = unit + 'px';
+  zoomBox.style.width = 5.5 * unit + "px";
+  zoomBox.style.height = unit + "px";
 }
 
 window.addEventListener("resize", zoomBoxSizeManager);
 window.addEventListener("load", zoomBoxSizeManager);
+
+window.zoomBoxSmaller = function () {
+  document.getElementsByClassName("blocklyZoom")[0].dispatchEvent(new PointerEvent("pointerdown"));
+  document.getElementById("zoomBoxReset").innerHTML = Math.ceil(workspace.getScale() * 100) + "%";
+};
+
+window.zoomBoxReset = function () {
+  document.getElementsByClassName("blocklyZoom")[2].dispatchEvent(new PointerEvent("pointerdown"));
+  document.getElementById("zoomBoxReset").innerHTML = Math.ceil(workspace.getScale() * 100) + "%";
+};
+
+window.zoomBoxBigger = function () {
+  document.getElementsByClassName("blocklyZoom")[1].dispatchEvent(new PointerEvent("pointerdown"));
+  document.getElementById("zoomBoxReset").innerHTML = Math.ceil(workspace.getScale() * 100) + "%";
+};

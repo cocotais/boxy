@@ -1,7 +1,7 @@
 import "@blockly/block-plus-minus";
 
-import {ScrollBlockDragger, ScrollMetricsManager, ScrollOptions} from "@blockly/plugin-scroll-options";
-import {WorkspaceSearch} from "@blockly/plugin-workspace-search";
+import { ScrollBlockDragger, ScrollMetricsManager, ScrollOptions } from "@blockly/plugin-scroll-options";
+import { WorkspaceSearch } from "@blockly/plugin-workspace-search";
 import Blockly from "blockly";
 import * as zh from "blockly/msg/zh-hans";
 
@@ -28,9 +28,8 @@ export function loadWorkspace() {
       controls: true,
       wheel: true,
       startScale: 0.8,
-      maxScale: 1.6,
-      minScale: 0.4,
-      scaleSpeed: 1.5,
+      maxScale: 1.8,
+      minScale: 0.3,
     },
     move: {
       scrollbars: true,
