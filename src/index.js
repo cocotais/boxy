@@ -7,10 +7,10 @@ import "./navigation/navigation";
 import "./navigation/navigation.css";
 import "./zoomBox/zoomBox";
 import "./zoomBox/zoomBox.css";
-import "./transhcan/trashcan.css";
+import "./trashcan/trashcan.css";
 
 import { setBoxyCategory } from "./toolbox/toolbox";
-import {setTrashcan, trashcanCoverOff, trashcanCoverOn} from "./transhcan/trashcan";
+import {setTrashcan, trashcanCoverOff, trashcanCoverOn} from "./trashcan/trashcan";
 import { loadWorkspace } from "./workspace/workspace";
 
 setBoxyCategory();

@@ -18,7 +18,7 @@ export function loadWorkspace() {
   const blocklyDiv = document.getElementById("blocklyDiv");
   const inject = Blockly.inject(blocklyDiv, {
     toolbox: toolboxConfig,
-    media: "https://unpkg.com/blockly@9.1.1/media",
+    // media: "https://unpkg.com/blockly@9.1.1/media",
     trashcan: false,
     plugins: {
       blockDragger: ScrollBlockDragger,
