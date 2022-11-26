@@ -4,6 +4,10 @@
   opacity: 0;
 }
 
+.blocklyBlockCanvas {
+  transition: scale 0.5s;
+}
+
 #zoomBox {
   position: absolute;
   right: 40px;

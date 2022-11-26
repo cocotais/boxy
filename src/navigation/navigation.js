@@ -1,7 +1,8 @@
 import Blockly from "blockly";
-import $ from "jquery";
-import { workspace } from "../workspace/workspace";
 import { javascriptGenerator } from "blockly/javascript";
+import $ from "jquery";
+
+import { workspace } from "../workspace/workspace";
 
 // 导航栏菜单
 $(document).ready(function () {
