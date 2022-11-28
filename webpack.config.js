@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 // const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
@@ -44,6 +45,11 @@ module.exports = {
     compress: true,
     open: true,
     hot: true,
+    devMiddleware: {
+      index: true,
+      serverSideRender: true,
+      writeToDisk: true,
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -54,6 +60,14 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: "[name].[contenthash:6].css",
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: "./node_modules/blockly/media",
+          to: "media",
+        },
+      ],
     }),
   ],
   optimization: {
