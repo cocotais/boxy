@@ -5,6 +5,7 @@ import { WorkspaceSearch } from "@blockly/plugin-workspace-search";
 import Blockly from "blockly";
 import * as zh from "blockly/msg/zh-hans";
 
+import { toolboxAriaFix } from "../toolbox/toolbox";
 import toolboxConfig from "../toolbox/toolbox.json";
 
 export var workspace;
@@ -16,10 +17,10 @@ export function loadWorkspace() {
   // 注册工作区
   const blocklyArea = document.getElementById("blocklyArea");
   const blocklyDiv = document.getElementById("blocklyDiv");
-  const inject = Blockly.inject(blocklyDiv, {
+  const blocklyWorkSpace = Blockly.inject(blocklyDiv, {
     toolbox: toolboxConfig,
-    // media: "https://unpkg.com/blockly@9.1.1/media",
     trashcan: false,
+    media: "./media/",
     plugins: {
       blockDragger: ScrollBlockDragger,
       metricsManager: ScrollMetricsManager,
@@ -42,10 +43,12 @@ export function loadWorkspace() {
   // 配置滚动条
   Blockly.Scrollbar.scrollbarThickness = 10;
   // 加载插件
-  const plugin = new ScrollOptions(inject);
+  const plugin = new ScrollOptions(blocklyWorkSpace);
   plugin.init();
-  const workspaceSearch = new WorkspaceSearch(inject);
+  const workspaceSearch = new WorkspaceSearch(blocklyWorkSpace);
   workspaceSearch.init();
+  toolboxAriaFix();
+
   // 动态大小
   let onresize = function () {
     let element = blocklyArea;
@@ -61,10 +64,10 @@ export function loadWorkspace() {
     blocklyDiv.style.top = y + "px";
     blocklyDiv.style.width = blocklyArea.offsetWidth + "px";
     blocklyDiv.style.height = blocklyArea.offsetHeight + "px";
-    Blockly.svgResize(inject);
+    Blockly.svgResize(blocklyWorkSpace);
   };
   window.addEventListener("resize", onresize, false);
   onresize();
-  Blockly.svgResize(inject);
-  workspace = inject;
+  Blockly.svgResize(blocklyWorkSpace);
+  workspace = blocklyWorkSpace;
 }

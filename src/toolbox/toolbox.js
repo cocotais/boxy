@@ -41,6 +41,13 @@ class BoxyCategory extends Blockly.ToolboxCategory {
   }
 }
 
+export function toolboxAriaFix() {
+  let ariaElement = document.getElementsByClassName("blocklyToolboxCategory");
+  for (let element = 0; element < ariaElement.length; element++) {
+    ariaElement[element].setAttribute("aria-level", "1");
+  }
+}
+
 // 注册积木栏的自定义类
 export function setBoxyCategory() {
   Blockly.registry.register(

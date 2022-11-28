@@ -4,7 +4,7 @@ let zoomBox = document.querySelector("#zoomBox");
 
 // sigmoid 函数
 function sigmoid(x) {
-  let ex = Math.E ** x;
+  const ex = Math.E ** x;
   return ex / (ex + 1);
 }
 
@@ -26,7 +26,7 @@ function zoomBoxSizeManager() {
 }
 
 window.addEventListener("resize", zoomBoxSizeManager);
-window.addEventListener("load", zoomBoxSizeManager);
+zoomBoxSizeManager();
 
 window.zoomBoxSmaller = function () {
   document.getElementsByClassName("blocklyZoom")[0].dispatchEvent(new PointerEvent("pointerdown"));

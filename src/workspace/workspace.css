@@ -69,6 +69,10 @@ body {
   z-index: 8;
 }
 
+.blocklySvg > .blocklyWorkspace > .blocklyBlockCanvas {
+  transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
 /* 颜色弹出框 */
 .fieldColourSlider {
   height: 16px;
