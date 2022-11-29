@@ -53,7 +53,7 @@ class BoxyZoomBox {
 
   codespace_ = () => {
     if (this.workspaceDiv.getAttributeNames().indexOf("x") !== -1) {
-      this.workspaceDiv.setAttribute("x");
+      this.workspaceDiv.setAttribute("x", "");
     } else {
       this.workspaceDiv.removeAttribute("x");
     }
