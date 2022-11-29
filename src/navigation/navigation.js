@@ -43,7 +43,7 @@ class BoxyNavigation {
       const file = this.files[0];
       const reader = new FileReader();
       reader.addEventListener("load", function () {
-        const json = JSON.parse(this.result);
+        const json = JSON.parse(this.result || "");
         Blockly.serialization.workspaces.load(json, workspace.workspace);
         console.log("[Boxy] Opened:");
         console.log(this.result);
