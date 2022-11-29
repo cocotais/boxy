@@ -23,7 +23,7 @@ class BoxyCategory extends Blockly.ToolboxCategory {
       labelDom.style.color = "#000";
     }
 
-    Blockly.utils.aria.setState(/** @type {!Element} */ (this.htmlDiv_), Blockly.utils.aria.State.SELECTED, isSelected);
+    Blockly.utils.aria.setState(this.htmlDiv_, Blockly.utils.aria.State.SELECTED, isSelected);
   }
 
   createIconDom_() {
@@ -41,19 +41,27 @@ class BoxyCategory extends Blockly.ToolboxCategory {
   }
 }
 
-export function toolboxAriaFix() {
-  let ariaElement = document.getElementsByClassName("blocklyToolboxCategory");
-  for (let element = 0; element < ariaElement.length; element++) {
-    ariaElement[element].setAttribute("aria-level", "1");
+class BoxyToolbox {
+  constructor() {
+    this.ariaElements = document.getElementsByClassName("blocklyToolboxCategory");
+  }
+
+  load() {
+    Blockly.registry.register(
+      Blockly.registry.Type.TOOLBOX_ITEM,
+      Blockly.ToolboxCategory.registrationName,
+      BoxyCategory,
+      true
+    );
+  }
+
+  ariaFix() {
+    Array.prototype.forEach.call(this.ariaElements, function (element) {
+      element.setAttribute("aria-level", "1");
+    });
   }
 }
 
-// 注册积木栏的自定义类
-export function setBoxyCategory() {
-  Blockly.registry.register(
-    Blockly.registry.Type.TOOLBOX_ITEM,
-    Blockly.ToolboxCategory.registrationName,
-    BoxyCategory,
-    true
-  );
-}
+let toolbox = new BoxyToolbox();
+toolbox.load();
+export default toolbox;

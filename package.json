@@ -10,7 +10,7 @@
     "rebuild": "rimraf dist & webpack",
     "watch": "webpack --watch",
     "clean": "rimraf dist & rimraf package-lock.json & rimraf node_modules & npm cache clear --force",
-    "lint": "eslint --fix --ext .js src & stylelint \"src/**/*.(css)\" --fix"
+    "lint": "prettier --write . & eslint --fix --ext .js src & stylelint \"src/**/*.(css)\" --fix"
   },
   "repository": {
     "type": "git",
