@@ -1,43 +1,36 @@
-import { workspace } from "../workspace/workspace";
+class BoxyTrashcan {
+  constructor() {
+    this.trashCan = document.getElementById("trashcan");
+    this.trashcanLid = document.getElementById("trashcan-lid");
+    this.trashcanBody = document.getElementById("trashcan-body");
+  }
 
-let trashcanLid = document.getElementById("trashcan-lid");
-let trashcanBody = document.getElementById("trashcan-body");
-let trashCan = document.getElementById("trashcan");
+  switchOn() {
+    this.trashCan.style.zIndex = 6;
+    this.trashcanLid.style.zIndex = 7;
+    this.trashcanBody.style.zIndex = 7;
+    this.trashCan.style.opacity = 1;
+    this.trashcanLid.style.opacity = 1;
+    this.trashcanBody.style.opacity = 1;
+  }
 
-export function trashcanSwitchOn() {
-  trashcanLid.style.zIndex = 7;
-  trashcanBody.style.zIndex = 7;
-  trashCan.style.zIndex = 6;
-  trashcanLid.style.opacity = 1;
-  trashcanBody.style.opacity = 1;
-  trashCan.style.opacity = 1;
+  switchOff() {
+    this.trashCan.style.zIndex = 0;
+    this.trashcanLid.style.zIndex = 0;
+    this.trashcanBody.style.zIndex = 0;
+    this.trashCan.style.opacity = 0;
+    this.trashcanLid.style.opacity = 0;
+    this.trashcanBody.style.opacity = 0;
+  }
+
+  coverOn() {
+    this.trashcanLid.style.transform = "translate(-4px,-4px) rotate(-20deg)";
+  }
+
+  coverOff() {
+    this.trashcanLid.style.transform = "translate(0px, 0px) rotate(0deg)";
+  }
 }
 
-export function trashcanSwitchOff() {
-  trashcanLid.style.zIndex = 0;
-  trashcanBody.style.zIndex = 0;
-  trashCan.style.zIndex = 0;
-  trashcanLid.style.opacity = 0;
-  trashcanBody.style.opacity = 0;
-  trashCan.style.opacity = 0;
-}
-
-export function trashcanCoverOn() {
-  trashcanLid.style.transform = "translate(-4px,-4px) rotate(-20deg)";
-}
-
-export function trashcanCoverOff() {
-  trashcanLid.style.transform = "translate(0px, 0px) rotate(0deg)";
-}
-
-// 垃圾桶监听器
-export function setTrashcan() {
-  workspace.addChangeListener(function (event) {
-    if (event.type === "drag") {
-      trashcanSwitchOn();
-    } else if (event.type === "move") {
-      trashcanSwitchOff();
-      trashcanCoverOff();
-    }
-  });
-}
+let trashcan = new BoxyTrashcan();
+export default trashcan;

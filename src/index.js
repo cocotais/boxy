@@ -1,6 +1,7 @@
 import "./workspace/workspace.css";
 import "./icon/category/category";
 import "./icon/category/category.css";
+import "./codespace/codespace.css";
 import "./toolbox/toolbox.css";
 import "./search/search.css";
 import "./navigation/navigation";
@@ -8,14 +9,10 @@ import "./navigation/navigation.css";
 import "./zoomBox/zoomBox";
 import "./zoomBox/zoomBox.css";
 import "./trashcan/trashcan.css";
+import "./toolbox/toolbox";
+import "./workspace/workspace";
 
-import { setBoxyCategory } from "./toolbox/toolbox";
-import { setTrashcan, trashcanCoverOff, trashcanCoverOn } from "./trashcan/trashcan";
-import { loadWorkspace } from "./workspace/workspace";
-
-setBoxyCategory();
-loadWorkspace();
-setTrashcan();
+import trashcan from "./trashcan/trashcan";
 
 //监听器
 const toolboxFlyoutObserver = new window.MutationObserver(function (mutations) {
@@ -41,9 +38,9 @@ const trashcanObserver = new window.MutationObserver(function (mutations) {
     if (mutation.type === "attributes") {
       let element = document.querySelector("#blocklyDiv > div > div.blocklyToolboxDiv.blocklyNonSelectable");
       if (element.classList.contains("blocklyToolboxDelete")) {
-        trashcanCoverOn();
+        trashcan.coverOn();
       } else {
-        trashcanCoverOff();
+        trashcan.coverOff();
       }
     }
   });
