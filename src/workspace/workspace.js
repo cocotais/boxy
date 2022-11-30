@@ -5,19 +5,21 @@ import { WorkspaceSearch } from "@blockly/plugin-workspace-search";
 import Blockly from "blockly";
 import * as zh from "blockly/msg/zh-hans";
 
+import codespace from "../codespace/codespace";
 import toolbox from "../toolbox/toolbox";
 import toolboxConfig from "../toolbox/toolbox.json";
+import trashcan from "../trashcan/trashcan";
 
 class BoxyWorkSpace {
   constructor() {
     Blockly.setLocale(zh);
     Blockly.Scrollbar.scrollbarThickness = 10;
     this.blocklyArea = document.getElementById("blocklyArea");
-    this.blocklyDiv = document.getElementById("blocklyDiv");
+    this.workspaceDiv = document.getElementById("workspace");
   }
 
-  load() {
-    this.workspace = Blockly.inject(this.blocklyDiv, {
+  load = () => {
+    this.workspace = Blockly.inject(this.workspaceDiv, {
       toolbox: toolboxConfig,
       trashcan: false,
       media: "./media/",
@@ -48,11 +50,17 @@ class BoxyWorkSpace {
     this.workspaceSearch = new WorkspaceSearch(this.workspace);
     this.workspaceSearch.init();
 
-    window.addEventListener("resize", this.onresize);
-    this.onresize();
-  }
+    this.blocklyArea.addEventListener("resize", this.resize);
+    window.addEventListener("resize", this.resize);
+    this.resize();
 
-  onresize() {
+    this.workspace.addChangeListener(function (event) {
+      codespace.updateCode();
+      trashcan.switch(event);
+    });
+  };
+
+  resize = () => {
     let x = 0;
     let y = 0;
     let element = this.blocklyArea;
@@ -62,12 +70,12 @@ class BoxyWorkSpace {
       element = element.offsetParent;
     } while (element);
 
-    this.blocklyDiv.style.left = x + "px";
-    this.blocklyDiv.style.top = y + "px";
-    this.blocklyDiv.style.width = this.blocklyArea.offsetWidth + "px";
-    this.blocklyDiv.style.height = this.blocklyArea.offsetHeight + "px";
-    Blockly.svgResize(Blockly.getMainWorkspace());
-  }
+    this.workspaceDiv.style.left = x + "px";
+    this.workspaceDiv.style.top = y + "px";
+    this.workspaceDiv.style.height = this.blocklyArea.offsetHeight + "px";
+    this.workspaceDiv.style.width = this.blocklyArea.offsetWidth - codespace.width() + "px";
+    Blockly.svgResize(this.workspace);
+  };
 }
 
 let workspace = new BoxyWorkSpace();

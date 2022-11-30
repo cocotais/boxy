@@ -1,0 +1,20 @@
+#codespace {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  overflow: hidden;
+  width: 0;
+  height: 100%;
+}
+
+pre {
+  margin: 1em;
+}
+
+.hljs {
+  padding: 0 1em !important;
+  font-size: 14px;
+  font-family: "Lucida Console", Monaco, monospace;
+  background: transparent;
+}

@@ -1,3 +1,4 @@
+import codespace from "../codespace/codespace";
 import workspace from "../workspace/workspace";
 
 function sigmoid(x) {
@@ -7,17 +8,18 @@ function sigmoid(x) {
 
 class BoxyZoomBox {
   constructor() {
-    this.zoomBox = document.getElementById("zoomBox");
-    this.blocklyZoom = document.getElementsByClassName("blocklyZoom");
-    this.zoomPercentage = document.getElementById("zoomBoxReset");
-    this.workspaceDiv = document.getElementById("blocklyDiv");
+    this.zoomBoxDiv = document.getElementById("zoomBox");
+    this.blocklyZoomButtons = document.getElementsByClassName("blocklyZoom");
+    this.zoomPercentageDiv = document.getElementById("zoomBoxReset");
+    this.blocklyArea = document.getElementById("blocklyArea");
     this.codespaceDiv = document.getElementById("codespace");
-    this.smallerDiv = this.blocklyZoom[0];
-    this.biggerDiv = this.blocklyZoom[1];
-    this.resetDiv = this.blocklyZoom[2];
+    this.codespaceButton = document.getElementById("switchCode");
+    this.smallerButton = this.blocklyZoomButtons[0];
+    this.biggerButton = this.blocklyZoomButtons[1];
+    this.resetButton = this.blocklyZoomButtons[2];
   }
 
-  load() {
+  load = () => {
     let zoomFunctions = document.getElementsByClassName("zoomFunctions");
     Array.prototype.forEach.call(zoomFunctions, function (zoomFunction) {
       zoomFunction.setAttribute("width", "25px");
@@ -25,38 +27,44 @@ class BoxyZoomBox {
       zoomFunction.setAttribute("size", "1em");
     });
 
-    window.addEventListener("resize", this.onresize);
-    this.onresize();
-  }
+    window.addEventListener("resize", this.resize);
+    this.resize();
+  };
 
-  onresize() {
-    const size = this.zoomBox.getBoundingClientRect();
+  resize = () => {
+    const size = this.zoomBoxDiv.getBoundingClientRect();
     const unit = 55 - 10 * sigmoid(0.005 * size.left - 2);
-    this.zoomBox.style.width = 5.5 * unit + "px";
-    this.zoomBox.style.height = unit + "px";
-  }
+    this.zoomBoxDiv.style.width = 5.5 * unit + "px";
+    this.zoomBoxDiv.style.height = unit + "px";
+  };
 
   smaller_ = () => {
-    this.smallerDiv.dispatchEvent(new PointerEvent("pointerdown"));
-    this.zoomPercentage.innerHTML = Math.ceil(workspace.workspace.getScale() * 100) + "%";
+    this.smallerButton.dispatchEvent(new PointerEvent("pointerdown"));
+    this.zoomPercentageDiv.innerHTML = Math.ceil(workspace.workspace.getScale() * 100) + "%";
   };
 
   bigger_ = () => {
-    this.biggerDiv.dispatchEvent(new PointerEvent("pointerdown"));
-    this.zoomPercentage.innerHTML = Math.ceil(workspace.workspace.getScale() * 100) + "%";
+    this.biggerButton.dispatchEvent(new PointerEvent("pointerdown"));
+    this.zoomPercentageDiv.innerHTML = Math.ceil(workspace.workspace.getScale() * 100) + "%";
   };
 
   reset_ = () => {
-    this.resetDiv.dispatchEvent(new PointerEvent("pointerdown"));
-    this.zoomPercentage.innerHTML = Math.ceil(workspace.workspace.getScale() * 100) + "%";
+    this.resetButton.dispatchEvent(new PointerEvent("pointerdown"));
+    this.zoomPercentageDiv.innerHTML = Math.ceil(workspace.workspace.getScale() * 100) + "%";
   };
 
-  codespace_ = () => {
-    if (this.workspaceDiv.getAttributeNames().indexOf("x") !== -1) {
-      this.workspaceDiv.setAttribute("x", "");
+  codespaceSwitch_ = () => {
+    if (this.blocklyArea.getAttributeNames().indexOf("code") === -1) {
+      this.blocklyArea.setAttribute("code", "");
+      this.codespaceDiv.setAttribute("code", "");
+      this.codespaceButton.style.color = "#876CFF";
     } else {
-      this.workspaceDiv.removeAttribute("x");
+      this.blocklyArea.removeAttribute("code");
+      this.codespaceDiv.removeAttribute("code");
+      this.codespaceButton.style.color = "#000000";
     }
+    workspace.resize();
+    codespace.resize();
   };
 }
 
@@ -67,4 +75,4 @@ export default zoomBox;
 window.zoomBoxSmaller = zoomBox.smaller_;
 window.zoomBoxReset = zoomBox.reset_;
 window.zoomBoxBigger = zoomBox.bigger_;
-window.codespace = zoomBox.codespace_;
+window.codespaceSwitch = zoomBox.codespaceSwitch_;
