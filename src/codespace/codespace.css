@@ -3,7 +3,7 @@
   top: 0;
   right: 0;
   display: block;
-  overflow: hidden;
+  overflow: scroll;
   width: 0;
   height: 100%;
 }
@@ -15,6 +15,7 @@ pre {
 .hljs {
   padding: 0 1em !important;
   font-size: 14px;
-  font-family: "Lucida Console", Monaco, monospace;
+  line-height: 1.414;
+  font-family: "Lucida Console", "Microsoft YaHei", cursive, Monaco, monospace;
   background: transparent;
 }

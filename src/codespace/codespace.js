@@ -1,7 +1,7 @@
 import "highlight.js/styles/atom-one-light.css";
 
 import { javascriptGenerator } from "blockly/javascript";
-import hljs from "highlight.js";
+import highlight from "highlight.js/lib/core";
 import javascript from "highlight.js/lib/languages/javascript";
 
 import workspace from "../workspace/workspace";
@@ -14,8 +14,8 @@ class Codespace {
   }
 
   load = () => {
-    hljs.registerLanguage("javascript", javascript);
-    hljs.highlightAll();
+    highlight.registerLanguage("javascript", javascript);
+    highlight.highlightAll();
 
     this.workspaceDiv.addEventListener("resize", this.resize);
     window.addEventListener("resize", this.resize);
@@ -25,11 +25,11 @@ class Codespace {
   updateCode = () => {
     let code = javascriptGenerator.workspaceToCode(workspace.workspace);
     if (code === "") {
-      this.codeDiv.innerHTML = "未生成";
+      this.codeDiv.innerHTML = "未检测到积木块";
     } else {
       this.codeDiv.innerHTML = code;
     }
-    hljs.highlightAll();
+    highlight.highlightAll();
   };
 
   resize = () => {
