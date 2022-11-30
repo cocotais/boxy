@@ -2,6 +2,10 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+
+// /*高耗时优化*/
+// const CompressionPlugin = require("compression-webpack-plugin");
+// const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 // const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
@@ -69,28 +73,32 @@ module.exports = {
         },
       ],
     }),
+
+    // /*高耗时优化*/
+    // new BundleAnalyzerPlugin({ analyzerPort: 8001 }),
+    // new CompressionPlugin({
+    //   algorithm: "gzip",
+    // }),
   ],
   optimization: {
     runtimeChunk: "single",
-    chunkIds: "size",
     splitChunks: {
       chunks: "all",
       maxInitialRequests: Infinity,
       minSize: 0,
       cacheGroups: {
-        venders: {
+        vendor: {
           test: /[\\/]node_modules[\\/]/,
-          priority: -10,
-          reuseExistingChunk: true,
-        },
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true,
+          name(module) {
+            const packageInfo = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/);
+            const packageName = packageInfo ? packageInfo[1] : "";
+            return `npm.${packageName.replace("@", "")}`;
+          },
         },
       },
     },
-    // // 打包
+
+    // /*高耗时优化*/
     // minimize: true,
     // minimizer: [
     //   new TerserPlugin({
