@@ -9,7 +9,7 @@ class BoxyNavigation {
     this.boxyMenuJQ = $(".boxyMenu");
   }
 
-  load() {
+  load = () => {
     let boxyMenu = $(".boxyMenu");
     $(document).ready(function () {
       $("#navigation").on("click", function (event) {
@@ -26,7 +26,7 @@ class BoxyNavigation {
       });
     });
     boxyMenu.hide();
-  }
+  };
 
   new_ = () => {
     this.boxyMenuJQ.hide();

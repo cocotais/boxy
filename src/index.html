@@ -31,9 +31,13 @@
     </div>
     <!--工作区-->
     <div id="blocklyArea"></div>
-    <div id="blocklyDiv"></div>
+    <div id="workspace"></div>
     <!--代码区-->
-    <div id="codespace"></div>
+    <div id="codespace">
+      <pre>
+        <code id="code" class="language-javascript"></code>
+      </pre>
+    </div>
     <!--垃圾桶-->
     <div id="trashcan" class="blocklyToolboxDelete">
       <img src="./icon/trashcan/lid.svg" id="trashcan-lid" class="trashcan" alt="垃圾桶盖" />
@@ -45,7 +49,7 @@
         <iconpark-icon name="day" id="switchThemeDay" class="zoomFunctions"></iconpark-icon>
         <iconpark-icon name="night" id="switchThemeNight" class="zoomFunctions"></iconpark-icon>
       </div>
-      <div data-title="转换代码" onclick="codespace()">
+      <div data-title="转换代码" onclick="codespaceSwitch()">
         <iconpark-icon name="code" id="switchCode" class="zoomFunctions"></iconpark-icon>
       </div>
       <div id="zoomBoxSeparate"></div>

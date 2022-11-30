@@ -9,11 +9,11 @@ class BoxyCategory extends Blockly.ToolboxCategory {
     super(categoryDef, toolbox, opt_parent);
   }
 
-  addColourBorder_(colour) {
+  addColourBorder_ = (colour) => {
     this.rowDiv_.style.backgroundColor = colour;
-  }
+  };
 
-  setSelected(isSelected) {
+  setSelected = (isSelected) => {
     let labelDom = this.rowDiv_.getElementsByClassName("blocklyTreeLabel")[0];
     if (isSelected) {
       this.rowDiv_.style.backgroundColor = "#fff";
@@ -24,9 +24,9 @@ class BoxyCategory extends Blockly.ToolboxCategory {
     }
 
     Blockly.utils.aria.setState(this.htmlDiv_, Blockly.utils.aria.State.SELECTED, isSelected);
-  }
+  };
 
-  createIconDom_() {
+  createIconDom_ = () => {
     const img = document.createElement("iconpark-icon");
     img.name = this.cssConfig_.icon;
     img.size = "21";
@@ -38,7 +38,7 @@ class BoxyCategory extends Blockly.ToolboxCategory {
       mask-image: url(${superellipse});
     `;
     return img;
-  }
+  };
 }
 
 class BoxyToolbox {
@@ -46,20 +46,20 @@ class BoxyToolbox {
     this.ariaElements = document.getElementsByClassName("blocklyToolboxCategory");
   }
 
-  load() {
+  load = () => {
     Blockly.registry.register(
       Blockly.registry.Type.TOOLBOX_ITEM,
       Blockly.ToolboxCategory.registrationName,
       BoxyCategory,
       true
     );
-  }
+  };
 
-  ariaFix() {
+  ariaFix = () => {
     Array.prototype.forEach.call(this.ariaElements, function (element) {
       element.setAttribute("aria-level", "1");
     });
-  }
+  };
 }
 
 let toolbox = new BoxyToolbox();

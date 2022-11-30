@@ -1,15 +1,9 @@
-import workspace from "../workspace/workspace";
-
 class BoxyTrashcan {
   constructor() {
     this.trashCan = document.getElementById("trashcan");
     this.trashcanLid = document.getElementById("trashcan-lid");
     this.trashcanBody = document.getElementById("trashcan-body");
   }
-
-  load = () => {
-    workspace.workspace.addChangeListener(this.switch);
-  };
 
   switch = (event) => {
     if (event.type === "drag") {
@@ -48,5 +42,4 @@ class BoxyTrashcan {
 }
 
 let trashcan = new BoxyTrashcan();
-trashcan.load();
 export default trashcan;

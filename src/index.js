@@ -18,7 +18,7 @@ import trashcan from "./trashcan/trashcan";
 const toolboxFlyoutObserver = new window.MutationObserver(function (mutations) {
   mutations.forEach(function (mutation) {
     if (mutation.type === "attributes") {
-      let element = document.querySelector("#blocklyDiv > div > svg.blocklyFlyout");
+      let element = document.querySelector("#workspace > div > svg.blocklyFlyout");
       if (element.style.display === "block") {
         element.style.transform = "translate(60px,0px)";
       } else {
@@ -28,7 +28,7 @@ const toolboxFlyoutObserver = new window.MutationObserver(function (mutations) {
   });
 });
 
-toolboxFlyoutObserver.observe(document.querySelector("#blocklyDiv > div > svg.blocklyFlyout"), {
+toolboxFlyoutObserver.observe(document.querySelector("#workspace > div > svg.blocklyFlyout"), {
   attributes: true,
   attributeFilter: ["style"],
 });
@@ -36,7 +36,7 @@ toolboxFlyoutObserver.observe(document.querySelector("#blocklyDiv > div > svg.bl
 const trashcanObserver = new window.MutationObserver(function (mutations) {
   mutations.forEach(function (mutation) {
     if (mutation.type === "attributes") {
-      let element = document.querySelector("#blocklyDiv > div > div.blocklyToolboxDiv.blocklyNonSelectable");
+      let element = document.querySelector("#workspace > div > div.blocklyToolboxDiv.blocklyNonSelectable");
       if (element.classList.contains("blocklyToolboxDelete")) {
         trashcan.coverOn();
       } else {
@@ -46,7 +46,7 @@ const trashcanObserver = new window.MutationObserver(function (mutations) {
   });
 });
 
-trashcanObserver.observe(document.querySelector("#blocklyDiv > div > div.blocklyToolboxDiv.blocklyNonSelectable"), {
+trashcanObserver.observe(document.querySelector("#workspace > div > div.blocklyToolboxDiv.blocklyNonSelectable"), {
   attributes: true,
   attributeFilter: ["class"],
 });
