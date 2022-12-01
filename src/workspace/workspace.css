@@ -42,7 +42,13 @@ body {
 
 .blocklyMenuItem {
   border-radius: 0;
+  color: var(--blockly-dropdown-color) !important;
   transition: background 0.2s;
+}
+
+.blocklyMenuItemDisabled {
+  color: var(--blockly-dropdown-color) !important;
+  opacity: 0.5;
 }
 
 .blocklyMenuItem:nth-child(1) {
@@ -53,10 +59,13 @@ body {
   border-radius: 0 0 8px 8px;
 }
 
+.blocklyMenuItem:hover {
+  background: var(--blockly-shadow);
+}
+
 .blocklyWidgetDiv .blocklyMenu {
   border: 0;
   padding: 0;
-  color: var(--blockly-dropdown-color);
   background: var(--blockly-dropdown-background);
   box-shadow: 0 0 3px 1px var(--blockly-shadow) !important;
 }

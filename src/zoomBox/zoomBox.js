@@ -38,6 +38,8 @@ class BoxyZoomBox {
     this.zoomBoxDiv.style.height = unit + "px";
   };
 
+  // TODO More Effective Zoom Controller
+
   smaller_ = () => {
     this.smallerButton.dispatchEvent(new PointerEvent("pointerdown"));
     this.zoomPercentageDiv.innerHTML = Math.ceil(workspace.workspace.getScale() * 100) + "%";
