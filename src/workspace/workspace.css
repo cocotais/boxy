@@ -28,7 +28,7 @@ body {
 }
 
 .blocklySvg {
-  background: #fafafa;
+  background: var(--workspace-background);
 }
 
 #toolbox {
@@ -56,13 +56,20 @@ body {
 .blocklyWidgetDiv .blocklyMenu {
   border: 0;
   padding: 0;
+  color: var(--blockly-dropdown-color);
+  background: var(--blockly-dropdown-background);
+  box-shadow: 0 0 3px 1px var(--blockly-shadow) !important;
+}
+
+.blocklyWidgetDiv .blocklyMenu:hover {
+  box-shadow: 0 0 6px 1px var(--blockly-shadow) !important;
 }
 
 .blocklyDropDownDiv {
   border: 0;
   border-radius: 8px;
   padding: 0;
-  box-shadow: 0 0 8px 0 rgb(128 128 128 / 20%) !important;
+  box-shadow: 0 0 8px 0 var(--blockly-shadow) !important;
 }
 
 .blocklyMainWorkspaceScrollbar {

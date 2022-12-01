@@ -5,7 +5,7 @@
   border-radius: 50px;
   width: 275px;
   height: 35px;
-  box-shadow: rgb(0 0 0 / 20%) 0 4px 4px 0;
+  box-shadow: var(--blockly-shadow) 0 4px 4px 0;
   transition: all 0.5s;
 }
 

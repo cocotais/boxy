@@ -4,7 +4,7 @@
   z-index: 0;
   width: 60px;
   height: 100%;
-  background-color: #0005;
+  background-color: var(--trashcan-background);
   opacity: 0;
   backdrop-filter: blur(12px) saturate(145%);
   transition: opacity 0.2s, z-index 0.2s;

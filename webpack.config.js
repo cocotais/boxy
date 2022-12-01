@@ -13,7 +13,7 @@ module.exports = {
   devtool: "source-map",
   entry: "./src/index.js",
   output: {
-    filename: "[name].[contenthash:6].js",
+    filename: "[name].[hash:6].js",
     path: path.resolve(__dirname, "dist"),
   },
   module: {
@@ -35,7 +35,7 @@ module.exports = {
           },
         },
         generator: {
-          filename: "img/[name].[hash:6][ext]",
+          filename: "img/[name].[hash:6].[ext]",
           publicPath: "./",
         },
       },
@@ -63,7 +63,7 @@ module.exports = {
       inject: "body",
     }),
     new MiniCssExtractPlugin({
-      filename: "[name].[contenthash:6].css",
+      filename: "[name].[hash:6].css",
     }),
     new CopyWebpackPlugin({
       patterns: [
@@ -77,7 +77,7 @@ module.exports = {
     // /*高耗时优化*/
     // new BundleAnalyzerPlugin({ analyzerPort: 8001 }),
     // new CompressionPlugin({
-    //   algorithm: "gzip",
+    //   exclude: /.(txt|map)$/i,
     // }),
   ],
   optimization: {

@@ -4,7 +4,7 @@
   padding: 15px;
   width: 30px;
   height: 30px;
-  background-color: #fff;
+  background: var(--toolbox-background);
 }
 
 .boxyMenuPosition {
@@ -26,15 +26,15 @@
   border-radius: 8px;
   padding: 0;
   max-height: 100%;
-  background: #fff;
+  background: var(--blockly-dropdown-background);
   outline: none;
   visibility: visible !important;
-  box-shadow: 0 0 3px 1px rgb(0 0 0 / 30%);
+  box-shadow: 0 0 3px 1px var(--blockly-shadow);
   user-select: none;
 }
 
 .boxyMenu:hover {
-  box-shadow: 0 0 6px 1px rgb(0 0 0 / 30%);
+  box-shadow: 0 0 6px 1px var(--blockly-shadow);
 }
 
 .boxyMenuItem {
@@ -58,13 +58,13 @@
 }
 
 .boxyMenuItem:hover {
-  background-color: rgb(0 0 0 / 10%);
+  background: var(--blockly-shadow);
 }
 
 .boxyMenuItemContent {
   font: normal 13px Arial, sans-serif;
   white-space: nowrap;
-  color: #000;
+  color: var(--blockly-dropdown-color);
   list-style: none;
   cursor: pointer;
   user-select: none;

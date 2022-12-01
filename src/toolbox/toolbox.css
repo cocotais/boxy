@@ -4,7 +4,7 @@
   z-index: 4;
   padding: 0;
   width: 60px;
-  background: #fff;
+  background: var(--toolbox-background);
 }
 
 .blocklyFlyout .blocklyFlyoutBackground {
@@ -18,8 +18,8 @@
   overflow: hidden;
   width: 320px;
   height: 100vh;
-  background-color: #fff;
-  box-shadow: rgb(0 0 0 / 10%) 0 8px 8px 0;
+  background: var(--toolbox-background);
+  box-shadow: 0 8px 8px 0 var(--blockly-shadow);
   transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
   transform: translate(-260px, 0);
 }
@@ -33,7 +33,7 @@
   font: 13px sans-serif !important;
   text-align: center;
   white-space: pre-line;
-  color: #000;
+  color: var(--toolbox-color);
 }
 
 .blocklyTreeRow {

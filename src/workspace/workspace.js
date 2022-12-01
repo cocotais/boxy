@@ -10,7 +10,7 @@ import toolbox from "../toolbox/toolbox";
 import toolboxConfig from "../toolbox/toolbox.json";
 import trashcan from "../trashcan/trashcan";
 
-class BoxyWorkSpace {
+class BoxyWorkspace {
   constructor() {
     Blockly.setLocale(zh);
     Blockly.Scrollbar.scrollbarThickness = 10;
@@ -78,6 +78,6 @@ class BoxyWorkSpace {
   };
 }
 
-let workspace = new BoxyWorkSpace();
+let workspace = new BoxyWorkspace();
 workspace.load();
 export default workspace;

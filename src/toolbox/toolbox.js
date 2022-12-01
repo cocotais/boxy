@@ -16,11 +16,11 @@ class BoxyCategory extends Blockly.ToolboxCategory {
   setSelected = (isSelected) => {
     let labelDom = this.rowDiv_.getElementsByClassName("blocklyTreeLabel")[0];
     if (isSelected) {
-      this.rowDiv_.style.backgroundColor = "#fff";
-      labelDom.style.color = "#000";
+      this.rowDiv_.style.backgroundColor = "var(--toolbox-background)";
+      labelDom.style.color = "var(--toolbox-color)";
     } else {
-      this.rowDiv_.style.backgroundColor = "#fff";
-      labelDom.style.color = "#000";
+      this.rowDiv_.style.backgroundColor = "var(--toolbox-background)";
+      labelDom.style.color = "var(--toolbox-color)";
     }
 
     Blockly.utils.aria.setState(this.htmlDiv_, Blockly.utils.aria.State.SELECTED, isSelected);
