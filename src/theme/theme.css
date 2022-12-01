@@ -8,7 +8,7 @@
   --toolbox-background: #fff;
   --trashcan-background: #0005;
   --workspace-background: #fafafa;
-  --zoombox-border: #d3d0dfff;
+  --zoombox-border: #d3d0df;
   --zoombox-color: #000;
   --zoombox-background: #fff;
 }
@@ -23,7 +23,7 @@
   --toolbox-background: #fff;
   --trashcan-background: #0005;
   --workspace-background: #fafafa;
-  --zoombox-border: #d3d0dfff;
+  --zoombox-border: #d3d0df;
   --zoombox-color: #000;
   --zoombox-background: #fff;
 }
@@ -31,14 +31,16 @@
 :root[mode="dark"] {
   --boxy-color: #6d50f0;
   --blockly-shadow: #fff2;
-  --codespace-background: #000;
-  --blockly-dropdown-color: #fff;
-  --blockly-dropdown-background: #333;
-  --toolbox-color: #fff;
-  --toolbox-background: #000;
+  --blockly-dropdown-color: #eee;
+  --blockly-dropdown-background: #282c34;
+  --codespace-background: #282c34;
+  --toolbox-color: #eee;
+  --toolbox-background: #282c34;
   --trashcan-background: #0005;
   --workspace-background: #000;
-  --zoombox-border: #d3d0dfff;
-  --zoombox-color: #fff;
-  --zoombox-background: #000;
+  --zoombox-border: #d3d0df;
+  --zoombox-color: #eee;
+  --zoombox-background: #282c34;
 }
+
+/* TODO: Search : Dark Theme */

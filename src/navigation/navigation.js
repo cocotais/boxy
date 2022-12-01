@@ -30,6 +30,7 @@ class BoxyNavigation {
 
   new_ = () => {
     this.boxyMenuJQ.hide();
+    // TODO New
   };
 
   open_ = () => {
@@ -56,12 +57,13 @@ class BoxyNavigation {
   save_ = () => {
     this.boxyMenuJQ.hide();
     const json = Blockly.serialization.workspaces.save(workspace.workspace);
-    const text = JSON.stringify(json);
+    const data = { name: "Boxy Project Demo", boxy_version: 1, content: json };
+    const text = JSON.stringify(data);
     const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const anchor = document.createElement("a");
     anchor.href = url;
-    anchor.download = "boxy.json";
+    anchor.download = "name" + ".boxy";
     anchor.click();
     console.log("[Boxy] Saved:");
     console.log(text);
@@ -82,6 +84,7 @@ class BoxyNavigation {
 
   options_ = () => {
     this.boxyMenuJQ.hide();
+    // TODO Option
   };
 }
 

@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
-// /*高耗时优化*/
+/*高耗时优化*/
 // const CompressionPlugin = require("compression-webpack-plugin");
 // const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 // const TerserPlugin = require("terser-webpack-plugin");
@@ -13,7 +13,7 @@ module.exports = {
   devtool: "source-map",
   entry: "./src/index.js",
   output: {
-    filename: "[name].[hash:6].js",
+    filename: "[name].[contenthash:6].js",
     path: path.resolve(__dirname, "dist"),
   },
   module: {
@@ -35,7 +35,7 @@ module.exports = {
           },
         },
         generator: {
-          filename: "img/[name].[hash:6].[ext]",
+          filename: "img/[name].[contenthash:6].[ext]",
           publicPath: "./",
         },
       },
@@ -63,7 +63,8 @@ module.exports = {
       inject: "body",
     }),
     new MiniCssExtractPlugin({
-      filename: "[name].[hash:6].css",
+      linkType: "text/css",
+      filename: "[name].[contenthash:6].css",
     }),
     new CopyWebpackPlugin({
       patterns: [
@@ -91,7 +92,7 @@ module.exports = {
           test: /[\\/]node_modules[\\/]/,
           name(module) {
             const packageInfo = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/);
-            const packageName = packageInfo ? packageInfo[1] : "";
+            const packageName = packageInfo ? packageInfo[1] : "dynamic";
             return `npm.${packageName.replace("@", "")}`;
           },
         },
@@ -109,6 +110,7 @@ module.exports = {
     //       safari10: true,
     //     },
     //   }),
+    //   new MiniCssExtractPlugin({}),
     // ],
   },
 };

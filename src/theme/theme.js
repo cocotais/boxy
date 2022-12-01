@@ -1,3 +1,6 @@
+// TODO Hot Loader
+import "highlight.js/styles/atom-one-light.css";
+
 class BoxyTheme {
   constructor() {
     this.root = document.documentElement;
