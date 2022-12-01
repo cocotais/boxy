@@ -57,11 +57,11 @@ class BoxyZoomBox {
     if (this.blocklyArea.getAttributeNames().indexOf("code") === -1) {
       this.blocklyArea.setAttribute("code", "");
       this.codespaceDiv.setAttribute("code", "");
-      this.codespaceButton.style.color = "#876CFF";
+      this.codespaceButton.style.color = "var(--boxy-color)";
     } else {
       this.blocklyArea.removeAttribute("code");
       this.codespaceDiv.removeAttribute("code");
-      this.codespaceButton.style.color = "#000000";
+      this.codespaceButton.style.color = "var(--zoombox-color)";
     }
     workspace.resize();
     codespace.resize();

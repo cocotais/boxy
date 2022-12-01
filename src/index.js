@@ -11,8 +11,12 @@ import "./zoomBox/zoomBox.css";
 import "./trashcan/trashcan.css";
 import "./toolbox/toolbox";
 import "./workspace/workspace";
+import "./theme/theme.css";
 
+import theme from "./theme/theme";
 import trashcan from "./trashcan/trashcan";
+
+theme.switch("light");
 
 //监听器
 const toolboxFlyoutObserver = new window.MutationObserver(function (mutations) {

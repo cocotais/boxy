@@ -1,0 +1,44 @@
+:root {
+  --boxy-color: #6d50f0;
+  --blockly-dropdown-color: #000;
+  --blockly-dropdown-background: #fff;
+  --blockly-shadow: #0002;
+  --codespace-background: #fff;
+  --toolbox-color: #000;
+  --toolbox-background: #fff;
+  --trashcan-background: #0005;
+  --workspace-background: #fafafa;
+  --zoombox-border: #d3d0dfff;
+  --zoombox-color: #000;
+  --zoombox-background: #fff;
+}
+
+:root[mode="light"] {
+  --boxy-color: #6d50f0;
+  --blockly-dropdown-color: #000;
+  --blockly-dropdown-background: #fff;
+  --blockly-shadow: #0002;
+  --codespace-background: #fff;
+  --toolbox-color: #000;
+  --toolbox-background: #fff;
+  --trashcan-background: #0005;
+  --workspace-background: #fafafa;
+  --zoombox-border: #d3d0dfff;
+  --zoombox-color: #000;
+  --zoombox-background: #fff;
+}
+
+:root[mode="dark"] {
+  --boxy-color: #6d50f0;
+  --blockly-shadow: #fff2;
+  --codespace-background: #000;
+  --blockly-dropdown-color: #fff;
+  --blockly-dropdown-background: #333;
+  --toolbox-color: #fff;
+  --toolbox-background: #000;
+  --trashcan-background: #0005;
+  --workspace-background: #000;
+  --zoombox-border: #d3d0dfff;
+  --zoombox-color: #fff;
+  --zoombox-background: #000;
+}

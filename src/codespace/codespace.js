@@ -6,7 +6,7 @@ import javascript from "highlight.js/lib/languages/javascript";
 
 import workspace from "../workspace/workspace";
 
-class Codespace {
+class BoxyCodespace {
   constructor() {
     this.workspaceDiv = document.getElementById("workspace");
     this.codespaceDiv = document.getElementById("codespace");
@@ -59,6 +59,6 @@ class Codespace {
   };
 }
 
-let codespace = new Codespace();
+let codespace = new BoxyCodespace();
 codespace.load();
 export default codespace;
