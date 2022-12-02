@@ -33,7 +33,8 @@ class BoxyCodespace {
   resize = () => {
     this.codespaceDiv.style.width = this.width() + "px";
     if (this.width() === window.innerWidth) {
-      this.codeDiv.style.marginTop = document.getElementById("navigation").offsetHeight + "px";
+      const top = document.getElementById("navigation").offsetHeight;
+      this.codeDiv.style.marginTop = top - 20 + "px";
     } else {
       this.codeDiv.style.marginTop = "0";
     }

@@ -1,44 +1,54 @@
+* {
+  transition: background 0.3s ease;
+}
+
 :root {
   --boxy-color: #6d50f0;
+  --boxy-tone: invert(0);
   --blockly-dropdown-color: #000;
   --blockly-dropdown-background: #fff;
   --blockly-shadow: #0002;
   --codespace-background: #fff;
+  --search-color: #000;
+  --search-background: #fff;
   --toolbox-color: #000;
   --toolbox-background: #fff;
   --trashcan-background: #0005;
   --workspace-background: #fafafa;
-  --zoombox-border: #d3d0df;
   --zoombox-color: #000;
   --zoombox-background: #fff;
 }
 
 :root[mode="light"] {
   --boxy-color: #6d50f0;
+  --boxy-tone: invert(0);
   --blockly-dropdown-color: #000;
   --blockly-dropdown-background: #fff;
   --blockly-shadow: #0002;
   --codespace-background: #fff;
+  --search-color: #000;
+  --search-background: #fff;
   --toolbox-color: #000;
   --toolbox-background: #fff;
   --trashcan-background: #0005;
   --workspace-background: #fafafa;
-  --zoombox-border: #d3d0df;
   --zoombox-color: #000;
   --zoombox-background: #fff;
 }
 
 :root[mode="dark"] {
   --boxy-color: #6d50f0;
+  --boxy-tone: invert(1);
   --blockly-shadow: #fff2;
   --blockly-dropdown-color: #eee;
   --blockly-dropdown-background: #282c34;
   --codespace-background: #282c34;
+  --search-color: #fff;
+  --search-background: #282c34;
   --toolbox-color: #eee;
   --toolbox-background: #282c34;
   --trashcan-background: #0005;
   --workspace-background: #000;
-  --zoombox-border: #d3d0df;
   --zoombox-color: #eee;
   --zoombox-background: #282c34;
 }
