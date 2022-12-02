@@ -7,17 +7,20 @@
   width: 0;
   height: 100%;
   background: var(--codespace-background);
+  user-select: none;
 }
 
 pre {
-  margin: 1em;
+  margin: 0;
+  padding: 0 1em;
   background: transparent;
 }
 
-.hljs {
-  padding: 0 1em !important;
+#code {
+  padding: 1em !important;
   font-size: 14px;
-  line-height: 1.414;
   font-family: "Lucida Console", "Microsoft YaHei", cursive, Monaco, monospace;
   background: transparent;
+  line-height: 1.414;
+  user-select: text;
 }

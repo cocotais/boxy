@@ -2,9 +2,11 @@
 .blockly-ws-search {
   top: 40px !important;
   right: 40px !important;
+  border-color: transparent;
   border-radius: 50px;
   width: 275px;
   height: 35px;
+  background: var(--search-background);
   box-shadow: var(--blockly-shadow) 0 4px 4px 0;
   transition: all 0.5s;
 }
@@ -13,6 +15,8 @@
   border-radius: 10px;
   width: 90%;
   height: 80%;
+  color: var(--search-color);
+  background-color: transparent;
 }
 
 .blockly-ws-search-input {
@@ -27,6 +31,7 @@
   width: 10%;
   height: 30px;
   background-position: center;
+  filter: var(--boxy-tone);
 }
 
 .blockly-ws-search-actions button {
