@@ -2,23 +2,6 @@
   transition: background 0.3s ease;
 }
 
-:root {
-  --boxy-color: #6d50f0;
-  --boxy-tone: invert(0);
-  --blockly-dropdown-color: #000;
-  --blockly-dropdown-background: #fff;
-  --blockly-shadow: #0002;
-  --codespace-background: #fff;
-  --search-color: #000;
-  --search-background: #fff;
-  --toolbox-color: #000;
-  --toolbox-background: #fff;
-  --trashcan-background: #0005;
-  --workspace-background: #fafafa;
-  --zoombox-color: #000;
-  --zoombox-background: #fff;
-}
-
 :root[mode="light"] {
   --boxy-color: #6d50f0;
   --boxy-tone: invert(0);
@@ -30,6 +13,9 @@
   --search-background: #fff;
   --toolbox-color: #000;
   --toolbox-background: #fff;
+  --toolbox-category-background-hover: #dcdcdc55;
+  --toolbox-category-color-selected: #000;
+  --toolbox-category-background-selected: #e9eef2;
   --trashcan-background: #0005;
   --workspace-background: #fafafa;
   --zoombox-color: #000;
@@ -47,6 +33,9 @@
   --search-background: #282c34;
   --toolbox-color: #eee;
   --toolbox-background: #282c34;
+  --toolbox-category-background-hover: #fff3;
+  --toolbox-category-color-selected: #000;
+  --toolbox-category-background-selected: #e9eef2;
   --trashcan-background: #0005;
   --workspace-background: #000;
   --zoombox-color: #eee;

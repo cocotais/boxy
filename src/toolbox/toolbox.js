@@ -9,18 +9,14 @@ class BoxyCategory extends Blockly.ToolboxCategory {
     super(categoryDef, toolbox, opt_parent);
   }
 
-  addColourBorder_ = (colour) => {
-    this.rowDiv_.style.backgroundColor = colour;
-  };
-
   setSelected = (isSelected) => {
     let labelDom = this.rowDiv_.getElementsByClassName("blocklyTreeLabel")[0];
     if (isSelected) {
-      this.rowDiv_.style.backgroundColor = "var(--toolbox-background)";
-      labelDom.style.color = "var(--toolbox-color)";
+      this.rowDiv_.style.backgroundColor = "var(--toolbox-category-background-selected)";
+      labelDom.style.color = "var(--toolbox-category-color-selected)";
     } else {
-      this.rowDiv_.style.backgroundColor = "var(--toolbox-background)";
-      labelDom.style.color = "var(--toolbox-color)";
+      this.rowDiv_.style.backgroundColor = "";
+      labelDom.style.color = "";
     }
 
     Blockly.utils.aria.setState(this.htmlDiv_, Blockly.utils.aria.State.SELECTED, isSelected);

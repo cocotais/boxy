@@ -14,7 +14,7 @@ class BoxyWorkspace {
   constructor() {
     Blockly.setLocale(zh);
     Blockly.Scrollbar.scrollbarThickness = 10;
-    this.blocklyArea = document.getElementById("blocklyArea");
+    this.blocklyArea = document.getElementById("blocklyDiv");
     this.workspaceDiv = document.getElementById("workspace");
   }
 

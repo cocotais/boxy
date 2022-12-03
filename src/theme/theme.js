@@ -19,13 +19,3 @@ class BoxyTheme {
 
 let theme = new BoxyTheme();
 export default theme;
-
-window.themeSwitch = function () {
-  if (theme.root.getAttributeNames().indexOf("mode") !== -1) {
-    if (theme.root.getAttribute("mode") === "light") {
-      theme.switch("dark");
-    } else {
-      theme.switch("light");
-    }
-  }
-};

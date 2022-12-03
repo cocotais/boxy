@@ -4,9 +4,9 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 /*高耗时优化*/
-// const CompressionPlugin = require("compression-webpack-plugin");
-// const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
-// const TerserPlugin = require("terser-webpack-plugin");
+const CompressionPlugin = require("compression-webpack-plugin");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
   mode: "development",
@@ -75,11 +75,11 @@ module.exports = {
       ],
     }),
 
-    // /*高耗时优化*/
-    // new BundleAnalyzerPlugin({ analyzerPort: 8001 }),
-    // new CompressionPlugin({
-    //   exclude: /.(txt|map)$/i,
-    // }),
+    /*高耗时优化*/
+    new BundleAnalyzerPlugin({ analyzerPort: 8001 }),
+    new CompressionPlugin({
+      exclude: /.(txt|map)$/i,
+    }),
   ],
   optimization: {
     runtimeChunk: "single",
@@ -99,18 +99,18 @@ module.exports = {
       },
     },
 
-    // /*高耗时优化*/
-    // minimize: true,
-    // minimizer: [
-    //   new TerserPlugin({
-    //     parallel: true,
-    //     terserOptions: {
-    //       toplevel: true,
-    //       ie8: true,
-    //       safari10: true,
-    //     },
-    //   }),
-    //   new MiniCssExtractPlugin({}),
-    // ],
+    /*高耗时优化*/
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        parallel: true,
+        terserOptions: {
+          toplevel: true,
+          ie8: true,
+          safari10: true,
+        },
+      }),
+      new MiniCssExtractPlugin({}),
+    ],
   },
 };

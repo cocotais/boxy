@@ -15,7 +15,7 @@ body {
 }
 
 /* 注入样式 */
-#blocklyArea {
+#blocklyDiv {
   width: 100vw;
   height: 100vh;
   text-align: center;
@@ -59,7 +59,7 @@ body {
   border-radius: 0 0 8px 8px;
 }
 
-.blocklyMenuItem:hover {
+.blocklyMenuItem:not(.blocklyMenuItemDisabled):hover {
   background: var(--blockly-shadow);
 }
 

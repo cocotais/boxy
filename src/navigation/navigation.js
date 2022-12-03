@@ -6,6 +6,7 @@ import workspace from "../workspace/workspace";
 
 class BoxyNavigation {
   constructor() {
+    this.navigationDiv = document.getElementById("navigation");
     this.boxyMenuJQ = $(".boxyMenu");
     this.extendedName = ".boxy";
   }
@@ -27,14 +28,18 @@ class BoxyNavigation {
       });
     });
     boxyMenu.hide();
+
+    this.navigationDiv.addEventListener("contextmenu", function (event) {
+      event.preventDefault();
+    });
   };
 
-  new_ = () => {
+  new = () => {
     this.boxyMenuJQ.hide();
     // TODO New
   };
 
-  open_ = () => {
+  open = () => {
     this.boxyMenuJQ.hide();
     const input = document.createElement("input");
     input.setAttribute("type", "file");
@@ -54,7 +59,7 @@ class BoxyNavigation {
     input.click();
   };
 
-  save_ = () => {
+  save = () => {
     this.boxyMenuJQ.hide();
     const json = Blockly.serialization.workspaces.save(workspace.workspace);
     const data = { name: "Boxy Project Demo", editorVersion: 1, content: json };
@@ -69,7 +74,7 @@ class BoxyNavigation {
     console.log(text);
   };
 
-  export_ = () => {
+  export = () => {
     this.boxyMenuJQ.hide();
     const jsCode = javascriptGenerator.workspaceToCode(workspace.workspace);
     const blob = new Blob([jsCode], { type: "text/plain;charset=utf-8" });
@@ -82,7 +87,7 @@ class BoxyNavigation {
     console.log(jsCode);
   };
 
-  options_ = () => {
+  options = () => {
     this.boxyMenuJQ.hide();
     // TODO Option
   };
@@ -93,12 +98,12 @@ navigation.load();
 export default navigation;
 
 // 新建
-window.navigationNew = navigation.new_;
+window.navigationNew = navigation.new;
 // 打开
-window.navigationOpen = navigation.open_;
+window.navigationOpen = navigation.open;
 // 保存
-window.navigationSave = navigation.save_;
+window.navigationSave = navigation.save;
 // 导出
-window.navigationExport = navigation.export_;
+window.navigationExport = navigation.export;
 // 选项
-window.navigationOptions = navigation.options_;
+window.navigationOptions = navigation.options;
