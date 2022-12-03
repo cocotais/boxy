@@ -1,4 +1,5 @@
 import codespace from "../codespace/codespace";
+import theme from "../theme/theme";
 import workspace from "../workspace/workspace";
 
 function sigmoid(x) {
@@ -8,11 +9,12 @@ function sigmoid(x) {
 
 class BoxyZoomBox {
   constructor() {
-    this.zoomBoxDiv = document.getElementById("zoomBox");
-    this.blocklyZoomButtons = document.getElementsByClassName("blocklyZoom");
-    this.zoomPercentageDiv = document.getElementById("zoomBoxReset");
-    this.blocklyArea = document.getElementById("blocklyArea");
+    this.blocklyDiv = document.getElementById("blocklyDiv");
     this.codespaceDiv = document.getElementById("codespace");
+    this.zoomBoxDiv = document.getElementById("zoomBox");
+    this.percentageDiv = document.getElementById("zoomBoxReset");
+
+    this.blocklyZoomButtons = document.getElementsByClassName("blocklyZoom");
     this.codespaceButton = document.getElementById("switchCode");
     this.smallerButton = this.blocklyZoomButtons[0];
     this.biggerButton = this.blocklyZoomButtons[1];
@@ -25,6 +27,10 @@ class BoxyZoomBox {
       zoomFunction.setAttribute("width", "25px");
       zoomFunction.setAttribute("height", "25px");
       zoomFunction.setAttribute("size", "1em");
+    });
+
+    this.zoomBoxDiv.addEventListener("contextmenu", function (event) {
+      event.preventDefault();
     });
 
     window.addEventListener("resize", this.resize);
@@ -40,33 +46,49 @@ class BoxyZoomBox {
 
   // TODO More Effective Zoom Controller
 
-  smaller_ = () => {
-    this.smallerButton.dispatchEvent(new PointerEvent("pointerdown"));
-    this.zoomPercentageDiv.innerHTML = Math.ceil(workspace.workspace.getScale() * 100) + "%";
+  themeSwitch = () => {
+    let day = document.getElementById("switchThemeDay");
+    let night = document.getElementById("switchThemeNight");
+    if (theme.root.getAttributeNames().indexOf("mode") !== -1) {
+      if (theme.root.getAttribute("mode") === "light") {
+        theme.switch("dark");
+        night.style.display = "none";
+        day.style.display = "block";
+      } else {
+        theme.switch("light");
+        day.style.display = "none";
+        night.style.display = "block";
+      }
+    }
   };
 
-  bigger_ = () => {
-    this.biggerButton.dispatchEvent(new PointerEvent("pointerdown"));
-    this.zoomPercentageDiv.innerHTML = Math.ceil(workspace.workspace.getScale() * 100) + "%";
-  };
-
-  reset_ = () => {
-    this.resetButton.dispatchEvent(new PointerEvent("pointerdown"));
-    this.zoomPercentageDiv.innerHTML = Math.ceil(workspace.workspace.getScale() * 100) + "%";
-  };
-
-  codespaceSwitch_ = () => {
-    if (this.blocklyArea.getAttributeNames().indexOf("code") === -1) {
-      this.blocklyArea.setAttribute("code", "");
+  codespaceSwitch = () => {
+    if (this.blocklyDiv.getAttributeNames().indexOf("code") === -1) {
+      this.blocklyDiv.setAttribute("code", "");
       this.codespaceDiv.setAttribute("code", "");
       this.codespaceButton.style.color = "var(--boxy-color)";
     } else {
-      this.blocklyArea.removeAttribute("code");
+      this.blocklyDiv.removeAttribute("code");
       this.codespaceDiv.removeAttribute("code");
       this.codespaceButton.style.color = "var(--zoombox-color)";
     }
     workspace.resize();
     codespace.resize();
+  };
+
+  smaller = () => {
+    this.smallerButton.dispatchEvent(new PointerEvent("pointerdown"));
+    this.percentageDiv.innerHTML = Math.ceil(workspace.workspace.getScale() * 100) + "%";
+  };
+
+  reset = () => {
+    this.resetButton.dispatchEvent(new PointerEvent("pointerdown"));
+    this.percentageDiv.innerHTML = Math.ceil(workspace.workspace.getScale() * 100) + "%";
+  };
+
+  bigger = () => {
+    this.biggerButton.dispatchEvent(new PointerEvent("pointerdown"));
+    this.percentageDiv.innerHTML = Math.ceil(workspace.workspace.getScale() * 100) + "%";
   };
 }
 
@@ -74,7 +96,8 @@ let zoomBox = new BoxyZoomBox();
 zoomBox.load();
 export default zoomBox;
 
-window.zoomBoxSmaller = zoomBox.smaller_;
-window.zoomBoxReset = zoomBox.reset_;
-window.zoomBoxBigger = zoomBox.bigger_;
-window.codespaceSwitch = zoomBox.codespaceSwitch_;
+window.themeSwitch = zoomBox.themeSwitch;
+window.codespaceSwitch = zoomBox.codespaceSwitch;
+window.zoomBoxSmaller = zoomBox.smaller;
+window.zoomBoxReset = zoomBox.reset;
+window.zoomBoxBigger = zoomBox.bigger;

@@ -1,5 +1,5 @@
 /* 积木栏设置 */
-.blocklyToolboxDiv.blocklyNonSelectable {
+.blocklyToolboxDiv {
   top: 60px;
   z-index: 4;
   padding: 0;
@@ -41,6 +41,10 @@
   border-radius: 4px;
   padding: 0 !important;
   height: initial;
+}
+
+.blocklyTreeRow:not(.blocklyTreeSelected):hover {
+  background-color: var(--toolbox-category-background-hover);
 }
 
 /* 设置积木全显 */
