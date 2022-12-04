@@ -35,6 +35,8 @@ class BoxyZoomBox {
 
     window.addEventListener("resize", this.resize);
     this.resize();
+
+    this.reset();
   };
 
   resize = () => {
@@ -42,6 +44,7 @@ class BoxyZoomBox {
     const unit = 55 - 10 * sigmoid(0.005 * size.left - 2);
     this.zoomBoxDiv.style.width = 5.5 * unit + "px";
     this.zoomBoxDiv.style.height = unit + "px";
+    this.zoomBoxDiv.style.right = codespace.width() + 40 + "px";
   };
 
   // TODO More Effective Zoom Controller
@@ -74,6 +77,7 @@ class BoxyZoomBox {
     }
     workspace.resize();
     codespace.resize();
+    this.resize();
   };
 
   smaller = () => {

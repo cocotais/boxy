@@ -24,3 +24,13 @@ pre {
   line-height: 1.414;
   user-select: text;
 }
+
+#code::selection {
+  color: white;
+  background-color: #01adffcc;
+}
+
+#code > span::selection {
+  color: white;
+  background-color: #01adffcc;
+}
