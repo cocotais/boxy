@@ -11,6 +11,10 @@ import toolboxConfig from "../toolbox/toolbox.json";
 import trashcan from "../trashcan/trashcan";
 
 class BoxyWorkspace {
+  /**
+   * 工作区
+   * @constructor
+   */
   constructor() {
     Blockly.setLocale(zh);
     Blockly.Scrollbar.scrollbarThickness = 10;
@@ -18,6 +22,10 @@ class BoxyWorkspace {
     this.workspaceDiv = document.getElementById("workspace");
   }
 
+  /**
+   * 注册工作区，修复工具栏aria-level，加载插件，尺寸变化及工作区事件监听。
+   * @method
+   */
   load = () => {
     this.workspace = Blockly.inject(this.workspaceDiv, {
       toolbox: toolboxConfig,
@@ -60,7 +68,12 @@ class BoxyWorkspace {
     });
   };
 
+  /**
+   * 根据当前用户窗口大小，重置代码区尺寸。
+   * @method
+   */
   resize = () => {
+    // 求绝对位置
     let x = 0;
     let y = 0;
     let element = this.blocklyArea;
@@ -69,7 +82,7 @@ class BoxyWorkspace {
       y += element.offsetTop;
       element = element.offsetParent;
     } while (element);
-
+    // 位置、尺寸设置
     this.workspaceDiv.style.left = x + "px";
     this.workspaceDiv.style.top = y + "px";
     this.workspaceDiv.style.height = this.blocklyArea.offsetHeight + "px";
