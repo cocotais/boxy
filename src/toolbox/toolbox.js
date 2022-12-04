@@ -5,10 +5,19 @@ import superellipse from "../icon/category/superellipse.svg";
 // https://blocklycodelabs.dev/codelabs/custom-toolbox/index.html?index=..%2F..index#0
 
 class BoxyCategory extends Blockly.ToolboxCategory {
+  /**
+   * 用户工具箱类标签
+   * @constructor
+   */
   constructor(categoryDef, toolbox, opt_parent) {
     super(categoryDef, toolbox, opt_parent);
   }
 
+  /**
+   * 类标签选中样式。
+   * @method
+   * @param {boolean} isSelected
+   */
   setSelected = (isSelected) => {
     let labelDom = this.rowDiv_.getElementsByClassName("blocklyTreeLabel")[0];
     if (isSelected) {
@@ -22,26 +31,40 @@ class BoxyCategory extends Blockly.ToolboxCategory {
     Blockly.utils.aria.setState(this.htmlDiv_, Blockly.utils.aria.State.SELECTED, isSelected);
   };
 
+  /**
+   * 创建iconpark的DOM。
+   * @method
+   * @returns {HTMLElement} 返回一个iconpark标签
+   * @private
+   */
   createIconDom_ = () => {
     const img = document.createElement("iconpark-icon");
     img.name = this.cssConfig_.icon;
     img.size = "21";
-    img.color = "white";
     img.style = `
       -webkit-mask-size: 100% 100%;
       -webkit-mask-image: url(${superellipse});
       mask-size: 100% 100%;
       mask-image: url(${superellipse});
+      color: white;
     `;
     return img;
   };
 }
 
 class BoxyToolbox {
+  /**
+   * 工具箱
+   * @constructor
+   */
   constructor() {
     this.ariaElements = document.getElementsByClassName("blocklyToolboxCategory");
   }
 
+  /**
+   * 注册类标签
+   * @method
+   */
   load = () => {
     Blockly.registry.register(
       Blockly.registry.Type.TOOLBOX_ITEM,
@@ -51,6 +74,10 @@ class BoxyToolbox {
     );
   };
 
+  /**
+   * 修复aira-level不符合规范的问题。
+   * @method
+   */
   ariaFix = () => {
     Array.prototype.forEach.call(this.ariaElements, function (element) {
       element.setAttribute("aria-level", "1");

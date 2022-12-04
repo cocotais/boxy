@@ -5,12 +5,20 @@ import $ from "jquery";
 import workspace from "../workspace/workspace";
 
 class BoxyNavigation {
+  /**
+   * 导航栏
+   * @constructor
+   */
   constructor() {
     this.navigationDiv = document.getElementById("navigation");
     this.boxyMenuJQ = $(".boxyMenu");
     this.extendedName = ".boxy";
   }
 
+  /**
+   * 加载导航栏点击动作，禁用右键菜单。
+   * @method
+   */
   load = () => {
     let boxyMenu = $(".boxyMenu");
     $(document).ready(function () {
@@ -34,11 +42,19 @@ class BoxyNavigation {
     });
   };
 
+  /**
+   * 新建按钮动作。
+   * @method
+   */
   new = () => {
     this.boxyMenuJQ.hide();
     // TODO New
   };
 
+  /**
+   * 打开按钮动作。
+   * @method
+   */
   open = () => {
     this.boxyMenuJQ.hide();
     const input = document.createElement("input");
@@ -59,6 +75,10 @@ class BoxyNavigation {
     input.click();
   };
 
+  /**
+   * 保存到本地按钮动作。
+   * @method
+   */
   save = () => {
     this.boxyMenuJQ.hide();
     const json = Blockly.serialization.workspaces.save(workspace.workspace);
@@ -74,6 +94,10 @@ class BoxyNavigation {
     console.log(text);
   };
 
+  /**
+   * 导出到目标文件按钮动作。
+   * @method
+   */
   export = () => {
     this.boxyMenuJQ.hide();
     const jsCode = javascriptGenerator.workspaceToCode(workspace.workspace);
@@ -87,6 +111,10 @@ class BoxyNavigation {
     console.log(jsCode);
   };
 
+  /**
+   * 选项按钮动作。
+   * @method
+   */
   options = () => {
     this.boxyMenuJQ.hide();
     // TODO Option

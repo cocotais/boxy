@@ -2,18 +2,29 @@ import codespace from "../codespace/codespace";
 import theme from "../theme/theme";
 import workspace from "../workspace/workspace";
 
+/**
+ * sigmoid函数
+ * @function
+ * @param {number} x
+ * @returns {number}
+ */
 function sigmoid(x) {
   const ex = Math.E ** x;
   return ex / (ex + 1);
 }
 
 class BoxyZoomBox {
+  /**
+   * 缩放栏
+   * @constructor
+   */
   constructor() {
+    // 标签
     this.blocklyDiv = document.getElementById("blocklyDiv");
     this.codespaceDiv = document.getElementById("codespace");
     this.zoomBoxDiv = document.getElementById("zoomBox");
     this.percentageDiv = document.getElementById("zoomBoxReset");
-
+    // 按钮
     this.blocklyZoomButtons = document.getElementsByClassName("blocklyZoom");
     this.codespaceButton = document.getElementById("switchCode");
     this.smallerButton = this.blocklyZoomButtons[0];
@@ -21,24 +32,33 @@ class BoxyZoomBox {
     this.resetButton = this.blocklyZoomButtons[2];
   }
 
+  /**
+   * 加载缩放栏图标，禁用右键，监听窗口尺寸变化。
+   * @method
+   */
   load = () => {
+    // 加载缩放栏图标
     let zoomFunctions = document.getElementsByClassName("zoomFunctions");
     Array.prototype.forEach.call(zoomFunctions, function (zoomFunction) {
       zoomFunction.setAttribute("width", "25px");
       zoomFunction.setAttribute("height", "25px");
       zoomFunction.setAttribute("size", "1em");
     });
-
+    // 禁用右键
     this.zoomBoxDiv.addEventListener("contextmenu", function (event) {
       event.preventDefault();
     });
-
+    // 监听窗口尺寸变化
     window.addEventListener("resize", this.resize);
     this.resize();
-
+    // 为重置按钮赋基础值
     this.reset();
   };
 
+  /**
+   * 根据当前用户窗口大小，重置代码区尺寸。
+   * @method
+   */
   resize = () => {
     const size = this.zoomBoxDiv.getBoundingClientRect();
     const unit = 55 - 10 * sigmoid(0.005 * size.left - 2);
@@ -49,6 +69,10 @@ class BoxyZoomBox {
 
   // TODO More Effective Zoom Controller
 
+  /**
+   * 主题切换按钮。
+   * @method
+   */
   themeSwitch = () => {
     let day = document.getElementById("switchThemeDay");
     let night = document.getElementById("switchThemeNight");
@@ -65,6 +89,10 @@ class BoxyZoomBox {
     }
   };
 
+  /**
+   * 代码区切换按钮。
+   * @method
+   */
   codespaceSwitch = () => {
     if (this.blocklyDiv.getAttributeNames().indexOf("code") === -1) {
       this.blocklyDiv.setAttribute("code", "");
@@ -80,16 +108,28 @@ class BoxyZoomBox {
     this.resize();
   };
 
+  /**
+   * 缩小按钮。
+   * @method
+   */
   smaller = () => {
     this.smallerButton.dispatchEvent(new PointerEvent("pointerdown"));
     this.percentageDiv.innerHTML = Math.ceil(workspace.workspace.getScale() * 100) + "%";
   };
 
+  /**
+   * 重置按钮。
+   * @method
+   */
   reset = () => {
     this.resetButton.dispatchEvent(new PointerEvent("pointerdown"));
     this.percentageDiv.innerHTML = Math.ceil(workspace.workspace.getScale() * 100) + "%";
   };
 
+  /**
+   * 放大按钮。
+   * @method
+   */
   bigger = () => {
     this.biggerButton.dispatchEvent(new PointerEvent("pointerdown"));
     this.percentageDiv.innerHTML = Math.ceil(workspace.workspace.getScale() * 100) + "%";
