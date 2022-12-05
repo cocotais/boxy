@@ -45,9 +45,14 @@ Boxy 是 Google Blockly 的一个应用实例，
 
 4. **构建：WebPack 项目构建。**
 
-   ```
-   npm run build
-   ```
+- 开发模式
+  ```
+  npm run dev
+  ```
+- 生产模式
+  ```
+  npm run build
+  ```
 
 #### 开发
 
@@ -71,14 +76,6 @@ Boxy 是 Google Blockly 的一个应用实例，
 
   ```
   npm run clean
-  ```
-
-- **重构：清除原有构建内容，并重新构建。**
-  清除 `/dist/` 文件夹下的内容，
-  重新构建项目。
-
-  ```
-  npm run rebuild
   ```
 
 - **格式化：标准化项目文件。**
