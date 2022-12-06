@@ -41,7 +41,10 @@ const production = {
           safari10: true,
         },
       }),
-      new MiniCssExtractPlugin({}),
+      new MiniCssExtractPlugin({
+        linkType: "text/css",
+        filename: "[name].[contenthash:6].css",
+      }),
     ],
   },
   output: {
