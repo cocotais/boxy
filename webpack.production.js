@@ -3,6 +3,7 @@ const common = require("./webpack.common.js");
 const CompressionPlugin = require("compression-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 const production = {
   mode: "production",
@@ -22,6 +23,11 @@ const production = {
   plugins: [
     new CompressionPlugin({
       exclude: /.(txt|map)$/i,
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: "static",
+      openAnalyzer: false,
+      defaultSizes: "gzip",
     }),
   ],
   optimization: {

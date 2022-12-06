@@ -5,9 +5,10 @@
   "private": true,
   "mode": "development",
   "scripts": {
-    "start": "webpack-dev-server --open",
+    "start": "webpack-dev-server --open --config webpack.development.js",
     "dev": "webpack --config webpack.development.js",
     "build": "webpack --config webpack.production.js",
+    "simulate": "webpack-dev-server --open --config webpack.simulation.js",
     "watch": "webpack --watch",
     "clean": "rimraf dist & rimraf package-lock.json & rimraf node_modules & npm cache clear --force",
     "lint": "prettier --write . & eslint --fix --ext .js src & stylelint \"src/**/*.(css)\" --fix"
