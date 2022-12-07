@@ -7,9 +7,9 @@
   "scripts": {
     "dev": "webpack --config webpack.development.js",
     "build": "webpack --config webpack.production.js",
-    "start": "webpack --config webpack.development.js & http-server dist -p 8000 -g -o",
-    "test": "webpack --config webpack.production.js & http-server dist -p 8000 -g -o",
-    "watch": "webpack --watch",
+    "server": "http-server dist -p 8000 -g -o",
+    "start": "webpack-dev-server --config webpack.development.js --open",
+    "watch": "http-server dist -p 8000 -g -o &&webpack --watch",
     "clean": "rimraf dist & rimraf package-lock.json & rimraf node_modules & npm cache clear --force",
     "lint": "prettier --write . & eslint --fix --ext .js src & stylelint \"src/**/*.(css)\" --fix"
   },
@@ -40,6 +40,7 @@
     "webpack": "^5.75.0",
     "webpack-bundle-analyzer": "^4.7.0",
     "webpack-cli": "^5.0.0",
+    "webpack-dev-server": "^4.11.1",
     "webpack-merge": "^5.8.0",
     "workbox-webpack-plugin": "^6.5.4"
   },

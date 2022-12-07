@@ -43,33 +43,38 @@ Boxy 是 Google Blockly 的一个应用实例，
    npm install
    ```
 
-4. **构建：WebPack 项目构建。**
+4. **开发服务：启动 WebPack DevServer 本地开发服务。**
+   构建采用开发模式，支持热重载。
 
-   - 开发模式：打开本地服务器，不进行任何优化。
-     ```
-     npm run dev
-     ```
-   - 生产模式：进行打包优化与 bundle 分析。
-     ```
-     npm run build
-     ```
+   ```
+   npm start
+   ```
 
 #### 开发
 
-- **运行：搭建本地服务。**
-  如果你的开发工具没有能力建立本地服务，请使用此命令。
+- **构建：基于 WebPack 构建。**
 
-  - 基于开发环境搭建服务
+  - 开发模式：源映射及 DevServer 支持。
+
     ```
-    npm start
+    npm run dev
     ```
-  - 基于生产环境搭建服务
+
+  - 生产模式：文件压缩及 PWA 生成。
+
     ```
-    npm run test
+    npm run build
     ```
+
+- **服务：启动 http-server 本地服务。**
+  使用
+
+  ```
+  npm run server
+  ```
 
 - **守候：自动检测文件更改，并重新编译。**
-  如果你的开发工具可以建立本地服务，请使用此命令。
+  如果你的开发工具可以建立本地服务，请使用此命令在开发中执行热重载。
   此命令生成的内容在 `http://localhost:8000/dist/index.html` 中。
 
   ```
