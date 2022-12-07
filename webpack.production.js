@@ -2,27 +2,18 @@ const merge = require("webpack-merge");
 const common = require("./webpack.common.js");
 const CompressionPlugin = require("compression-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const WorkboxPlugin = require("workbox-webpack-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 const production = {
   mode: "production",
-  module: {
-    rules: [
-      {
-        test: /\.(jpg|png|gif|svg)$/,
-        type: "asset",
-        parser: {
-          dataUrlCondition: {
-            maxSize: 8192,
-          },
-        },
-      },
-    ],
-  },
   plugins: [
     new CompressionPlugin({
       exclude: /.(txt|map)$/i,
+    }),
+    new WorkboxPlugin.GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true,
     }),
     new BundleAnalyzerPlugin({
       analyzerMode: "static",
@@ -41,14 +32,7 @@ const production = {
           safari10: true,
         },
       }),
-      new MiniCssExtractPlugin({
-        linkType: "text/css",
-        filename: "[name].[contenthash:6].css",
-      }),
     ],
-  },
-  output: {
-    filename: "[name].[contenthash:6].js",
   },
 };
 

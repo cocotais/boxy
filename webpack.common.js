@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const WorkboxPlugin = require("workbox-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
@@ -18,6 +17,15 @@ module.exports = {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
+      {
+        test: /\.(jpg|png|gif|svg)$/,
+        type: "asset",
+        parser: {
+          dataUrlCondition: {
+            maxSize: 8192,
+          },
+        },
+      },
     ],
   },
   plugins: [
@@ -30,7 +38,7 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       linkType: "text/css",
-      filename: "[name].css",
+      filename: "[name].[contenthash:6].css",
     }),
     new CopyWebpackPlugin({
       patterns: [
@@ -39,10 +47,6 @@ module.exports = {
           to: "media",
         },
       ],
-    }),
-    new WorkboxPlugin.GenerateSW({
-      clientsClaim: true,
-      skipWaiting: true,
     }),
   ],
   optimization: {
@@ -76,7 +80,7 @@ module.exports = {
     ],
   },
   output: {
-    filename: "[name].js",
+    filename: "[name].[contenthash:6].js",
     path: path.resolve(__dirname, "dist"),
   },
 };
