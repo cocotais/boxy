@@ -12,6 +12,7 @@ import "./trashcan/trashcan.css";
 import "./toolbox/toolbox";
 import "./workspace/workspace";
 import "./theme/theme.css";
+import "./blocks/boxy";
 
 import theme from "./theme/theme";
 import trashcan from "./trashcan/trashcan";
