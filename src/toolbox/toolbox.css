@@ -58,3 +58,7 @@
   padding: 11px 0 6px;
   flex-direction: column;
 }
+
+#workspace > div > svg.blocklyScrollbarVertical.blocklyFlyoutScrollbar {
+  display: none;
+}
