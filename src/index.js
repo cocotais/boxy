@@ -13,6 +13,7 @@ import "./toolbox/toolbox";
 import "./workspace/workspace";
 import "./theme/theme.css";
 import "./blocks/boxy";
+import "./dialog/dialog";
 
 import theme from "./theme/theme";
 import trashcan from "./trashcan/trashcan";
