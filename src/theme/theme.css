@@ -20,6 +20,8 @@
   --workspace-background: #fafafa;
   --zoombox-color: #000;
   --zoombox-background: #fff;
+  --new-boxycard-border: #b4b4b4;
+  --new-boxycard-border-hover: var(--boxy-color);
 }
 
 :root[mode="dark"] {
@@ -40,6 +42,6 @@
   --workspace-background: #000;
   --zoombox-color: #eee;
   --zoombox-background: #282c34;
+  --new-boxycard-border: #fff3;
+  --new-boxycard-border-hover: #fff;
 }
-
-/* TODO: Search : Dark Theme */

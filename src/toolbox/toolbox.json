@@ -207,6 +207,14 @@
           "type": "logic_negate"
         }
       ]
+    },
+    {
+      "kind": "category",
+      "name": "变量",
+      "cssConfig": {
+        "icon": "variable"
+      },
+      "custom": "VARIABLE"
     }
   ]
 }

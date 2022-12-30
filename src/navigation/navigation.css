@@ -69,3 +69,26 @@
   cursor: pointer;
   user-select: none;
 }
+
+.boxyNewContent {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.boxyCard {
+  margin: 10px;
+  border: var(--new-boxycard-border) solid 0.2em;
+  border-radius: 10px;
+  width: 250px;
+  height: 250px;
+  font-size: 32px;
+  font-weight: bold;
+  color: var(--toolbox-color);
+  background: var(--toolbox-background);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.boxyCard:hover {
+  border-color: var(--new-boxycard-border-hover);
+}

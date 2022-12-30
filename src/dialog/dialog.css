@@ -1,0 +1,32 @@
+.swal-modal {
+  color: var(--toolbox-color);
+  background-color: var(--toolbox-background);
+}
+
+.swal-title {
+  color: var(--toolbox-color);
+}
+
+.swal-button--cancel {
+  color: var(--toolbox-color);
+  background-color: var(--toolbox-category-background-hover);
+}
+
+.swal-button--cancel:hover {
+  color: var(--toolbox-category-color-selected);
+  background-color: var(--toolbox-category-background-selected);
+}
+
+.swal-text {
+  color: var(--toolbox-color);
+}
+
+.swal-modal:has(.boxyNewContent) {
+  width: 1080px;
+}
+
+@media (max-width: 1100px) {
+  .swal-modal:has(.boxyNewContent) {
+    width: calc(100% - 20px);
+  }
+}

@@ -8,12 +8,13 @@ import "./navigation/navigation";
 import "./navigation/navigation.css";
 import "./zoomBox/zoomBox";
 import "./zoomBox/zoomBox.css";
+import "./dialog/dialog";
+import "./dialog/dialog.css";
 import "./trashcan/trashcan.css";
 import "./toolbox/toolbox";
 import "./workspace/workspace";
 import "./theme/theme.css";
 import "./blocks/boxy";
-import "./dialog/dialog";
 
 import theme from "./theme/theme";
 import trashcan from "./trashcan/trashcan";
@@ -58,15 +59,15 @@ trashcanObserver.observe(document.querySelector("#workspace > div > div.blocklyT
   attributeFilter: ["class"],
 });
 
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker
-      .register("/service-worker.js")
-      .then((registration) => {
-        console.log("SW registered: ", registration);
-      })
-      .catch((registrationError) => {
-        console.log("SW registration failed: ", registrationError);
-      });
-  });
-}
+// if ("serviceWorker" in navigator) {
+//   window.addEventListener("load", () => {
+//     navigator.serviceWorker
+//       .register("/service-worker.js")
+//       .then((registration) => {
+//         console.log("SW registered: ", registration);
+//       })
+//       .catch((registrationError) => {
+//         console.log("SW registration failed: ", registrationError);
+//       });
+//   });
+// }
