@@ -1,6 +1,7 @@
 import Blockly from "blockly";
 import { javascriptGenerator } from "blockly/javascript";
 import $ from "jquery";
+import swal from "sweetalert";
 
 import workspace from "../workspace/workspace";
 
@@ -48,7 +49,27 @@ class BoxyNavigation {
    */
   new = () => {
     this.boxyMenuJQ.hide();
-    // TODO New
+    // TODO Functions of NewButton
+    var boxyNewContent = document.createElement("div");
+    boxyNewContent.setAttribute("class", "boxyNewContent");
+    for (var newThing = 0; newThing < 3 /* newThing_length */; newThing++) {
+      var newButton = document.createElement("button");
+      newButton.innerHTML = newThing;
+      newButton.setAttribute("class", "boxyCard");
+      newButton.onclick = function () {
+        swal("还没有呢～");
+      };
+      boxyNewContent.appendChild(newButton);
+    }
+    swal({
+      title: "新建",
+      buttons: {
+        cancel: "取消",
+        confirm: false,
+      },
+      content: boxyNewContent,
+      closeOnClickOutside: false,
+    });
   };
 
   /**
