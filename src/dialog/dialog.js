@@ -64,8 +64,8 @@ CustomDialog.show = function (title, message, options) {
     title: title,
     text: message,
     buttons: {
-      cancel: options.showCancel,
-      confirm: options.showOkay,
+      cancel: options.showCancel ? "取消" : false,
+      confirm: options.showOkay ? "确定" : false,
     },
     content: options.showInput ? customDialogInput : "",
     closeOnClickOutside: !options.showInput && !options.showOkay,

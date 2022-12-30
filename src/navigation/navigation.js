@@ -64,11 +64,11 @@ class BoxyNavigation {
     swal({
       title: "新建",
       buttons: {
-        cancel: "取消",
+        cancel: false,
         confirm: false,
       },
       content: boxyNewContent,
-      closeOnClickOutside: false,
+      closeOnClickOutside: true,
     });
   };
 
@@ -138,7 +138,43 @@ class BoxyNavigation {
    */
   options = () => {
     this.boxyMenuJQ.hide();
-    // TODO Option
+    // TODO Functions of Option
+    var boxyOptionTab = document.createElement("div");
+    boxyOptionTab.setAttribute("class", "boxyOptionTab");
+    for (var OptionThing = 0; OptionThing < 3 /* newThing_length */; OptionThing++) {
+      var OptionTab = document.createElement("button");
+      OptionTab.innerHTML = OptionThing;
+      OptionTab.setAttribute("class", "boxyTab" + (OptionThing ? "" : " active"));
+      OptionTab.setAttribute("id", "boxyTab" + OptionThing);
+      OptionTab.onclick = function () {
+        $(".OptionTabContent").attr("class", "OptionTabContent");
+        $(".boxyTab").attr("class", "boxyTab");
+        this.setAttribute("class", "boxyTab active");
+        $(`#boxyTabContent${this.getAttribute("id").slice(7)}`).attr("class", "OptionTabContent active");
+      };
+      boxyOptionTab.appendChild(OptionTab);
+    }
+    var boxyOptionContent = document.createElement("div");
+    boxyOptionContent.setAttribute("class", "boxyOptionContent");
+    for (var OptionThing = 0; OptionThing < 3 /* newThing_length */; OptionThing++) {
+      var OptionTabContent = document.createElement("p");
+      OptionTabContent.innerHTML = OptionThing;
+      OptionTabContent.setAttribute("class", "OptionTabContent" + (OptionThing ? "" : " active"));
+      OptionTabContent.setAttribute("id", "boxyTabContent" + OptionThing);
+      boxyOptionContent.appendChild(OptionTabContent);
+    }
+    var boxyOption = document.createElement("div");
+    boxyOption.appendChild(boxyOptionTab);
+    boxyOption.appendChild(boxyOptionContent);
+    swal({
+      title: "选项",
+      buttons: {
+        cancel: false,
+        confirm: false,
+      },
+      content: boxyOption,
+      closeOnClickOutside: true,
+    });
   };
 }
 

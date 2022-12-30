@@ -21,12 +21,27 @@
   color: var(--toolbox-color);
 }
 
+.swal-content__input {
+  color: var(--toolbox-color);
+  background-color: var(--toolbox-background);
+}
+
 .swal-modal:has(.boxyNewContent) {
   width: 1080px;
 }
 
+.swal-modal:has(.boxyOptionTab) {
+  width: 720px;
+}
+
 @media (max-width: 1100px) {
   .swal-modal:has(.boxyNewContent) {
+    width: calc(100% - 20px);
+  }
+}
+
+@media (max-width: 740px) {
+  .swal-modal:has(.boxyOptionTab) {
     width: calc(100% - 20px);
   }
 }

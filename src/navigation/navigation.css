@@ -92,3 +92,33 @@
 .boxyCard:hover {
   border-color: var(--new-boxycard-border-hover);
 }
+
+.boxyOptionTab {
+  overflow: auto;
+  width: 100%;
+}
+
+.boxyTab {
+  margin: 10px;
+  border: none;
+  border-radius: 10px;
+  width: calc(100% / 3 - 20px);
+  height: 40px;
+  color: #fff;
+  background-color: var(--boxytab-background);
+}
+
+.boxyTab.active {
+  background-color: var(--boxytab-background-active);
+}
+
+.OptionTabContent {
+  display: none;
+  overflow: auto;
+  height: 300px;
+  max-height: 500px;
+}
+
+.OptionTabContent.active {
+  display: block;
+}
