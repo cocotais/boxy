@@ -50,11 +50,13 @@ class BoxyNavigation {
   new = () => {
     this.boxyMenuJQ.hide();
     // TODO Functions of NewButton
+    var newThingNum = 3 /* 这里输入你可供选择的个数 */
+    var newThingName = ["未知的", "也是未知的", "还是未知的"] //这里是新建内容显示名字
     var boxyNewContent = document.createElement("div");
     boxyNewContent.setAttribute("class", "boxyNewContent");
-    for (var newThing = 0; newThing < 3 /* newThing_length */; newThing++) {
+    for (var newThing = 0; newThing < newThingNum; newThing++) {
       var newButton = document.createElement("button");
-      newButton.innerHTML = newThing;
+      newButton.innerHTML = newThingName[newThing] || newThing; //这里是新建内容显示名字
       newButton.setAttribute("class", "boxyCard");
       newButton.onclick = function () {
         swal("还没有呢～");
@@ -139,11 +141,13 @@ class BoxyNavigation {
   options = () => {
     this.boxyMenuJQ.hide();
     // TODO Functions of Option
+    var boxyOptionTabNum = 3 /* 这里输入你可供选择的个数 */
+    var boxyOptionTabName = ["功能", "关于", "感谢"] //这里是菜单显示名字
     var boxyOptionTab = document.createElement("div");
     boxyOptionTab.setAttribute("class", "boxyOptionTab");
-    for (var OptionThing = 0; OptionThing < 3 /* newThing_length */; OptionThing++) {
+    for (var OptionThing = 0; OptionThing < boxyOptionTabNum; OptionThing++) {
       var OptionTab = document.createElement("button");
-      OptionTab.innerHTML = OptionThing;
+      OptionTab.innerHTML = boxyOptionTabName[OptionThing] || OptionThing; //这里是菜单显示名字
       OptionTab.setAttribute("class", "boxyTab" + (OptionThing ? "" : " active"));
       OptionTab.setAttribute("id", "boxyTab" + OptionThing);
       OptionTab.onclick = function () {
@@ -156,7 +160,7 @@ class BoxyNavigation {
     }
     var boxyOptionContent = document.createElement("div");
     boxyOptionContent.setAttribute("class", "boxyOptionContent");
-    for (var OptionThing = 0; OptionThing < 3 /* newThing_length */; OptionThing++) {
+    for (var OptionThing = 0; OptionThing < boxyOptionTabNum; OptionThing++) {
       var OptionTabContent = document.createElement("p");
       OptionTabContent.innerHTML = OptionThing;
       OptionTabContent.setAttribute("class", "OptionTabContent" + (OptionThing ? "" : " active"));
