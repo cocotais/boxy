@@ -22,6 +22,8 @@
   --zoombox-background: #fff;
   --new-boxycard-border: #b4b4b4;
   --new-boxycard-border-hover: var(--boxy-color);
+  --boxytab-background: #b4b4b4;
+  --boxytab-background-active: var(--boxy-color);
 }
 
 :root[mode="dark"] {
@@ -44,4 +46,6 @@
   --zoombox-background: #282c34;
   --new-boxycard-border: #fff3;
   --new-boxycard-border-hover: #fff;
+  --boxytab-background: #b4b4b4;
+  --boxytab-background-active: #fff2;
 }
