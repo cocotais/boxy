@@ -6,6 +6,7 @@ import Blockly from "blockly";
 import * as zh from "blockly/msg/zh-hans";
 
 import codespace from "../codespace/codespace";
+import codemaoTheme from "../theme/codemao.theme";
 import toolbox from "../toolbox/toolbox";
 import toolboxConfig from "../toolbox/toolbox.json";
 import trashcan from "../trashcan/trashcan";
@@ -47,7 +48,7 @@ class BoxyWorkspace {
         drag: true,
         wheel: true,
       },
-      theme: "zelos",
+      theme: codemaoTheme,
       renderer: "zelos",
     });
 

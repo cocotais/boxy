@@ -1,29 +1,36 @@
 .swal-modal {
-  color: var(--toolbox-color);
-  background-color: var(--toolbox-background);
+  color: var(--dialog-tertiary);
+  background-color: var(--dialog-senary);
 }
 
 .swal-title {
-  color: var(--toolbox-color);
+  color: var(--dialog-tertiary);
 }
 
 .swal-button--cancel {
-  color: var(--toolbox-color);
-  background-color: var(--toolbox-category-background-hover);
+  color: var(--dialog-tertiary);
+  background-color: var(--dialog-quinary) !important;
 }
 
 .swal-button--cancel:hover {
-  color: var(--toolbox-category-color-selected);
-  background-color: var(--toolbox-category-background-selected);
+  background-color: var(--dialog-quaternary) !important;
+}
+
+.swal-button--confirm {
+  background-color: var(--dialog-secondary) !important;
+}
+
+.swal-button--confirm:hover {
+  background-color: var(--dialog-primary) !important;
 }
 
 .swal-text {
-  color: var(--toolbox-color);
+  color: var(--dialog-tertiary);
 }
 
 .swal-content__input {
-  color: var(--toolbox-color);
-  background-color: var(--toolbox-background);
+  color: var(--dialog-tertiary);
+  background-color: var(--dialog-senary);
 }
 
 .swal-modal:has(.boxyNewContent) {

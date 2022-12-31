@@ -9,6 +9,12 @@
   --blockly-dropdown-background: #fff;
   --blockly-shadow: #0002;
   --codespace-background: #fff;
+  --dialog-primary: #6d50f0;
+  --dialog-secondary: #6d50f0aa;
+  --dialog-tertiary: #000;
+  --dialog-quaternary: #ccc;
+  --dialog-quinary: #eee;
+  --dialog-senary: #fff;
   --search-color: #000;
   --search-background: #fff;
   --toolbox-color: #000;
@@ -20,10 +26,6 @@
   --workspace-background: #fafafa;
   --zoombox-color: #000;
   --zoombox-background: #fff;
-  --new-boxycard-border: #b4b4b4;
-  --new-boxycard-border-hover: var(--boxy-color);
-  --boxytab-background: #b4b4b4;
-  --boxytab-background-active: var(--boxy-color);
 }
 
 :root[mode="dark"] {
@@ -33,6 +35,12 @@
   --blockly-dropdown-color: #eee;
   --blockly-dropdown-background: #282c34;
   --codespace-background: #282c34;
+  --dialog-primary: #6d50f0;
+  --dialog-secondary: #6d50f0aa;
+  --dialog-tertiary: #fff;
+  --dialog-quaternary: #eee;
+  --dialog-quinary: #aaa;
+  --dialog-senary: #282c34;
   --search-color: #fff;
   --search-background: #282c34;
   --toolbox-color: #eee;
@@ -44,8 +52,4 @@
   --workspace-background: #000;
   --zoombox-color: #eee;
   --zoombox-background: #282c34;
-  --new-boxycard-border: #fff3;
-  --new-boxycard-border-hover: #fff;
-  --boxytab-background: #b4b4b4;
-  --boxytab-background-active: #fff2;
 }

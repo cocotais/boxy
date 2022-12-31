@@ -77,62 +77,63 @@
 
 .boxyCard {
   margin: 10px;
-  border: var(--new-boxycard-border) solid 0.2em;
+  border: var(--dialog-quaternary) solid 0.2em;
   border-radius: 10px;
   width: 250px;
   height: 250px;
   font-size: 32px;
   font-weight: bold;
-  color: var(--toolbox-color);
-  background: var(--toolbox-background);
+  color: var(--dialog-tertiary);
+  background: var(--dialog-senary);
   transition: all 0.2s;
   cursor: pointer;
 }
 
 .boxyCard:hover {
-  border-color: var(--new-boxycard-border-hover);
+  border-color: var(--dialog-primary);
 }
 
 .boxyOptionTab {
+  display: inline-flex;
   overflow: auto;
   width: 100%;
-  display: inline-flex;
 }
 
 .boxyTab {
+  position: relative;
   margin: 10px 30px;
   border: none;
   width: 100%;
   height: 40px;
-  color: #fff;
-  background-color: var(--boxytab-background);
-  position: relative;
+  color: var(--dialog-senary);
+  background-color: var(--dialog-secondary);
 }
 
 .boxyTab::before {
-  content: "";
   position: absolute;
-  left: -20px;
-  height: 40px;
-  width: 40px;
   top: 0;
+  left: -20px;
   border-radius: 100%;
+  width: 40px;
+  height: 40px;
   background: inherit;
+  content: "";
 }
 
 .boxyTab::after {
-  content: "";
   position: absolute;
-  right: -20px;
-  height: 40px;
-  width: 40px;
   top: 0;
+  right: -20px;
   border-radius: 100%;
+  width: 40px;
+  height: 40px;
   background: inherit;
+  content: "";
 }
 
 .boxyTab.active {
-  background-color: var(--boxytab-background-active);
+  color: var(--dialog-senary);
+  background-color: var(--dialog-primary);
 }
 
 .OptionTabContent {

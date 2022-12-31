@@ -50,12 +50,12 @@ class BoxyNavigation {
   new = () => {
     this.boxyMenuJQ.hide();
     // TODO Functions of NewButton
-    var newThingNum = 3 /* 这里输入你可供选择的个数 */
-    var newThingName = ["未知的", "也是未知的", "还是未知的"] //这里是新建内容显示名字
-    var boxyNewContent = document.createElement("div");
+    const newThingNum = 3; /* 这里输入你可供选择的个数 */
+    const newThingName = ["未知的", "也是未知的", "还是未知的"]; //这里是新建内容显示名字
+    const boxyNewContent = document.createElement("div");
     boxyNewContent.setAttribute("class", "boxyNewContent");
-    for (var newThing = 0; newThing < newThingNum; newThing++) {
-      var newButton = document.createElement("button");
+    for (let newThing = 0; newThing < newThingNum; newThing++) {
+      const newButton = document.createElement("button");
       newButton.innerHTML = newThingName[newThing] || newThing; //这里是新建内容显示名字
       newButton.setAttribute("class", "boxyCard");
       newButton.onclick = function () {
@@ -141,12 +141,12 @@ class BoxyNavigation {
   options = () => {
     this.boxyMenuJQ.hide();
     // TODO Functions of Option
-    var boxyOptionTabNum = 3 /* 这里输入你可供选择的个数 */
-    var boxyOptionTabName = ["功能", "关于", "感谢"] //这里是菜单显示名字
-    var boxyOptionTab = document.createElement("div");
+    const boxyOptionTabNum = 3; /* 这里输入你可供选择的个数 */
+    const boxyOptionTabName = ["功能", "关于", "感谢"]; //这里是菜单显示名字
+    const boxyOptionTab = document.createElement("div");
     boxyOptionTab.setAttribute("class", "boxyOptionTab");
-    for (var OptionThing = 0; OptionThing < boxyOptionTabNum; OptionThing++) {
-      var OptionTab = document.createElement("button");
+    for (let OptionThing = 0; OptionThing < boxyOptionTabNum; OptionThing++) {
+      const OptionTab = document.createElement("button");
       OptionTab.innerHTML = boxyOptionTabName[OptionThing] || OptionThing; //这里是菜单显示名字
       OptionTab.setAttribute("class", "boxyTab" + (OptionThing ? "" : " active"));
       OptionTab.setAttribute("id", "boxyTab" + OptionThing);
@@ -158,16 +158,16 @@ class BoxyNavigation {
       };
       boxyOptionTab.appendChild(OptionTab);
     }
-    var boxyOptionContent = document.createElement("div");
+    const boxyOptionContent = document.createElement("div");
     boxyOptionContent.setAttribute("class", "boxyOptionContent");
-    for (var OptionThing = 0; OptionThing < boxyOptionTabNum; OptionThing++) {
-      var OptionTabContent = document.createElement("p");
-      OptionTabContent.innerHTML = OptionThing;
+    for (let OptionThing = 0; OptionThing < boxyOptionTabNum; OptionThing++) {
+      const OptionTabContent = document.createElement("p");
+      OptionTabContent.innerHTML = OptionThing.toString();
       OptionTabContent.setAttribute("class", "OptionTabContent" + (OptionThing ? "" : " active"));
       OptionTabContent.setAttribute("id", "boxyTabContent" + OptionThing);
       boxyOptionContent.appendChild(OptionTabContent);
     }
-    var boxyOption = document.createElement("div");
+    const boxyOption = document.createElement("div");
     boxyOption.appendChild(boxyOptionTab);
     boxyOption.appendChild(boxyOptionContent);
     swal({
