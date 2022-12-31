@@ -21,7 +21,7 @@ Blockly.defineBlocksWithJsonArray([
     ],
     inputsInline: true,
     output: "Boolean",
-    style: "math_blocks",
+    style: "calculation",
     tooltip: "判断第一个数是否恰好被第二个数整除。",
   },
 ]);
