@@ -3,8 +3,9 @@ import { javascriptGenerator } from "blockly/javascript";
 import $ from "jquery";
 import swal from "sweetalert";
 
-import about from "../option/about.html";
 import workspace from "../workspace/workspace";
+import aboutPage from "./template/about.html";
+import newPage from "./template/new.html";
 
 class BoxyNavigation {
   /**
@@ -50,33 +51,12 @@ class BoxyNavigation {
    */
   new = () => {
     this.boxyMenuJQ.hide();
-
-    function clearWorkspace() {
-      workspace.workspace.clear();
-      swal.close();
-    }
-
-    const newThingNum = 3; /* 这里输入你可供选择的个数 */
-    const newThingName = ["空白作品", "也是未知的", "还是未知的"]; /* 这里是新建内容显示名字 */
-    const newThingFunction = [clearWorkspace, "", ""]; /* 这里是新建内容所执行函数 */
-    const boxyNewContent = document.createElement("div");
-    boxyNewContent.setAttribute("class", "boxyNewContent");
-    for (let newThing = 0; newThing < newThingNum; newThing++) {
-      const newButton = document.createElement("button");
-      newButton.innerHTML = newThingName[newThing] || newThing; /* 这里是新建内容显示名字 */
-      newButton.setAttribute("class", "boxyCard");
-      newButton.onclick =
-        newThingFunction[newThing] ||
-        function () {
-          swal("还没有呢～");
-        };
-      boxyNewContent.appendChild(newButton);
-    }
+    let boxyNewContent = document.createElement("div");
+    boxyNewContent.innerHTML = newPage;
     swal({
       title: "新建",
       buttons: {
-        cancel: false,
-        confirm: false,
+        cancel: "取消",
       },
       content: boxyNewContent,
       closeOnClickOutside: true,

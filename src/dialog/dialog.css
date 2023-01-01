@@ -1,36 +1,42 @@
+.swal-overlay.swal-overlay--show-modal {
+  backdrop-filter: blur(12px);
+}
+
 .swal-modal {
-  color: var(--dialog-tertiary);
-  background-color: var(--dialog-senary);
+  border-radius: 12px;
+  color: var(--dialog-color);
+  background-color: var(--dialog-background);
 }
 
 .swal-title {
-  color: var(--dialog-tertiary);
+  color: var(--dialog-color);
 }
 
 .swal-button--cancel {
-  color: var(--dialog-tertiary);
-  background-color: var(--dialog-quinary) !important;
+  color: var(--dialog-color);
+  background-color: var(--dialog-fill-background) !important;
 }
 
 .swal-button--cancel:hover {
-  background-color: var(--dialog-quaternary) !important;
+  background-color: var(--dialog-fill-background-hover) !important;
 }
 
 .swal-button--confirm {
-  background-color: var(--dialog-secondary) !important;
+  color: var(--dialog-boxy-color);
+  background-color: var(--dialog-boxy-background) !important;
 }
 
 .swal-button--confirm:hover {
-  background-color: var(--dialog-primary) !important;
+  background-color: var(--dialog-boxy-background-hover) !important;
 }
 
 .swal-text {
-  color: var(--dialog-tertiary);
+  color: var(--dialog-color);
 }
 
 .swal-content__input {
-  color: var(--dialog-tertiary);
-  background-color: var(--dialog-senary);
+  color: var(--dialog-background);
+  background-color: var(--dialog-color);
 }
 
 .swal-modal:has(.boxyNewContent) {
