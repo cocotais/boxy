@@ -22,12 +22,12 @@
 }
 
 .swal-button--confirm {
-  color: var(--dialog-boxy-color);
-  background-color: var(--dialog-boxy-background) !important;
+  color: var(--dialog-anti-color);
+  background-color: var(--boxy-color) !important;
 }
 
 .swal-button--confirm:hover {
-  background-color: var(--dialog-boxy-background-hover) !important;
+  background-color: var(--dialog-boxy-color) !important;
 }
 
 .swal-text {
