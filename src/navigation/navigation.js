@@ -61,6 +61,8 @@ class BoxyNavigation {
       content: boxyNewContent,
       closeOnClickOutside: true,
     });
+    $(".boxyNewItem").on("click", () => swal.close());
+    document.querySelector(".boxyNewItem").onclick = () => workspace.workspace.clear();
   };
 
   /**
