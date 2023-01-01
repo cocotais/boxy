@@ -35,6 +35,7 @@
 }
 
 .swal-content__input {
+  border-color: var(--dialog-color);
   color: var(--dialog-color);
   background-color: var(--dialog-background);
 }
