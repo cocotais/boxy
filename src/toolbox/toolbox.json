@@ -4,9 +4,7 @@
     {
       "kind": "category",
       "name": "控制",
-      "cssConfig": {
-        "icon": "controller"
-      },
+      "categorystyle": "controller",
       "contents": [
         {
           "kind": "block",
@@ -81,9 +79,7 @@
     {
       "kind": "category",
       "name": "逻辑",
-      "cssConfig": {
-        "icon": "calculation"
-      },
+      "categorystyle": "calculation",
       "contents": [
         {
           "kind": "block",
@@ -211,9 +207,7 @@
     {
       "kind": "category",
       "name": "变量",
-      "cssConfig": {
-        "icon": "variable"
-      },
+      "categorystyle": "variable",
       "custom": "VARIABLE"
     }
   ]

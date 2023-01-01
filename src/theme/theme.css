@@ -3,14 +3,14 @@
 }
 
 :root[mode="light"] {
-  --boxy-color: #6d50f0;
+  --boxy-color: #4062f6;
   --boxy-tone: invert(0);
   --blockly-dropdown-color: #000;
   --blockly-dropdown-background: #fff;
   --blockly-shadow: #0002;
   --codespace-background: #fff;
-  --dialog-primary: #6d50f0;
-  --dialog-secondary: #6d50f0aa;
+  --dialog-primary: #4062f6;
+  --dialog-secondary: #94afff;
   --dialog-tertiary: #000;
   --dialog-quaternary: #ccc;
   --dialog-quinary: #eee;
@@ -29,14 +29,14 @@
 }
 
 :root[mode="dark"] {
-  --boxy-color: #6d50f0;
+  --boxy-color: #4062f6;
   --boxy-tone: invert(1);
   --blockly-shadow: #fff2;
   --blockly-dropdown-color: #eee;
   --blockly-dropdown-background: #282c34;
   --codespace-background: #282c34;
-  --dialog-primary: #6d50f0;
-  --dialog-secondary: #6d50f0aa;
+  --dialog-primary: #94afff;
+  --dialog-secondary: #6b8bff;
   --dialog-tertiary: #fff;
   --dialog-quaternary: #eee;
   --dialog-quinary: #aaa;

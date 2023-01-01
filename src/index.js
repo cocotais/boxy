@@ -1,6 +1,5 @@
 import "./workspace/workspace.css";
 import "./icon/category/category";
-import "./icon/category/category.css";
 import "./codespace/codespace.css";
 import "./toolbox/toolbox.css";
 import "./search/search.css";

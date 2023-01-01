@@ -39,7 +39,7 @@ class BoxyCategory extends Blockly.ToolboxCategory {
    */
   createIconDom_ = () => {
     const img = document.createElement("iconpark-icon");
-    img.name = this.cssConfig_.icon;
+    img.name = this.toolboxItemDef_.categorystyle;
     img.size = "21";
     img.style = `
       -webkit-mask-size: 100% 100%;
@@ -50,6 +50,15 @@ class BoxyCategory extends Blockly.ToolboxCategory {
     `;
     return img;
   };
+
+  /**
+   * 覆盖 iconpark 的颜色
+   * @param colour
+   * @private
+   */
+  addColourBorder_(colour) {
+    this.rowDiv_.children[0].children[0].style.backgroundColor = colour;
+  }
 }
 
 class BoxyToolbox {
