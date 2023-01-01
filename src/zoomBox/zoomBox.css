@@ -25,6 +25,11 @@
   backdrop-filter: blur(5px) saturate(200%);
 }
 
+.zoomFunctions {
+  height: 25px;
+  vertical-align: middle;
+}
+
 #switchThemeDay {
   display: none;
 }
