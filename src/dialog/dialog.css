@@ -35,8 +35,12 @@
 }
 
 .swal-content__input {
-  color: var(--dialog-background);
-  background-color: var(--dialog-color);
+  color: var(--dialog-color);
+  background-color: var(--dialog-background);
+}
+
+.swal-content__input:focus {
+  border-color: var(--dialog-boxy-color);
 }
 
 .swal-modal:has(.boxyNewContent) {
@@ -57,4 +61,8 @@
   .swal-modal:has(.boxyOptionTab) {
     width: calc(100% - 20px);
   }
+}
+
+.swal-footer:has(.swal-button--cancel):not(:has(.swal-button--confirm)) {
+  text-align: center;
 }
