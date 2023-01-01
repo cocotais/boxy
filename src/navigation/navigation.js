@@ -3,6 +3,7 @@ import { javascriptGenerator } from "blockly/javascript";
 import $ from "jquery";
 import swal from "sweetalert";
 
+import about from "../option/about.html";
 import workspace from "../workspace/workspace";
 
 class BoxyNavigation {
@@ -148,9 +149,13 @@ class BoxyNavigation {
    */
   options = () => {
     this.boxyMenuJQ.hide();
-    // TODO Functions of Option
     const boxyOptionTabNum = 3; /* 这里输入你可供选择的个数 */
     const boxyOptionTabName = ["功能", "关于", "感谢"]; //这里是菜单显示名字
+    /*
+      这里是切换到某菜单时显示的具体内容
+      可以在这里直接写html，也可以从外部引入新的
+     */
+    const boxyOptionFunction = ["", about, "<p>Copyright by Boxy</p><p>Powered by Blockly</p>"];
     const boxyOptionTab = document.createElement("div");
     boxyOptionTab.setAttribute("class", "boxyOptionTab");
     for (let OptionThing = 0; OptionThing < boxyOptionTabNum; OptionThing++) {
@@ -169,8 +174,8 @@ class BoxyNavigation {
     const boxyOptionContent = document.createElement("div");
     boxyOptionContent.setAttribute("class", "boxyOptionContent");
     for (let OptionThing = 0; OptionThing < boxyOptionTabNum; OptionThing++) {
-      const OptionTabContent = document.createElement("p");
-      OptionTabContent.innerHTML = OptionThing.toString();
+      const OptionTabContent = document.createElement("div");
+      OptionTabContent.innerHTML = boxyOptionFunction[OptionThing] || "";
       OptionTabContent.setAttribute("class", "OptionTabContent" + (OptionThing ? "" : " active"));
       OptionTabContent.setAttribute("id", "boxyTabContent" + OptionThing);
       boxyOptionContent.appendChild(OptionTabContent);
