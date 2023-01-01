@@ -80,10 +80,12 @@ CustomDialog.show = function (title, message, options) {
   var onOkay = function (event) {
     options.onOkay && options.onOkay();
     event && event.stopPropagation();
+    swal.close(); // 关闭sweetalert
   };
   var onCancel = function (event) {
     options.onCancel && options.onCancel();
     event && event.stopPropagation();
+    swal.close();
   };
 
   var dialogInput = document.getElementById("customDialogInput");
