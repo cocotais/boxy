@@ -26,11 +26,11 @@ pre {
 }
 
 #code::selection {
-  color: white;
-  background-color: #01adffcc;
+  color: inherit;
+  background: #1ba2e333;
 }
 
 #code > span::selection {
-  color: white;
-  background-color: #01adffcc;
+  color: inherit;
+  background: #1ba2e333;
 }
