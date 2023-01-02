@@ -137,7 +137,7 @@ class BoxyNavigation {
       这里是切换到某菜单时显示的具体内容
       可以在这里直接写html，也可以从外部引入新的
      */
-    const boxyOptionFunction = ["", aboutPage, "<p>Copyright by Boxy</p><p>Powered by Blockly</p>"];
+    const boxyOptionFunction = ["", aboutPage, "<br/><p>Copyright 2023 Boxy.</p><p>Built by Blockly.</p>"];
     const boxyOptionTab = document.createElement("div");
     boxyOptionTab.setAttribute("class", "boxyOptionTab");
     for (let OptionThing = 0; OptionThing < boxyOptionTabNum; OptionThing++) {

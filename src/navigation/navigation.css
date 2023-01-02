@@ -133,7 +133,7 @@
 
 .boxyTab.active {
   color: var(--dialog-boxy-color);
-  background-color: var(--dialog-boxy-background);
+  background-color: var(--dialog-boxy-background-active);
 }
 
 .OptionTabContent {

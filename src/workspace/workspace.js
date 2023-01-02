@@ -45,7 +45,7 @@ class BoxyWorkspace {
         wheel: true,
       },
       theme: "codemao",
-      renderer: "zelos",
+      renderer: "codemao",
     });
 
     toolbox.ariaFix();
