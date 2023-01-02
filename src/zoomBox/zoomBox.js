@@ -67,8 +67,6 @@ class BoxyZoomBox {
     this.zoomBoxDiv.style.right = codespace.width() + 40 + "px";
   };
 
-  // TODO More Effective Zoom Controller
-
   /**
    * 主题切换按钮。
    * @method

@@ -1,5 +1,3 @@
-// TODO Hot Loader
-
 class BoxyTheme {
   /**
    * 主题

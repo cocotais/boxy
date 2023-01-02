@@ -1,12 +1,12 @@
 import "@blockly/block-plus-minus";
+import "../theme/codemao.theme";
+import "../theme/codemao.renderer";
 
-import { ScrollBlockDragger, ScrollMetricsManager, ScrollOptions } from "@blockly/plugin-scroll-options";
 import { WorkspaceSearch } from "@blockly/plugin-workspace-search";
 import Blockly from "blockly";
 import * as zh from "blockly/msg/zh-hans";
 
 import codespace from "../codespace/codespace";
-import codemaoTheme from "../theme/codemao.theme";
 import toolbox from "../toolbox/toolbox";
 import toolboxConfig from "../toolbox/toolbox.json";
 import trashcan from "../trashcan/trashcan";
@@ -32,10 +32,6 @@ class BoxyWorkspace {
       toolbox: toolboxConfig,
       trashcan: false,
       media: "./media/",
-      plugins: {
-        blockDragger: ScrollBlockDragger,
-        metricsManager: ScrollMetricsManager,
-      },
       zoom: {
         controls: true,
         wheel: true,
@@ -48,14 +44,12 @@ class BoxyWorkspace {
         drag: true,
         wheel: true,
       },
-      theme: codemaoTheme,
+      theme: "codemao",
       renderer: "zelos",
     });
 
     toolbox.ariaFix();
 
-    this.scollOptions = new ScrollOptions(this.workspace);
-    this.scollOptions.init();
     this.workspaceSearch = new WorkspaceSearch(this.workspace);
     this.workspaceSearch.init();
 
