@@ -41,7 +41,7 @@
 }
 
 .swal-content__input:focus {
-  border-color: var(--dialog-boxy-color);
+  border-color: var(--boxy-color);
 }
 
 .swal-modal:has(.boxyNewContent) {
