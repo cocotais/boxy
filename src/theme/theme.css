@@ -31,20 +31,20 @@
 }
 
 :root[mode="dark"] {
-  --boxy-color: #4062f6;
+  --boxy-color: #b9c3ff;
   --boxy-tone: invert(1);
   --blockly-shadow: #fff2;
   --blockly-dropdown-color: #eee;
   --blockly-dropdown-background: #282c34;
   --codespace-background: #282c34;
-  --dialog-color: #eee;
-  --dialog-anti-color: #fafafa;
-  --dialog-background: #262626;
-  --dialog-fill-background: #434343;
-  --dialog-fill-background-hover: #5a5a5a;
-  --dialog-boxy-color: #4062f6;
-  --dialog-boxy-background: #3c3c41;
-  --dialog-boxy-background-hover: #47474f;
+  --dialog-color: #a6eeff;
+  --dialog-anti-color: #00228b;
+  --dialog-background: #001f25;
+  --dialog-fill-background: #00313b;
+  --dialog-fill-background-hover: #0e4153;
+  --dialog-boxy-color: #c3ccff;
+  --dialog-boxy-background: #082933;
+  --dialog-boxy-background-hover: #133a4d;
   --search-color: #fff;
   --search-background: #282c34;
   --toolbox-color: #eee;
