@@ -20,8 +20,6 @@ import trashcan from "./trashcan/trashcan";
 
 theme.switch("light");
 
-// 监听器
-// TODO Abstract into Class
 const toolboxFlyoutObserver = new window.MutationObserver(function (mutations) {
   mutations.forEach(function (mutation) {
     if (mutation.type === "attributes") {

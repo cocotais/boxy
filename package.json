@@ -48,7 +48,6 @@
   "dependencies": {
     "@blockly/block-plus-minus": "^4.0.2",
     "@blockly/field-colour-hsv-sliders": "^2.0.2",
-    "@blockly/plugin-scroll-options": "^3.0.2",
     "@blockly/plugin-workspace-search": "^6.0.2",
     "blockly": "^9.2.0",
     "eslint": "^8.27.0",

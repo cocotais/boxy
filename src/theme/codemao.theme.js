@@ -1,6 +1,6 @@
 import Blockly from "blockly";
 
-let codemaoTheme = Blockly.Theme.defineTheme("Codemao", {
+let codemaoTheme = Blockly.Theme.defineTheme("codemao", {
   base: Blockly.Themes.Zelos,
   blockStyles: {
     controller: {

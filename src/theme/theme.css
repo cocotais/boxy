@@ -31,7 +31,7 @@
 }
 
 :root[mode="dark"] {
-  --boxy-color: #2f4cca;
+  --boxy-color: #4062f6;
   --boxy-tone: invert(1);
   --blockly-shadow: #fff2;
   --blockly-dropdown-color: #eee;
@@ -42,7 +42,7 @@
   --dialog-background: #262626;
   --dialog-fill-background: #434343;
   --dialog-fill-background-hover: #5a5a5a;
-  --dialog-boxy-color: #5b6fc8;
+  --dialog-boxy-color: #4062f6;
   --dialog-boxy-background: #3c3c41;
   --dialog-boxy-background-hover: #47474f;
   --search-color: #fff;
