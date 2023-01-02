@@ -17,6 +17,7 @@
   --dialog-boxy-color: #2b44cf;
   --dialog-boxy-background: #f0f5ff;
   --dialog-boxy-background-hover: #e6eeff;
+  --dialog-boxy-background-active: #e6eeff;
   --search-color: #000;
   --search-background: #fff;
   --toolbox-color: #000;
@@ -45,6 +46,7 @@
   --dialog-boxy-color: #c3ccff;
   --dialog-boxy-background: #082933;
   --dialog-boxy-background-hover: #133a4d;
+  --dialog-boxy-background-active: #0e4153;
   --search-color: #fff;
   --search-background: #282c34;
   --toolbox-color: #eee;
