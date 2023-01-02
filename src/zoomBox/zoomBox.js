@@ -114,7 +114,7 @@ class BoxyZoomBox {
    */
   smaller = () => {
     this.smallerButton.dispatchEvent(new PointerEvent("pointerdown"));
-    this.percentageDiv.innerHTML = Math.ceil(workspace.workspace.getScale() * 100) + "%";
+    this.percentageDiv.innerHTML = Math.floor((workspace.workspace.getScale() * (5 / 3) - 1 / 3) * 100) + "%";
   };
 
   /**
@@ -123,7 +123,7 @@ class BoxyZoomBox {
    */
   reset = () => {
     this.resetButton.dispatchEvent(new PointerEvent("pointerdown"));
-    this.percentageDiv.innerHTML = Math.ceil(workspace.workspace.getScale() * 100) + "%";
+    this.percentageDiv.innerHTML = Math.floor((workspace.workspace.getScale() * (5 / 3) - 1 / 3) * 100) + "%";
   };
 
   /**
@@ -132,7 +132,7 @@ class BoxyZoomBox {
    */
   bigger = () => {
     this.biggerButton.dispatchEvent(new PointerEvent("pointerdown"));
-    this.percentageDiv.innerHTML = Math.ceil(workspace.workspace.getScale() * 100) + "%";
+    this.percentageDiv.innerHTML = Math.floor((workspace.workspace.getScale() * (5 / 3) - 1 / 3) * 100) + "%";
   };
 }
 

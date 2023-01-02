@@ -40,8 +40,8 @@ class BoxyWorkspace {
         controls: true,
         wheel: true,
         startScale: 0.8,
-        maxScale: 1.8,
-        minScale: 0.3,
+        maxScale: 1.4,
+        minScale: 0.5,
       },
       move: {
         scrollbars: true,
