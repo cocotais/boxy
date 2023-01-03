@@ -8,23 +8,17 @@ class CustomConstantsProvider extends Blockly.zelos.ConstantProvider {
     this.NOTCH_HEIGHT = 8;
 
     this.CORNER_RADIUS = 4;
-    this.TAB_WIDTH = 0;
-    this.TAB_HEIGHT = 0;
 
     this.FIELD_TEXT_FONTSIZE = 12;
     this.FIELD_TEXT_FONTWEIGHT = "500";
-    this.FIELD_TEXT_FONTFAMILY = "sans-serif";
+
+    this.TOP_ROW_MIN_HEIGHT = 3;
+    this.BOTTOM_ROW_MIN_HEIGHT = 3;
   }
 
   /**
    * @override
    */
-  init() {
-    super.init();
-    // Add calls to create shape objects for the new connection shapes.
-    this.RECT_PREV_NEXT = this.makeNotch();
-  }
-
   makeNotch() {
     const width = 0;
     const height = 0;
