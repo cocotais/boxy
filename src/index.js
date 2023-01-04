@@ -18,7 +18,30 @@ import "./blocks/boxy";
 import theme from "./theme/theme";
 import trashcan from "./trashcan/trashcan";
 
-theme.switch("light");
+function getCookie(cname) {
+  var name = cname + "=";
+  var ca = document.cookie.split(";");
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i].trim();
+    if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+  }
+  return false;
+}
+
+theme.switch(
+  getCookie("theme")
+    ? getCookie("theme")
+    : window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light"
+);
+
+const themeMedia = window.matchMedia("(prefers-color-scheme: light)");
+themeMedia.addListener((e) => {
+  if (!getCookie("theme")) {
+    theme.switch(e.matches ? "light" : "dark");
+  }
+});
 
 const toolboxFlyoutObserver = new window.MutationObserver(function (mutations) {
   mutations.forEach(function (mutation) {
