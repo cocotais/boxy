@@ -79,10 +79,18 @@ class BoxyZoomBox {
         theme.switch("dark");
         night.style.display = "none";
         day.style.display = "block";
+        var d = new Date();
+        d.setTime(d.getTime() + 3 /*天数*/ * 24 * 60 * 60 * 1000);
+        var expires = "expires=" + d.toGMTString();
+        document.cookie = "theme=dark;expires=" + expires;
       } else {
         theme.switch("light");
         day.style.display = "none";
         night.style.display = "block";
+        var d = new Date();
+        d.setTime(d.getTime() + 3 /*天数*/ * 24 * 60 * 60 * 1000);
+        var expires = "expires=" + d.toGMTString();
+        document.cookie = "theme=light;expires=" + expires;
       }
     }
   };
