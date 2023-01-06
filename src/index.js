@@ -19,11 +19,11 @@ import theme from "./theme/theme";
 import trashcan from "./trashcan/trashcan";
 
 function getCookie(cname) {
-  var name = cname + "=";
-  var ca = document.cookie.split(";");
-  for (var i = 0; i < ca.length; i++) {
-    var c = ca[i].trim();
-    if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+  const name = cname + "=";
+  const ca = document.cookie.split(";");
+  for (let i = 0; i < ca.length; i++) {
+    const c = ca[i].trim();
+    if (c.indexOf(name) === 0) return c.substring(name.length, c.length);
   }
   return false;
 }
@@ -37,9 +37,9 @@ theme.switch(
 );
 
 const themeMedia = window.matchMedia("(prefers-color-scheme: light)");
-themeMedia.addListener((e) => {
+themeMedia.addListener((event) => {
   if (!getCookie("theme")) {
-    theme.switch(e.matches ? "light" : "dark");
+    theme.switch(event.matches ? "light" : "dark");
   }
 });
 
