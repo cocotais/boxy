@@ -119,7 +119,9 @@ class BoxyZoomBox {
    * @method
    */
   smaller = () => {
-    this.smallerButton.dispatchEvent(new PointerEvent("pointerdown"));
+    let speed = workspace.workspace.options.zoomOptions.scaleSpeed
+    let scale = workspace.workspace.getScale()
+    workspace.workspace.zoom(0,0,Math.log((scale-0.15)/scale) / Math.log(speed));
     this.percentageDiv.innerHTML = Math.floor((workspace.workspace.getScale() * (5 / 3) - 1 / 3) * 100) + "%";
   };
 
@@ -137,7 +139,9 @@ class BoxyZoomBox {
    * @method
    */
   bigger = () => {
-    this.biggerButton.dispatchEvent(new PointerEvent("pointerdown"));
+    let speed = workspace.workspace.options.zoomOptions.scaleSpeed
+    let scale = workspace.workspace.getScale()
+    workspace.workspace.zoom(0,0,Math.log((scale+0.15)/scale) / Math.log(speed));
     this.percentageDiv.innerHTML = Math.floor((workspace.workspace.getScale() * (5 / 3) - 1 / 3) * 100) + "%";
   };
 }
