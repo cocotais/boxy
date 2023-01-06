@@ -53,6 +53,11 @@ class BoxyZoomBox {
     this.resize();
     // 为重置按钮赋基础值
     this.reset();
+    // 添加缩放大小监听事件
+    workspace.workspace.addChangeListener(function () {
+      document.getElementById("zoomBoxReset").innerHTML =
+        Math.floor((workspace.workspace.getScale() * (5 / 3) - 1 / 3) * 100) + "%";
+    });
   };
 
   /**
@@ -122,7 +127,6 @@ class BoxyZoomBox {
     let speed = workspace.workspace.options.zoomOptions.scaleSpeed;
     let scale = workspace.workspace.getScale();
     workspace.workspace.zoom(0, 0, Math.log((scale - 0.15) / scale) / Math.log(speed));
-    this.percentageDiv.innerHTML = Math.floor((workspace.workspace.getScale() * (5 / 3) - 1 / 3) * 100) + "%";
   };
 
   /**
@@ -131,7 +135,6 @@ class BoxyZoomBox {
    */
   reset = () => {
     this.resetButton.dispatchEvent(new PointerEvent("pointerdown"));
-    this.percentageDiv.innerHTML = Math.floor((workspace.workspace.getScale() * (5 / 3) - 1 / 3) * 100) + "%";
   };
 
   /**
@@ -142,7 +145,6 @@ class BoxyZoomBox {
     let speed = workspace.workspace.options.zoomOptions.scaleSpeed;
     let scale = workspace.workspace.getScale();
     workspace.workspace.zoom(0, 0, Math.log((scale + 0.15) / scale) / Math.log(speed));
-    this.percentageDiv.innerHTML = Math.floor((workspace.workspace.getScale() * (5 / 3) - 1 / 3) * 100) + "%";
   };
 }
 
