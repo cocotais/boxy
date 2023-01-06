@@ -8,8 +8,26 @@
       "contents": [
         {
           "kind": "block",
+          "type": "controls_if"
+        },
+        {
+          "kind": "block",
+          "type": "controls_if",
+          "extraState": {
+            "hasElse": true
+          }
+        },
+        {
+          "kind": "sep",
+          "gap": "64"
+        },
+        {
+          "kind": "block",
+          "type": "controls_whileUntil"
+        },
+        {
+          "kind": "block",
           "type": "controls_repeat_ext",
-
           "inputs": {
             "TIMES": {
               "block": {
@@ -20,6 +38,10 @@
               }
             }
           }
+        },
+        {
+          "kind": "block",
+          "type": "controls_forever"
         },
         {
           "kind": "block",
@@ -53,22 +75,11 @@
         },
         {
           "kind": "block",
-          "type": "controls_whileUntil"
-        },
-        {
-          "kind": "block",
           "type": "controls_flow_statements"
         },
         {
-          "kind": "block",
-          "type": "controls_if"
-        },
-        {
-          "kind": "block",
-          "type": "controls_if",
-          "extraState": {
-            "hasElse": true
-          }
+          "kind": "sep",
+          "gap": "64"
         },
         {
           "kind": "block",
@@ -138,7 +149,23 @@
         },
         {
           "kind": "block",
-          "type": "math_number_property"
+          "type": "math_round"
+        },
+        {
+          "kind": "block",
+          "type": "math_single"
+        },
+        {
+          "kind": "block",
+          "type": "math_modulo"
+        },
+        {
+          "kind": "block",
+          "type": "math_trig"
+        },
+        {
+          "kind": "sep",
+          "gap": "64"
         },
         {
           "kind": "block",
@@ -164,27 +191,7 @@
         },
         {
           "kind": "block",
-          "type": "logic_operation"
-        },
-        {
-          "kind": "sep",
-          "gap": "64"
-        },
-        {
-          "kind": "block",
-          "type": "math_single"
-        },
-        {
-          "kind": "block",
-          "type": "math_modulo"
-        },
-        {
-          "kind": "block",
-          "type": "math_trig"
-        },
-        {
-          "kind": "block",
-          "type": "math_round"
+          "type": "math_number_property"
         },
         {
           "kind": "sep",
@@ -196,11 +203,15 @@
         },
         {
           "kind": "block",
-          "type": "logic_boolean"
+          "type": "logic_operation"
         },
         {
           "kind": "block",
           "type": "logic_negate"
+        },
+        {
+          "kind": "block",
+          "type": "logic_boolean"
         }
       ]
     },

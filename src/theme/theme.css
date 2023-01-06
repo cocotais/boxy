@@ -32,7 +32,7 @@
 }
 
 :root[mode="dark"] {
-  --boxy-color: #b9c3ff;
+  --boxy-color: #6de3ff;
   --boxy-tone: invert(1);
   --blockly-shadow: #fff2;
   --blockly-dropdown-color: #a6eeff;
@@ -52,8 +52,8 @@
   --toolbox-color: #a6eeff;
   --toolbox-background: #002930;
   --toolbox-category-background-hover: #fff3;
-  --toolbox-category-color-selected: #00228b;
-  --toolbox-category-background-selected: #b9c3ff;
+  --toolbox-category-color-selected: #6de3ff;
+  --toolbox-category-background-selected: #fff6;
   --trashcan-background: #001f2540;
   --workspace-background: #001f25;
   --zoombox-color: #a6eeff;
