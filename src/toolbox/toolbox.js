@@ -4,6 +4,43 @@ import superellipse from "../icon/category/superellipse.svg";
 
 // https://blocklycodelabs.dev/codelabs/custom-toolbox/index.html?index=..%2F..index#0
 
+// 对Blockly.VerticalFlyout.prototype.reflowInternal_进行覆盖
+Blockly.VerticalFlyout.prototype.reflowInternal_ = function () {
+  this.workspace_.scale = 0.8; //对，这是覆盖的唯一地方，实现toolbox大小锁死
+  let a = 0;
+  var b = this.workspace_.getTopBlocks(!1);
+  for (let d = 0, e; (e = b[d]); d++) {
+    var c = e.getHeightWidth().width;
+    e.outputConnection && (c -= this.tabWidth_);
+    a = Math.max(a, c);
+  }
+  for (let d = 0, e; (e = this.buttons_[d]); d++) a = Math.max(a, e.width);
+  a += 1.5 * this.MARGIN + this.tabWidth_;
+  a *= this.workspace_.scale;
+  a += Blockly.Scrollbar.scrollbarThickness;
+  if (this.width_ !== a) {
+    for (let d = 0, e; (e = b[d]); d++) {
+      if (this.RTL) {
+        c = e.getRelativeToSurfaceXY().x;
+        let f = a / this.workspace_.scale - this.MARGIN;
+        e.outputConnection || (f -= this.tabWidth_);
+        e.moveBy(f - c, 0);
+      }
+      this.rectMap_.has(e) && this.moveRectToBlock_(this.rectMap_.get(e), e);
+    }
+    if (this.RTL)
+      for (let d = 0, e; (e = this.buttons_[d]); d++)
+        (b = e.getPosition().y), e.moveTo(a / this.workspace_.scale - e.width - this.MARGIN - this.tabWidth_, b);
+    this.targetWorkspace.toolboxPosition !== this.toolboxPosition_ ||
+      this.toolboxPosition_ !== Blockly.utils.toolbox.Position.LEFT ||
+      this.targetWorkspace.getToolbox() ||
+      this.targetWorkspace.translate(this.targetWorkspace.scrollX + a, this.targetWorkspace.scrollY);
+    this.width_ = a;
+    this.position();
+    this.targetWorkspace.recordDragTargets();
+  }
+};
+
 class BoxyCategory extends Blockly.ToolboxCategory {
   /**
    * 用户工具箱类标签
