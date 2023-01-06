@@ -20,8 +20,10 @@ class BoxyTrashcan {
     if (event.type === "drag") {
       this.switchOn();
     } else if (event.type === "move") {
-      this.switchOff();
-      this.coverOff();
+      if (event.oldCoordinate !== undefined) {
+        this.switchOff();
+        this.coverOff();
+      }
     }
   };
 
