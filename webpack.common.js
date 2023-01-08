@@ -4,6 +4,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const WorkboxWebpackPlugin = require("workbox-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.js",
@@ -47,6 +48,10 @@ module.exports = {
           to: "media",
         },
       ],
+    }),
+    new WorkboxWebpackPlugin.GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true,
     }),
   ],
   optimization: {
