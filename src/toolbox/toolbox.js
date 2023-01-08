@@ -4,13 +4,16 @@ import superellipse from "../icon/category/superellipse.svg";
 
 // https://blocklycodelabs.dev/codelabs/custom-toolbox/index.html?index=..%2F..index#0
 
-// 对Blockly.VerticalFlyout.prototype.reflowInternal_进行覆盖
+/**
+ * 对Blockly.VerticalFlyout.prototype.reflowInternal_进行覆盖
+ */
 Blockly.VerticalFlyout.prototype.reflowInternal_ = function () {
   this.workspace_.scale = 0.8; //对，这是覆盖的唯一地方，实现toolbox大小锁死
   let a = 0;
-  var b = this.workspace_.getTopBlocks(!1);
+  let b = this.workspace_.getTopBlocks(!1);
+  let c = 0;
   for (let d = 0, e; (e = b[d]); d++) {
-    var c = e.getHeightWidth().width;
+    c = e.getHeightWidth().width;
     e.outputConnection && (c -= this.tabWidth_);
     a = Math.max(a, c);
   }
