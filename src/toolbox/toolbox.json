@@ -219,7 +219,17 @@
       "kind": "category",
       "name": "变量",
       "categorystyle": "variable",
-      "custom": "VARIABLE"
+      "custom": "VARIABLE",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "variables_set"
+        },
+        {
+          "kind": "block",
+          "type": "variables_get"
+        }
+      ]
     }
   ]
 }

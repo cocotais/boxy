@@ -14,34 +14,12 @@ import "./toolbox/toolbox";
 import "./workspace/workspace";
 import "./theme/theme.css";
 import "./blocks/boxy";
+import "./blocks/patch";
 
 import theme from "./theme/theme";
 import trashcan from "./trashcan/trashcan";
 
-function getCookie(cname) {
-  const name = cname + "=";
-  const ca = document.cookie.split(";");
-  for (let i = 0; i < ca.length; i++) {
-    const c = ca[i].trim();
-    if (c.indexOf(name) === 0) return c.substring(name.length, c.length);
-  }
-  return false;
-}
-
-theme.switch(
-  getCookie("theme")
-    ? getCookie("theme")
-    : window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light"
-);
-
-const themeMedia = window.matchMedia("(prefers-color-scheme: light)");
-themeMedia.addListener((event) => {
-  if (!getCookie("theme")) {
-    theme.switch(event.matches ? "light" : "dark");
-  }
-});
+theme.switch("light");
 
 const toolboxFlyoutObserver = new window.MutationObserver(function (mutations) {
   mutations.forEach(function (mutation) {
