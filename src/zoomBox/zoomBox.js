@@ -1,5 +1,4 @@
 import codespace from "../codespace/codespace";
-import theme from "../theme/theme";
 import workspace from "../workspace/workspace";
 
 /**
@@ -23,12 +22,9 @@ class BoxyZoomBox {
     this.blocklyDiv = document.getElementById("blocklyDiv");
     this.codespaceDiv = document.getElementById("codespace");
     this.zoomBoxDiv = document.getElementById("zoomBox");
-    this.percentageDiv = document.getElementById("zoomBoxReset");
     // 按钮
     this.blocklyZoomButtons = document.getElementsByClassName("blocklyZoom");
     this.codespaceButton = document.getElementById("switchCode");
-    this.smallerButton = this.blocklyZoomButtons[0];
-    this.biggerButton = this.blocklyZoomButtons[1];
     this.resetButton = this.blocklyZoomButtons[2];
   }
 
@@ -73,30 +69,15 @@ class BoxyZoomBox {
   };
 
   /**
-   * 主题切换按钮。
+   * 搜索按钮。
    * @method
    */
-  themeSwitch = () => {
-    let day = document.getElementById("switchThemeDay");
-    let night = document.getElementById("switchThemeNight");
-    if (theme.root.getAttributeNames().indexOf("mode") !== -1) {
-      if (theme.root.getAttribute("mode") === "light") {
-        theme.switch("dark");
-        night.style.display = "none";
-        day.style.display = "block";
-        var d = new Date();
-        d.setTime(d.getTime() + 3 /*天数*/ * 24 * 60 * 60 * 1000);
-        var expires = "expires=" + d.toGMTString();
-        document.cookie = "theme=dark;expires=" + expires;
-      } else {
-        theme.switch("light");
-        day.style.display = "none";
-        night.style.display = "block";
-        var d = new Date();
-        d.setTime(d.getTime() + 3 /*天数*/ * 24 * 60 * 60 * 1000);
-        var expires = "expires=" + d.toGMTString();
-        document.cookie = "theme=light;expires=" + expires;
-      }
+  searchSwitch = () => {
+    console.log(workspace.workspaceSearch);
+    if (workspace.workspaceSearch.htmlDiv_.style.display === "none") {
+      workspace.workspaceSearch.open();
+    } else {
+      workspace.workspaceSearch.close();
     }
   };
 
@@ -152,7 +133,7 @@ let zoomBox = new BoxyZoomBox();
 zoomBox.load();
 export default zoomBox;
 
-window.themeSwitch = zoomBox.themeSwitch;
+window.searchSwitch = zoomBox.searchSwitch;
 window.codespaceSwitch = zoomBox.codespaceSwitch;
 window.zoomBoxSmaller = zoomBox.smaller;
 window.zoomBoxReset = zoomBox.reset;

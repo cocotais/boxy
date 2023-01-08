@@ -1,3 +1,5 @@
+import "../generators/javascript";
+
 import { javascriptGenerator } from "blockly/javascript";
 import highlight from "highlight.js/lib/core";
 import javascript from "highlight.js/lib/languages/javascript";
