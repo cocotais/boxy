@@ -18,7 +18,7 @@
 #### 介绍
 
 Boxy 是 Google Blockly 的一个应用实例，
-对 Blockly 进行了基本的配置，
+对 Blockly 进行了较为完善的配置，
 你可以用它快速地进行 Blockly 开发。
 
 #### 安装
@@ -31,6 +31,7 @@ Boxy 是 Google Blockly 的一个应用实例，
 
    ```
    git clone https://gitee.com/coco-central/boxy.git
+   git clone https://github.com/coco-central/boxy.git
    ```
 
 3. **环境配置：配置本地开发环境。**
