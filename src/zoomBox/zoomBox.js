@@ -73,7 +73,6 @@ class BoxyZoomBox {
    * @method
    */
   searchSwitch = () => {
-    console.log(workspace.workspaceSearch);
     if (workspace.workspaceSearch.htmlDiv_.style.display === "none") {
       workspace.workspaceSearch.open();
     } else {
