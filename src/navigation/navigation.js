@@ -1,11 +1,10 @@
 import Blockly from "blockly";
 import { javascriptGenerator } from "blockly/javascript";
 import $ from "jquery";
-import swal from "sweetalert";
 
+import dialog from "../dialog/dialog";
+import newPage from "../navigation/pages/new.html";
 import workspace from "../workspace/workspace";
-import aboutPage from "./template/about.html";
-import newPage from "./template/new.html";
 
 class BoxyNavigation {
   /**
@@ -50,19 +49,7 @@ class BoxyNavigation {
    * @method
    */
   new = () => {
-    this.boxyMenuJQ.hide();
-    let boxyNewContent = document.createElement("div");
-    boxyNewContent.innerHTML = newPage;
-    swal({
-      title: "新建",
-      buttons: {
-        cancel: "取消",
-      },
-      content: boxyNewContent,
-      closeOnClickOutside: true,
-    });
-    $(".boxyNewItem").on("click", () => swal.close());
-    document.querySelector(".boxyNewItem").onclick = () => workspace.workspace.clear();
+    dialog.open(newPage);
   };
 
   /**
@@ -129,52 +116,7 @@ class BoxyNavigation {
    * 选项按钮动作。
    * @method
    */
-  options = () => {
-    this.boxyMenuJQ.hide();
-    const boxyOptionTabNum = 3; /* 这里输入你可供选择的个数 */
-    const boxyOptionTabName = ["功能", "关于", "感谢"]; //这里是菜单显示名字
-    /*
-      这里是切换到某菜单时显示的具体内容
-      可以在这里直接写html，也可以从外部引入新的
-     */
-    const boxyOptionFunction = ["", aboutPage, "<br/><p>Copyright 2023 Boxy.</p><p>Built by Blockly.</p>"];
-    const boxyOptionTab = document.createElement("div");
-    boxyOptionTab.setAttribute("class", "boxyOptionTab");
-    for (let OptionThing = 0; OptionThing < boxyOptionTabNum; OptionThing++) {
-      const OptionTab = document.createElement("button");
-      OptionTab.innerHTML = boxyOptionTabName[OptionThing] || OptionThing; //这里是菜单显示名字
-      OptionTab.setAttribute("class", "boxyTab" + (OptionThing ? "" : " active"));
-      OptionTab.setAttribute("id", "boxyTab" + OptionThing);
-      OptionTab.onclick = function () {
-        $(".OptionTabContent").attr("class", "OptionTabContent");
-        $(".boxyTab").attr("class", "boxyTab");
-        this.setAttribute("class", "boxyTab active");
-        $(`#boxyTabContent${this.getAttribute("id").slice(7)}`).attr("class", "OptionTabContent active");
-      };
-      boxyOptionTab.appendChild(OptionTab);
-    }
-    const boxyOptionContent = document.createElement("div");
-    boxyOptionContent.setAttribute("class", "boxyOptionContent");
-    for (let OptionThing = 0; OptionThing < boxyOptionTabNum; OptionThing++) {
-      const OptionTabContent = document.createElement("div");
-      OptionTabContent.innerHTML = boxyOptionFunction[OptionThing] || "";
-      OptionTabContent.setAttribute("class", "OptionTabContent" + (OptionThing ? "" : " active"));
-      OptionTabContent.setAttribute("id", "boxyTabContent" + OptionThing);
-      boxyOptionContent.appendChild(OptionTabContent);
-    }
-    const boxyOption = document.createElement("div");
-    boxyOption.appendChild(boxyOptionTab);
-    boxyOption.appendChild(boxyOptionContent);
-    swal({
-      title: "选项",
-      buttons: {
-        cancel: false,
-        confirm: false,
-      },
-      content: boxyOption,
-      closeOnClickOutside: true,
-    });
-  };
+  options = () => {};
 }
 
 let navigation = new BoxyNavigation();

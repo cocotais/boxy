@@ -72,12 +72,12 @@ div[data-title]::after {
   background-color: rgb(0 0 0 / 40%);
   content: attr(data-title);
   pointer-events: none;
-  animation: hide-it 0.1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: hide-it 0.1s cubic-bezier(0.4, 0.575, 0.565, 1) both;
 }
 
 div[data-title]:hover::after {
   font-weight: normal;
-  animation: scale-up-top 0.1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: scale-up-top 0.1s cubic-bezier(0.4, 0.575, 0.565, 1) both;
 }
 
 @keyframes hide-it {
