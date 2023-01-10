@@ -81,8 +81,11 @@ class BoxyZoomBox {
    */
   codespaceSwitch = () => {
     codespace.switch();
+    codespace.resize();
+    workspace.resize();
     this.resize();
   };
+
   /**
    * 缩小按钮。
    * @method

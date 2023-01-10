@@ -63,31 +63,18 @@ class BoxyCodespace {
     }
   };
 
-  /**
-   * 打开代码区
-   */
   open = () => {
     this.blocklyDiv.setAttribute("code", "");
     this.codespaceDiv.setAttribute("code", "");
     this.codespaceButton.style.color = "var(--boxy-color)";
-    workspace.resize();
-    this.resize();
   };
 
-  /**
-   * 关闭代码区
-   */
   close = () => {
     this.blocklyDiv.removeAttribute("code");
     this.codespaceDiv.removeAttribute("code");
     this.codespaceButton.style.color = "var(--zoombox-color)";
-    workspace.resize();
-    this.resize();
   };
 
-  /**
-   * 切换代码区收放
-   */
   switch = () => {
     if (this.blocklyDiv.getAttributeNames().indexOf("code") === -1) {
       this.open();
