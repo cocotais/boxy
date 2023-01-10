@@ -12,9 +12,12 @@ class BoxyCodespace {
    * @constructor
    */
   constructor() {
+    this.blocklyDiv = document.getElementById("blocklyDiv");
     this.workspaceDiv = document.getElementById("workspace");
     this.codespaceDiv = document.getElementById("codespace");
+    this.codespaceHeadDiv = document.getElementById("codespaceHead");
     this.codeDiv = document.getElementById("code");
+    this.codespaceButton = document.getElementById("switchCode");
   }
 
   /**
@@ -52,10 +55,35 @@ class BoxyCodespace {
   resize = () => {
     this.codespaceDiv.style.width = this.width() + "px";
     if (this.width() === window.innerWidth) {
-      const top = document.getElementById("navigation").offsetHeight;
-      this.codeDiv.style.marginTop = top - 20 + "px";
+      this.codespaceHeadDiv.style.display = "block";
+      this.codeDiv.style.marginTop = "0px";
     } else {
-      this.codeDiv.style.marginTop = "0";
+      this.codespaceHeadDiv.style.display = "none";
+      this.codeDiv.style.marginTop = "20px";
+    }
+  };
+
+  open = () => {
+    this.blocklyDiv.setAttribute("code", "");
+    this.codespaceDiv.setAttribute("code", "");
+    this.codespaceButton.style.color = "var(--boxy-color)";
+    workspace.resize();
+    this.resize();
+  };
+
+  close = () => {
+    this.blocklyDiv.removeAttribute("code");
+    this.codespaceDiv.removeAttribute("code");
+    this.codespaceButton.style.color = "var(--zoombox-color)";
+    workspace.resize();
+    this.resize();
+  };
+
+  switch = () => {
+    if (this.blocklyDiv.getAttributeNames().indexOf("code") === -1) {
+      this.open();
+    } else {
+      this.close();
     }
   };
 
