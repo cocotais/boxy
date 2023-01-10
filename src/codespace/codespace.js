@@ -63,18 +63,27 @@ class BoxyCodespace {
     }
   };
 
+  /**
+   * 打开代码区
+   */
   open = () => {
     this.blocklyDiv.setAttribute("code", "");
     this.codespaceDiv.setAttribute("code", "");
     this.codespaceButton.style.color = "var(--boxy-color)";
   };
 
+  /**
+   * 关闭代码区
+   */
   close = () => {
     this.blocklyDiv.removeAttribute("code");
     this.codespaceDiv.removeAttribute("code");
     this.codespaceButton.style.color = "var(--zoombox-color)";
   };
 
+  /**
+   * 代码区收放
+   */
   switch = () => {
     if (this.blocklyDiv.getAttributeNames().indexOf("code") === -1) {
       this.open();
