@@ -79,7 +79,6 @@ Boxy 是 Google Blockly 的一个应用实例，
 
 - **守候：自动检测文件更改，并重新编译。**
   如果你的开发工具可以建立本地服务，请使用此命令在开发中执行热重载。
-  此命令生成的内容在 http://localhost:8000/dist/index.html 中。
 
   ```
   npm run watch

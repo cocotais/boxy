@@ -63,6 +63,9 @@ class BoxyCodespace {
     }
   };
 
+  /**
+   * 打开代码区
+   */
   open = () => {
     this.blocklyDiv.setAttribute("code", "");
     this.codespaceDiv.setAttribute("code", "");
@@ -71,6 +74,9 @@ class BoxyCodespace {
     this.resize();
   };
 
+  /**
+   * 关闭代码区
+   */
   close = () => {
     this.blocklyDiv.removeAttribute("code");
     this.codespaceDiv.removeAttribute("code");
@@ -79,6 +85,9 @@ class BoxyCodespace {
     this.resize();
   };
 
+  /**
+   * 切换代码区收放
+   */
   switch = () => {
     if (this.blocklyDiv.getAttributeNames().indexOf("code") === -1) {
       this.open();
