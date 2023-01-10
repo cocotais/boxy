@@ -76,7 +76,6 @@ module.exports = {
           safari10: true,
         },
       }),
-      new MiniCssExtractPlugin({}),
     ],
   },
   output: {
