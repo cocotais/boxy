@@ -2,7 +2,7 @@ import { phpGenerator } from "blockly/php";
 
 phpGenerator["controls_forever"] = function (block) {
   const branch = phpGenerator.statementToCode(block, "DO");
-  return "for(;;) {\n" + branch + "}";
+  return "for(;;) {\n" + branch + "}\n";
 };
 
 phpGenerator["math_evenly_divisible"] = function (block) {

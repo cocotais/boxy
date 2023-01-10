@@ -2,7 +2,7 @@ import { javascriptGenerator } from "blockly/javascript";
 
 javascriptGenerator["controls_forever"] = function (block) {
   const branch = javascriptGenerator.statementToCode(block, "DO");
-  return "for(;;) {\n" + branch + "}";
+  return "for(;;) {\n" + branch + "}\n";
 };
 
 javascriptGenerator["math_evenly_divisible"] = function (block) {

@@ -1,7 +1,7 @@
 import { pythonGenerator } from "blockly/python";
 
 pythonGenerator["controls_forever"] = function (block) {
-  const branch = pythonGenerator.statementToCode(block, "DO") || "pass";
+  const branch = pythonGenerator.statementToCode(block, "DO") || "  pass\n";
   return "while True:\n" + branch;
 };
 

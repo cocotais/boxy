@@ -2,7 +2,7 @@ import { dartGenerator } from "blockly/dart";
 
 dartGenerator["controls_forever"] = function (block) {
   const branch = dartGenerator.statementToCode(block, "DO");
-  return "for(;;) {\n" + branch + "}";
+  return "for(;;) {\n" + branch + "}\n";
 };
 
 dartGenerator["math_evenly_divisible"] = function (block) {
