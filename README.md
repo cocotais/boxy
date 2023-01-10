@@ -27,10 +27,13 @@ Boxy 是 Google Blockly 的一个应用实例，
    Boxy 是纯客户端 Web 应用，
    仅使用 Node.js 进行自动化处理。
 
-2. **克隆仓库：将本仓库克隆到本地。**
+2. **克隆仓库：将本仓库克隆到本地。** Gitee 和 Github 克隆分别如下：
 
    ```
    git clone https://gitee.com/coco-central/boxy.git
+   ```
+
+   ```
    git clone https://github.com/coco-central/boxy.git
    ```
 
@@ -76,7 +79,7 @@ Boxy 是 Google Blockly 的一个应用实例，
 
 - **守候：自动检测文件更改，并重新编译。**
   如果你的开发工具可以建立本地服务，请使用此命令在开发中执行热重载。
-  此命令生成的内容在 `http://localhost:8000/dist/index.html` 中。
+  此命令生成的内容在 http://localhost:8000/dist/index.html 中。
 
   ```
   npm run watch
@@ -95,3 +98,23 @@ Boxy 是 Google Blockly 的一个应用实例，
   ```
   npm run lint
   ```
+
+#### 贡献
+
+想让 Boxy 变得更好吗？
+我们欢迎以拉取请求、错误报告、讨论等形式对 Blockly 做出贡献！
+
+#### 版本
+
+Boxy 即将发布稳定版本，将使用[语义化版本控制](https://semver.org/)。
+正式版本更新频率会极低，仅保留必要的 Bug 修改，以保证你稳定的后续开发。
+
+#### 许可证
+
+Boxy 采用 [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0.html) 开源协议。
+
+#### 致谢
+
+- [Google Blockly](https://github.com/google/blockly)
+- [Icon Park](https://iconpark.oceanengine.com/)
+- [Ant Design](https://ant.design/)
