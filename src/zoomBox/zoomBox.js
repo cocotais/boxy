@@ -18,13 +18,8 @@ class BoxyZoomBox {
    * @constructor
    */
   constructor() {
-    // 标签
-    this.blocklyDiv = document.getElementById("blocklyDiv");
-    this.codespaceDiv = document.getElementById("codespace");
     this.zoomBoxDiv = document.getElementById("zoomBox");
-    // 按钮
     this.blocklyZoomButtons = document.getElementsByClassName("blocklyZoom");
-    this.codespaceButton = document.getElementById("switchCode");
     this.resetButton = this.blocklyZoomButtons[2];
   }
 
@@ -85,20 +80,8 @@ class BoxyZoomBox {
    * @method
    */
   codespaceSwitch = () => {
-    if (this.blocklyDiv.getAttributeNames().indexOf("code") === -1) {
-      this.blocklyDiv.setAttribute("code", "");
-      this.codespaceDiv.setAttribute("code", "");
-      this.codespaceButton.style.color = "var(--boxy-color)";
-    } else {
-      this.blocklyDiv.removeAttribute("code");
-      this.codespaceDiv.removeAttribute("code");
-      this.codespaceButton.style.color = "var(--zoombox-color)";
-    }
-    workspace.resize();
-    codespace.resize();
-    this.resize();
+    codespace.switch();
   };
-
   /**
    * 缩小按钮。
    * @method
