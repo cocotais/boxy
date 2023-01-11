@@ -18,43 +18,24 @@ import "./blocks/patch";
 
 import theme from "./theme/theme";
 import trashcan from "./trashcan/trashcan";
+import observer from "./utils/observer";
 
 theme.switch("light");
 
-const toolboxFlyoutObserver = new window.MutationObserver(function (mutations) {
-  mutations.forEach(function (mutation) {
-    if (mutation.type === "attributes") {
-      let element = document.querySelector("#workspace > div > svg.blocklyFlyout");
-      if (element.style.display === "block") {
-        element.style.transform = "translate(60px,0px)";
-      } else {
-        element.style.transform = "translate(-260px,0px)";
-      }
-    }
-  });
+observer("#workspace > div > svg.blocklyFlyout", ["style"], function (element) {
+  if (element.style.display === "block") {
+    element.style.transform = "translate(60px,0px)";
+  } else {
+    element.style.transform = "translate(-260px,0px)";
+  }
 });
 
-toolboxFlyoutObserver.observe(document.querySelector("#workspace > div > svg.blocklyFlyout"), {
-  attributes: true,
-  attributeFilter: ["style"],
-});
-
-const trashcanObserver = new window.MutationObserver(function (mutations) {
-  mutations.forEach(function (mutation) {
-    if (mutation.type === "attributes") {
-      let element = document.querySelector("#workspace > div > div.blocklyToolboxDiv.blocklyNonSelectable");
-      if (element.classList.contains("blocklyToolboxDelete")) {
-        trashcan.coverOn();
-      } else {
-        trashcan.coverOff();
-      }
-    }
-  });
-});
-
-trashcanObserver.observe(document.querySelector("#workspace > div > div.blocklyToolboxDiv.blocklyNonSelectable"), {
-  attributes: true,
-  attributeFilter: ["class"],
+observer("#workspace > div > div.blocklyToolboxDiv.blocklyNonSelectable", ["class"], function (element) {
+  if (element.classList.contains("blocklyToolboxDelete")) {
+    trashcan.coverOn();
+  } else {
+    trashcan.coverOff();
+  }
 });
 
 if ("serviceWorker" in navigator) {
