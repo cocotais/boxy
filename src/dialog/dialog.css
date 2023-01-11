@@ -32,7 +32,9 @@
 }
 
 .pageHead {
-  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 21px;
 }
 
 .pageBody {
@@ -40,20 +42,26 @@
   overflow-y: scroll;
 }
 
+#window.full .pageBody {
+  height: 100%;
+}
+
 .pageTitle {
-  position: absolute;
-  left: 0;
-  display: inline-block;
-  padding: 12px 16px;
-  font-size: 20px;
+  font-size: 25px;
   text-align: left;
+  font-weight: bold;
   color: var(--dialog-title-color);
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .pageClose {
-  position: absolute;
-  right: 0;
-  display: inline-block;
-  padding: 12px 16px;
-  font-size: 20px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.pageBody {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 350px;
 }
