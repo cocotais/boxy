@@ -4,6 +4,7 @@ import $ from "jquery";
 
 import dialog from "../dialog/dialog";
 import newPage from "../navigation/pages/new.html";
+import opinionPage from "../navigation/pages/opinion.html";
 import workspace from "../workspace/workspace";
 
 class BoxyNavigation {
@@ -50,6 +51,11 @@ class BoxyNavigation {
    */
   new = () => {
     dialog.open(newPage);
+    this.boxyMenuJQ.hide();
+    window.blankProject = function () {
+      workspace.workspace.clear();
+      this.boxyMenuJQ.hide();
+    }
   };
 
   /**
@@ -116,7 +122,10 @@ class BoxyNavigation {
    * 选项按钮动作。
    * @method
    */
-  options = () => {};
+  options = () => {
+    dialog.open(opinionPage);
+    this.boxyMenuJQ.hide();
+  };
 }
 
 let navigation = new BoxyNavigation();

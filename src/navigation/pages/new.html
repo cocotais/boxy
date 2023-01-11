@@ -4,7 +4,7 @@
 </div>
 <div class="pageBody">
   <div id="boxyNew">
-    <a class="boxyNewItem">空白项目</a>
+    <a class="boxyNewItem" onclick="blankProject()">空白项目</a>
     <a class="boxyNewItem">空白项目</a>
     <a class="boxyNewItem">空白项目</a>
     <a class="boxyNewItem">空白项目</a>
@@ -15,3 +15,24 @@
     <a class="boxyNewItem">空白项目</a>
   </div>
 </div>
+<style>
+  .pageBody:has(#boxyNew) {
+    height: 350px;
+  }
+
+  .boxyNewItem {
+    display: list-item;
+    margin: 8px 0;
+    border-radius: 5px;
+    padding: 8px;
+    color: var(--dialog-boxy-color);
+    background-color: var(--dialog-boxy-background);
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: pointer;
+  }
+
+  .boxyNewItem:hover {
+    background-color: var(--dialog-boxy-background-hover);
+  }
+</style>
