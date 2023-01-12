@@ -34,12 +34,13 @@
 .pageHead {
   display: flex;
   justify-content: space-between;
-  padding: 20px 21px;
+  padding: 16px 20px;
 }
 
 .pageBody {
   overflow-x: hidden;
   overflow-y: scroll;
+  height: 350px;
 }
 
 #window.full .pageBody {
@@ -47,21 +48,14 @@
 }
 
 .pageTitle {
-  font-size: 25px;
-  text-align: left;
+  font-size: 20px;
   font-weight: bold;
+  text-align: left;
   color: var(--dialog-title-color);
   user-select: none;
-  -webkit-user-select: none;
 }
 
 .pageClose {
-  font-size: 25px;
+  font-size: 20px;
   cursor: pointer;
-}
-
-.pageBody {
-  overflow-x: hidden;
-  overflow-y: scroll;
-  height: 350px;
 }
