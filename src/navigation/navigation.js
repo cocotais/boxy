@@ -54,8 +54,8 @@ class BoxyNavigation {
     this.boxyMenuJQ.hide();
     window.blankProject = function () {
       workspace.workspace.clear();
-      dialog.close()
-    }
+      dialog.close();
+    };
   };
 
   /**
@@ -125,12 +125,12 @@ class BoxyNavigation {
   options = () => {
     dialog.open(opinionPage);
     this.boxyMenuJQ.hide();
-    $('.boxyTab').on('click', function () {
+    $(".boxyTab").on("click", function () {
       $(".OptionTabContent").attr("class", "OptionTabContent");
       $(".boxyTab").attr("class", "boxyTab");
       this.setAttribute("class", "boxyTab active");
       $(`#boxyTabContent${this.getAttribute("id").slice(7)}`).attr("class", "OptionTabContent active");
-    })
+    });
   };
 }
 

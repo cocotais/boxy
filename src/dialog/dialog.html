@@ -1,0 +1,84 @@
+<div class="pageHead">
+  <div class="pageTitle"></div>
+</div>
+<div class="pageBody">
+  <span class="customDialogText customDialogTexth1"></span>
+  <span class="customDialogText customDialogTexth2"></span>
+  <input class="customDialogInput" />
+  <div>
+    <button class="customDialogCancel">取消</button>
+    <button class="customDialogConfirm">确认</button>
+  </div>
+</div>
+<div style="width: 1px; height: 32px"></div>
+<style>
+  .pageBody:has(.customDialogText) {
+    height: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+  }
+  #window:has(.customDialogText) {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    top: unset;
+    left: unset;
+    transform: unset;
+    border-radius: 12px;
+  }
+  #overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .customDialogText {
+    color: rgba(0, 0, 0, 0.65);
+    font-weight: 600;
+    text-transform: none;
+    position: relative;
+    display: block;
+    padding: 0 0 26px;
+    font-size: 27px;
+    line-height: normal;
+    text-align: center;
+  }
+  .customDialogInput {
+    -webkit-appearance: none;
+    background-color: #fff;
+    border: none;
+    font-size: 14px;
+    display: block;
+    box-sizing: border-box;
+    width: 80%;
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    padding: 10px 13px;
+    border-radius: 2px;
+    transition: border-color 0.2s;
+    border-radius: 4px;
+    margin: 0 0 26px 0;
+  }
+  .customDialogConfirm,
+  .customDialogCancel {
+    background-color: var(--boxy-color);
+    color: #fff;
+    border: none;
+    box-shadow: none;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 10px 24px !important;
+    cursor: pointer;
+    margin: 0 20px;
+  }
+  .customDialogCancel {
+    color: #555;
+    background-color: #efefef;
+  }
+  .customDialogTexth2 {
+    font-size: 16px;
+    font-weight: 400;
+  }
+</style>
