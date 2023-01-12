@@ -8,7 +8,12 @@
     <div class="boxyTab" id="boxyTab2">关于</div>
     <div class="boxyTab" id="boxyTab3">感谢</div>
   </div>
-  <div class="OptionTabContent active" id="boxyTabContent1">暂无可用功能</div>
+  <div class="OptionTabContent active" id="boxyTabContent1">
+    <div id="theme">
+      <span>主题</span>
+      <iconpark-icon id="turnTheme" name="light"></iconpark-icon>
+    </div>
+  </div>
   <div class="OptionTabContent" id="boxyTabContent2">
     <img id="about-img" width="100" src="../../icon/logo/boxy.svg" style="margin: 30px 0" alt="boxy Logo" />
     <p>Boxy</p>
@@ -46,9 +51,24 @@
   .OptionTabContent {
     display: none;
     overflow: auto;
+    color: var(--dialog-color);
   }
 
   .OptionTabContent.active {
     display: block;
+  }
+
+  #theme {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
+    font-size: 24px;
+    user-select: none;
+  -webkit-user-select: none;
+  }
+
+  #turnTheme{
+    cursor: pointer;
   }
 </style>

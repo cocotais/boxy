@@ -54,9 +54,11 @@
   text-align: left;
   color: var(--dialog-title-color);
   user-select: none;
+  -webkit-user-select: none;
 }
 
 .pageClose {
   font-size: 20px;
   cursor: pointer;
+  color: var(--dialog-title-color);
 }

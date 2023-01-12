@@ -20,3 +20,6 @@ class Cookies {
     return undefined;
   };
 }
+
+let cookies = new Cookies();
+export default cookies;

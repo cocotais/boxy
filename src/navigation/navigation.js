@@ -6,6 +6,8 @@ import dialog from "../dialog/dialog";
 import newPage from "../navigation/pages/new.html";
 import opinionPage from "../navigation/pages/opinion.html";
 import workspace from "../workspace/workspace";
+import theme from "../theme/theme";
+import cookies from "../utils/cookies";
 
 class BoxyNavigation {
   /**
@@ -130,6 +132,30 @@ class BoxyNavigation {
       $(".boxyTab").attr("class", "boxyTab");
       this.setAttribute("class", "boxyTab active");
       $(`#boxyTabContent${this.getAttribute("id").slice(7)}`).attr("class", "OptionTabContent active");
+    });
+    document.querySelector("#turnTheme").setAttribute("name", cookies.get("theme")
+      ? cookies.get("theme")
+      : "auto")
+    $("#turnTheme").on("click", function () {
+      if (this.getAttribute("name") === "light") {
+        this.setAttribute("name", "dark")
+        theme.switch("dark")
+        cookies.set("theme", "dark")
+      }
+      else if (this.getAttribute("name") === "dark") {
+        this.setAttribute("name", "auto")
+        theme.switch(
+          window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light"
+        );
+        cookies.set("theme", "", 0)
+      }
+      else {
+        this.setAttribute("name", "light")
+        theme.switch("light")
+        cookies.set("theme", "light")
+      }
     });
   };
 }
