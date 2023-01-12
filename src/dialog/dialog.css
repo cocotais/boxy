@@ -54,7 +54,7 @@
   text-align: left;
   color: var(--dialog-title-color);
   user-select: none;
-  -webkit-user-select: none;
+  user-select: none;
 }
 
 .pageClose {
