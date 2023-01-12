@@ -3,9 +3,19 @@
   <iconpark-icon class="pageClose" name="close"></iconpark-icon>
 </div>
 <div class="pageBody">
-  <div id="boxyNew">
-    <a class="boxyNewItem">空白项目</a>
-    <a class="boxyNewItem">空白项目</a>
+  <div class="boxyOptionTab">
+    <div class="boxyTab active" id="boxyTab1">功能</div>
+    <div class="boxyTab" id="boxyTab2">关于</div>
+    <div class="boxyTab" id="boxyTab3">感谢</div>
+  </div>
+  <div class="OptionTabContent active" id="boxyTabContent1">暂无可用功能</div>
+  <div class="OptionTabContent" id="boxyTabContent2">
+    <img id="about-img" width="100" src="../../icon/logo/boxy.svg" style="margin: 30px 0" alt="boxy Logo" />
+    <p>Boxy</p>
+  </div>
+  <div class="OptionTabContent" id="boxyTabContent3">
+    <p>Copyright 2023 Boxy.</p>
+    <p>Built by Blockly.</p>
   </div>
 </div>
 <style>
@@ -23,6 +33,7 @@
     height: 40px;
     color: var(--dialog-color);
     background-color: var(--dialog-fill-background);
+    cursor: pointer;
   }
 
   .boxyTab::before {
@@ -55,8 +66,6 @@
   .OptionTabContent {
     display: none;
     overflow: auto;
-    height: 300px;
-    max-height: 500px;
   }
 
   .OptionTabContent.active {
