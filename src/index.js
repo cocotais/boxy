@@ -19,8 +19,22 @@ import "./blocks/patch";
 import theme from "./theme/theme";
 import trashcan from "./trashcan/trashcan";
 import observer from "./utils/observer";
+import cookies from "./utils/cookies";
 
-theme.switch("light");
+theme.switch(
+  cookies.get("theme")
+    ? cookies.get("theme")
+    : window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light"
+);
+
+const themeMedia = window.matchMedia("(prefers-color-scheme: light)");
+themeMedia.addListener((event) => {
+  if (!cookies.get("theme")) {
+    theme.switch(event.matches ? "light" : "dark");
+  }
+});
 
 observer("#workspace > div > svg.blocklyFlyout", ["style"], function (element) {
   if (element.style.display === "block") {
