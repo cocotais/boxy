@@ -12,15 +12,17 @@
     <button class="customDialogConfirm">确认</button>
   </div>
 </div>
-<div style="width: 1px; height: 16px"></div>
 <style>
   .pageBody:has(.customDialogText) {
     height: auto;
     display: inline-flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
     width: 100%;
+    margin: 26px 0;
+  }
+  .pageHead {
+    height: 0;
+    padding: 0;
   }
   #window:has(.customDialogText) {
     width: 100%;
@@ -42,25 +44,23 @@
     text-transform: none;
     position: relative;
     display: block;
-    padding: 0 0 26px;
+    padding: 0 0 26px 0;
     font-size: 27px;
     line-height: normal;
     text-align: center;
   }
   .customDialogInput {
+    width: 85%;
     -webkit-appearance: none;
     background-color: #fff;
-    border: none;
     font-size: 14px;
     display: block;
     box-sizing: border-box;
-    width: 80%;
     border: 1px solid rgba(0, 0, 0, 0.14);
     padding: 10px 13px;
-    border-radius: 2px;
     transition: border-color 0.2s;
     border-radius: 4px;
-    margin: 0 0 26px 0;
+    margin: 0 7.5% 26px;
   }
   .customDialogConfirm,
   .customDialogCancel {
@@ -82,5 +82,6 @@
   .customDialogTexth2 {
     font-size: 16px;
     font-weight: 400;
+    padding: 0 0 26px 0;
   }
 </style>

@@ -2,7 +2,7 @@ import Blockly from "blockly";
 import $ from "jquery";
 
 import platform from "../utils/platform";
-import myDialog from "./dialog.html";
+import myDialog from "./pages/dialog.html";
 
 class BoxyDialog {
   constructor() {
@@ -27,6 +27,7 @@ class BoxyDialog {
   };
 
   open = (content) => {
+    this.resize();
     this.window.innerHTML = content;
     $(this.overlay).fadeIn(100);
     this.pageHead = this.window.getElementsByClassName("pageHead")[0];
@@ -46,7 +47,7 @@ export default boxyDialog;
 /**
  * 对Blockly本身的弹窗函数进行适配。
  */
-var CustomDialog = {};
+let CustomDialog = {};
 
 /**
  * 重构 Blockly.dialog.setAlert() 函数
@@ -81,7 +82,7 @@ Blockly.dialog.setConfirm(function (message, callback) {
  * @override
  */
 Blockly.dialog.setPrompt(function (message, defaultValue, callback) {
-  CustomDialog.show(message, "", {
+  CustomDialog.show("", message, {
     showInput: true,
     showOkay: true,
     onOkay: function () {
