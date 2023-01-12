@@ -4,6 +4,7 @@ import { javascriptGenerator } from "blockly/javascript";
 import highlight from "highlight.js/lib/core";
 import javascript from "highlight.js/lib/languages/javascript";
 
+import platform from "../utils/platform";
 import workspace from "../workspace/workspace";
 
 class BoxyCodespace {
@@ -13,10 +14,11 @@ class BoxyCodespace {
    */
   constructor() {
     this.blocklyDiv = document.getElementById("blocklyDiv");
-    this.workspaceDiv = document.getElementById("workspace");
     this.codespaceDiv = document.getElementById("codespace");
     this.codespaceHeadDiv = document.getElementById("codespaceHead");
     this.codeDiv = document.getElementById("code");
+    this.workspaceDiv = document.getElementById("workspace");
+    this.navigationIcon = document.getElementById("navigation");
     this.codespaceButton = document.getElementById("switchCode");
   }
 
@@ -53,18 +55,21 @@ class BoxyCodespace {
    * @method
    */
   resize = () => {
-    this.codespaceDiv.style.width = this.width() + "px";
-    if (this.width() === window.innerWidth) {
+    this.codespaceDiv.style.width = this.currentWidth() + "px";
+    if (this.currentWidth() === window.innerWidth) {
       this.codespaceHeadDiv.style.display = "block";
       this.codeDiv.style.marginTop = "0px";
+      this.navigationIcon.style.zIndex = "11";
     } else {
       this.codespaceHeadDiv.style.display = "none";
       this.codeDiv.style.marginTop = "20px";
+      this.navigationIcon.style.zIndex = "4";
     }
   };
 
   /**
-   * 打开代码区
+   * 打开代码区。
+   * @method
    */
   open = () => {
     this.blocklyDiv.setAttribute("code", "");
@@ -73,7 +78,8 @@ class BoxyCodespace {
   };
 
   /**
-   * 关闭代码区
+   * 关闭代码区。
+   * @method
    */
   close = () => {
     this.blocklyDiv.removeAttribute("code");
@@ -82,7 +88,8 @@ class BoxyCodespace {
   };
 
   /**
-   * 代码区收放
+   * 代码区收放。
+   * @method
    */
   switch = () => {
     if (this.blocklyDiv.getAttributeNames().indexOf("code") === -1) {
@@ -93,25 +100,33 @@ class BoxyCodespace {
   };
 
   /**
+   * 代码区是否展开。
+   * @method
+   * @returns {boolean}
+   */
+  state = () => {
+    return this.codespaceDiv.getAttributeNames().indexOf("code") !== -1;
+  };
+
+  /**
    * 计算代码区应有宽度。
    * @method
    * @returns {number} 宽度(px)
    */
-  width = () => {
-    if (this.codespaceDiv.getAttributeNames().indexOf("code") === -1) {
-      return 0;
+  dueWidth = () => {
+    if (platform() === "PC") {
+      return 350 + Math.log(window.innerWidth);
     } else {
-      const toolboxDiv = document.getElementsByClassName("blocklyToolboxDiv")[0];
-      const toolboxWidth = toolboxDiv.getBoundingClientRect().width;
-      const flyoutDiv = document.querySelector("#workspace > div > svg.blocklyFlyout");
-      const flyoutWidth = flyoutDiv.getBoundingClientRect().width;
-      const codespaceWidth = 350 + Math.log(window.innerWidth);
-      if (window.innerWidth > toolboxWidth + flyoutWidth + codespaceWidth) {
-        return 350 + Math.log(window.innerWidth);
-      } else {
-        return window.innerWidth;
-      }
+      return window.innerWidth;
     }
+  };
+
+  /**
+   * 代码区实际宽度。
+   * @returns {number}
+   */
+  currentWidth = () => {
+    return this.state() ? this.dueWidth() : 0;
   };
 }
 

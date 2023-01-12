@@ -60,7 +60,7 @@ class BoxyZoomBox {
     const unit = 55 - 10 * sigmoid(0.005 * size.left - 2);
     this.zoomBoxDiv.style.width = 5.5 * unit + "px";
     this.zoomBoxDiv.style.height = unit + "px";
-    this.zoomBoxDiv.style.right = codespace.width() + 40 + "px";
+    this.zoomBoxDiv.style.right = codespace.currentWidth() + 40 + "px";
   };
 
   /**
