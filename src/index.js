@@ -18,8 +18,8 @@ import "./blocks/patch";
 
 import theme from "./theme/theme";
 import trashcan from "./trashcan/trashcan";
-import observer from "./utils/observer";
 import cookies from "./utils/cookies";
+import observer from "./utils/observer";
 
 theme.switch(
   cookies.get("theme")
