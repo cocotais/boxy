@@ -1,11 +1,11 @@
 import Blockly from "blockly";
 import $ from "jquery";
 
+import platform from "../utils/platform";
 import myDialog from "./dialog.html";
 
 class BoxyDialog {
   constructor() {
-    console.log("overlay");
     this.overlay = document.createElement("div");
     this.overlay.id = "overlay";
     this.window = document.createElement("div");
@@ -14,11 +14,10 @@ class BoxyDialog {
     document.body.appendChild(this.overlay);
     $(this.overlay).hide(0);
     window.addEventListener("resize", this.resize);
-    this.resize();
   }
 
   resize = () => {
-    if (window.innerWidth >= 750) {
+    if (platform() === "PC") {
       this.window.classList.remove("full");
       this.window.classList.add("center");
     } else {
@@ -59,6 +58,7 @@ Blockly.dialog.setAlert(function (message, callback) {
     onOkay: callback,
   });
 });
+
 /**
  * 重构 Blockly.dialog.setConfirm() 函数
  * @override
@@ -75,6 +75,7 @@ Blockly.dialog.setConfirm(function (message, callback) {
     },
   });
 });
+
 /**
  * 重构 Blockly.dialog.setPrompt() 函数
  * @override
@@ -93,6 +94,7 @@ Blockly.dialog.setPrompt(function (message, defaultValue, callback) {
   });
   CustomDialog.inputField.value = defaultValue;
 });
+
 /**
  * 显示对话框
  * @method

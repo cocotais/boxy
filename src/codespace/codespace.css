@@ -42,13 +42,6 @@ pre {
   height: 60px;
 }
 
-#codespaceIcon {
-  position: absolute;
-  padding: 15px;
-  width: 30px;
-  height: 30px;
-}
-
 #codespaceClose {
   position: absolute;
   right: 0;

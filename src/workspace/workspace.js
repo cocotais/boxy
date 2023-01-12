@@ -81,7 +81,7 @@ class BoxyWorkspace {
     this.workspaceDiv.style.left = x + "px";
     this.workspaceDiv.style.top = y + "px";
     this.workspaceDiv.style.height = this.blocklyArea.offsetHeight + "px";
-    this.workspaceDiv.style.width = this.blocklyArea.offsetWidth - codespace.width() + "px";
+    this.workspaceDiv.style.width = this.blocklyArea.offsetWidth - codespace.currentWidth() + "px";
     Blockly.svgResize(this.workspace);
   };
 }
