@@ -7,3 +7,5 @@ package-lock.json
 # editor
 /.vscode
 /.idea
+
+.DS_Store
