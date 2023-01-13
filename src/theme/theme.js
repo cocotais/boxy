@@ -17,8 +17,10 @@ class BoxyTheme {
     this.root.setAttribute("mode", mode);
     if (mode === "light") {
       import("highlight.js/styles/atom-one-light.css");
+      document.querySelector("meta[name='theme-color']").setAttribute("content", "#4062f6");
     } else if (mode === "dark") {
       import("highlight.js/styles/atom-one-dark.css");
+      document.querySelector("meta[name='theme-color']").setAttribute("content", "#6de3ff");
     }
   }
 }
