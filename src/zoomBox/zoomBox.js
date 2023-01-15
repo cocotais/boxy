@@ -68,7 +68,8 @@ class BoxyZoomBox {
    * @method
    */
   searchSwitch = () => {
-    if (workspace.workspaceSearch.htmlDiv_.style.display === "none") {
+    const workspaceSearchDiv = document.getElementsByClassName("blockly-ws-search")[0];
+    if (workspaceSearchDiv.style.display === "none") {
       workspace.workspaceSearch.open();
     } else {
       workspace.workspaceSearch.close();

@@ -13,7 +13,6 @@ class BoxyTheme {
    * @param {string} mode 主题名称
    */
   switch(mode) {
-    this.root.removeAttribute("mode");
     this.root.setAttribute("mode", mode);
     if (mode === "light") {
       import("highlight.js/styles/atom-one-light.css");

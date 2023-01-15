@@ -23,9 +23,9 @@
 
 #trashcan-lid {
   position: absolute;
-  left: 12.5px;
-  margin-top: -42.5px;
-  width: 35px;
+  left: 12px;
+  margin-top: -42px;
+  width: 36px;
   transition: transform 0.3s cubic-bezier(0.1, 1, 0.5, 1), opacity 0.3s cubic-bezier(0.1, 1, 0.5, 1);
 }
 
