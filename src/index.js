@@ -30,7 +30,7 @@ theme.switch(
 );
 
 const themeMedia = window.matchMedia("(prefers-color-scheme: light)");
-themeMedia.addListener((event) => {
+themeMedia.addEventListener("change", function (event) {
   if (!cookies.get("theme")) {
     theme.switch(event.matches ? "light" : "dark");
   }
