@@ -1,18 +1,18 @@
-import "./workspace/workspace.css";
+import "./workspace/workspace.less";
 import "./icon/category/category";
-import "./codespace/codespace.css";
-import "./toolbox/toolbox.css";
-import "./search/search.css";
+import "./codespace/codespace.less";
+import "./toolbox/toolbox.less";
+import "./search/search.less";
 import "./navigation/navigation";
-import "./navigation/navigation.css";
+import "./navigation/navigation.less";
 import "./zoomBox/zoomBox";
-import "./zoomBox/zoomBox.css";
+import "./zoomBox/zoomBox.less";
 import "./dialog/dialog";
-import "./dialog/dialog.css";
-import "./trashcan/trashcan.css";
+import "./dialog/dialog.less";
+import "./trashcan/trashcan.less";
 import "./toolbox/toolbox";
 import "./workspace/workspace";
-import "./theme/theme.css";
+import "./theme/theme.less";
 import "./blocks/boxy";
 import "./blocks/patch";
 
