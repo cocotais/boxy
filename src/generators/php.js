@@ -6,7 +6,7 @@ phpGenerator["controls_forever"] = function (block) {
 };
 
 phpGenerator["math_evenly_divisible"] = function (block) {
-  const argument1 = phpGenerator.valueToCode(block, "DIVIDEND", null) || "0";
-  const argument2 = phpGenerator.valueToCode(block, "DIVISOR", null) || "0";
-  return argument1 + " % " + argument2 + " == 0";
+  const argument1 = phpGenerator.valueToCode(block, "DIVIDEND", phpGenerator["ORDER_ATOMIC"]) || "0";
+  const argument2 = phpGenerator.valueToCode(block, "DIVISOR", phpGenerator["ORDER_ATOMIC"]) || "0";
+  return [argument1 + " % " + argument2 + " == 0", phpGenerator["ORDER_NONE"]];
 };

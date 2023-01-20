@@ -6,7 +6,7 @@ dartGenerator["controls_forever"] = function (block) {
 };
 
 dartGenerator["math_evenly_divisible"] = function (block) {
-  const argument1 = dartGenerator.valueToCode(block, "DIVIDEND", null) || "0";
-  const argument2 = dartGenerator.valueToCode(block, "DIVISOR", null) || "0";
-  return argument1 + " % " + argument2 + " == 0";
+  const argument1 = dartGenerator.valueToCode(block, "DIVIDEND", dartGenerator["ORDER_ATOMIC"]) || "0";
+  const argument2 = dartGenerator.valueToCode(block, "DIVISOR", dartGenerator["ORDER_ATOMIC"]) || "0";
+  return [argument1 + " % " + argument2 + " == 0", dartGenerator["ORDER_NONE"]];
 };
