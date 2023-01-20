@@ -6,7 +6,7 @@ pythonGenerator["controls_forever"] = function (block) {
 };
 
 pythonGenerator["math_evenly_divisible"] = function (block) {
-  const argument1 = pythonGenerator.valueToCode(block, "DIVIDEND", null) || "0";
-  const argument2 = pythonGenerator.valueToCode(block, "DIVISOR", null) || "0";
-  return argument1 + " % " + argument2 + " == 0";
+  const argument1 = pythonGenerator.valueToCode(block, "DIVIDEND", pythonGenerator["ORDER_ATOMIC"]) || "0";
+  const argument2 = pythonGenerator.valueToCode(block, "DIVISOR", pythonGenerator["ORDER_ATOMIC"]) || "0";
+  return [argument1 + " % " + argument2 + " == 0", pythonGenerator["ORDER_NONE"]];
 };
