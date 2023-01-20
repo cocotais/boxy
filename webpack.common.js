@@ -7,11 +7,25 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.js",
+  resolve: {
+    extensions: [".js", ".jsx"],
+  },
   module: {
     rules: [
       {
         test: /\.html$/,
         loader: "html-loader",
+      },
+      {
+        test: /\.jsx$/,
+        use: [
+          {
+            loader: "babel-loader",
+            options: {
+              presets: ["@babel/preset-react"],
+            },
+          },
+        ],
       },
       {
         test: /\.css$/,

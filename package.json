@@ -20,10 +20,17 @@
   "author": "CoCo Central",
   "license": "Apache-2.0",
   "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/preset-react": "^7.18.6",
+    "babel-loader": "^9.1.2",
     "clean-webpack-plugin": "^4.0.0",
     "compression-webpack-plugin": "^10.0.0",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
+    "eslint": "^8.27.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-simple-import-sort": "^9.0.0",
     "file-loader": "^6.2.0",
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.0",
@@ -47,16 +54,14 @@
     "workbox-webpack-plugin": "^6.5.4"
   },
   "dependencies": {
-    "@arco-design/web-react": "^2.44.0",
     "@blockly/block-plus-minus": "^4.0.2",
     "@blockly/field-colour-hsv-sliders": "^2.0.2",
     "@blockly/plugin-workspace-search": "^6.0.2",
+    "antd": "^5.1.6",
     "blockly": "^9.2.0",
-    "eslint": "^8.27.0",
-    "eslint-config-prettier": "^8.6.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-simple-import-sort": "^9.0.0",
     "highlight.js": "^11.7.0",
-    "jquery": "^3.6.3"
+    "jquery": "^3.6.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }
