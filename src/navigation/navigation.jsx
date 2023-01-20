@@ -1,12 +1,10 @@
 import Blockly from "blockly";
 import { javascriptGenerator } from "blockly/javascript";
 import $ from "jquery";
+import React from "react";
+import { createRoot } from "react-dom/client";
 
 import dialog from "../dialog/dialog";
-import newPage from "../navigation/pages/new.html";
-import opinionPage from "../navigation/pages/opinion.html";
-import theme from "../theme/theme";
-import cookies from "../utils/cookies";
 import workspace from "../workspace/workspace";
 
 class BoxyNavigation {
@@ -51,14 +49,7 @@ class BoxyNavigation {
    * 新建按钮动作。
    * @method
    */
-  new = () => {
-    dialog.open(newPage);
-    this.boxyMenuJQ.hide();
-    window.blankProject = function () {
-      workspace.workspace.clear();
-      dialog.close();
-    };
-  };
+  new = () => {};
 
   /**
    * 打开按钮动作。
@@ -124,32 +115,7 @@ class BoxyNavigation {
    * 选项按钮动作。
    * @method
    */
-  options = () => {
-    dialog.open(opinionPage);
-    this.boxyMenuJQ.hide();
-    $(".boxyTab").on("click", function () {
-      $(".OptionTabContent").attr("class", "OptionTabContent");
-      $(".boxyTab").attr("class", "boxyTab");
-      this.setAttribute("class", "boxyTab active");
-      $(`#boxyTabContent${this.getAttribute("id").slice(7)}`).attr("class", "OptionTabContent active");
-    });
-    document.querySelector("#turnTheme").setAttribute("name", cookies.get("theme") ? cookies.get("theme") : "auto");
-    $("#turnTheme").on("click", function () {
-      if (this.getAttribute("name") === "light") {
-        this.setAttribute("name", "dark");
-        theme.switch("dark");
-        cookies.set("theme", "dark");
-      } else if (this.getAttribute("name") === "dark") {
-        this.setAttribute("name", "auto");
-        theme.switch(window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-        cookies.set("theme", "", 0);
-      } else {
-        this.setAttribute("name", "light");
-        theme.switch("light");
-        cookies.set("theme", "light");
-      }
-    });
-  };
+  options = () => {};
 }
 
 let navigation = new BoxyNavigation();
