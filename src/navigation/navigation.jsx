@@ -1,7 +1,6 @@
 import Blockly from "blockly";
 import { javascriptGenerator } from "blockly/javascript";
 import $ from "jquery";
-import React from "react";
 import { createRoot } from "react-dom/client";
 
 import dialog from "../dialog/dialog";
@@ -16,6 +15,12 @@ class BoxyNavigation {
     this.navigationDiv = document.getElementById("navigation");
     this.boxyMenuJQ = $(".boxyMenu");
     this.extendedName = ".boxy";
+
+    const root = document.createElement("div");
+    const Dialog = dialog;
+    document.querySelector("body > div.boxyMenuPosition > div > div:nth-child(1) > div").appendChild(root);
+    console.log(root);
+    createRoot(root).render(<Dialog></Dialog>);
   }
 
   /**
@@ -49,7 +54,9 @@ class BoxyNavigation {
    * 新建按钮动作。
    * @method
    */
-  new = () => {};
+  new = () => {
+    console.log("new");
+  };
 
   /**
    * 打开按钮动作。
@@ -115,7 +122,9 @@ class BoxyNavigation {
    * 选项按钮动作。
    * @method
    */
-  options = () => {};
+  options = () => {
+    console.log("options");
+  };
 }
 
 let navigation = new BoxyNavigation();

@@ -3,9 +3,17 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ["plugin:prettier/recommended"],
+  parser: "@typescript-eslint/parser",
+  extends: ["plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
   overrides: [],
-  parserOptions: { parser: "@babel/eslint-parser", ecmaVersion: "latest", sourceType: "module" },
-  plugins: ["simple-import-sort"],
-  rules: { "simple-import-sort/imports": "error", "simple-import-sort/exports": "error" },
+  parserOptions: {
+    ecmaVersion: "latest",
+    sourceType: "module",
+  },
+  plugins: ["@typescript-eslint", "simple-import-sort", "react"],
+  rules: {
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "@typescript-eslint/no-var-requires": "off",
+  },
 };
