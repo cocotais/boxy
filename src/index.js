@@ -7,8 +7,6 @@ import "./navigation/navigation";
 import "./navigation/navigation.less";
 import "./zoomBox/zoomBox";
 import "./zoomBox/zoomBox.less";
-import "./dialog/dialog";
-import "./dialog/dialog.less";
 import "./trashcan/trashcan.less";
 import "./toolbox/toolbox";
 import "./workspace/workspace";
@@ -18,23 +16,9 @@ import "./blocks/patch";
 
 import theme from "./theme/theme";
 import trashcan from "./trashcan/trashcan";
-import cookies from "./utils/cookies";
 import observer from "./utils/observer";
 
-theme.switch(
-  cookies.get("theme")
-    ? cookies.get("theme")
-    : window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light"
-);
-
-const themeMedia = window.matchMedia("(prefers-color-scheme: light)");
-themeMedia.addEventListener("change", function (event) {
-  if (!cookies.get("theme")) {
-    theme.switch(event.matches ? "light" : "dark");
-  }
-});
+theme.switch("light");
 
 observer("#workspace > div > svg.blocklyFlyout", ["style"], function (element) {
   if (element.style.display === "block") {

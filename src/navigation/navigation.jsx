@@ -1,10 +1,42 @@
+import { Modal } from "antd";
 import Blockly from "blockly";
 import { javascriptGenerator } from "blockly/javascript";
 import $ from "jquery";
+import { useState } from "react";
 import { createRoot } from "react-dom/client";
 
-import dialog from "../dialog/dialog";
 import workspace from "../workspace/workspace";
+
+const Dialog = (props) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+  return (
+    <>
+      <div className="boxyMenuItem" onClick={showModal}>
+        <div className="boxyMenuItemContent">{props.name}</div>
+      </div>
+      <Modal title={props.name} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        {props.contentHTML}
+      </Modal>
+    </>
+  );
+};
+
+const Function = (props) => {
+  return (
+    <div className="boxyMenuItem" onClick={props.onclick}>
+      <div className="boxyMenuItemContent">{props.name}</div>
+    </div>
+  );
+};
 
 class BoxyNavigation {
   /**
@@ -15,12 +47,29 @@ class BoxyNavigation {
     this.navigationDiv = document.getElementById("navigation");
     this.boxyMenuJQ = $(".boxyMenu");
     this.extendedName = ".boxy";
+    this.root = document.querySelector("body > div.boxyMenuPosition > div");
 
-    const root = document.createElement("div");
-    const Dialog = dialog;
-    document.querySelector("body > div.boxyMenuPosition > div > div:nth-child(1) > div").appendChild(root);
-    console.log(root);
-    createRoot(root).render(<Dialog></Dialog>);
+    this.register("新建", "dialog");
+    this.register("打开", "function", this.open);
+    this.register("保存到本地", "function", this.save);
+    this.register("导出为目标文件", "function", this.export);
+    this.register("选项", "dialog");
+  }
+
+  /**
+   * 注册导航栏菜单。
+   * @param name 菜单项名称。
+   * @param mode 菜单引导模式 dialog/function。
+   * @param args 如果是 dialog 给予内部HTML，如果是 function 给予要执行的函数。
+   */
+  register(name, mode, ...args) {
+    let item = document.createElement("div");
+    if (mode === "dialog") {
+      createRoot(item).render(<Dialog name={name} contentHTML={args[0]} />);
+    } else if (mode === "function") {
+      createRoot(item).render(<Function name={name} onclick={args[0]} />);
+    }
+    this.root.appendChild(item);
   }
 
   /**
@@ -130,14 +179,3 @@ class BoxyNavigation {
 let navigation = new BoxyNavigation();
 navigation.load();
 export default navigation;
-
-// 新建
-window.navigationNew = navigation.new;
-// 打开
-window.navigationOpen = navigation.open;
-// 保存
-window.navigationSave = navigation.save;
-// 导出
-window.navigationExport = navigation.export;
-// 选项
-window.navigationOptions = navigation.options;

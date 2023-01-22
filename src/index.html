@@ -7,38 +7,22 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="application-name" content="Boxy" />
     <meta name="apple-mobile-web-app-title" content="Boxy" />
-    <meta name="theme-color" content="#4062f6" />
-    <meta name="msapplication-navbutton-color" content="#4062f6" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="msapplication-navbutton-color" content="#4062f6" />
     <meta name="msapplication-starturl" content="/" />
+    <meta name="theme-color" content="#4062f6" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link rel="icon" type="image/svg" href="./icon/logo/boxy.svg" />
-    <link rel="apple-touch-icon" type="image/svg" href="./icon/logo/boxy.svg" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="Basic available instance built on Google Blockly." />
+    <link rel="icon" type="image/svg" href="./icon/logo/boxy.svg" />
+    <link rel="apple-touch-icon" type="image/svg" href="./icon/logo/boxy.svg" />
     <title>Boxy</title>
   </head>
   <body>
     <!--  导航栏-->
     <img id="navigation" draggable="false" src="icon/logo/boxy.svg" alt="logo" width="0" height="0" />
     <div class="boxyMenuPosition">
-      <div class="boxyMenu" style="visibility: hidden">
-        <div class="boxyMenuItem" onclick="navigationNew()">
-          <div class="boxyMenuItemContent">新建</div>
-        </div>
-        <div class="boxyMenuItem" onclick="navigationOpen()">
-          <div class="boxyMenuItemContent">打开</div>
-        </div>
-        <div class="boxyMenuItem" onclick="navigationSave()">
-          <div class="boxyMenuItemContent">保存到本地</div>
-        </div>
-        <div class="boxyMenuItem" onclick="navigationExport()">
-          <div class="boxyMenuItemContent">导出为目标文件</div>
-        </div>
-        <div class="boxyMenuItem" onclick="navigationOptions()">
-          <div class="boxyMenuItemContent">选项</div>
-        </div>
-      </div>
+      <div class="boxyMenu" style="visibility: hidden"></div>
     </div>
     <!--工作区-->
     <div id="blocklyDiv"></div>
