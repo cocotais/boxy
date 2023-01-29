@@ -1,63 +1,11 @@
 #navigation {
   position: absolute;
-  z-index: 4;
   padding: 15px;
   width: 30px;
   height: 30px;
   background: var(--toolbox-background);
 }
 
-.boxyMenuPosition {
-  position: absolute;
-  top: 10px;
-  left: 70px;
-  z-index: 100;
-  display: block;
-}
-
-.boxyMenu {
-  position: relative !important;
-  z-index: 100;
-  display: none;
-  overflow-x: hidden;
-  overflow-y: auto;
-  margin: 0;
-  border: 0;
-  border-radius: 8px;
-  padding: 0;
-  max-height: 100%;
-  background: var(--blockly-dropdown-background);
-  outline: none;
-  visibility: visible !important;
-  box-shadow: 0 0 3px 1px var(--blockly-shadow);
-  user-select: none;
-}
-
-.boxyMenu:hover {
-  box-shadow: 0 0 6px 1px var(--blockly-shadow);
-}
-
-.boxyMenuItem {
-  margin: 0;
-  border: none;
-  padding: 6px 15px;
-  min-width: 7em;
-  white-space: nowrap;
-  list-style: none;
-  transition: background 0.2s;
-  cursor: pointer;
-  user-select: none;
-}
-
-.boxyMenuItem:hover {
-  background: var(--blockly-shadow);
-}
-
-.boxyMenuItemContent {
-  font: normal 13px Arial, sans-serif;
-  white-space: nowrap;
-  color: var(--blockly-dropdown-color);
-  list-style: none;
-  cursor: pointer;
-  user-select: none;
+#navigationContainer > img {
+  z-index: 4;
 }
