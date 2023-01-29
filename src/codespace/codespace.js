@@ -18,7 +18,7 @@ class BoxyCodespace {
     this.codespaceHeadDiv = document.getElementById("codespaceHead");
     this.codeDiv = document.getElementById("code");
     this.workspaceDiv = document.getElementById("workspace");
-    this.navigationIcon = document.getElementById("navigation");
+    this.navigationDiv = document.getElementById("navigationContainer");
     this.codespaceButton = document.getElementById("switchCode");
   }
 
@@ -59,11 +59,11 @@ class BoxyCodespace {
     if (this.currentWidth() === window.innerWidth) {
       this.codespaceHeadDiv.style.display = "block";
       this.codeDiv.style.marginTop = "0px";
-      this.navigationIcon.style.zIndex = "11";
+      this.navigationDiv.style.zIndex = "11";
     } else {
       this.codespaceHeadDiv.style.display = "none";
       this.codeDiv.style.marginTop = "20px";
-      this.navigationIcon.style.zIndex = "4";
+      this.navigationDiv.style.zIndex = "4";
     }
   };
 

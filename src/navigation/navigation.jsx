@@ -1,16 +1,17 @@
-import { Modal } from "antd";
+import { Button, Modal, Popover } from "antd";
 import Blockly from "blockly";
 import { javascriptGenerator } from "blockly/javascript";
-import $ from "jquery";
 import { useState } from "react";
 import { createRoot } from "react-dom/client";
 
+import icon from "../icon/logo/boxy.svg";
 import workspace from "../workspace/workspace";
 
 const Dialog = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
-    setIsModalOpen(true);
+    props.hide();
+    setTimeout(setIsModalOpen, 100, true);
   };
   const handleOk = () => {
     setIsModalOpen(false);
@@ -20,21 +21,27 @@ const Dialog = (props) => {
   };
   return (
     <>
-      <div className="boxyMenuItem" onClick={showModal}>
-        <div className="boxyMenuItemContent">{props.name}</div>
-      </div>
+      <Button type="text" style={{ width: 128, textAlign: "left" }} onClick={showModal}>
+        {props.name}
+      </Button>
       <Modal title={props.name} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-        {props.contentHTML}
+        {props.content}
       </Modal>
     </>
   );
 };
 
 const Function = (props) => {
+  const onTrigger = () => {
+    props.hide();
+    setTimeout(props.onClick, 100);
+  };
   return (
-    <div className="boxyMenuItem" onClick={props.onclick}>
-      <div className="boxyMenuItemContent">{props.name}</div>
-    </div>
+    <>
+      <Button type="text" style={{ width: 128, textAlign: "left" }} onClick={onTrigger}>
+        {props.name}
+      </Button>
+    </>
   );
 };
 
@@ -44,60 +51,47 @@ class BoxyNavigation {
    * @constructor
    */
   constructor() {
-    this.navigationDiv = document.getElementById("navigation");
-    this.boxyMenuJQ = $(".boxyMenu");
+    this.navigationDiv = document.getElementById("navigationContainer");
     this.extendedName = ".boxy";
-    this.root = document.querySelector("body > div.boxyMenuPosition > div");
 
-    this.register("新建", "dialog");
-    this.register("打开", "function", this.open);
-    this.register("保存到本地", "function", this.save);
-    this.register("导出为目标文件", "function", this.export);
-    this.register("选项", "dialog");
+    const NavigationMenu = () => {
+      const [open, setOpen] = useState(false);
+      const hide = () => {
+        setOpen(false);
+      };
+      const handleOpenChange = (newOpen) => {
+        setOpen(newOpen);
+      };
+      const content = (
+        <>
+          <Dialog name="新建" hide={hide} content={null}></Dialog>
+          <br />
+          <Function name="打开" hide={hide} onClick={this.open}></Function>
+          <br />
+          <Function name="保存到本地" hide={hide} onClick={this.save}></Function>
+          <br />
+          <Function name="导出为目标文件" hide={hide} onClick={this.export}></Function>
+          <br />
+          <Dialog name="选项" hide={hide} content={null}></Dialog>
+        </>
+      );
+      return (
+        <>
+          <Popover
+            arrowPointAtCenter
+            placement="rightTop"
+            content={content}
+            trigger="hover"
+            open={open}
+            onOpenChange={handleOpenChange}
+          >
+            <img id="navigation" src={icon} alt="Logo" />
+          </Popover>
+        </>
+      );
+    };
+    createRoot(this.navigationDiv).render(<NavigationMenu />);
   }
-
-  /**
-   * 注册导航栏菜单。
-   * @param name 菜单项名称。
-   * @param mode 菜单引导模式 dialog/function。
-   * @param args 如果是 dialog 给予内部HTML，如果是 function 给予要执行的函数。
-   */
-  register(name, mode, ...args) {
-    let item = document.createElement("div");
-    if (mode === "dialog") {
-      createRoot(item).render(<Dialog name={name} contentHTML={args[0]} />);
-    } else if (mode === "function") {
-      createRoot(item).render(<Function name={name} onclick={args[0]} />);
-    }
-    this.root.appendChild(item);
-  }
-
-  /**
-   * 加载导航栏点击动作，禁用右键菜单。
-   * @method
-   */
-  load = () => {
-    let boxyMenu = $(".boxyMenu");
-    $(document).ready(function () {
-      $("#navigation").on("click", function (event) {
-        event.stopPropagation();
-        boxyMenu.toggle(100);
-        if (boxyMenu.is(":visible")) {
-          $(document).on("click", function () {
-            boxyMenu.hide(100);
-          });
-        }
-      });
-      boxyMenu.on("click", function (e) {
-        e.stopPropagation();
-      });
-    });
-    boxyMenu.hide();
-
-    this.navigationDiv.addEventListener("contextmenu", function (event) {
-      event.preventDefault();
-    });
-  };
 
   /**
    * 新建按钮动作。
@@ -112,7 +106,6 @@ class BoxyNavigation {
    * @method
    */
   open = () => {
-    this.boxyMenuJQ.hide();
     const input = document.createElement("input");
     input.setAttribute("type", "file");
     input.setAttribute("name", "file");
@@ -136,7 +129,6 @@ class BoxyNavigation {
    * @method
    */
   save = () => {
-    this.boxyMenuJQ.hide();
     const json = Blockly.serialization.workspaces.save(workspace.workspace);
     const data = { name: "Boxy Project Demo", editorVersion: 1, content: json };
     const text = JSON.stringify(data, null, "  ");
@@ -155,7 +147,6 @@ class BoxyNavigation {
    * @method
    */
   export = () => {
-    this.boxyMenuJQ.hide();
     const jsCode = javascriptGenerator.workspaceToCode(workspace.workspace);
     const blob = new Blob([jsCode], { type: "text/plain;charset=utf-8" });
     const url = URL.createObjectURL(blob);
@@ -177,5 +168,4 @@ class BoxyNavigation {
 }
 
 let navigation = new BoxyNavigation();
-navigation.load();
 export default navigation;
