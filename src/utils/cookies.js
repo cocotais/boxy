@@ -1,6 +1,4 @@
 class Cookies {
-  constructor() {}
-
   set = (key, value, time = 31536000) => {
     let date = new Date();
     date.setTime(date.getTime() + time);
