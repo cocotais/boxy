@@ -1,7 +1,15 @@
 import Blockly from "blockly";
 
 import toolboxConfig from "../toolbox/toolbox.json";
-import block_style from "../utils/block_style";
+
+function block_style(name, style) {
+  // https://groups.google.com/g/blockly/c/byDoKnftEcc/m/qbaF9M8vBAAJ
+  const savedIfInit = Blockly.Blocks[name].init;
+  Blockly.Blocks[name].init = function () {
+    savedIfInit.bind(this)();
+    this.setStyle(style);
+  };
+}
 
 // 摘取积木栏配置信息，自动生成补丁
 toolboxConfig["contents"].forEach(function (category) {

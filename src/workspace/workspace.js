@@ -72,11 +72,11 @@ class BoxyWorkspace {
     let x = 0;
     let y = 0;
     let element = this.blocklyArea;
-    do {
+    while (element) {
       x += element.offsetLeft;
       y += element.offsetTop;
       element = element.offsetParent;
-    } while (element);
+    }
     // 位置、尺寸设置
     this.workspaceDiv.style.left = x + "px";
     this.workspaceDiv.style.top = y + "px";

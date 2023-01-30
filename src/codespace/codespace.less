@@ -1,19 +1,23 @@
 @font-face {
-  font-family: "JetBrainsMono";
+  font-family: JetBrainsMono;
   src: url("JetBrainsMono.ttf");
 }
 
 #codespace {
+  user-select: none;
+
   position: absolute;
+  z-index: 10;
   top: 0;
   right: 0;
-  z-index: 10;
-  display: block;
+
   overflow: scroll;
+  display: block;
+
   width: 0;
   height: 100%;
+
   background: var(--codespace-background);
-  user-select: none;
 }
 
 pre {
@@ -23,12 +27,15 @@ pre {
 }
 
 #code {
-  padding: 1em !important;
-  font-size: 14px;
-  font-family: JetBrainsMono, sans-serif;
-  background: transparent;
-  line-height: 1.414;
   user-select: text;
+
+  padding: 1em !important;
+
+  font-family: JetBrainsMono, sans-serif;
+  font-size: 14px;
+  line-height: 1.414;
+
+  background: transparent;
 }
 
 #code::selection {
@@ -48,11 +55,14 @@ pre {
 }
 
 #codespaceClose {
+  cursor: pointer;
+
   position: absolute;
   right: 0;
+
   width: 60px;
   height: 60px;
+
   font-size: 20px;
-  cursor: pointer;
   color: var(--dialog-title-color);
 }
