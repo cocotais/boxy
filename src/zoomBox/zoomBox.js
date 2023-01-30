@@ -70,9 +70,9 @@ class BoxyZoomBox {
   searchSwitch = () => {
     const workspaceSearchDiv = document.getElementsByClassName("blockly-ws-search")[0];
     if (workspaceSearchDiv.style.display === "none") {
-      workspace.workspaceSearch.open();
+      workspace.workspaceSearch.workspaceSearch.open();
     } else {
-      workspace.workspaceSearch.close();
+      workspace.workspaceSearch.workspaceSearch.close();
     }
   };
 
