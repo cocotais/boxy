@@ -1,49 +1,9 @@
-import { Button, Modal, Popover } from "antd";
 import Blockly from "blockly";
 import { javascriptGenerator } from "blockly/javascript";
-import { useState } from "react";
 import { createRoot } from "react-dom/client";
 
-import icon from "../icon/logo/boxy.svg";
 import workspace from "../workspace/workspace";
-
-const Dialog = (props) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const showModal = () => {
-    props.hide();
-    setTimeout(setIsModalOpen, 100, true);
-  };
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-  return (
-    <>
-      <Button type="text" style={{ width: 128, textAlign: "left" }} onClick={showModal}>
-        {props.name}
-      </Button>
-      <Modal title={props.name} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-        {props.content}
-      </Modal>
-    </>
-  );
-};
-
-const Function = (props) => {
-  const onTrigger = () => {
-    props.hide();
-    setTimeout(props.onClick, 100);
-  };
-  return (
-    <>
-      <Button type="text" style={{ width: 128, textAlign: "left" }} onClick={onTrigger}>
-        {props.name}
-      </Button>
-    </>
-  );
-};
+import { NavigationMenu } from "./component";
 
 class BoxyNavigation {
   /**
@@ -53,44 +13,17 @@ class BoxyNavigation {
   constructor() {
     this.navigationDiv = document.getElementById("navigationContainer");
     this.extendedName = ".boxy";
-
-    const NavigationMenu = () => {
-      const [open, setOpen] = useState(false);
-      const hide = () => {
-        setOpen(false);
-      };
-      const handleOpenChange = (newOpen) => {
-        setOpen(newOpen);
-      };
-      const content = (
-        <>
-          <Dialog name="新建" hide={hide} content={null}></Dialog>
-          <br />
-          <Function name="打开" hide={hide} onClick={this.open}></Function>
-          <br />
-          <Function name="保存到本地" hide={hide} onClick={this.save}></Function>
-          <br />
-          <Function name="导出为目标文件" hide={hide} onClick={this.export}></Function>
-          <br />
-          <Dialog name="选项" hide={hide} content={null}></Dialog>
-        </>
-      );
-      return (
-        <>
-          <Popover
-            arrowPointAtCenter
-            placement="rightTop"
-            content={content}
-            trigger="hover"
-            open={open}
-            onOpenChange={handleOpenChange}
-          >
-            <img id="navigation" src={icon} alt="Logo" />
-          </Popover>
-        </>
-      );
-    };
-    createRoot(this.navigationDiv).render(<NavigationMenu />);
+    createRoot(this.navigationDiv).render(
+      <NavigationMenu
+        content={[
+          { name: "新建", mode: "dialog", content: null },
+          { name: "打开", mode: "function", onClick: this.open },
+          { name: "保存到本地", mode: "function", onClick: this.save },
+          { name: "导出为目标文件", mode: "function", onClick: this.export },
+          { name: "选项", mode: "dialog", content: null },
+        ]}
+      />
+    );
   }
 
   /**

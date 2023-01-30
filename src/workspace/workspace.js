@@ -2,11 +2,11 @@ import "@blockly/block-plus-minus";
 import "../theme/codemao.theme";
 import "../theme/codemao.renderer";
 
-import { WorkspaceSearch } from "@blockly/plugin-workspace-search";
 import Blockly from "blockly";
 import * as zh from "blockly/msg/zh-hans";
 
 import codespace from "../codespace/codespace";
+import workspaceSearch from "../search/search";
 import toolbox from "../toolbox/toolbox";
 import toolboxConfig from "../toolbox/toolbox.json";
 import trashcan from "../trashcan/trashcan";
@@ -50,8 +50,8 @@ class BoxyWorkspace {
 
     toolbox.ariaFix();
 
-    this.workspaceSearch = new WorkspaceSearch(this.workspace);
-    this.workspaceSearch.init();
+    this.workspaceSearch = new workspaceSearch(this.workspace);
+    this.workspaceSearch.load();
 
     this.blocklyArea.addEventListener("resize", this.resize);
     window.addEventListener("resize", this.resize);
