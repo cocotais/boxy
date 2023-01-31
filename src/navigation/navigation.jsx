@@ -1,9 +1,13 @@
+import { ConfigProvider } from "antd";
 import Blockly from "blockly";
 import { javascriptGenerator } from "blockly/javascript";
 import { createRoot } from "react-dom/client";
 
+import { defaultData, ThemeConfig } from "../theme/theme";
 import workspace from "../workspace/workspace";
 import { NavigationMenu } from "./component";
+import OptionPage from "./pages/option";
+import { useState } from "react";
 
 class BoxyNavigation {
   /**
@@ -13,16 +17,19 @@ class BoxyNavigation {
   constructor() {
     this.navigationDiv = document.getElementById("navigationContainer");
     this.extendedName = ".boxy";
+
     createRoot(this.navigationDiv).render(
-      <NavigationMenu
-        content={[
-          { name: "新建", mode: "dialog", content: null },
-          { name: "打开", mode: "function", onClick: this.open },
-          { name: "保存到本地", mode: "function", onClick: this.save },
-          { name: "导出为目标文件", mode: "function", onClick: this.export },
-          { name: "选项", mode: "dialog", content: null },
-        ]}
-      />
+      <ThemeConfig>
+        <NavigationMenu
+          content={[
+            { name: "新建", mode: "dialog", content: null },
+            { name: "打开", mode: "function", onClick: this.open },
+            { name: "保存到本地", mode: "function", onClick: this.save },
+            { name: "导出为目标文件", mode: "function", onClick: this.export },
+            { name: "选项", mode: "dialog", content: OptionPage() },
+          ]}
+        />
+      </ThemeConfig>
     );
   }
 
