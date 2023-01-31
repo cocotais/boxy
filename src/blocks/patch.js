@@ -2,6 +2,11 @@ import Blockly from "blockly";
 
 import toolboxConfig from "../toolbox/toolbox.json";
 
+/**
+ * 给积木重写默认样式。
+ * @param name 积木名称
+ * @param style 想要改成的样式
+ */
 function block_style(name, style) {
   // https://groups.google.com/g/blockly/c/byDoKnftEcc/m/qbaF9M8vBAAJ
   const savedIfInit = Blockly.Blocks[name].init;
