@@ -1,6 +1,3 @@
-import codespace from "../codespace/codespace";
-import workspace from "../workspace/workspace";
-
 /**
  * sigmoid函数
  * @function
@@ -17,17 +14,22 @@ class BoxyZoomBox {
    * 缩放栏
    * @constructor
    */
-  constructor() {
+  constructor(workspace, codespace, workspaceSearch) {
+    this.workspace = workspace;
+    this.codespace = codespace;
+    this.workspaceSearch = workspaceSearch;
     this.zoomBoxDiv = document.getElementById("zoomBox");
     this.blocklyZoomButtons = document.getElementsByClassName("blocklyZoom");
     this.resetButton = this.blocklyZoomButtons[2];
   }
-
   /**
    * 加载缩放栏图标，禁用右键，监听窗口尺寸变化。
    * @method
    */
   load = () => {
+    this.zoomBoxDiv = document.getElementById("zoomBox");
+    this.blocklyZoomButtons = document.getElementsByClassName("blocklyZoom");
+    this.resetButton = this.blocklyZoomButtons[2];
     // 加载缩放栏图标
     let zoomFunctions = document.getElementsByClassName("zoomFunctions");
     Array.prototype.forEach.call(zoomFunctions, function (zoomFunction) {
@@ -45,10 +47,11 @@ class BoxyZoomBox {
     // 为重置按钮赋基础值
     this.reset();
     // 添加缩放大小监听事件
-    workspace.workspace.addChangeListener(function () {
-      document.getElementById("zoomBoxReset").innerHTML =
-        Math.floor((workspace.workspace.getScale() * (5 / 3) - 1 / 3) * 100) + "%";
-    });
+    this.workspace.addChangeListener(
+      () =>
+        (document.getElementById("zoomBoxReset").innerHTML =
+          Math.floor((this.workspace.scale * (5 / 3) - 1 / 3) * 100) + "%")
+    );
   };
 
   /**
@@ -56,11 +59,12 @@ class BoxyZoomBox {
    * @method
    */
   resize = () => {
+    this.zoomBoxDiv = document.getElementById("zoomBox");
     const size = this.zoomBoxDiv.getBoundingClientRect();
     const unit = 55 - 10 * sigmoid(0.005 * size.left - 2);
     this.zoomBoxDiv.style.width = 5.5 * unit + "px";
     this.zoomBoxDiv.style.height = unit + "px";
-    this.zoomBoxDiv.style.right = codespace.currentWidth() + 40 + "px";
+    this.zoomBoxDiv.style.right = this.codespace.currentWidth() + 40 + "px";
   };
 
   /**
@@ -68,11 +72,12 @@ class BoxyZoomBox {
    * @method
    */
   searchSwitch = () => {
-    const workspaceSearchDiv = document.getElementsByClassName("blockly-ws-search")[0];
+    const workspaceSearchDiv =
+      document.getElementsByClassName("blockly-ws-search")[0];
     if (workspaceSearchDiv.style.display === "none") {
-      workspace.workspaceSearch.workspaceSearch.open();
+      this.workspaceSearch.workspaceSearch.open();
     } else {
-      workspace.workspaceSearch.workspaceSearch.close();
+      this.workspaceSearch.workspaceSearch.close();
     }
   };
 
@@ -81,9 +86,9 @@ class BoxyZoomBox {
    * @method
    */
   codespaceSwitch = () => {
-    codespace.switch();
-    codespace.resize();
-    workspace.resize();
+    this.codespace.switch();
+    this.codespace.resize();
+    this.workspace.resize();
     this.resize();
   };
 
@@ -92,9 +97,13 @@ class BoxyZoomBox {
    * @method
    */
   smaller = () => {
-    let speed = workspace.workspace.options.zoomOptions.scaleSpeed;
-    let scale = workspace.workspace.getScale();
-    workspace.workspace.zoom(0, 0, Math.log((scale - 0.15) / scale) / Math.log(speed));
+    let speed = this.workspace.options.zoomOptions.scaleSpeed;
+    let scale = this.workspace.scale;
+    this.workspace.zoom(
+      0,
+      0,
+      Math.log((scale - 0.15) / scale) / Math.log(speed)
+    );
   };
 
   /**
@@ -102,6 +111,7 @@ class BoxyZoomBox {
    * @method
    */
   reset = () => {
+    this.resetButton = this.blocklyZoomButtons[2];
     this.resetButton.dispatchEvent(new PointerEvent("pointerdown"));
   };
 
@@ -110,18 +120,14 @@ class BoxyZoomBox {
    * @method
    */
   bigger = () => {
-    let speed = workspace.workspace.options.zoomOptions.scaleSpeed;
-    let scale = workspace.workspace.getScale();
-    workspace.workspace.zoom(0, 0, Math.log((scale + 0.15) / scale) / Math.log(speed));
+    let speed = this.workspace.options.zoomOptions.scaleSpeed;
+    let scale = this.workspace.scale;
+    this.workspace.zoom(
+      0,
+      0,
+      Math.log((scale + 0.15) / scale) / Math.log(speed)
+    );
   };
 }
 
-let zoomBox = new BoxyZoomBox();
-zoomBox.load();
-export default zoomBox;
-
-window.searchSwitch = zoomBox.searchSwitch;
-window.codespaceSwitch = zoomBox.codespaceSwitch;
-window.zoomBoxSmaller = zoomBox.smaller;
-window.zoomBoxReset = zoomBox.reset;
-window.zoomBoxBigger = zoomBox.bigger;
+export default BoxyZoomBox;
