@@ -47,7 +47,7 @@ Boxy 是 Google Blockly 的一个应用实例，
    npm install
    ```
 
-4. **开发服务：启动 WebPack DevServer 本地开发服务。**
+4. **开发服务：启动 Vite 本地开发服务。**
    构建采用开发模式，支持热重载。
 
    ```
@@ -56,12 +56,12 @@ Boxy 是 Google Blockly 的一个应用实例，
 
 #### 开发
 
-- **构建：基于 WebPack 构建。**
+- **构建：基于 Vite 构建。**
 
   - 开发模式：源映射及 DevServer 支持。
 
     ```
-    npm run dev
+    npm start
     ```
 
   - 生产模式：文件压缩及 PWA 生成。
@@ -74,22 +74,9 @@ Boxy 是 Google Blockly 的一个应用实例，
   使用
 
   ```
-  npm run server
+  npm run preview
   ```
 
-- **守候：自动检测文件更改，并重新编译。**
-  如果你的开发工具可以建立本地服务，请使用此命令在开发中执行热重载。
-
-  ```
-  npm run watch
-  ```
-
-- **清理：清除软件包和构建，并重置缓存。**
-  清除 `/dist/` 和 `/node_modules/` 下的内容，重置 npm 的缓存。
-
-  ```
-  npm run clean
-  ```
 
 - **格式化：标准化项目文件。**
   请在 `commit` 前运行以保证符合代码规范。

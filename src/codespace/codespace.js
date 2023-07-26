@@ -5,20 +5,19 @@ import highlight from "highlight.js/lib/core";
 import javascript from "highlight.js/lib/languages/javascript";
 
 import platform from "../utils/platform";
-import workspace from "../workspace/workspace";
 
 class BoxyCodespace {
   /**
    * 代码区
    * @constructor
    */
-  constructor() {
-    this.blocklyDiv = document.getElementById("blocklyDiv");
+  constructor(workspace) {
+    this.workspace = workspace;
+    this.blocklyDiv = document.getElementsByClassName("blocklyDiv")[0];
     this.codespaceDiv = document.getElementById("codespace");
     this.codespaceHeadDiv = document.getElementById("codespaceHead");
     this.codeDiv = document.getElementById("code");
     this.workspaceDiv = document.getElementById("workspace");
-    this.navigationDiv = document.getElementById("navigationContainer");
     this.codespaceButton = document.getElementById("switchCode");
   }
 
@@ -31,7 +30,8 @@ class BoxyCodespace {
     highlight.registerLanguage("javascript", javascript);
     highlight.highlightAll();
     // 代码区尺寸变化监听器
-    this.workspaceDiv.addEventListener("resize", this.resize);
+
+    window.addEventListener("resize", this.resize);
     window.addEventListener("resize", this.resize);
     this.resize();
   };
@@ -41,7 +41,7 @@ class BoxyCodespace {
    * @method
    */
   updateCode = () => {
-    let code = javascriptGenerator.workspaceToCode(workspace.workspace);
+    let code = javascriptGenerator.workspaceToCode(this.workspace);
     if (code === "") {
       this.codeDiv.innerHTML = "未检测到积木块";
     } else {
@@ -59,11 +59,9 @@ class BoxyCodespace {
     if (this.currentWidth() === window.innerWidth) {
       this.codespaceHeadDiv.style.display = "block";
       this.codeDiv.style.marginTop = "0px";
-      this.navigationDiv.style.zIndex = "11";
     } else {
       this.codespaceHeadDiv.style.display = "none";
       this.codeDiv.style.marginTop = "20px";
-      this.navigationDiv.style.zIndex = "4";
     }
   };
 
@@ -97,6 +95,8 @@ class BoxyCodespace {
     } else {
       this.close();
     }
+    this.resize()
+    this.workspace.resize()
   };
 
   /**
@@ -130,6 +130,4 @@ class BoxyCodespace {
   };
 }
 
-let codespace = new BoxyCodespace();
-codespace.load();
-export default codespace;
+export default BoxyCodespace;

@@ -9,7 +9,8 @@ class BoxySearch {
     this.workspaceSearch = new WorkspaceSearch(this.workspace);
     this.workspaceSearch.setSearchPlaceholder("搜索作品中的积木");
     this.workspaceSearch.init();
-    this.workspaceSearchDiv = document.getElementsByClassName("blockly-ws-search")[0];
+    this.workspaceSearchDiv =
+      document.getElementsByClassName("blockly-ws-search")[0];
     this.zoomBoxDiv = document.getElementById("zoomBox");
     window.addEventListener("resize", this.resize);
   };
