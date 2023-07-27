@@ -32,7 +32,6 @@ class BoxyCodespace {
     // 代码区尺寸变化监听器
 
     window.addEventListener("resize", this.resize);
-    window.addEventListener("resize", this.resize);
     this.resize();
   };
 
@@ -72,6 +71,7 @@ class BoxyCodespace {
   open = () => {
     this.blocklyDiv.setAttribute("code", "");
     this.codespaceDiv.setAttribute("code", "");
+    this.codespaceButton = document.getElementById("switchCode");
     this.codespaceButton.style.color = "var(--boxy-color)";
   };
 
@@ -82,6 +82,7 @@ class BoxyCodespace {
   close = () => {
     this.blocklyDiv.removeAttribute("code");
     this.codespaceDiv.removeAttribute("code");
+    this.codespaceButton = document.getElementById("switchCode");
     this.codespaceButton.style.color = "var(--zoombox-color)";
   };
 
