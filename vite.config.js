@@ -4,11 +4,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { fileURLToPath, URL } from "url";
-
-import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-
+import { fileURLToPath, URL } from "url";
+import { defineConfig } from "vite";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 
 // https://vitejs.dev/config/
@@ -18,26 +16,14 @@ export default defineConfig({
       template: {
         compilerOptions: {
           isCustomElement: (tag) =>
-            [
-              "field",
-              "block",
-              "category",
-              "xml",
-              "mutation",
-              "value",
-              "sep",
-              "shadow",
-              "iconpark-icon",
-            ].includes(tag),
+            ["field", "block", "category", "xml", "mutation", "value", "sep", "shadow", "iconpark-icon"].includes(tag),
         },
       },
     }),
     viteStaticCopy({
       targets: [
         {
-          src: fileURLToPath(
-            new URL("./node_modules/blockly/media/*", import.meta.url)
-          ),
+          src: fileURLToPath(new URL("./node_modules/blockly/media/*", import.meta.url)),
           dest: "media",
         },
       ],

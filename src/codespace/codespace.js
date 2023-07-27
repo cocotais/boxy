@@ -95,8 +95,8 @@ class BoxyCodespace {
     } else {
       this.close();
     }
-    this.resize()
-    this.workspace.resize()
+    this.resize();
+    this.workspace.resize();
   };
 
   /**

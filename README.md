@@ -77,7 +77,6 @@ Boxy 是 Google Blockly 的一个应用实例，
   npm run preview
   ```
 
-
 - **格式化：标准化项目文件。**
   请在 `commit` 前运行以保证符合代码规范。
 
