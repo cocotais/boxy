@@ -1,9 +1,10 @@
 <script setup>
 import { ref } from "vue";
 
+import ZoomBox from "@/zoomBox/zoomBox.vue";
+
 import toolboxConfig from "./toolbox/toolbox.json";
 import BoxyWorkSpace from "./workspace/workspace.vue";
-import ZoomBox from "@/zoomBox/zoomBox.vue";
 
 const foo = ref();
 const options = {
