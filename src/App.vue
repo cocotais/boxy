@@ -1,9 +1,9 @@
 <script setup>
 import { ref } from "vue";
 
-import BoxyWorkSpace from "./workspace/workspace.vue";
-
 import toolboxConfig from "./toolbox/toolbox.json";
+import BoxyWorkSpace from "./workspace/workspace.vue";
+import ZoomBox from "@/zoomBox/zoomBox.vue";
 
 const foo = ref();
 const options = {
@@ -29,6 +29,8 @@ const options = {
 
 <template>
   <BoxyWorkSpace id="boxy" :options="options" ref="foo"></BoxyWorkSpace>
+  <!--缩放栏-->
+  <ZoomBox id="zoomBox"></ZoomBox>
 </template>
 
 <style>

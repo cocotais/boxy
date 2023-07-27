@@ -11,8 +11,10 @@ import "./icon/category/category";
 import "./toolbox/toolbox";
 import "./blocks/boxy";
 import "./blocks/patch";
+import "@arco-design/web-vue/dist/arco.css";
 import "@blockly/block-plus-minus";
 
+import ArcoVue from "@arco-design/web-vue";
 import { createApp } from "vue";
 
 import App from "./App.vue";
@@ -20,7 +22,7 @@ import trashcan from "./trashcan/trashcan";
 import observer from "./utils/observer";
 
 const app = createApp(App);
-
+app.use(ArcoVue);
 app.mount("#app");
 
 observer("#boxy > .blocklyDiv > div > svg.blocklyFlyout", ["style"], function (element) {
