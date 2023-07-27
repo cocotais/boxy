@@ -13,6 +13,7 @@ import "./blocks/boxy";
 import "./blocks/patch";
 import "@arco-design/web-vue/dist/arco.css";
 import "@blockly/block-plus-minus";
+import "./dialog/dialog.vue";
 
 import ArcoVue from "@arco-design/web-vue";
 import { createApp } from "vue";
