@@ -72,8 +72,7 @@ class BoxyZoomBox {
    * @method
    */
   searchSwitch = () => {
-    const workspaceSearchDiv =
-      document.getElementsByClassName("blockly-ws-search")[0];
+    const workspaceSearchDiv = document.getElementsByClassName("blockly-ws-search")[0];
     if (workspaceSearchDiv.style.display === "none") {
       this.workspaceSearch.workspaceSearch.open();
     } else {
@@ -99,11 +98,7 @@ class BoxyZoomBox {
   smaller = () => {
     let speed = this.workspace.options.zoomOptions.scaleSpeed;
     let scale = this.workspace.scale;
-    this.workspace.zoom(
-      0,
-      0,
-      Math.log((scale - 0.15) / scale) / Math.log(speed)
-    );
+    this.workspace.zoom(0, 0, Math.log((scale - 0.15) / scale) / Math.log(speed));
   };
 
   /**
@@ -122,11 +117,7 @@ class BoxyZoomBox {
   bigger = () => {
     let speed = this.workspace.options.zoomOptions.scaleSpeed;
     let scale = this.workspace.scale;
-    this.workspace.zoom(
-      0,
-      0,
-      Math.log((scale + 0.15) / scale) / Math.log(speed)
-    );
+    this.workspace.zoom(0, 0, Math.log((scale + 0.15) / scale) / Math.log(speed));
   };
 }
 
