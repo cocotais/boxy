@@ -1,4 +1,3 @@
-import "@blockly/block-plus-minus";
 import "./codespace/codespace.less";
 import "./toolbox/toolbox.less";
 import "./workspace/workspace.less";
@@ -12,8 +11,9 @@ import "./icon/category/category";
 import "./toolbox/toolbox";
 import "./blocks/boxy";
 import "./blocks/patch";
+import "@blockly/block-plus-minus";
 
-import { createApp } from "vue";
+import {createApp} from "vue";
 
 import App from "./App.vue";
 import trashcan from "./trashcan/trashcan";
