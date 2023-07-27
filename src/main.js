@@ -13,7 +13,7 @@ import "./blocks/boxy";
 import "./blocks/patch";
 import "@blockly/block-plus-minus";
 
-import {createApp} from "vue";
+import { createApp } from "vue";
 
 import App from "./App.vue";
 import trashcan from "./trashcan/trashcan";
