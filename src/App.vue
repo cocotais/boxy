@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 
+import Screenshot from "@/screenshot/screenshot.vue";
 import ZoomBox from "@/zoomBox/zoomBox.vue";
 
 import toolboxConfig from "./toolbox/toolbox.json";
@@ -32,6 +33,8 @@ const options = {
   <BoxyWorkSpace id="boxy" :options="options" ref="foo"></BoxyWorkSpace>
   <!--缩放栏-->
   <ZoomBox id="zoomBox"></ZoomBox>
+  <!--全局预览图片显示-->
+  <Screenshot></Screenshot>
 </template>
 
 <style>
