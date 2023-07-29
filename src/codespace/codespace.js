@@ -54,7 +54,7 @@ class BoxyCodespace {
    * @method
    */
   resize = () => {
-    this.codespaceDiv.style.width = this.currentWidth() + "px";
+    window.changeSize(this.currentWidth());
     if (this.currentWidth() === window.innerWidth) {
       this.codespaceHeadDiv.style.display = "block";
       this.codeDiv.style.marginTop = "0px";
@@ -73,6 +73,8 @@ class BoxyCodespace {
     this.codespaceDiv.setAttribute("code", "");
     this.codespaceButton = document.getElementById("switchCode");
     this.codespaceButton.style.color = "var(--boxy-color)";
+    this.codespaceDiv.style.display = "";
+    window.changeDirection(["left"]);
   };
 
   /**
@@ -84,6 +86,8 @@ class BoxyCodespace {
     this.codespaceDiv.removeAttribute("code");
     this.codespaceButton = document.getElementById("switchCode");
     this.codespaceButton.style.color = "var(--zoombox-color)";
+    this.codespaceDiv.style.display = "none";
+    window.changeDirection([]);
   };
 
   /**
@@ -92,12 +96,12 @@ class BoxyCodespace {
    */
   switch = () => {
     if (this.blocklyDiv.getAttributeNames().indexOf("code") === -1) {
+      this.codespaceDiv.style.width = 350 + "px";
       this.open();
     } else {
       this.close();
     }
     this.resize();
-    this.workspace.resize();
   };
 
   /**
@@ -116,7 +120,7 @@ class BoxyCodespace {
    */
   dueWidth = () => {
     if (platform() === "PC") {
-      return 350 + Math.log(window.innerWidth);
+      return parseInt(this.codespaceDiv.style.width);
     } else {
       return window.innerWidth;
     }
