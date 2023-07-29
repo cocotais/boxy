@@ -14,8 +14,11 @@ import "./blocks/patch";
 import "@arco-design/web-vue/dist/arco.css";
 import "@blockly/block-plus-minus";
 import "./dialog/dialog.vue";
+import "highlight.js/styles/atom-one-dark.css";
+import "highlight.js/lib/common";
 
 import ArcoVue from "@arco-design/web-vue";
+import hljsVuePlugin from "@highlightjs/vue-plugin";
 import { createApp } from "vue";
 
 import App from "./App.vue";
@@ -24,6 +27,7 @@ import observer from "./utils/observer";
 
 const app = createApp(App);
 app.use(ArcoVue);
+app.use(hljsVuePlugin);
 app.mount("#app");
 
 observer("#boxy > .blocklyDiv > div > svg.blocklyFlyout", ["style"], function (element) {

@@ -1,3 +1,5 @@
+import Blockly from "blockly";
+
 /**
  * sigmoid函数
  * @function
@@ -65,6 +67,8 @@ class BoxyZoomBox {
     this.zoomBoxDiv.style.width = 5.5 * unit + "px";
     this.zoomBoxDiv.style.height = unit + "px";
     this.zoomBoxDiv.style.right = this.codespace.currentWidth() + 40 + "px";
+    document.querySelector(".blocklyDiv").style.width = window.innerWidth - this.codespace.currentWidth() + "px";
+    Blockly.svgResize(this.workspace);
   };
 
   /**
@@ -87,7 +91,6 @@ class BoxyZoomBox {
   codespaceSwitch = () => {
     this.codespace.switch();
     this.codespace.resize();
-    this.workspace.resize();
     this.resize();
   };
 
