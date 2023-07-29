@@ -1,15 +1,4 @@
 <script setup>
-/**
- * @license
- * Copyright 2022 Google LLC
- * SPDX-License-Identifier: Apache-2.0
- */
-
-/**
- * @fileoverview Blockly Vue Component.
- * @author dcoodien@gmail.com (Dylan Coodien)
- */
-
 import Blockly from "blockly";
 import * as zh from "blockly/msg/zh-hans";
 import { onMounted, ref, shallowRef } from "vue";
@@ -58,6 +47,32 @@ onMounted(() => {
     trashcan.switch(event);
   });
 });
+
+let directions = ref([]);
+let width = ref(0);
+
+window.changeDirection = (value) => {
+  directions.value = value;
+};
+
+window.changeSize = (value) => {
+  if (value <= 768) {
+    width.value = value;
+  }
+};
+
+let move = (size) => {
+  if (size.width <= 768) {
+    width.value = size.width;
+  } else {
+    width.value = 768;
+  }
+  window.zoomBoxResize();
+};
+
+let moveEnd = () => {
+  window.zoomBoxResize();
+};
 </script>
 
 <template>
@@ -67,12 +82,20 @@ onMounted(() => {
       <slot></slot>
     </xml>
     <!--代码区-->
-    <div id="codespace">
+    <a-resize-box
+      id="codespace"
+      v-model:width="width"
+      :directions="directions"
+      @moving="move"
+      @moving-end="moveEnd"
+      :style="{ width: '0px' }"
+    >
       <div id="codespaceHead">
         <iconpark-icon id="codespaceClose" name="close" onclick="codespaceSwitch();zoomBoxResize()"></iconpark-icon>
       </div>
       <pre><code id="code" class="language-javascript"></code></pre>
-    </div>
+    </a-resize-box>
+
     <!--垃圾桶-->
     <div id="trashcan" class="blocklyToolboxDelete" style="cursor: grabbing">
       <img src="../icon/trashcan/lid.svg" id="trashcan-lid" class="trashcan" alt="垃圾桶盖" />
