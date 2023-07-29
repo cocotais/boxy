@@ -2,6 +2,7 @@
 import { ref } from "vue";
 
 import Screenshot from "@/screenshot/screenshot.vue";
+import Theme from "@/theme/theme";
 import ZoomBox from "@/zoomBox/zoomBox.vue";
 
 import toolboxConfig from "./toolbox/toolbox.json";
@@ -27,6 +28,16 @@ const options = {
   theme: "codemao",
   renderer: "codemao",
 };
+
+Theme.switch(window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (event) => {
+  if (event.matches) {
+    Theme.switch("dark");
+  } else {
+    Theme.switch("light");
+  }
+});
 </script>
 
 <template>
@@ -43,6 +54,7 @@ const options = {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  background: var(--workspace-background);
 }
 
 html,
@@ -56,5 +68,6 @@ body {
   top: 0;
   width: 100%;
   height: 100%;
+  background: var(--workspace-background);
 }
 </style>
