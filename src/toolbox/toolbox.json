@@ -227,6 +227,10 @@
         },
         {
           "kind": "block",
+          "type": "math_change"
+        },
+        {
+          "kind": "block",
           "type": "variables_get"
         }
       ]
