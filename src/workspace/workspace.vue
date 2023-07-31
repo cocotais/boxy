@@ -3,6 +3,8 @@ import Blockly from "blockly";
 import * as zh from "blockly/msg/zh-hans";
 import { onMounted, ref, shallowRef } from "vue";
 
+import Dropdown from "@/dropdown/dropdown.vue";
+
 import BoxyCodespace from "../codespace/codespace";
 import BoxySearch from "../search/search";
 import trashcan from "../trashcan/trashcan";
@@ -77,6 +79,8 @@ let moveEnd = () => {
 
 <template>
   <div>
+    <!--下拉框-->
+    <Dropdown :workspace="workspace"></Dropdown>
     <div class="blocklyDiv" ref="blocklyDiv"></div>
     <xml ref="blocklyToolbox" style="display: none">
       <slot></slot>
@@ -104,7 +108,6 @@ let moveEnd = () => {
   </div>
 </template>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .blocklyDiv {
   height: 100%;

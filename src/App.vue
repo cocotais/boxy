@@ -2,7 +2,6 @@
 import { ref } from "vue";
 
 import Screenshot from "@/screenshot/screenshot.vue";
-import Theme from "@/theme/theme";
 import ZoomBox from "@/zoomBox/zoomBox.vue";
 
 import toolboxConfig from "./toolbox/toolbox.json";
@@ -28,16 +27,6 @@ const options = {
   theme: "codemao",
   renderer: "codemao",
 };
-
-Theme.switch(window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-
-window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (event) => {
-  if (event.matches) {
-    Theme.switch("dark");
-  } else {
-    Theme.switch("light");
-  }
-});
 </script>
 
 <template>
