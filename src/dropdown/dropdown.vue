@@ -1,17 +1,19 @@
 <template>
-  <a-popover position="rt" trigger="click">
+  <a-trigger trigger="click" position="rt">
     <div id="brand">
       <img src="../icon/logo/boxy.svg" alt="" />
     </div>
     <template #content>
-      <a-doption>新建</a-doption>
-      <a-doption @click="save_to_pc">保存到电脑</a-doption>
-      <a-doption @click="open_file">打开本地文件</a-doption>
-      <a-divider margin="1px" />
-      <a-doption @click="open_doc">文档</a-doption>
-      <a-doption @click="more_opinion">更多选项</a-doption>
+      <div class="dropdown-select">
+        <a-doption>新建</a-doption>
+        <a-doption @click="save_to_pc">保存到电脑</a-doption>
+        <a-doption @click="open_file">打开本地文件</a-doption>
+        <a-divider margin="1px" />
+        <a-doption @click="open_doc">文档</a-doption>
+        <a-doption @click="more_opinion">更多选项</a-doption>
+      </div>
     </template>
-  </a-popover>
+  </a-trigger>
   <a-drawer :width="340" :visible="visible" @cancel="handleCancel" unmountOnClose :footer="false">
     <template #title> 更多 </template>
     <div>
@@ -146,5 +148,30 @@ const open_doc = () => {
   width: 36px;
   height: 36px;
   padding: 12px;
+}
+
+.dropdown-select {
+  box-sizing: border-box;
+  padding: 12px 16px;
+  color: var(--color-text-2);
+  font-size: 14px;
+  line-height: 1.5715;
+  background-color: var(--color-bg-popup);
+  border: 1px solid var(--color-neutral-3);
+  border-radius: var(--border-radius-medium);
+  box-shadow: 0 4px 10px #0000001a;
+  animation: show_dropdown 0.5s forwards !important;
+  animation-timing-function: cubic-bezier(0, 1.14, 0, 1.04) !important;
+}
+
+@keyframes show_dropdown {
+  0% {
+    width: 0;
+    height: 0;
+  }
+  100% {
+    width: 150px;
+    height: 210px;
+  }
 }
 </style>
