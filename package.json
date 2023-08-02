@@ -15,7 +15,7 @@
   "author": "CoCo Central",
   "license": "Apache-2.0",
   "dependencies": {
-    "@arco-iconbox/vue-boxy": "^0.0.1",
+    "@arco-iconbox/vue-boxy": "^0.0.4",
     "@blockly/block-plus-minus": "^5.0.1",
     "@blockly/plugin-workspace-search": "^7.0.1",
     "@highlightjs/vue-plugin": "^2.1.0",
