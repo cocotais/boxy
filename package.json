@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Basic available instance built on Google Blockly.",
   "scripts": {
-    "start": "vite",
+    "start": "vite --host",
     "build": "vite build",
     "preview": "vite preview --port 4173",
     "lint": "prettier --write . & eslint --fix --ext .js src & stylelint src/**/*.less --fix --custom-syntax postcss-less"
