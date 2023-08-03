@@ -34,6 +34,8 @@ toolboxConfig["contents"].forEach(function (category) {
   }
 });
 
-Blockly.Msg["CONTROLS_REPEAT_INPUT_DO"] = "";
-Blockly.Msg["CONTROLS_IF_MSG_THEN"] = "";
-Blockly.Msg["CONTROLS_IF_MSG_ELSE"] = "";
+Blockly.FlyoutButton.BORDER_RADIUS = 4;
+Blockly.FlyoutButton.TEXT_MARGIN_X = 25;
+Blockly.FlyoutButton.TEXT_MARGIN_Y = 15;
+
+Blockly.Scrollbar.scrollbarThickness = 10;

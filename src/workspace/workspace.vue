@@ -11,7 +11,13 @@ import trashcan from "../trashcan/trashcan";
 import BoxyZoomBox from "../zoomBox/zoomBox";
 
 Blockly.setLocale(zh);
-Blockly.Scrollbar.scrollbarThickness = 10;
+
+Blockly.Msg["CONTROLS_REPEAT_INPUT_DO"] = "";
+Blockly.Msg["CONTROLS_IF_MSG_THEN"] = "";
+Blockly.Msg["CONTROLS_IF_MSG_ELSE"] = "";
+Blockly.Msg["LOGIC_BOOLEAN_TRUE"] = "真";
+Blockly.Msg["LOGIC_BOOLEAN_FALSE"] = "假";
+Blockly.Msg["NEW_VARIABLE"] = "创建变量";
 
 const props = defineProps(["options"]);
 const blocklyToolbox = ref();
