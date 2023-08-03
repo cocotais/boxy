@@ -28,10 +28,15 @@
     resize-observer-polyfill "^1.5.1"
     scroll-into-view-if-needed "^2.2.28"
 
-"@arco-iconbox/vue-boxy@^0.0.1":
+"@arco-iconbox/vue-boxy@^0.0.4":
+  version "0.0.4"
+  resolved "https://mirrors.cloud.tencent.com/npm/@arco-iconbox/vue-boxy/-/vue-boxy-0.0.4.tgz#a8905e7fd61b83f663f5038a6993772743c996f1"
+  integrity sha512-lk0XfDKHl7ygW34R7/KBNUokDSW6lUjYUZ/OCDQ+fylIb791IXzU0QpjtDzqJof3/oWvHB6e9S4IF7qgpkj/xg==
+
+"@arco-themes/vue-boxy@^0.0.1":
   version "0.0.1"
-  resolved "https://mirrors.cloud.tencent.com/npm/@arco-iconbox/vue-boxy/-/vue-boxy-0.0.1.tgz#87a09d898aca307d42f59a545831ce7a58aa1581"
-  integrity sha512-WXWsl54/haH4KvdsVg5qtr7D6D1cPH32CfWFCk3jG5F4HjqtHM+NMIaowMChrKQ0i5X/7GHsOZrPMSOJsESmhw==
+  resolved "https://mirrors.cloud.tencent.com/npm/@arco-themes/vue-boxy/-/vue-boxy-0.0.1.tgz#2bba329c986fe62a6e8baf4e37fc110c1bb508a8"
+  integrity sha512-ZFtPZ3RrR8S3kLQd/YKVulwwM/tJD8zudrFMF+RjxMOzxSZUFm4qw641EoM1CcVrmxAV3YUMN8Gkc+AttPxTwA==
 
 "@babel/code-frame@^7.0.0":
   version "7.22.5"
