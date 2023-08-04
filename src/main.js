@@ -20,6 +20,7 @@ import "@arco-themes/vue-boxy/index.less";
 
 import ArcoVue from "@arco-design/web-vue";
 import hljsVuePlugin from "@highlightjs/vue-plugin";
+import { registerSW } from "virtual:pwa-register";
 import { createApp } from "vue";
 
 import App from "./App.vue";
@@ -46,3 +47,8 @@ observer("#boxy > .blocklyDiv > div >  div.blocklyToolboxDiv.blocklyNonSelectabl
     trashcan.coverOff();
   }
 });
+
+if ("serviceWorker" in navigator) {
+  // && !/localhost/.test(window.location)) {
+  registerSW();
+}
