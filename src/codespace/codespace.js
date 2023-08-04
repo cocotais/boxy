@@ -15,6 +15,7 @@ import javascript from "highlight.js/lib/languages/javascript";
 import lua from "highlight.js/lib/languages/lua";
 import php from "highlight.js/lib/languages/php";
 import python from "highlight.js/lib/languages/python";
+import _ from "lodash";
 
 import platform from "../utils/platform";
 
@@ -57,11 +58,10 @@ class BoxyCodespace {
    */
   updateCode = () => {
     let code = this.language.workspaceToCode(this.workspace);
-    highlight.highlightAll();
     if (code === "") {
       this.codeDiv.innerHTML = "未检测到积木块";
     } else {
-      this.codeDiv.innerHTML = code;
+      this.codeDiv.innerHTML = _.escape(code);
     }
     highlight.highlightAll();
   };
