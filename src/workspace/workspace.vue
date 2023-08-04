@@ -24,6 +24,9 @@ const blocklyToolbox = ref();
 const blocklyDiv = ref();
 const workspace = shallowRef();
 
+const generator_value = ref("Javascript");
+let generator_change;
+
 defineExpose({ workspace });
 
 onMounted(() => {
@@ -39,6 +42,11 @@ onMounted(() => {
 
   let boxyCodespace = new BoxyCodespace(workspace.value);
   boxyCodespace.load();
+
+  generator_change = (value) => {
+    generator_value.value = value;
+    boxyCodespace.switch_generator(value);
+  };
 
   const boxyZoomBox = new BoxyZoomBox(workspace.value, boxyCodespace, workspaceSearch);
   boxyZoomBox.load();
@@ -99,7 +107,19 @@ let moveEnd = () => {
       @moving="move"
       @moving-end="moveEnd"
       :style="{ width: '0px' }"
-    >
+      ><a-select
+        @change="generator_change"
+        v-model:model-value="generator_value"
+        :style="{ width: '150px' }"
+        default-value="Javascript"
+        class="codespace-change"
+      >
+        <a-option>Dart</a-option>
+        <a-option>Javascript</a-option>
+        <a-option>Lua</a-option>
+        <a-option>PHP</a-option>
+        <a-option>Python</a-option>
+      </a-select>
       <div id="codespaceHead">
         <iconpark-icon id="codespaceClose" name="close" onclick="codespaceSwitch();zoomBoxResize()"></iconpark-icon>
       </div>
@@ -119,5 +139,13 @@ let moveEnd = () => {
   height: 100%;
   width: 100%;
   text-align: left;
+}
+</style>
+
+<style>
+.codespace-change {
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 </style>
