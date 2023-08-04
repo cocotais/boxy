@@ -1,8 +1,20 @@
 import "../generators/javascript";
+import "../generators/php";
+import "../generators/python";
+import "../generators/dart";
+import "../generators/lua";
 
+import { dartGenerator } from "blockly/dart";
 import { javascriptGenerator } from "blockly/javascript";
+import { luaGenerator } from "blockly/lua";
+import { phpGenerator } from "blockly/php";
+import { pythonGenerator } from "blockly/python";
 import highlight from "highlight.js/lib/core";
+import dart from "highlight.js/lib/languages/dart";
 import javascript from "highlight.js/lib/languages/javascript";
+import lua from "highlight.js/lib/languages/lua";
+import php from "highlight.js/lib/languages/php";
+import python from "highlight.js/lib/languages/python";
 
 import platform from "../utils/platform";
 
@@ -19,6 +31,7 @@ class BoxyCodespace {
     this.codeDiv = document.getElementById("code");
     this.workspaceDiv = document.getElementById("workspace");
     this.codespaceButton = document.getElementById("switchCode");
+    this.language = javascriptGenerator;
   }
 
   /**
@@ -28,7 +41,10 @@ class BoxyCodespace {
   load = () => {
     // 代码区高亮
     highlight.registerLanguage("javascript", javascript);
-    highlight.highlightAll();
+    highlight.registerLanguage("dart", dart);
+    highlight.registerLanguage("php", php);
+    highlight.registerLanguage("python", python);
+    highlight.registerLanguage("lua", lua);
     // 代码区尺寸变化监听器
 
     window.addEventListener("resize", this.resize);
@@ -40,7 +56,8 @@ class BoxyCodespace {
    * @method
    */
   updateCode = () => {
-    let code = javascriptGenerator.workspaceToCode(this.workspace);
+    let code = this.language.workspaceToCode(this.workspace);
+    highlight.highlightAll();
     if (code === "") {
       this.codeDiv.innerHTML = "未检测到积木块";
     } else {
@@ -132,6 +149,34 @@ class BoxyCodespace {
    */
   currentWidth = () => {
     return this.state() ? this.dueWidth() : 0;
+  };
+
+  switch_generator = (language) => {
+    switch (language) {
+      case "Javascript":
+        this.language = javascriptGenerator;
+        this.codeDiv.className = "language-javascript hljs";
+        break;
+      case "Dart":
+        this.language = dartGenerator;
+        this.codeDiv.className = "language-dart hljs";
+        break;
+      case "Python":
+        this.language = pythonGenerator;
+        this.codeDiv.className = "language-python hljs";
+        break;
+      case "Lua":
+        this.language = luaGenerator;
+        this.codeDiv.className = "language-lua hljs";
+        break;
+      case "PHP":
+        this.language = phpGenerator;
+        this.codeDiv.className = "language-php hljs";
+        break;
+      default:
+        break;
+    }
+    this.updateCode();
   };
 }
 
