@@ -1,5 +1,5 @@
 <template>
-  <a-trigger trigger="click" position="rt">
+  <a-trigger trigger="hover" position="rt">
     <div id="brand">
       <img src="../icon/logo/boxy.svg" alt="" />
     </div>
@@ -20,7 +20,7 @@
       <a-typography-title :heading="6">偏好设置</a-typography-title>
       <a-space size="large" :fill="fill" :style="{ justifyContent: 'space-between', color: 'var(--color-text-2)' }">
         <p>积木盒积木全显</p>
-        <a-switch />
+        <a-switch @change="block_all_shown" v-model:model-value="block_all_shown_value" />
       </a-space>
       <a-space size="large" :fill="fill" :style="{ justifyContent: 'space-between', color: 'var(--color-text-2)' }">
         <p>主题</p>
@@ -69,6 +69,13 @@ import Theme from "@/theme/theme";
 const visible = ref(false);
 const fill = ref(true);
 const theme_value = ref(localStorage.getItem("theme") || "跟随系统");
+const block_all_shown_value = ref(!!localStorage.getItem("block_all_shown"));
+
+const block_all_shown = (value) => {
+  localStorage.setItem("block_all_shown", value ? "true" : "");
+  block_all_shown_value.value = value;
+  document.querySelector(".blocklyFlyout").style.width = value ? "" : 320;
+};
 
 const more_opinion = () => {
   visible.value = true;
@@ -134,7 +141,7 @@ const open_file = () => {
 };
 
 const open_doc = () => {
-  window.open("https://www.yuque.com/hzsn/waddle/eg76gf6z3ikaie2b");
+  window.open("https://www.yuque.com/hzsn/boxy");
 };
 </script>
 

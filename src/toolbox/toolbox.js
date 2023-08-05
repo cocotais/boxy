@@ -92,10 +92,15 @@ class BoxyToolbox {
       element.setAttribute("aria-level", "1");
     });
   };
+
+  resize = () => {
+    document.querySelector(".blocklyFlyout").style.width = localStorage.getItem("block_all_shown") ? "" : "320px";
+  };
 }
 
 let toolbox = new BoxyToolbox();
 toolbox.load();
+window.addEventListener("resize", toolbox.resize);
 export default toolbox;
 
 /**
