@@ -47,7 +47,7 @@ observer("#boxy > .blocklyDiv > div > svg.blocklyFlyout", ["style", "width"], fu
     element.style.transform = "translate(60px,0px)";
   } else {
     element.style.transform = `translate(${
-      -(localStorage.getItem("block_all_shown") ? element.getAttribute("width") : 320) + 60
+      -(localStorage.getItem("block_all_shown") ? element.getAttribute("width") || 320 : 320) + 60
     }px,0px)`;
   }
 });
