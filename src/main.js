@@ -1,3 +1,6 @@
+/**
+ * 主文件
+ */
 import "./codespace/codespace.less";
 import "./toolbox/toolbox.less";
 import "./workspace/workspace.less";
@@ -32,16 +35,23 @@ app.use(ArcoVue);
 app.use(hljsVuePlugin);
 app.mount("#app");
 
+/**
+ * 设置Flyout鼠标移入事件
+ */
 document.querySelector(".blocklyFlyout").addEventListener("mouseenter", function () {
   if (this.getBoundingClientRect().width < this.getAttribute("width")) {
     this.style.width = this.getAttribute("width");
   }
 });
-
+/**
+ * 设置Flyout鼠标移出事件
+ */
 document.querySelector(".blocklyFlyout").addEventListener("mouseleave", function () {
   this.style.width = localStorage.getItem("block_all_shown") ? "" : "320px";
 });
-
+/**
+ * 监听Flyout属性变化
+ */
 observer("#boxy > .blocklyDiv > div > svg.blocklyFlyout", ["style", "width"], function (element) {
   if (element.style.display === "block") {
     element.style.transform = "translate(60px,0px)";
@@ -51,7 +61,9 @@ observer("#boxy > .blocklyDiv > div > svg.blocklyFlyout", ["style", "width"], fu
     }px,0px)`;
   }
 });
-
+/**
+ * 监听Toolbox属性变化
+ */
 observer("#boxy > .blocklyDiv > div >  div.blocklyToolboxDiv.blocklyNonSelectable", ["class"], function (element) {
   if (element.classList.contains("blocklyToolboxDelete")) {
     trashcan.coverOn();

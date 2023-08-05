@@ -2,6 +2,10 @@
 import Blockly from "blockly";
 import { ref } from "vue";
 
+/**
+ * 积木块转图片
+ * @function
+ */
 function setBlockToImage(onClick) {
   const block_to_image = {
     displayText: "生成图片",
@@ -48,7 +52,10 @@ function setBlockToImage(onClick) {
 
   Blockly.ContextMenuRegistry.registry.register(workspace_to_image);
 }
-
+/**
+ * svg图片转png图片
+ * @function
+ */
 function svgToPng_(data, width, height, callback) {
   let canvas = document.createElement("canvas");
   let context = canvas.getContext("2d");
@@ -71,10 +78,10 @@ function svgToPng_(data, width, height, callback) {
 }
 
 /**
- * Create an SVG of the blocks on the workspace.
- * @param {!Blockly.WorkspaceSvg} workspace The workspace.
- * @param {!Function} callback Callback.
- * @param {string=} customCss Custom CSS to append to the SVG.
+ * 创建工作区的svg图片
+ * @param {!Blockly.WorkspaceSvg} workspace 工作区
+ * @param {!Function} callback 回调
+ * @param {string=} customCss 自定义svg css
  */
 function workspaceToSvg_(workspace, callback, customCss) {
   // Go through all text areas and set their value.
@@ -128,7 +135,10 @@ function workspaceToSvg_(workspace, callback, customCss) {
 
   svgToPng_(data, width, height, callback);
 }
-
+/**
+ * 下载截图
+ * @param {!Blockly.WorkspaceSvg} workspace 工作区
+ */
 const downloadScreenshot = function (workspace) {
   workspaceToSvg_(workspace, function (dataUrl) {
     let a = document.createElement("a");

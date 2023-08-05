@@ -65,22 +65,29 @@ const props = defineProps(["workspace"]);
 import { IconAuto, IconDark, IconLight } from "@arco-iconbox/vue-boxy";
 
 import Theme from "@/theme/theme";
-
+// 初始化数值
 const visible = ref(false);
 const fill = ref(true);
 const theme_value = ref(localStorage.getItem("theme") || "跟随系统");
 const block_all_shown_value = ref(!!localStorage.getItem("block_all_shown"));
 
+/**
+ * 积木框全显时运行代码
+ */
 const block_all_shown = (value) => {
   localStorage.setItem("block_all_shown", value ? "true" : "");
   block_all_shown_value.value = value;
   document.querySelector(".blocklyFlyout").style.width = value ? "" : 320;
 };
-
+/**
+ * “更多”打开
+ */
 const more_opinion = () => {
   visible.value = true;
 };
-
+/**
+ * “跟随系统”主题切换
+ */
 window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (event) => {
   if (event.matches && theme_value.value === "跟随系统") {
     Theme.switch("dark");
@@ -90,7 +97,10 @@ window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (ev
 });
 
 switch_theme();
-
+/**
+ * 主题切换
+ * @function
+ */
 function switch_theme() {
   localStorage.setItem("theme", theme_value.value);
   switch (theme_value.value) {
@@ -104,22 +114,31 @@ function switch_theme() {
       Theme.switch(window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
   }
 }
-
+/**
+ * 主题切换获取值
+ */
 const theme_change = (value) => {
   theme_value.value = value;
   switch_theme();
 };
+/**
+ * 关闭“更多”
+ */
 const handleCancel = () => {
   visible.value = false;
 };
-
+/**
+ * 保存到本地
+ */
 const save_to_pc = () => {
   let a = document.createElement("a");
   a.href = `data:,${JSON.stringify(Blockly.serialization.workspaces.save(props.workspace))}`;
   a.download = "project.boxy";
   a.click();
 };
-
+/**
+ * 打开本地文件
+ */
 const open_file = () => {
   let input = document.createElement("input");
   input.setAttribute("id", "file");
@@ -139,7 +158,9 @@ const open_file = () => {
     file_reader.readAsText(file, "UTF-8");
   };
 };
-
+/**
+ * 打开文档
+ */
 const open_doc = () => {
   window.open("https://www.yuque.com/hzsn/boxy");
 };

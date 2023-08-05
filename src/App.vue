@@ -30,6 +30,7 @@ const options = {
 </script>
 
 <template>
+  <!--工作区域-->
   <BoxyWorkSpace id="boxy" :options="options" ref="foo"></BoxyWorkSpace>
   <!--缩放栏-->
   <ZoomBox id="zoomBox"></ZoomBox>
