@@ -7,6 +7,7 @@ import Dropdown from "@/dropdown/dropdown.vue";
 
 import BoxyCodespace from "../codespace/codespace";
 import BoxySearch from "../search/search";
+import toolbox from "../toolbox/toolbox";
 import trashcan from "../trashcan/trashcan";
 import BoxyZoomBox from "../zoomBox/zoomBox";
 
@@ -62,6 +63,8 @@ onMounted(() => {
     boxyCodespace.updateCode();
     trashcan.switch(event);
   });
+
+  toolbox.resize();
 });
 
 let directions = ref([]);

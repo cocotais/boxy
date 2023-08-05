@@ -32,11 +32,13 @@ app.use(ArcoVue);
 app.use(hljsVuePlugin);
 app.mount("#app");
 
-observer("#boxy > .blocklyDiv > div > svg.blocklyFlyout", ["style"], function (element) {
+observer("#boxy > .blocklyDiv > div > svg.blocklyFlyout", ["style", "width"], function (element) {
   if (element.style.display === "block") {
     element.style.transform = "translate(60px,0px)";
   } else {
-    element.style.transform = "translate(-260px,0px)";
+    element.style.transform = `translate(${
+      -(localStorage.getItem("block_all_shown") ? element.getAttribute("width") : 320) + 60
+    }px,0px)`;
   }
 });
 
