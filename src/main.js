@@ -32,6 +32,16 @@ app.use(ArcoVue);
 app.use(hljsVuePlugin);
 app.mount("#app");
 
+document.querySelector(".blocklyFlyout").addEventListener("mouseenter", function () {
+  if (this.getBoundingClientRect().width < this.getAttribute("width")) {
+    this.style.width = this.getAttribute("width");
+  }
+});
+
+document.querySelector(".blocklyFlyout").addEventListener("mouseleave", function () {
+  this.style.width = localStorage.getItem("block_all_shown") ? "" : "320px";
+});
+
 observer("#boxy > .blocklyDiv > div > svg.blocklyFlyout", ["style", "width"], function (element) {
   if (element.style.display === "block") {
     element.style.transform = "translate(60px,0px)";

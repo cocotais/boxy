@@ -182,3 +182,9 @@ const open_doc = () => {
   }
 }
 </style>
+
+<style>
+.arco-drawer-container .arco-drawer {
+  max-width: 100%;
+}
+</style>

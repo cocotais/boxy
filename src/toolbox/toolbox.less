@@ -23,10 +23,12 @@
   display: block !important;
 
   //width: 320px;
+  max-width: calc(100% - 60px);
   height: 100vh;
 
   background: var(--toolbox-background);
-  box-shadow: rgb(0 0 0 / 10%) 0 4px 4px 0;
+  //box-shadow: rgb(0 0 0 / 10%) 0 4px 4px 0;
+  border-right: 1px solid rgb(5 5 5 / 8%);
 
   transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),width 0.5s;
 }
@@ -56,9 +58,9 @@
 }
 
 /* 设置积木全显 */
-.blocklyFlyout:hover {
-  overflow: visible;
-}
+//.blocklyFlyout:hover {
+////  overflow: visible;
+////}
 
 .blocklyTreeRowContentContainer {
   display: flex;
