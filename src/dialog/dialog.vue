@@ -2,7 +2,12 @@
 import { Input, Modal } from "@arco-design/web-vue";
 import Blockly from "blockly";
 import { h } from "vue";
-
+/**
+ * Alert框设置
+ * @override Blockly.dialog.setAlert
+ * @param message 弹出文本
+ * @param callback 回调
+ */
 Blockly.dialog.setAlert(function (message, callback) {
   Modal.confirm({
     title: "注意",
@@ -14,6 +19,12 @@ Blockly.dialog.setAlert(function (message, callback) {
   });
 });
 
+/**
+ * Confirm框设置
+ * @override Blockly.dialog.setConfirm
+ * @param message 弹出文本
+ * @param callback 回调
+ */
 Blockly.dialog.setConfirm(function (message, callback) {
   Modal.confirm({
     title: "注意",
@@ -29,6 +40,13 @@ Blockly.dialog.setConfirm(function (message, callback) {
   });
 });
 
+/**
+ * Prompt框设置
+ * @override Blockly.dialog.setConfirm
+ * @param message 弹出文本
+ * @param defaultValue 默认输入文本
+ * @param callback 回调
+ */
 Blockly.dialog.setPrompt(function (message, defaultValue, callback) {
   Modal.confirm({
     title: message,

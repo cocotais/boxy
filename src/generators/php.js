@@ -1,3 +1,6 @@
+/**
+ * PHP语言生成
+ */
 import { phpGenerator } from "blockly/php";
 
 phpGenerator["controls_forever"] = function (block) {

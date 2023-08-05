@@ -93,6 +93,10 @@ class BoxyToolbox {
     });
   };
 
+  /**
+   * 重置toolbox宽度
+   * @method
+   */
   resize = () => {
     document.querySelector(".blocklyFlyout").style.width = localStorage.getItem("block_all_shown") ? "" : "320px";
   };

@@ -1,3 +1,6 @@
+/**
+ * Python语言生成
+ */
 import { pythonGenerator } from "blockly/python";
 
 pythonGenerator["controls_forever"] = function (block) {

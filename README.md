@@ -1,7 +1,7 @@
 <!--suppress HtmlDeprecatedAttribute -->
 <p align="center">
    <br>
-   <img width="100" src="https://gitee.com/coco-central/boxy/raw/master/src/icon/logo/boxy.svg" alt="Boxy-logo"/>
+   <img width="100" src="./src/icon/logo/boxy.svg" alt="Boxy-logo"/>
 </p>
 
 <h1 align="center">
@@ -102,4 +102,4 @@ Boxy 采用 [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0.html) 开�
 
 - [Google Blockly](https://github.com/google/blockly)
 - [Icon Park](https://iconpark.oceanengine.com/)
-- [Ant Design](https://ant.design/)
+- [Arco Design](https://arco.design/)

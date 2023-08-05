@@ -1,3 +1,6 @@
+/**
+ * Lua语言生成
+ */
 import { luaGenerator } from "blockly/lua";
 
 luaGenerator["controls_forever"] = function (block) {

@@ -151,6 +151,10 @@ class BoxyCodespace {
     return this.state() ? this.dueWidth() : 0;
   };
 
+  /**
+   * 切换代码框使用语言
+   * @method
+   */
   switch_generator = (language) => {
     switch (language) {
       case "Javascript":
