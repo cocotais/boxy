@@ -44,3 +44,15 @@ Blockly.dialog.setPrompt(function (message, defaultValue, callback) {
   });
 });
 </script>
+
+<style>
+.arco-modal-container .arco-modal {
+  max-width: 520px;
+  width: calc(100% - 84px);
+}
+
+.arco-modal-container .arco-modal-simple {
+  max-width: 400px;
+  width: calc(100% - 84px);
+}
+</style>
