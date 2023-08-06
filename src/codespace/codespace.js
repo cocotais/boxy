@@ -32,6 +32,7 @@ class BoxyCodespace {
     this.codeDiv = document.getElementById("code");
     this.workspaceDiv = document.getElementById("workspace");
     this.codespaceButton = document.getElementById("switchCode");
+    this.codeSelect = document.querySelector(".codespace-change");
     this.language = javascriptGenerator;
   }
 
@@ -75,9 +76,13 @@ class BoxyCodespace {
     if (this.currentWidth() === window.innerWidth) {
       this.codespaceHeadDiv.style.display = "block";
       this.codeDiv.style.marginTop = "0px";
+      this.codeSelect.style.top = "15px";
+      this.codeSelect.style.left = "20px";
     } else {
       this.codespaceHeadDiv.style.display = "none";
       this.codeDiv.style.marginTop = "20px";
+      this.codeSelect.style.top = "0";
+      this.codeSelect.style.left = "0";
     }
   };
 
