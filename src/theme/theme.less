@@ -1,65 +1,49 @@
+@import url("@arco-themes/vue-boxy/theme.less");
+
 * {
   transition: background 0.3s ease;
 }
 
 :root[mode="light"] {
-  --boxy-color: #4062f6;
+  --boxy-color: @primary-6;
   --boxy-tone: invert(0);
-  --blockly-dropdown-color: #000;
-  --blockly-dropdown-background: #fff;
-  --blockly-shadow: #0002;
-  --codespace-background: #fff;
-  --dialog-common-background: #fff;
-  --dialog-title-color: #000;
-  --dialog-color: #000;
-  --dialog-anti-color: #fff;
-  --dialog-background: #fff;
-  --dialog-fill-background: #eee;
-  --dialog-fill-background-hover: #ddd;
-  --dialog-boxy-color: #2b44cf;
-  --dialog-boxy-background: #f0f5ff;
-  --dialog-boxy-background-hover: #e6eeff;
-  --dialog-boxy-background-active: #e6eeff;
-  --search-color: #000;
-  --search-background: #fff;
-  --toolbox-color: #000;
-  --toolbox-background: #fff;
+  --blockly-dropdown-color: @color-text-1;
+  --blockly-dropdown-background: @color-bg-3;
+  --blockly-shadow: #0000001a;
+  --codespace-background: @color-bg-3;
+  --search-color: @color-text-2;
+  --search-background: @color-bg-3;
+  --toolbox-color: @color-text-1;
+  --toolbox-background: @color-bg-3;
   --toolbox-category-background-hover: #dcdcdc55;
   --toolbox-category-color-selected: #000;
   --toolbox-category-background-selected: #e9eef2;
   --trashcan-background: #0005;
-  --workspace-background: #fafafa;
-  --zoombox-color: #000;
-  --zoombox-background: #fff;
+  --workspace-background: @gray-1;
+  --zoombox-color: @color-text-1;
+  --zoombox-background: @color-bg-3;
+  --button-background: @primary-6;
+  --button-background-hover: @primary-5;
 }
 
 :root[mode="dark"] {
-  --boxy-color: #6de3ff;
+  --boxy-color: @dark-primary-6;
   --boxy-tone: invert(1);
-  --blockly-shadow: #fff2;
-  --blockly-dropdown-color: #a6eeff;
-  --blockly-dropdown-background: #002930;
-  --codespace-background: #002930;
-  --dialog-common-background: #001f25;
-  --dialog-title-color: #a6eeff;
-  --dialog-color: #a6eeff;
-  --dialog-anti-color: #393c45;
-  --dialog-background: #85e4f6;
-  --dialog-fill-background: #00313b;
-  --dialog-fill-background-hover: #0e4153;
-  --dialog-boxy-color: #a6eeff;
-  --dialog-boxy-background: #082933;
-  --dialog-boxy-background-hover: #133a4d;
-  --dialog-boxy-background-active: #161a3c;
-  --search-color: #a6eeff;
-  --search-background: #002930;
-  --toolbox-color: #a6eeff;
-  --toolbox-background: #002930;
+  --blockly-dropdown-color: @dark-color-text-1;
+  --blockly-dropdown-background: @dark-color-bg-3;
+  --blockly-shadow: #0000001a;
+  --codespace-background: @dark-color-bg-3;
+  --search-color: @dark-color-text-2;
+  --search-background: @dark-color-bg-3;
+  --toolbox-color: @dark-color-text-1;
+  --toolbox-background: @dark-color-bg-3;
   --toolbox-category-background-hover: #fff3;
   --toolbox-category-color-selected: #fff;
   --toolbox-category-background-selected: #fff6;
   --trashcan-background: #001f2540;
-  --workspace-background: #001f25;
-  --zoombox-color: #a6eeff;
-  --zoombox-background: #002930;
+  --workspace-background: @dark-color-bg-1;
+  --zoombox-color: @dark-color-text-1;
+  --zoombox-background: @dark-color-bg-3;
+  --button-background: @dark-primary-6;
+  --button-background-hover: @dark-primary-5;
 }

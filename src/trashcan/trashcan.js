@@ -17,6 +17,9 @@ class BoxyTrashcan {
    * this.workspace.addChangeListener(trashcan.switch);
    */
   switch = (event) => {
+    this.trashCan = document.getElementById("trashcan");
+    this.trashcanLid = document.getElementById("trashcan-lid");
+    this.trashcanBody = document.getElementById("trashcan-body");
     if (event.type === "drag") {
       this.switchOn();
     } else if (event.type === "move") {
