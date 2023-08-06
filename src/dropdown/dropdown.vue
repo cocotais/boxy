@@ -52,7 +52,7 @@
       </a-space>
       <a-typography-title :heading="6">关于Boxy</a-typography-title>
       <a-space size="large" :fill="fill" :style="{ justifyContent: 'space-between', color: 'var(--color-text-2)' }">
-        Boxy yyds！
+        Boxy 2.0
       </a-space>
     </div>
   </a-drawer>

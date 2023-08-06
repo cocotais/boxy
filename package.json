@@ -1,7 +1,7 @@
 {
   "name": "boxy",
-  "version": "0.0.1",
-  "description": "Basic available instance built on Google Blockly.",
+  "version": "2.0",
+  "description": "Basic available instance built by Google Blockly.",
   "scripts": {
     "start": "vite --host",
     "build": "vite build",
