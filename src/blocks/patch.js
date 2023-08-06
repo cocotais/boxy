@@ -33,7 +33,9 @@ toolboxConfig["contents"].forEach(function (category) {
     );
   }
 });
+// 设置Blockly部分组件数值
+Blockly.FlyoutButton.BORDER_RADIUS = 4;
+Blockly.FlyoutButton.TEXT_MARGIN_X = 25;
+Blockly.FlyoutButton.TEXT_MARGIN_Y = 15;
 
-Blockly.Msg["CONTROLS_REPEAT_INPUT_DO"] = "";
-Blockly.Msg["CONTROLS_IF_MSG_THEN"] = "";
-Blockly.Msg["CONTROLS_IF_MSG_ELSE"] = "";
+Blockly.Scrollbar.scrollbarThickness = 10;

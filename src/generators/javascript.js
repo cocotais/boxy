@@ -1,3 +1,6 @@
+/**
+ * Javascript语言生成
+ */
 import { javascriptGenerator } from "blockly/javascript";
 
 javascriptGenerator["controls_forever"] = function (block) {

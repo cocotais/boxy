@@ -1,3 +1,6 @@
+/**
+ * Dart语言生成
+ */
 import { dartGenerator } from "blockly/dart";
 
 dartGenerator["controls_forever"] = function (block) {
