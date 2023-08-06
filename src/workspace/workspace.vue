@@ -1,4 +1,5 @@
 <script setup>
+import { IconClose } from "@arco-iconbox/vue-boxy";
 import Blockly from "blockly";
 import * as zh from "blockly/msg/zh-hans";
 import { onMounted, ref, shallowRef } from "vue";
@@ -143,6 +144,7 @@ let moveEnd = () => {
       </a-select>
       <div id="codespaceHead">
         <iconpark-icon id="codespaceClose" name="close" onclick="codespaceSwitch();zoomBoxResize()"></iconpark-icon>
+        <icon-close id="codespaceClose" onclick="codespaceSwitch();zoomBoxResize()" />
       </div>
       <pre><code id="code" class="language-javascript"></code></pre>
     </a-resize-box>
