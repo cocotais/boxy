@@ -45,15 +45,15 @@
 <script setup>
 import { IconBigger, IconCode, IconSearch, IconSmaller } from '@arco-iconbox/vue-boxy'
 
-import { useMainStore } from '../core/store'
+import { useStore } from '../utils/store'
 
-let mainStore = useMainStore()
+let store = useStore()
 
 function handleSmallerClick() {
-  let speed = mainStore.workspace.options.zoomOptions.scaleSpeed
-  let scale = mainStore.workspace.scale
+  let speed = store.workspace.options.zoomOptions.scaleSpeed
+  let scale = store.workspace.scale
   // \log_{speed}\left(\frac{scale - 0.15}{scale}\right)
-  mainStore.workspace.zoom(0, 0, Math.log((scale - 0.15) / scale) / Math.log(speed))
+  store.workspace.zoom(0, 0, Math.log((scale - 0.15) / scale) / Math.log(speed))
 }
 
 function handleResetClick() {
@@ -61,10 +61,10 @@ function handleResetClick() {
 }
 
 function handleBiggerClick() {
-  let speed = mainStore.workspace.options.zoomOptions.scaleSpeed
-  let scale = mainStore.workspace.scale
+  let speed = store.workspace.options.zoomOptions.scaleSpeed
+  let scale = store.workspace.scale
   // \log_{speed}\left(\frac{scale + 0.15}{scale}\right)
-  mainStore.workspace.zoom(0, 0, Math.log((scale + 0.15) / scale) / Math.log(speed))
+  store.workspace.zoom(0, 0, Math.log((scale + 0.15) / scale) / Math.log(speed))
 }
 </script>
 

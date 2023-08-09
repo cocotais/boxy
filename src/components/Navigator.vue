@@ -22,9 +22,9 @@ import Blockly from 'blockly'
 import { ref } from 'vue'
 
 import settings from '../components/Settings.vue'
-import { useMainStore } from '../core/store'
+import { useStore } from '../utils/store'
 
-const mainStore = useMainStore()
+const store = useStore()
 const modal = ref()
 
 function handleIconClick() {
@@ -33,9 +33,7 @@ function handleIconClick() {
 
 function handleSaveClick() {
   let anchor = document.createElement('a')
-  anchor.href = `data:,${JSON.stringify(
-    Blockly.serialization.workspaces.save(mainStore.workspace)
-  )}`
+  anchor.href = `data:,${JSON.stringify(Blockly.serialization.workspaces.save(store.workspace))}`
   anchor.download = 'project.boxy'
   document.body.appendChild(anchor)
   anchor.click()
@@ -72,7 +70,7 @@ function handleOptionsClick() {
 }
 </script>
 
-<style scoped>
+<style>
 #logo {
   position: absolute;
   z-index: 4;

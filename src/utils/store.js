@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia'
 
-export const useMainStore = defineStore('main', {
+export const useStore = defineStore('main', {
   state: () => {
     return {
+      blocklyDiv: null,
       workspace: null
     }
   }
