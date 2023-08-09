@@ -34,9 +34,9 @@ Boxy 是 Google Blockly 的一个应用实例，
 
 - 监听源码变化，编译并执行热重载。
 
-    ```shell
-    yarn dev
-    ```
+  ```shell
+  yarn dev
+  ```
 
 ### 生产模式
 
@@ -56,14 +56,14 @@ Boxy 是 Google Blockly 的一个应用实例，
 
 - 请在 `commit` 前执行格式化程序。
 
-    ```shell
-    yarn format
-    ```
+  ```shell
+  yarn format
+  ```
 
-    ```shell
-    yarn style
-    ```
+  ```shell
+  yarn style
+  ```
 
-    ```shell
-    yarn lint
-    ```
+  ```shell
+  yarn lint
+  ```

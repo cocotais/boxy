@@ -11,7 +11,7 @@ import * as zh from 'blockly/msg/zh-hans'
 import { onMounted, ref } from 'vue'
 
 import toolboxConfig from '../assets/toolbox.json'
-import { useMainStore } from '../core/store'
+import { useStore } from '../utils/store'
 
 Blockly.setLocale(zh)
 Blockly.Scrollbar.scrollbarThickness = 10
@@ -26,7 +26,7 @@ Blockly.Msg['NEW_VARIABLE'] = '创建变量'
 
 let blocklyDiv = ref()
 let blocklyArea = ref()
-const mainStore = useMainStore()
+const store = useStore()
 const options = {
   toolbox: toolboxConfig,
   media: '/media',
@@ -48,19 +48,12 @@ const options = {
 }
 
 onMounted(() => {
-  mainStore.workspace = Blockly.inject(blocklyDiv.value, options)
+  store.workspace = Blockly.inject(blocklyDiv.value, options)
 })
-
-function onResize() {
-  Blockly.svgResize(mainStore.workspace)
-}
-
-window.addEventListener('resize', onResize, false)
 </script>
 
 <style>
 .blocklyDiv {
-  display: inline;
   width: 100%;
   height: 100%;
   text-align: left;
@@ -68,5 +61,9 @@ window.addEventListener('resize', onResize, false)
 
 .blocklySvg {
   background-color: var(--color-bg-1);
+}
+
+.blocklyMainBackground {
+  stroke: none;
 }
 </style>
