@@ -1,3 +1,9 @@
+import '@arco-design/web-vue/dist/arco.css'
+import 'highlight.js/styles/atom-one-dark.css'
+import 'highlight.js/lib/common'
+
+import arco from '@arco-design/web-vue'
+import highlight from '@highlightjs/vue-plugin'
 import { createPinia } from 'pinia'
 import { createApp } from 'vue'
 
@@ -6,6 +12,8 @@ import observer from './utils/observer'
 
 const app = createApp(App)
 const pinia = createPinia()
+app.use(arco)
+app.use(highlight)
 app.use(pinia)
 app.mount('#app')
 

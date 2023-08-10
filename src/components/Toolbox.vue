@@ -184,7 +184,7 @@ Blockly.VerticalFlyout.prototype['reflowInternal_'] = function () {
   padding: 11px 0 6px;
 }
 
-#app > .blocklyDiv > div > svg.blocklyScrollbarVertical.blocklyFlyoutScrollbar {
+#app > section > main > div.blocklyDiv > div > svg.blocklyScrollbarVertical.blocklyFlyoutScrollbar {
   display: none;
 }
 </style>

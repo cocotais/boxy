@@ -75,7 +75,8 @@ function handleBiggerClick() {
 }
 
 #zoombox {
-  position: fixed;
+  width: max-content;
+  position: absolute;
   right: 40px;
   bottom: 40px;
 }

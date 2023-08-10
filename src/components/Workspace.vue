@@ -1,5 +1,4 @@
 <template>
-  <div class="blocklyArea" ref="blocklyArea"></div>
   <div class="blocklyDiv" ref="blocklyDiv"></div>
 </template>
 
@@ -25,7 +24,6 @@ Blockly.Msg['LOGIC_BOOLEAN_FALSE'] = '假'
 Blockly.Msg['NEW_VARIABLE'] = '创建变量'
 
 let blocklyDiv = ref()
-let blocklyArea = ref()
 const store = useStore()
 const options = {
   toolbox: toolboxConfig,
@@ -55,7 +53,7 @@ onMounted(() => {
 <style>
 .blocklyDiv {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   text-align: left;
 }
 
