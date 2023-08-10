@@ -28,12 +28,11 @@ handleMoving()
 <template>
   <Navigator />
   <a-layout>
-    <a-layout-content><Workspace /><Toolbox /></a-layout-content>
+    <a-layout-content><Workspace /><Toolbox /><Zoombox /></a-layout-content>
     <a-layout-sider :resize-directions="['left']" @moving="handleMoving" @moving-end="handleMoving">
       <Codespace />
     </a-layout-sider>
   </a-layout>
-  <Zoombox />
 </template>
 
 <style>
@@ -46,5 +45,14 @@ body,
   padding: 0;
 
   border: 0;
+}
+
+#app > section > main {
+  position: relative;
+}
+
+#app > section > div {
+  max-width: 50%;
+  min-width: 20%;
 }
 </style>
