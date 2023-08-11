@@ -32,33 +32,32 @@ function handleIconClick() {
 }
 
 function handleSaveClick() {
-  let anchor = document.createElement('a')
-  anchor.href = `data:,${JSON.stringify(Blockly.serialization.workspaces.save(store.workspace))}`
+  const json = Blockly.serialization.workspaces.save(store.workspace)
+  const text = JSON.stringify(json)
+  const blob = new Blob([text], { type: 'text/plain;charset=utf-8' })
+  const url = URL.createObjectURL(blob)
+  const anchor = document.createElement('a')
+  anchor.href = url
   anchor.download = 'project.boxy'
-  document.body.appendChild(anchor)
   anchor.click()
-  document.body.removeChild(anchor)
 }
 
 function handleOpenClick() {
-  let input = document.createElement('input')
-  input.id = 'file'
-  input.type = 'file'
-  input.name = 'file'
-  input.style.visibility = 'hidden'
-  input.accept = '.boxy'
-  document.body.appendChild(input)
-  input.onchange = function (event) {
-    let file = event.target.file[0]
-    let reader = new FileReader()
-    reader.onload = function () {
-      let content = JSON.parse(reader.result)
-      Blockly.serialization.workspaces.load(content, '0')
-    }
-    reader.readAsText(file, 'UTF-8')
-  }
+  const input = document.createElement('input')
+  input.setAttribute('type', 'file')
+  input.setAttribute('name', 'file')
+  input.setAttribute('visibility', 'hidden')
+  input.setAttribute('accept', '.boxy')
+  input.addEventListener('change', function () {
+    const file = this.files[0]
+    const reader = new FileReader()
+    reader.addEventListener('load', function () {
+      const json = JSON.parse(this.result)
+      Blockly.serialization.workspaces.load(json, store.workspace)
+    })
+    reader.readAsText(file)
+  })
   input.click()
-  document.body.removeChild(input)
 }
 
 function handleDocsClick() {

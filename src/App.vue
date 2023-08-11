@@ -76,4 +76,11 @@ body,
   background: var(--color-bg-1);
   border: 0;
 }
+
+* {
+  transition:
+    color ease 50ms,
+    background-color ease 200ms,
+    border ease 300ms;
+}
 </style>

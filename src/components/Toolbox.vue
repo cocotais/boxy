@@ -138,7 +138,7 @@ Blockly.VerticalFlyout.prototype['reflowInternal_'] = function () {
   background: var(--color-bg-2);
   box-shadow: rgb(0 0 0 / 10%) 0 4px 4px 0;
 
-  transition: transform  cubic-bezier(0, 1, 0, 1) 300ms;
+  transition: transform cubic-bezier(0, 1, 0, 1) 300ms;
 }
 
 .blocklyFlyoutButtonShadow {

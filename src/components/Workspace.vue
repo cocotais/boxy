@@ -13,7 +13,6 @@ import toolboxConfig from '../assets/toolbox.json'
 import { useStore } from '../utils/store'
 
 Blockly.setLocale(zh)
-Blockly.Scrollbar.scrollbarThickness = 10
 Blockly.FlyoutButton.BORDER_RADIUS = 8
 
 Blockly.Msg['CONTROLS_REPEAT_INPUT_DO'] = ''
@@ -74,41 +73,7 @@ onMounted(() => {
   opacity: 0.8;
 }
 
-#app
-  > section
-  > main
-  > div.blocklyDiv
-  > div
-  > svg.blocklyScrollbarHorizontal
-  > g
-  > rect.blocklyScrollbarHandle {
-  height: 9px;
-
-  rx: 6px;
-  ry: 6px;
+#app > section > main > div.blocklyDiv > div > svg > g > rect.blocklyScrollbarHandle {
   fill: var(--color-neutral-4);
-
-  y: 0;
-}
-
-#app > section > main > div.blocklyDiv > div > svg.blocklyScrollbarVertical {
-  margin-left: -2px;
-}
-
-#app
-  > section
-  > main
-  > div.blocklyDiv
-  > div
-  > svg.blocklyScrollbarVertical
-  > g
-  > rect.blocklyScrollbarHandle {
-  width: 9px;
-
-  rx: 6px;
-  ry: 6px;
-  fill: var(--color-neutral-4);
-
-  x: 0;
 }
 </style>

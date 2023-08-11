@@ -119,7 +119,7 @@ function handleCloseClick() {
   padding: 0;
 
   font-family: JetBrainsMono, sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.414;
 
   background: transparent;
