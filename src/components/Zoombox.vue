@@ -78,6 +78,10 @@ function handleBiggerClick() {
   opacity: 0;
 }
 
+#app > section > main {
+  position: relative;
+}
+
 #zoombox {
   position: absolute;
   right: 40px;

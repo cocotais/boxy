@@ -1,14 +1,17 @@
 import '@arco-design/web-vue/dist/arco.css'
 import 'highlight.js/styles/atom-one-dark.css'
-import 'highlight.js/lib/common'
 
 import arco from '@arco-design/web-vue'
 import highlight from '@highlightjs/vue-plugin'
+import hljs from 'highlight.js/lib/core'
+import javascript from 'highlight.js/lib/languages/javascript'
 import { createPinia } from 'pinia'
 import { createApp } from 'vue'
 
 import App from './App.vue'
 import observer from './utils/observer'
+
+hljs.registerLanguage('javascript', javascript)
 
 const app = createApp(App)
 const pinia = createPinia()

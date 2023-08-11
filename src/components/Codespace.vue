@@ -1,8 +1,14 @@
 <template>
-  <div>
-    <IconClose @click="handleCloseClick" />
-  </div>
-  <highlightjs autodetect :code="code" />
+  <a-scrollbar style="overflow: auto">
+    <div id="codespace">
+      <div>
+        <IconClose @click="handleCloseClick" />
+      </div>
+      <div>
+        <highlightjs autodetect :code="code" />
+      </div>
+    </div>
+  </a-scrollbar>
 </template>
 
 <script setup>
@@ -28,13 +34,9 @@ function handleCloseClick() {
 </script>
 
 <style>
-#app > section > main {
-  position: relative;
-}
-
 @media screen and (width >= 768px) {
   #app > section > div {
-    min-width: 30%;
+    min-width: 25%;
     max-width: 60%;
   }
 }
@@ -46,13 +48,33 @@ function handleCloseClick() {
     padding: 0;
   }
 
-  #app > section > div > div.arco-resizebox-direction-left > div {
+  #app > section > div > div.arco-resizebox-trigger-vertical > div {
     display: none;
   }
 }
 
 .arco-layout-sider-children {
+  overflow: overlay;
   height: 100vh;
+}
+
+.arco-layout-sider-children > div {
+  height: calc(100% - 1em);
+  margin: 1em 0 0 1em;
+}
+
+.arco-layout-sider-children > div > div.arco-scrollbar-container {
+  overflow-y: auto;
+  height: calc(100% - 1em);
+  padding: 0 1em 1em 0;
+}
+
+.arco-scrollbar-thumb-bar {
+  background: var(--color-neutral-4) !important;
+}
+
+#codespace > div:nth-child(2) {
+  width: 100%;
 }
 
 @font-face {
@@ -62,20 +84,20 @@ function handleCloseClick() {
 }
 
 @media screen and (width >= 768px) {
-  #app > section > div > div.arco-layout-sider-children > div {
+  #codespace > div:nth-child(1) {
     display: none;
   }
 }
 
 @media screen and (width <= 768px) {
-  #app > section > div > div.arco-layout-sider-children > div {
+  #codespace > div:nth-child(1) {
     display: block;
     height: 60px;
   }
 }
 
-#app > section > div > div.arco-layout-sider-children > div > svg {
-  position: absolute;
+#codespace > div > svg {
+  position: fixed;
   top: 20px;
   right: 20px;
 
@@ -85,12 +107,16 @@ function handleCloseClick() {
   color: var(--color-text-3);
 }
 
-#app > section > div > div.arco-layout-sider-children > pre {
+#codespace > div > pre {
   margin: 0;
 }
 
-#app > section > div > div.arco-layout-sider-children > pre > code {
+#codespace > div > pre > code {
   user-select: text;
+
+  overflow: inherit;
+
+  padding: 0;
 
   font-family: JetBrainsMono, sans-serif;
   font-size: 14px;
@@ -99,12 +125,12 @@ function handleCloseClick() {
   background: transparent;
 }
 
-#app > section > div > div.arco-layout-sider-children > pre > code::selection {
+#codespace > div > pre > code::selection {
   color: inherit;
   background: #1ba2e333;
 }
 
-#app > section > div > div.arco-layout-sider-children > pre > code > span::selection {
+#codespace > div > pre > code > span::selection {
   color: inherit;
   background: #1ba2e333;
 }

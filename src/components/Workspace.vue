@@ -64,4 +64,51 @@ onMounted(() => {
 .blocklyMainBackground {
   stroke: none;
 }
+
+#app > section > main > div.blocklyDiv > div > svg.blocklyMainWorkspaceScrollbar {
+  opacity: 0;
+  transition: opacity ease 200ms;
+}
+
+#app > section > main:hover div.blocklyDiv > div > svg.blocklyMainWorkspaceScrollbar {
+  opacity: 0.8;
+}
+
+#app
+  > section
+  > main
+  > div.blocklyDiv
+  > div
+  > svg.blocklyScrollbarHorizontal
+  > g
+  > rect.blocklyScrollbarHandle {
+  height: 9px;
+
+  rx: 6px;
+  ry: 6px;
+  fill: var(--color-neutral-4);
+
+  y: 0;
+}
+
+#app > section > main > div.blocklyDiv > div > svg.blocklyScrollbarVertical {
+  margin-left: -2px;
+}
+
+#app
+  > section
+  > main
+  > div.blocklyDiv
+  > div
+  > svg.blocklyScrollbarVertical
+  > g
+  > rect.blocklyScrollbarHandle {
+  width: 9px;
+
+  rx: 6px;
+  ry: 6px;
+  fill: var(--color-neutral-4);
+
+  x: 0;
+}
 </style>
