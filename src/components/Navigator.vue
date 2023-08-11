@@ -1,7 +1,7 @@
 <template>
   <a-trigger trigger="click" position="rt">
     <div id="logo" @click="handleIconClick">
-      <img src="../assets/boxy.svg" />
+      <img alt="Logo" src="../assets/boxy.svg" />
     </div>
     <template #content>
       <div class="navigatorMenu">
@@ -14,15 +14,15 @@
       </div>
     </template>
   </a-trigger>
-  <settings ref="modal"></settings>
+  <Settings ref="modal"></Settings>
 </template>
 
 <script setup>
 import Blockly from 'blockly'
 import { ref } from 'vue'
 
-import settings from '../components/Settings.vue'
 import { useStore } from '../utils/store'
+import Settings from './Settings.vue'
 
 const store = useStore()
 const modal = ref()

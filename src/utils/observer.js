@@ -1,7 +1,7 @@
 function observer(selector, attributeFilter, callback) {
   let element = document.querySelector(selector)
-  let observer = new window.MutationObserver(function (mutations) {
-    mutations.forEach(function (mutation) {
+  let observer = new window.MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
       if (mutation.type === 'attributes') {
         callback(element)
       }

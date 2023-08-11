@@ -1,11 +1,28 @@
+<template>
+  <Navigator />
+  <a-layout>
+    <a-layout-content><Workspace /><Toolbox /><Zoombox /></a-layout-content>
+    <a-layout-sider
+      ref="codespace"
+      :resize-directions="['left']"
+      @moving="handleMoving"
+      @moving-end="handleMoving"
+    >
+      <Codespace />
+    </a-layout-sider>
+  </a-layout>
+</template>
+
 <script setup>
 import './assets/categories'
 import './blocks/boxy'
 import './blocks/patch'
 import './theme/codemao.theme'
 import './theme/codemao.renderer'
+import './generators/javascript'
 
 import Blockly from 'blockly'
+import { onMounted, ref, watch } from 'vue'
 
 import Codespace from './components/Codespace.vue'
 import Navigator from './components/Navigator.vue'
@@ -14,26 +31,38 @@ import Workspace from './components/Workspace.vue'
 import Zoombox from './components/Zoombox.vue'
 import { useStore } from './utils/store'
 
-let store = useStore()
+const store = useStore()
+const codespace = ref()
+let usedCodespace = null
+
 function handleMoving() {
   for (let i = 0; i < 5; i++) {
-    setTimeout(function () {
+    setTimeout(() => {
       Blockly.svgResize(store.workspace)
     }, 100 * i)
   }
 }
-handleMoving()
-</script>
 
-<template>
-  <Navigator />
-  <a-layout>
-    <a-layout-content><Workspace /><Toolbox /><Zoombox /></a-layout-content>
-    <a-layout-sider :resize-directions="['left']" @moving="handleMoving" @moving-end="handleMoving">
-      <Codespace />
-    </a-layout-sider>
-  </a-layout>
-</template>
+function setCodespace(isOpen = false) {
+  codespace.value.$el.style.display = isOpen ? 'block' : 'none'
+  handleMoving()
+}
+
+onMounted(() => {
+  watch(
+    store.$state,
+    (state) => {
+      if (state.hasCodespace !== usedCodespace) {
+        setCodespace(state.hasCodespace)
+        usedCodespace = state.hasCodespace
+      }
+    },
+    { deep: true }
+  )
+  handleMoving()
+  setCodespace()
+})
+</script>
 
 <style>
 html,
@@ -44,15 +73,7 @@ body,
   margin: 0;
   padding: 0;
 
+  background: var(--color-bg-1);
   border: 0;
-}
-
-#app > section > main {
-  position: relative;
-}
-
-#app > section > div {
-  max-width: 50%;
-  min-width: 20%;
 }
 </style>

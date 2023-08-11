@@ -10,8 +10,8 @@
       </a-tooltip>
     </a-space>
     <a-space>
-      <a-tooltip content="转换代码" position="top" mini>
-        <a-button type="text">
+      <a-tooltip content="代码区" position="top" mini>
+        <a-button type="text" @click="handleCodespace">
           <template #icon>
             <icon-code />
           </template>
@@ -49,6 +49,10 @@ import { useStore } from '../utils/store'
 
 let store = useStore()
 
+function handleCodespace() {
+  store.hasCodespace = !store.hasCodespace
+}
+
 function handleSmallerClick() {
   let speed = store.workspace.options.zoomOptions.scaleSpeed
   let scale = store.workspace.scale
@@ -75,10 +79,10 @@ function handleBiggerClick() {
 }
 
 #zoombox {
-  width: max-content;
   position: absolute;
   right: 40px;
   bottom: 40px;
+  width: max-content;
 }
 
 #zoombox > div {

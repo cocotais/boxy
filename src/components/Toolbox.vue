@@ -7,14 +7,6 @@ import superellipse from '../assets/superellipse.svg'
 
 class ToolCategory extends Blockly.ToolboxCategory {
   /**
-   * 用户工具箱类标签。
-   * @constructor
-   */
-  constructor(categoryDef, toolbox, opt_parent) {
-    super(categoryDef, toolbox, opt_parent)
-  }
-
-  /**
    * 类标签选中样式。
    * @method
    * @param {boolean} isSelected

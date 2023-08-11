@@ -23,7 +23,7 @@ Blockly.Msg['LOGIC_BOOLEAN_TRUE'] = '真'
 Blockly.Msg['LOGIC_BOOLEAN_FALSE'] = '假'
 Blockly.Msg['NEW_VARIABLE'] = '创建变量'
 
-let blocklyDiv = ref()
+const blocklyDiv = ref()
 const store = useStore()
 const options = {
   toolbox: toolboxConfig,

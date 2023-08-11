@@ -20,7 +20,7 @@ app.mount('#app')
 observer(
   '#app > section > main > div.blocklyDiv > div > svg.blocklyFlyout',
   ['style'],
-  function (element) {
+  (element) => {
     if (element.style.display === 'block') {
       element.style.transform = 'translate(60px,0px)'
     } else {
