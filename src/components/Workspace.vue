@@ -98,4 +98,57 @@ onMounted(() => {
     }
   }
 }
+
+div.blocklyWidgetDiv {
+  > div.blocklyMenu {
+    padding: 4px 0;
+    background-color: var(--color-bg-popup);
+    border: 1px solid var(--color-fill-3);
+    border-radius: var(--border-radius-medium);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    > div.blocklyMenuItem {
+      color: var(--color-text-1);
+      padding: 0 12px;
+      font-size: 14px;
+      line-height: 36px;
+      text-align: left;
+      background-color: transparent;
+
+      > div.blocklyMenuItemContent {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+
+    > div.blocklyMenuItem.blocklyMenuItemDisabled {
+      color: var(--color-text-4);
+    }
+
+    > div.blocklyMenuItem:not(.blocklyMenuItemDisabled):hover {
+      background: var(--color-fill-2);
+    }
+  }
+
+  > div.blocklyMenu.blocklyFocused {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+
+body {
+  > div.blocklyDropDownDiv {
+    border: 1px solid var(--color-fill-3);
+    border-radius: var(--border-radius-medium);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    > div.blocklyDropDownContent > div.blocklyMenu > div.blocklyMenuItem {
+      border-radius: var(--border-radius-medium);
+    }
+  }
+
+  > div.blocklyDropDownDiv.blocklyFocused {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+}
 </style>
