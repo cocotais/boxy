@@ -108,75 +108,79 @@ Blockly.VerticalFlyout.prototype['reflowInternal_'] = function () {
 }
 </script>
 
-<style>
-.blocklyToolboxDiv {
-  z-index: 4;
-  top: 60px;
+<style lang="less">
+div.injectionDiv {
+  > div.blocklyToolboxDiv {
+    z-index: 4;
+    top: 60px;
 
-  width: 60px;
-  padding: 0;
+    width: 60px;
+    padding: 0;
 
-  background: var(--color-bg-2);
-}
+    background: var(--color-bg-2);
 
-.blocklyFlyout .blocklyFlyoutBackground {
-  fill: var(--color-bg-2);
-  fill-opacity: 0;
-}
+    > div > div {
+      > div.blocklyTreeRow {
+        height: initial;
+        margin: 0 4px;
+        padding: 0 !important;
+        border-radius: 4px;
 
-.blocklyFlyout {
-  position: absolute;
-  z-index: 3;
-  transform: translate(-260px, 0);
+        > div.blocklyTreeRowContentContainer {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 11px 0 6px;
 
-  overflow: hidden;
-  display: block !important;
+          > span.blocklyTreeLabel {
+            padding: 3px 0;
 
-  width: 320px;
-  height: 100vh;
+            font: 13px sans-serif !important;
+            color: var(--color-text-1);
+            text-align: center;
+            white-space: pre-line;
+          }
+        }
+      }
 
-  background: var(--color-bg-2);
-  box-shadow: rgb(0 0 0 / 10%) 0 4px 4px 0;
+      > div.blocklyTreeRow:not(.blocklyTreeSelected):hover {
+        background-color: rgb(var(--primary-1));
+      }
+    }
+  }
 
-  transition: transform cubic-bezier(0, 1, 0, 1) 300ms;
-}
+  > svg.blocklyFlyout {
+    position: absolute;
+    z-index: 3;
+    transform: translate(-260px, 0);
 
-.blocklyFlyoutButtonShadow {
-  display: none;
-}
+    overflow: hidden;
+    display: block !important;
 
-.blocklyTreeLabel {
-  padding: 3px 0;
+    width: 320px;
+    height: 100vh;
 
-  font: 13px sans-serif !important;
-  color: var(--color-text-1);
-  text-align: center;
-  white-space: pre-line;
-}
+    background: var(--color-bg-2);
+    border-right: 1px solid var(--color-border);
 
-.blocklyTreeRow {
-  height: initial;
-  margin: 0 4px;
-  padding: 0 !important;
-  border-radius: 4px;
-}
+    transition: transform cubic-bezier(0, 1, 0, 1) 300ms;
 
-.blocklyTreeRow:not(.blocklyTreeSelected):hover {
-  background-color: rgb(var(--primary-1));
-}
+    > path.blocklyFlyoutBackground {
+      fill: var(--color-bg-2);
+      fill-opacity:0;
+    }
 
-.blocklyFlyout:hover {
-  overflow: visible;
-}
+    >g>g>g>rect.blocklyFlyoutButtonShadow{
+      display: none;
+    }
+  }
 
-.blocklyTreeRowContentContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 11px 0 6px;
-}
+  > svg.blocklyFlyout:hover {
+    overflow: visible;
+  }
 
-#app > section > main > div.blocklyDiv > div > svg.blocklyScrollbarVertical.blocklyFlyoutScrollbar {
-  display: none;
+  > svg.blocklyScrollbarVertical.blocklyFlyoutScrollbar {
+    display: none;
+  }
 }
 </style>

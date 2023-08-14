@@ -87,36 +87,36 @@ function handleBiggerClick() {
   right: 40px;
   bottom: 40px;
   width: max-content;
-}
 
-#zoombox > div {
-  position: relative;
-  z-index: 9;
+  > div {
+    position: relative;
+    z-index: 9;
 
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-evenly;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-evenly;
 
-  margin-right: 10px;
+    margin-right: 10px;
 
-  background-color: var(--color-bg-2);
-  border: var(--color-border-2) solid 1px;
-  border-radius: var(--border-radius-medium);
-}
+    background-color: var(--color-bg-2);
+    border: var(--color-border-2) solid 1px;
+    border-radius: var(--border-radius-medium);
+  
+    > div {
+      margin: 0 !important;
+    
+      > button > span {
+        color: var(--color-text-2);
+      }
+    }
+  }
 
-#zoombox > div > div {
-  margin: 0 !important;
-}
-
-#zoombox > div:nth-last-child(1) {
-  margin-right: 0;
-}
-
-#zoombox > div:nth-last-child(1) > div:nth-child(2) > button {
-  padding: 0 5px;
-}
-
-#zoombox > div > div > button > span {
-  color: var(--color-text-2);
+  > div:nth-last-child(1) {
+    margin-right: 0;
+  
+    > div:nth-child(2) > button {
+      padding: 0 5px;
+    }
+  }
 }
 </style>

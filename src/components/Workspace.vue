@@ -49,31 +49,53 @@ onMounted(() => {
 })
 </script>
 
-<style>
-.blocklyDiv {
-  width: 100%;
-  height: 100vh;
-  text-align: left;
-}
+<style lang="less">
+#app > section {
+  > main {
+    > div.blocklyDiv {
+      width: 100%;
+      height: 100vh;
+      text-align: left;
 
-.blocklySvg {
-  background-color: var(--color-bg-1);
-}
+      > div.injectionDiv {
+        > svg.blocklySvg {
+          background-color: var(--color-bg-1);
 
-.blocklyMainBackground {
-  stroke: none;
-}
+          > g.blocklyWorkspace > rect.blocklyMainBackground {
+            stroke: none;
+          }
+        }
 
-#app > section > main > div.blocklyDiv > div > svg.blocklyMainWorkspaceScrollbar {
-  opacity: 0;
-  transition: opacity ease 200ms;
-}
+        > svg.blocklyMainWorkspaceScrollbar {
+          opacity: 0;
+          transition: opacity ease 200ms;
 
-#app > section > main:hover div.blocklyDiv > div > svg.blocklyMainWorkspaceScrollbar {
-  opacity: 0.8;
-}
+          > g > rect.blocklyScrollbarHandle {
+            fill: var(--color-fill-4);
+          }
+        }
 
-#app > section > main > div.blocklyDiv > div > svg > g > rect.blocklyScrollbarHandle {
-  fill: var(--color-neutral-4);
+        > svg.blocklyScrollbarHorizontal {
+          margin-top: 1px;
+
+          > g > rect.blocklyScrollbarHandle {
+            height: 9px;
+          }
+        }
+
+        > svg.blocklyScrollbarVertical {
+          > g > rect.blocklyScrollbarHandle {
+            width: 9px;
+          }
+        }
+      }
+    }
+  }
+
+  > main:hover {
+    > div.blocklyDiv > div > svg.blocklyMainWorkspaceScrollbar {
+      opacity: 0.8;
+    }
+  }
 }
 </style>
