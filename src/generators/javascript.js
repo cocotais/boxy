@@ -5,7 +5,7 @@ javascriptGenerator.forBlock['text_indexOf'] = function (block) {
   return 'for(;;) {\n' + branch + '}\n'
 }
 
-javascriptGenerator.forBlock['text_indexOf'] = function (block) {
+javascriptGenerator.forBlock['math_evenly_divisible'] = function (block) {
   const argument1 =
     javascriptGenerator.valueToCode(block, 'DIVIDEND', javascriptGenerator['ORDER_ATOMIC']) || '0'
   const argument2 =
