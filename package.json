@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
-    "preview": "vite preview",
+    "preview": "vite preview --host",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix",
     "style": "stylelint src/*.vue src/*/*.vue --fix",
     "format": "prettier --write ."

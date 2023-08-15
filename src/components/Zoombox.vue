@@ -2,7 +2,7 @@
   <div id="zoombox">
     <a-space>
       <a-tooltip content="搜索" position="top" mini>
-        <a-button type="text">
+        <a-button type="text" aria-label="搜索">
           <template #icon>
             <icon-search />
           </template>
@@ -11,7 +11,7 @@
     </a-space>
     <a-space>
       <a-tooltip content="代码区" position="top" mini>
-        <a-button type="text" @click="handleCodespace">
+        <a-button type="text" @click="handleCodespace" aria-label="代码区">
           <template #icon>
             <icon-code />
           </template>
@@ -20,19 +20,19 @@
     </a-space>
     <a-space>
       <a-tooltip content="缩小" position="top" mini>
-        <a-button type="text" @click="handleSmallerClick">
+        <a-button type="text" @click="handleSmallerClick" aria-label="缩小">
           <template #icon>
             <icon-smaller />
           </template>
         </a-button>
       </a-tooltip>
       <a-tooltip content="恢复为100%" position="top" mini>
-        <a-button type="text" @click="handleResetClick">
+        <a-button type="text" @click="handleResetClick" aria-label="恢复为100%">
           <span>100%</span>
         </a-button>
       </a-tooltip>
       <a-tooltip content="放大" position="top" mini>
-        <a-button type="text" @click="handleBiggerClick">
+        <a-button type="text" @click="handleBiggerClick" aria-label="放大">
           <template #icon>
             <icon-bigger />
           </template>
