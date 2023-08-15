@@ -1,6 +1,7 @@
 <template>
   <Navigator />
   <Screenshot />
+  <Dialog />
   <a-layout>
     <a-layout-content><Workspace /><Toolbox /><Zoombox /></a-layout-content>
     <a-layout-sider
@@ -26,6 +27,7 @@ import Blockly from 'blockly'
 import { onMounted, ref, watch } from 'vue'
 
 import Codespace from './components/Codespace.vue'
+import Dialog from './components/Dialog.vue'
 import Navigator from './components/Navigator.vue'
 import Screenshot from './components/Screenshot.vue'
 import Toolbox from './components/Toolbox.vue'

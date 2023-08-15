@@ -1,5 +1,5 @@
 <template>
-  <a-trigger trigger="click" position="rt">
+  <a-trigger trigger="hover" position="rt">
     <div id="logo" @click="handleIconClick">
       <img alt="Logo" src="../assets/boxy.svg" />
     </div>
