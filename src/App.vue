@@ -1,5 +1,6 @@
 <template>
   <Navigator />
+  <Screenshot />
   <a-layout>
     <a-layout-content><Workspace /><Toolbox /><Zoombox /></a-layout-content>
     <a-layout-sider
@@ -26,6 +27,7 @@ import { onMounted, ref, watch } from 'vue'
 
 import Codespace from './components/Codespace.vue'
 import Navigator from './components/Navigator.vue'
+import Screenshot from './components/Screenshot.vue'
 import Toolbox from './components/Toolbox.vue'
 import Workspace from './components/Workspace.vue'
 import Zoombox from './components/Zoombox.vue'
