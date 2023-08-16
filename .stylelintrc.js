@@ -3,7 +3,7 @@ module.exports = {
     'stylelint-config-standard',
     'stylelint-config-clean-order',
     'stylelint-config-recommended-vue',
-    'stylelint-config-recommended-less',
+    'stylelint-config-recommended-less'
   ],
   rules: {
     'selector-id-pattern': null,

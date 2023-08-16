@@ -50,7 +50,7 @@ import { useStore } from '../utils/store'
 let store = useStore()
 
 function handleCodespace() {
-  store.hasCodespace = !store.hasCodespace
+  store.hasLayoutSider = !store.hasLayoutSider
 }
 
 function handleSmallerClick() {
@@ -101,10 +101,10 @@ function handleBiggerClick() {
     background-color: var(--color-bg-2);
     border: var(--color-border-2) solid 1px;
     border-radius: var(--border-radius-medium);
-  
+
     > div {
       margin: 0 !important;
-    
+
       > button > span {
         color: var(--color-text-2);
       }
@@ -113,7 +113,7 @@ function handleBiggerClick() {
 
   > div:nth-last-child(1) {
     margin-right: 0;
-  
+
     > div:nth-child(2) > button {
       padding: 0 5px;
     }

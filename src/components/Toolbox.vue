@@ -167,10 +167,10 @@ div.injectionDiv {
 
     > path.blocklyFlyoutBackground {
       fill: var(--color-bg-2);
-      fill-opacity:0;
+      fill-opacity: 0;
     }
 
-    >g>g>g>rect.blocklyFlyoutButtonShadow{
+    > g > g > g > rect.blocklyFlyoutButtonShadow {
       display: none;
     }
   }

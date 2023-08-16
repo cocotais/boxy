@@ -1,11 +1,13 @@
 <template>
   <Navigator />
-  <Screenshot />
-  <Dialog />
   <a-layout>
-    <a-layout-content><Workspace /><Toolbox /><Zoombox /></a-layout-content>
+    <a-layout-content>
+      <Workspace />
+      <Toolbox />
+      <Zoombox />
+    </a-layout-content>
     <a-layout-sider
-      ref="codespace"
+      ref="layoutSider"
       :resize-directions="['left']"
       @moving="handleMoving"
       @moving-end="handleMoving"
@@ -13,6 +15,9 @@
       <Codespace />
     </a-layout-sider>
   </a-layout>
+  <Trashcan />
+  <Screenshot />
+  <Dialog />
 </template>
 
 <script setup>
@@ -31,13 +36,14 @@ import Dialog from './components/Dialog.vue'
 import Navigator from './components/Navigator.vue'
 import Screenshot from './components/Screenshot.vue'
 import Toolbox from './components/Toolbox.vue'
+import Trashcan from './components/Trashcan.vue'
 import Workspace from './components/Workspace.vue'
 import Zoombox from './components/Zoombox.vue'
 import { useStore } from './utils/store'
 
 const store = useStore()
-const codespace = ref()
-let usedCodespace = null
+const layoutSider = ref()
+let usedLayoutSider
 
 function handleMoving() {
   for (let i = 0; i < 5; i++) {
@@ -47,8 +53,8 @@ function handleMoving() {
   }
 }
 
-function setCodespace(isOpen = false) {
-  codespace.value.$el.style.display = isOpen ? 'block' : 'none'
+function setLayoutSider(isOpen = false) {
+  layoutSider.value.$el.style.display = isOpen ? 'block' : 'none'
   handleMoving()
 }
 
@@ -56,15 +62,15 @@ onMounted(() => {
   watch(
     store.$state,
     (state) => {
-      if (state.hasCodespace !== usedCodespace) {
-        setCodespace(state.hasCodespace)
-        usedCodespace = state.hasCodespace
+      if (state.hasLayoutSider !== usedLayoutSider) {
+        setLayoutSider(state.hasLayoutSider)
+        usedLayoutSider = state.hasLayoutSider
       }
     },
     { deep: true }
   )
   handleMoving()
-  setCodespace()
+  setLayoutSider()
 })
 </script>
 

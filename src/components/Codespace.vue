@@ -29,7 +29,7 @@ onMounted(() => {
 })
 
 function handleCloseClick() {
-  store.hasCodespace = false
+  store.hasLayoutSider = false
 }
 </script>
 
@@ -37,7 +37,7 @@ function handleCloseClick() {
 @font-face {
   font-family: JetBrainsMono;
   font-display: swap;
-  src: url('../assets/JetBrainsMono.ttf');
+  src: url('../assets/mono.ttf');
 }
 
 #app > section {

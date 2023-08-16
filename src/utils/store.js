@@ -4,7 +4,8 @@ export const useStore = defineStore('main', {
   state: () => {
     return {
       workspace: null,
-      hasCodespace: false
+      hasLayoutSider: false,
+      trashcanOpen: false
     }
   }
 })

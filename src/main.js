@@ -10,6 +10,7 @@ import { createApp } from 'vue'
 
 import App from './App.vue'
 import observer from './utils/observer'
+import { useStore } from './utils/store'
 
 hljs.registerLanguage('javascript', javascript)
 
@@ -20,14 +21,17 @@ app.use(highlight)
 app.use(pinia)
 app.mount('#app')
 
+const store = useStore()
+
 observer(
   '#app > section > main > div.blocklyDiv > div > svg.blocklyFlyout',
   ['style'],
   (element) => {
-    if (element.style.display === 'block') {
-      element.style.transform = 'translate(60px,0px)'
-    } else {
-      element.style.transform = 'translate(-260px,0px)'
-    }
+    element.style.transform =
+      element.style.display === 'block' ? 'translate(60px,0px)' : 'translate(-260px,0px)'
   }
 )
+
+observer('#app > section > main > div.blocklyDiv > div > div', ['class'], (element) => {
+  store.trashcanOpen = element.classList.contains('blocklyToolboxDelete')
+})

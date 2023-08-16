@@ -13,12 +13,7 @@ module.exports = {
   },
   plugins: ['simple-import-sort'],
   rules: {
-    'vue/multi-word-component-names': [
-      'error',
-      {
-        ignores: ['Codespace', 'Navigator', 'Settings', 'Toolbox', 'Workspace', 'Zoombox']
-      }
-    ],
+    'vue/multi-word-component-names': 'off',
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error'
   }
