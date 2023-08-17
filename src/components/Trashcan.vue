@@ -55,7 +55,6 @@ onMounted(() => {
   watch(
     store.$state,
     (state) => {
-      console.log(state.trashcanOpen)
       if (state.trashcanOpen) {
         open()
       } else {

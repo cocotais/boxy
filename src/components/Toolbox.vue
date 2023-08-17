@@ -67,43 +67,63 @@ Blockly.registry.register(
  * @private
  */
 Blockly.VerticalFlyout.prototype['reflowInternal_'] = function () {
-  this['workspace_'].scale = 0.8 //对，这是覆盖的唯一地方，实现 toolbox 大小锁死。
-  let a = 0
-  let b = this['workspace_'].getTopBlocks(!1)
-  let c = 0
-  for (let d = 0, e; (e = b[d]); d++) {
-    c = e.getHeightWidth().width
-    e.outputConnection && (c -= this['tabWidth_'])
-    a = Math.max(a, c)
-  }
-  for (let d = 0, e; (e = this['buttons_'][d]); d++) a = Math.max(a, e.width)
-  a += 1.5 * this['MARGIN'] + this['tabWidth_']
-  a *= this['workspace_'].scale
-  a += Blockly.Scrollbar.scrollbarThickness
-  if (this.width_ !== a) {
-    for (let d = 0, e; (e = b[d]); d++) {
-      if (this['RTL']) {
-        c = e.getRelativeToSurfaceXY().x
-        let f = a / this['workspace_'].scale - this['MARGIN']
-        e.outputConnection || (f -= this['tabWidth_'])
-        e.moveBy(f - c, 0)
-      }
-      this['rectMap_'].has(e) && this['moveRectToBlock_'](this['rectMap_'].get(e), e)
+  this.workspace_.scale = 0.8 // 实现 toolbox 大小锁死。
+  let flyoutWidth = 0
+  const blocks = this.workspace_.getTopBlocks(false)
+  for (const block of blocks) {
+    let width = block.getHeightWidth().width
+    if (block.outputConnection) {
+      width -= this.tabWidth_
     }
-    if (this['RTL'])
-      for (let d = 0, e; (e = this['buttons_'][d]); d++)
-        (b = e.getPosition().y),
-          e.moveTo(a / this['workspace_'].scale - e.width - this['MARGIN'] - this['tabWidth_'], b)
-    this['targetWorkspace'].toolboxPosition !== this['toolboxPosition_'] ||
-      this['toolboxPosition_'] !== Blockly.utils.toolbox.Position.LEFT ||
-      this['targetWorkspace'].getToolbox() ||
-      this['targetWorkspace'].translate(
-        this['targetWorkspace'].scrollX + a,
-        this['targetWorkspace'].scrollY
+    flyoutWidth = Math.max(flyoutWidth, width)
+  }
+  for (const button of this.buttons_) {
+    flyoutWidth = Math.max(flyoutWidth, button.width)
+  }
+  flyoutWidth += this.MARGIN * 1.5 + this.tabWidth_
+  flyoutWidth *= this.workspace_.scale
+  flyoutWidth += Blockly.Scrollbar.scrollbarThickness
+
+  if (this.width_ !== flyoutWidth) {
+    for (const block of blocks) {
+      if (this.RTL) {
+        // With the flyoutWidth known, right-align the blocks.
+        const oldX = block.getRelativeToSurfaceXY().x
+        let newX = flyoutWidth / this.workspace_.scale - this.MARGIN
+        if (!block.outputConnection) {
+          newX -= this.tabWidth_
+        }
+        block.moveBy(newX - oldX, 0)
+      }
+      if (this.rectMap_.has(block)) {
+        this.moveRectToBlock_(this.rectMap_.get(block), block)
+      }
+    }
+    if (this.RTL) {
+      // With the flyoutWidth known, right-align the buttons.
+      for (const button of this.buttons_) {
+        const y = button.getPosition().y
+        const x = flyoutWidth / this.workspace_.scale - button.width - this.MARGIN - this.tabWidth_
+        button.moveTo(x, y)
+      }
+    }
+
+    if (
+      this.targetWorkspace.toolboxPosition === this.toolboxPosition_ &&
+      this.toolboxPosition_ === Blockly.utils.toolbox.Position.LEFT &&
+      !this.targetWorkspace.getToolbox()
+    ) {
+      // This flyout is a simple toolbox. Reposition the workspace so that
+      // (0,0) is in the correct position relative to the new absolute edge
+      // (ie toolbox edge).
+      this.targetWorkspace.translate(
+        this.targetWorkspace.scrollX + flyoutWidth,
+        this.targetWorkspace.scrollY
       )
-    this.width_ = a
-    this['position']()
-    this['targetWorkspace'].recordDragTargets()
+    }
+    this.width_ = flyoutWidth
+    this.position()
+    this.targetWorkspace.recordDragTargets()
   }
 }
 </script>

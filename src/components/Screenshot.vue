@@ -16,7 +16,7 @@ const src = ref()
 const visible = ref()
 
 function handleDownloadClick() {
-  let a = document.createElement('a')
+  const a = document.createElement('a')
   a.download = 'block.png'
   a.href = src.value
   a.click()
@@ -26,11 +26,11 @@ function handleDownloadClick() {
 // https://google.github.io/blockly-samples/examples/mirror-demo/index.html
 
 function showSvg(svg) {
-  let img = document.createElement('img')
-  let canvas = document.createElement('canvas')
-  let context = canvas.getContext('2d')
+  const img = document.createElement('img')
+  const canvas = document.createElement('canvas')
+  const context = canvas.getContext('2d')
 
-  let pixelDensity = 1
+  const pixelDensity = Math.sqrt(40)
   canvas.width = svg.width * pixelDensity
   canvas.height = svg.height * pixelDensity
   img.onload = function () {
@@ -134,8 +134,12 @@ onMounted(() => {
 </script>
 
 <style>
-#app > div.arco-image.arco-image-with-footer-inner {
-  position: fixed;
-  visibility: hidden;
+body
+  > div.arco-image-preview
+  > div.arco-image-preview-wrapper
+  > div.arco-image-preview-img-container {
+  width: 50vw;
+  height: 50vh;
+  margin: 25vh 25vw;
 }
 </style>

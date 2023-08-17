@@ -28,7 +28,7 @@
       </a-tooltip>
       <a-tooltip content="恢复为100%" position="top" mini>
         <a-button type="text" @click="handleResetClick" aria-label="恢复为100%">
-          <span>100%</span>
+          <span ref="scale">100%</span>
         </a-button>
       </a-tooltip>
       <a-tooltip content="放大" position="top" mini>
@@ -44,10 +44,12 @@
 
 <script setup>
 import { IconBigger, IconCode, IconSearch, IconSmaller } from '@arco-iconbox/vue-boxy'
+import { onMounted, ref } from 'vue'
 
 import { useStore } from '../utils/store'
 
-let store = useStore()
+const scale = ref()
+const store = useStore()
 
 function handleCodespace() {
   store.hasLayoutSider = !store.hasLayoutSider
@@ -56,7 +58,6 @@ function handleCodespace() {
 function handleSmallerClick() {
   let speed = store.workspace.options.zoomOptions.scaleSpeed
   let scale = store.workspace.scale
-  // \log_{speed}\left(\frac{scale - 0.15}{scale}\right)
   store.workspace.zoom(0, 0, Math.log((scale - 0.15) / scale) / Math.log(speed))
 }
 
@@ -67,9 +68,14 @@ function handleResetClick() {
 function handleBiggerClick() {
   let speed = store.workspace.options.zoomOptions.scaleSpeed
   let scale = store.workspace.scale
-  // \log_{speed}\left(\frac{scale + 0.15}{scale}\right)
   store.workspace.zoom(0, 0, Math.log((scale + 0.15) / scale) / Math.log(speed))
 }
+
+onMounted(() => {
+  store.workspace.addChangeListener(() => {
+    scale.value.innerHTML = Math.floor((store.workspace.scale * (5 / 3) - 1 / 3) * 100) + '%'
+  })
+})
 </script>
 
 <style>
