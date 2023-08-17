@@ -4,7 +4,7 @@
     <div id="modal-content">
       <a-space>
         <p>积木盒宽度</p>
-        <a-radio-group type="button">
+        <a-radio-group :model-value="flyoutMode" @change="handleFlyoutChange" type="button">
           <a-radio value="full">适应</a-radio>
           <a-radio value="fixed">固定</a-radio>
         </a-radio-group>
@@ -12,19 +12,19 @@
       <a-space>
         <p>主题</p>
         <a-select :model-value="themeMode" @change="handleThemeChange" style="text-align: justify">
-          <a-option>
+          <a-option value="light">
             <template #icon>
               <IconLight />
             </template>
             <template #default>白天模式</template>
           </a-option>
-          <a-option>
+          <a-option value="dark">
             <template #icon>
               <IconDark />
             </template>
             <template #default>黑夜模式</template>
           </a-option>
-          <a-option>
+          <a-option value="auto">
             <template #icon>
               <IconAuto />
             </template>
@@ -38,28 +38,43 @@
 
 <script setup>
 import { IconAuto, IconDark, IconLight } from '@arco-iconbox/vue-boxy'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 import Cookies from '../utils/cookies'
 
 const visible = ref(false)
-const themeMode = ref(Cookies.get('theme') || '跟随系统')
+const flyoutMode = ref(Cookies.get('flyout') || 'full')
+const themeMode = ref(Cookies.get('theme') || 'auto')
 
 function handleClick() {
   visible.value = true
 }
 
+function handleFlyoutChange(value) {
+  const flyout = document.querySelector('div.injectionDiv > svg.blocklyFlyout')
+  if (flyout) {
+    flyout.style.width = '320px'
+    if (value === 'full') {
+      flyout.classList.remove('blocklyFlyoutFixed')
+    } else {
+      flyout.classList.add('blocklyFlyoutFixed')
+    }
+  }
+  flyoutMode.value = value
+  Cookies.set('flyout', flyoutMode.value)
+}
+
 function setTheme(value) {
-  if (value === '白天模式') {
+  if (value === 'light') {
     document.body.removeAttribute('arco-theme')
-  } else if (value === '黑夜模式') {
+  } else if (value === 'dark') {
     document.body.setAttribute('arco-theme', 'dark')
   }
 }
 
 function handleThemeChange(value) {
-  if (value === '跟随系统') {
-    setTheme(window.matchMedia('(prefers-color-scheme: dark)').matches ? '黑夜模式' : '白天模式')
+  if (value === 'auto') {
+    setTheme(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
   } else {
     setTheme(value)
   }
@@ -68,14 +83,18 @@ function handleThemeChange(value) {
 }
 
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (event) {
-  if (event.matches && themeMode.value === '跟随系统') {
-    setTheme('黑夜模式')
+  if (event.matches && themeMode.value === 'auto') {
+    setTheme('dark')
   } else {
-    setTheme('白天模式')
+    setTheme('light')
   }
 })
 
-handleThemeChange(themeMode.value)
+onMounted(() => {
+  handleFlyoutChange(flyoutMode.value)
+  handleThemeChange(themeMode.value)
+})
+
 defineExpose({ handleClick })
 </script>
 

@@ -1,5 +1,4 @@
 <template>
-  <Navigator />
   <a-layout>
     <a-layout-content>
       <Workspace />
@@ -15,6 +14,7 @@
       <Codespace />
     </a-layout-sider>
   </a-layout>
+  <Navigator />
   <Trashcan />
   <Screenshot />
   <Dialog />

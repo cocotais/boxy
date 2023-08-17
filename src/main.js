@@ -8,6 +8,7 @@ import { createPinia } from 'pinia'
 import { createApp } from 'vue'
 
 import App from './App.vue'
+import Cookies from './utils/cookies'
 import observer from './utils/observer'
 import { useStore } from './utils/store'
 
@@ -25,8 +26,14 @@ observer(
   '#app > section > main > div.blocklyDiv > div > svg.blocklyFlyout',
   ['style'],
   (element) => {
-    element.style.transform =
-      element.style.display === 'block' ? 'translate(60px,0px)' : 'translate(-260px,0px)'
+    const elementWidth = element.getAttribute('width')
+    element.style.width = elementWidth + 'px'
+    if (element.style.display === 'block') {
+      element.style.transform = 'translate(60px,0px)'
+    } else {
+      const retractedLength = -(Cookies.get('flyout') === 'full' ? elementWidth || 320 : 320) + 60
+      element.style.transform = `translate(${retractedLength}px,0px)`
+    }
   }
 )
 
