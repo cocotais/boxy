@@ -135,6 +135,7 @@ div.injectionDiv {
     top: 60px;
 
     width: 60px;
+    height: calc(100vh - 60px) !important;
     padding: 0;
 
     background: var(--color-bg-2);
