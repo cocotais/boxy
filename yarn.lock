@@ -186,6 +186,11 @@
   resolved "https://mirrors.cloud.tencent.com/npm/@blockly/block-plus-minus/-/block-plus-minus-6.0.2.tgz#1b35d22390c3e8c77b918deb0c60be804e7a0b49"
   integrity sha512-mEJucdynP8GA67H4S1J+s5/sQo1f4aXtDtJh5SY6rht/jvzLQukgwijBN7x9S1aRITU1axzQl4F4IjZ9kb8qDw==
 
+"@blockly/plugin-workspace-search@^8.0.3":
+  version "8.0.3"
+  resolved "https://mirrors.cloud.tencent.com/npm/@blockly/plugin-workspace-search/-/plugin-workspace-search-8.0.3.tgz#53e746d6e6c8b750984d10186f663cd68e635733"
+  integrity sha512-2dugV9DzexW628U2TAYp9R9XTzOKQ0WczQDr962Tm8a5hT4QvceUGHog/ZQa16BUKbr/cbvSavhBY3rgHV9e9w==
+
 "@csstools/css-parser-algorithms@^2.3.0":
   version "2.3.1"
   resolved "https://mirrors.cloud.tencent.com/npm/@csstools/css-parser-algorithms/-/css-parser-algorithms-2.3.1.tgz#ec4fc764ba45d2bb7ee2774667e056aa95003f3a"

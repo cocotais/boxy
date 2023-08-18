@@ -5,6 +5,7 @@
 <script setup>
 import '@blockly/block-plus-minus'
 
+import { WorkspaceSearch } from '@blockly/plugin-workspace-search'
 import Blockly from 'blockly'
 import * as zh from 'blockly/msg/zh-hans'
 import { onMounted, ref } from 'vue'
@@ -46,6 +47,9 @@ const options = {
 
 onMounted(() => {
   store.workspace = Blockly.inject(blocklyDiv.value, options)
+  store.search = new WorkspaceSearch(store.workspace)
+  store.search.setSearchPlaceholder('搜索作品中的积木')
+  store.search.init()
 })
 </script>
 

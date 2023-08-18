@@ -9,6 +9,8 @@
         <a-doption @click="handleSaveClick">保存到电脑</a-doption>
         <a-doption @click="handleOpenClick">打开本地文件</a-doption>
         <a-divider margin="1px" />
+        <a-doption @click="handleSearchClick">查找</a-doption>
+        <a-divider margin="1px" />
         <a-doption @click="handleDocsClick">文档</a-doption>
         <a-doption @click="handleOptionsClick">设置</a-doption>
       </div>
@@ -60,6 +62,10 @@ function handleOpenClick() {
   input.click()
 }
 
+function handleSearchClick() {
+  store.search.open()
+}
+
 function handleDocsClick() {
   window.open('https://www.yuque.com/hzsn/boxy')
 }
@@ -107,7 +113,7 @@ function handleOptionsClick() {
 
   100% {
     width: 150px;
-    height: 208px;
+    height: 248px;
   }
 }
 </style>

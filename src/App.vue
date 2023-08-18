@@ -4,6 +4,7 @@
       <Workspace />
       <Toolbox />
       <Zoombox />
+      <Search />
     </a-layout-content>
     <a-layout-sider
       ref="layoutSider"
@@ -35,6 +36,7 @@ import Codespace from './components/Codespace.vue'
 import Dialog from './components/Dialog.vue'
 import Navigator from './components/Navigator.vue'
 import Screenshot from './components/Screenshot.vue'
+import Search from './components/Search.vue'
 import Toolbox from './components/Toolbox.vue'
 import Trashcan from './components/Trashcan.vue'
 import Workspace from './components/Workspace.vue'
