@@ -1,7 +1,7 @@
 <template>
   <a-trigger trigger="hover" position="rt">
     <div id="logo" @click="handleIconClick">
-      <img alt="Logo" src="../assets/boxy.svg" />
+      <img alt="Logo" src="../assets/boxy.svg" width="36" height="36" />
     </div>
     <template #content>
       <div class="navigatorMenu">

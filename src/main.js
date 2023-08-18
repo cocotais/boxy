@@ -5,6 +5,7 @@ import highlight from '@highlightjs/vue-plugin'
 import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'
 import { createPinia } from 'pinia'
+import { registerSW } from 'virtual:pwa-register'
 import { createApp } from 'vue'
 
 import App from './App.vue'
@@ -40,3 +41,7 @@ observer(
 observer('#app > section > main > div.blocklyDiv > div > div', ['class'], (element) => {
   store.trashcanOpen = element.classList.contains('blocklyToolboxDelete')
 })
+
+if ('serviceWorker' in navigator) {
+  registerSW()
+}
