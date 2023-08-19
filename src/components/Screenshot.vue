@@ -2,13 +2,14 @@
   <a-image-preview v-model:src="src" v-model:visible="visible">
     <template #actions>
       <a-image-preview-action name="下载" @click="handleDownloadClick">
-        Download
+        <icon-download />
       </a-image-preview-action>
     </template>
   </a-image-preview>
 </template>
 
 <script setup>
+import { IconDownload } from '@arco-iconbox/vue-boxy'
 import Blockly from 'blockly'
 import { onMounted, ref } from 'vue'
 

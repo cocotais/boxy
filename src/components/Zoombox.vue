@@ -1,10 +1,10 @@
 <template>
   <div id="zoombox">
     <a-space>
-      <a-tooltip content="搜索" position="top" mini>
-        <a-button type="text" aria-label="搜索">
+      <a-tooltip content="整理" position="top" mini>
+        <a-button type="text" @click="handleCleanUpClick" aria-label="整理">
           <template #icon>
-            <icon-search />
+            <icon-cleanup />
           </template>
         </a-button>
       </a-tooltip>
@@ -43,13 +43,17 @@
 </template>
 
 <script setup>
-import { IconBigger, IconCode, IconSearch, IconSmaller } from '@arco-iconbox/vue-boxy'
+import { IconBigger, IconCleanup, IconCode, IconSmaller } from '@arco-iconbox/vue-boxy'
 import { onMounted, ref } from 'vue'
 
 import { useStore } from '../utils/store'
 
 const scale = ref()
 const store = useStore()
+
+function handleCleanUpClick() {
+  store.workspace.cleanUp()
+}
 
 function handleCodespace() {
   store.hasLayoutSider = !store.hasLayoutSider

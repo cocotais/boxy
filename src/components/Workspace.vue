@@ -14,7 +14,10 @@ import toolboxConfig from '../assets/toolbox.json'
 import { useStore } from '../utils/store'
 
 Blockly.setLocale(zh)
+
 Blockly.FlyoutButton.BORDER_RADIUS = 8
+Blockly.FlyoutButton.TEXT_MARGIN_X = 10
+Blockly.FlyoutButton.TEXT_MARGIN_Y = 10
 
 Blockly.Msg['CONTROLS_REPEAT_INPUT_DO'] = ''
 Blockly.Msg['CONTROLS_IF_MSG_THEN'] = ''

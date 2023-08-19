@@ -1,5 +1,5 @@
 <template>
-  <a-modal v-model:visible="visible">
+  <a-modal v-model:visible="visible" width="auto" footer="false">
     <template #title>设置</template>
     <div id="modal-content">
       <a-space>
@@ -33,6 +33,9 @@
         </a-select>
       </a-space>
     </div>
+    <template #footer>
+      <span style="color: var(--color-text-4)">Copyright 2023 Coconut Studio</span>
+    </template>
   </a-modal>
 </template>
 
@@ -104,11 +107,5 @@ defineExpose({ handleClick })
   width: 100%;
 
   -webkit-tap-highlight-color: transparent;
-}
-
-.arco-modal {
-  width: calc(100% - 40px);
-  max-width: 520px;
-  margin: 0 20px;
 }
 </style>

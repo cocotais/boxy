@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@arco-design/web-vue": "^2.50.0",
-    "@arco-iconbox/vue-boxy": "^0.0.4",
+    "@arco-iconbox/vue-boxy": "^0.0.7",
     "@arco-plugins/vite-vue": "^1.4.5",
     "@arco-themes/vue-boxy": "^0.0.1",
     "@blockly/block-plus-minus": "^6.0.2",

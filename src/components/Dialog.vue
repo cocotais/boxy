@@ -31,7 +31,7 @@ Blockly.dialog.setConfirm(function (message, callback) {
 
 Blockly.dialog.setPrompt(function (message, defaultValue, callback) {
   Modal.confirm({
-    title: message,
+    title: message.replace('：', ''),
     content: () => h(Input, { defaultValue: defaultValue, id: 'dialog-input' }),
     okText: '确认',
     cancelText: '取消',
@@ -45,11 +45,15 @@ Blockly.dialog.setPrompt(function (message, defaultValue, callback) {
 })
 </script>
 
-<style>
+<style lang="less">
 .arco-modal-container .arco-modal-simple {
   width: calc(100% - 80px);
   max-width: 520px;
   margin: 0 20px;
   padding: 20px;
+
+  > div > div > div.arco-modal-title-icon {
+    display: none;
+  }
 }
 </style>

@@ -195,11 +195,14 @@ div.injectionDiv {
       fill-opacity: 0;
     }
 
-    > g > g > g > rect.blocklyFlyoutButtonShadow {
-      display: none;
+    > g > g > g {
+      fill: rgb(var(--primary-6));
+      > rect.blocklyFlyoutButtonShadow {
+        display: none;
+      }
     }
   }
-  
+
   @media (any-hover: hover) {
     > svg.blocklyFlyout:hover {
       overflow: visible;

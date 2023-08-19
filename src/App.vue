@@ -96,6 +96,10 @@ body,
   border: 0;
 }
 
+::selection {
+  background: #1ba2e333;
+}
+
 body::-webkit-scrollbar {
   display: none;
 }

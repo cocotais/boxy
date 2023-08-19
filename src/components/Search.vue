@@ -27,7 +27,7 @@ div.blockly-ws-search {
           margin-left: 4px;
           font-size: 14px;
           line-height: 1.5715;
-          color: var(--color-text-1);
+          color: var(--color-text-3);
           background: var(--color-bg-2);
         }
 
@@ -35,8 +35,8 @@ div.blockly-ws-search {
           outline: none;
         }
 
-        > input::selection {
-          background: #1ba2e333;
+        > input::placeholder {
+          color: var(--color-text-3);
         }
       }
 

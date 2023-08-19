@@ -1,5 +1,5 @@
 <template>
-  <a-trigger trigger="hover" position="rt" :popup-visible="visible">
+  <a-trigger trigger="hover" position="rt" v-model:popup-visible="visible">
     <div id="logo" @click="handleIconClick">
       <img alt="Logo" src="../assets/boxy.svg" width="36" height="36" />
     </div>
@@ -11,8 +11,8 @@
         <a-divider margin="1px" />
         <a-doption @click="handleSearchClick">查找</a-doption>
         <a-divider margin="1px" />
-        <a-doption @click="handleDocsClick">文档</a-doption>
         <a-doption @click="handleOptionsClick">设置</a-doption>
+        <a-doption @click="handleAboutClick">关于</a-doption>
       </div>
     </template>
   </a-trigger>
@@ -71,13 +71,13 @@ function handleSearchClick() {
   visible.value = false
 }
 
-function handleDocsClick() {
-  window.open('https://www.yuque.com/hzsn/boxy')
+function handleOptionsClick() {
+  modal.value.handleClick()
   visible.value = false
 }
 
-function handleOptionsClick() {
-  modal.value.handleClick()
+function handleAboutClick() {
+  window.open('https://www.yuque.com/hzsn/boxy')
   visible.value = false
 }
 </script>
