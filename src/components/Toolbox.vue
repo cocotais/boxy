@@ -164,8 +164,10 @@ div.injectionDiv {
         }
       }
 
-      > div.blocklyTreeRow:not(.blocklyTreeSelected):hover {
-        background-color: rgb(var(--primary-1));
+      @media (any-hover: hover) {
+        > div.blocklyTreeRow:not(.blocklyTreeSelected):hover {
+          background-color: rgb(var(--primary-1));
+        }
       }
     }
   }
@@ -197,9 +199,11 @@ div.injectionDiv {
       display: none;
     }
   }
-
-  > svg.blocklyFlyout:hover {
-    overflow: visible;
+  
+  @media (any-hover: hover) {
+    > svg.blocklyFlyout:hover {
+      overflow: visible;
+    }
   }
 
   > svg.blocklyFlyout.blocklyFlyoutFixed {

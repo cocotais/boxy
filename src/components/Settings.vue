@@ -102,6 +102,8 @@ defineExpose({ handleClick })
 #modal-content > div {
   justify-content: space-between;
   width: 100%;
+
+  -webkit-tap-highlight-color: transparent;
 }
 
 .arco-modal {

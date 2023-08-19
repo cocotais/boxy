@@ -1,5 +1,5 @@
 <template>
-  <a-trigger trigger="hover" position="rt">
+  <a-trigger trigger="hover" position="rt" :popup-visible="visible">
     <div id="logo" @click="handleIconClick">
       <img alt="Logo" src="../assets/boxy.svg" width="36" height="36" />
     </div>
@@ -26,10 +26,12 @@ import { ref } from 'vue'
 import { useStore } from '../utils/store'
 import Settings from './Settings.vue'
 
-const store = useStore()
+const visible = ref()
 const modal = ref()
+const store = useStore()
 
 function handleIconClick() {
+  visible.value = !visible.value
   Blockly.hideChaff()
 }
 
@@ -42,6 +44,7 @@ function handleSaveClick() {
   anchor.href = url
   anchor.download = 'project.boxy'
   anchor.click()
+  visible.value = false
 }
 
 function handleOpenClick() {
@@ -60,18 +63,22 @@ function handleOpenClick() {
     reader.readAsText(file)
   })
   input.click()
+  visible.value = false
 }
 
 function handleSearchClick() {
   store.search.open()
+  visible.value = false
 }
 
 function handleDocsClick() {
   window.open('https://www.yuque.com/hzsn/boxy')
+  visible.value = false
 }
 
 function handleOptionsClick() {
   modal.value.handleClick()
+  visible.value = false
 }
 </script>
 
@@ -103,6 +110,10 @@ function handleOptionsClick() {
   box-shadow: 0 -2px 5px rgb(0 0 0 / 10%);
 
   animation: show-dropdown 0.3s cubic-bezier(0, 1.2, 0, 1) forwards !important;
+
+  > li {
+    -webkit-tap-highlight-color: transparent;
+  }
 }
 
 @keyframes show-dropdown {

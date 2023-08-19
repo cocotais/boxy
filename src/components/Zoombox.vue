@@ -125,4 +125,34 @@ onMounted(() => {
     }
   }
 }
+
+div.arco-trigger-popup.arco-trigger-position-top.arco-tooltip {
+  visibility: hidden;
+}
+
+arco-btn-text,
+.arco-btn-text[type='button'],
+.arco-btn-text[type='submit'] {
+  background: transparent !important;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+arco-btn-text:active,
+.arco-btn-text[type='button']:active,
+.arco-btn-text[type='submit']:active {
+  background: var(--color-fill-3) !important;
+}
+
+@media (any-hover: hover) {
+  div.arco-trigger-popup.arco-trigger-position-top.arco-tooltip {
+    visibility: visible;
+  }
+
+  arco-btn-text:hover,
+  .arco-btn-text[type='button']:hover,
+  .arco-btn-text[type='submit']:hover {
+    background: var(--color-fill-2) !important;
+  }
+}
 </style>
