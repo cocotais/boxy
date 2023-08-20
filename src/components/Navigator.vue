@@ -1,5 +1,5 @@
 <template>
-  <a-trigger trigger="hover" position="rt" v-model:popup-visible="visible">
+  <a-trigger :trigger="['hover', 'click']" position="rt" v-model:popup-visible="visible">
     <div id="logo" @click="handleIconClick">
       <img alt="Logo" src="../assets/boxy.svg" width="36" height="36" />
     </div>
@@ -31,7 +31,6 @@ const modal = ref()
 const store = useStore()
 
 function handleIconClick() {
-  visible.value = !visible.value
   Blockly.hideChaff()
 }
 
@@ -67,7 +66,7 @@ function handleOpenClick() {
 }
 
 function handleSearchClick() {
-  store.search.open()
+  store.searchOpen = true
   visible.value = false
 }
 
@@ -109,7 +108,7 @@ function handleAboutClick() {
   border-radius: var(--border-radius-medium);
   box-shadow: 0 -2px 5px rgb(0 0 0 / 10%);
 
-  animation: show-dropdown 0.3s cubic-bezier(0, 1.2, 0, 1) forwards !important;
+  animation: show-dropdown cubic-bezier(0, 1.2, 0, 1) 600ms forwards !important;
 
   > li {
     -webkit-tap-highlight-color: transparent;

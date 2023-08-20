@@ -78,11 +78,11 @@ function handleCloseClick() {
   > div {
     > svg {
       position: fixed;
-      top: 20px;
-      right: 20px;
+      top: 12px;
+      right: 12px;
 
-      width: 20px;
-      height: 20px;
+      width: 36px;
+      height: 36px;
 
       color: var(--color-text-3);
     }
@@ -102,16 +102,6 @@ function handleCloseClick() {
         line-height: 1.414;
 
         background: transparent;
-
-        > span::selection {
-          color: inherit;
-          background: #1ba2e333;
-        }
-      }
-
-      > code::selection {
-        color: inherit;
-        background: #1ba2e333;
       }
     }
   }

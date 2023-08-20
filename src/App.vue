@@ -2,9 +2,9 @@
   <a-layout>
     <a-layout-content>
       <Workspace />
+      <Search />
       <Toolbox />
       <Zoombox />
-      <Search />
     </a-layout-content>
     <a-layout-sider
       ref="layoutSider"

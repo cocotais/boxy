@@ -45,10 +45,10 @@
     resize-observer-polyfill "^1.5.1"
     scroll-into-view-if-needed "^2.2.28"
 
-"@arco-iconbox/vue-boxy@^0.0.7":
-  version "0.0.7"
-  resolved "https://mirrors.cloud.tencent.com/npm/@arco-iconbox/vue-boxy/-/vue-boxy-0.0.7.tgz#1caab4e82d5630a0ef987edb0b2182dc5e22a3b1"
-  integrity sha512-joPCqJyOEvSz1CanyytyUihmWkzQmRmPlmhCE7xqXKZEsIz4OaNEwTKJmXt8CU8NRreRsChte8DqB0853KBroQ==
+"@arco-iconbox/vue-boxy@^0.0.9":
+  version "0.0.9"
+  resolved "https://mirrors.cloud.tencent.com/npm/@arco-iconbox/vue-boxy/-/vue-boxy-0.0.9.tgz#efff57daa63b89fe2c39e8fa3fa61a1afd64845e"
+  integrity sha512-kyOJSJ64fbBfq1Q1fdejY6f+Va09SIh4zOgHGCsVEvBccwTnZfL2a92mO2JzOdNKJHfVMPg5unDF0+mfzlDOVA==
 
 "@arco-plugins/vite-vue@^1.4.5":
   version "1.4.5"

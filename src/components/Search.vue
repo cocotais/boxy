@@ -1,73 +1,99 @@
 <template>
-  <noscript></noscript>
+  <div id="search">
+    <a-space :style="{ display: visible ? 'block' : 'none' }">
+      <a-input placeholder="搜索作品中的积木" @input="handleInput" @press-enter="handlePressEnter">
+        <template #append>
+          <a-button type="text" @click="handleUpClick" aria-label="整理">
+            <template #icon>
+              <IconUp />
+            </template>
+          </a-button>
+          <a-button type="text" @click="handleDownClick" aria-label="整理">
+            <template #icon>
+              <IconDown />
+            </template>
+          </a-button>
+          <a-button type="text" @click="handleCloseClick" aria-label="关闭">
+            <template #icon>
+              <IconClose />
+            </template>
+          </a-button>
+        </template>
+      </a-input>
+    </a-space>
+  </div>
 </template>
 
+<script setup>
+import { IconClose, IconDown, IconUp } from '@arco-iconbox/vue-boxy'
+import { onMounted, ref, watch } from 'vue'
+
+import { useStore } from '../utils/store'
+
+const visible = ref()
+const store = useStore()
+
+function open() {
+  visible.value = true
+}
+
+function close() {
+  visible.value = false
+  store.search.close()
+}
+
+function handleInput(value) {
+  store.search.searchAndHighlight(value)
+}
+
+function handlePressEnter() {
+  store.search.next()
+}
+
+function handleUpClick() {
+  store.search.previous()
+}
+
+function handleDownClick() {
+  store.search.next()
+}
+
+function handleCloseClick() {
+  store.searchOpen = false
+}
+
+onMounted(() => {
+  store.workspace.injectionDiv.addEventListener('keydown', (event) => {
+    if ((event.ctrlKey || event.metaKey) && event.key === 'f') {
+      store.searchOpen = true
+      event.preventDefault()
+      event.stopPropagation()
+    }
+  })
+  watch(store.$state, (state) => {
+    if (state.searchOpen) {
+      open()
+    } else {
+      close()
+    }
+  })
+  close()
+})
+</script>
+
 <style lang="less">
-div.blockly-ws-search {
-  top: 40px !important;
-  right: 40px !important;
+#search {
+  position: absolute;
+  right: 40px;
+  top: 40px;
+  z-index: 7;
 
-  height: 32px;
-  padding: 1px;
-
-  background: var(--color-bg-2);
-  border: 1px solid var(--color-neutral-3);
-  border-radius: var(--border-radius-medium);
-  box-shadow: none;
-
-  > div {
-    align-items: center;
-
-    > div {
-      align-items: center;
-
-      > div {
-        > input {
-          height: 30px;
-          margin-left: 4px;
-          font-size: 14px;
-          line-height: 1.5715;
-          color: var(--color-text-3);
-          background: var(--color-bg-2);
-        }
-
-        > input:focus {
-          outline: none;
-        }
-
-        > input::placeholder {
-          color: var(--color-text-3);
-        }
-      }
-
-      > div:nth-child(2) {
-        height: 12px;
-        padding-right: 2px;
-      }
-    }
-
-    > button {
-      width: 12px;
-      height: 12px;
-      margin-right: 6px;
-    }
+  > div > div > span > span.arco-input-append {
+    padding: 0 4px;
   }
 }
 
-body[arco-theme='dark']
-  > #app
-  > section
-  > main
-  > div.blocklyDiv
-  > div
-  > div.blockly-ws-search
-  > div {
-  > div > div > button {
-    filter: invert(0.5);
-  }
-
-  > button {
-    filter: invert(0.5);
-  }
+div.blockly-ws-search {
+  display: none !important;
 }
 </style>
