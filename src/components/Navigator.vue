@@ -96,6 +96,8 @@ function handleAboutClick() {
 }
 
 .navigatorMenu {
+  overflow: hidden;
+
   box-sizing: border-box;
   padding: 12px 16px;
 
@@ -108,7 +110,7 @@ function handleAboutClick() {
   border-radius: var(--border-radius-medium);
   box-shadow: 0 -2px 5px rgb(0 0 0 / 10%);
 
-  animation: show-dropdown cubic-bezier(0, 1.2, 0, 1) 600ms forwards !important;
+  animation: show-dropdown cubic-bezier(0.3, 1.3, 0.3, 1) 500ms forwards !important;
 
   > li {
     -webkit-tap-highlight-color: transparent;

@@ -187,8 +187,8 @@ div.injectionDiv {
     border-right: 1px solid var(--color-border);
 
     transition:
-      transform cubic-bezier(0, 1, 0, 1) 300ms,
-      width cubic-bezier(0, 1, 0, 1) 300ms;
+      transform cubic-bezier(0.34, 0.69, 0.1, 1) 300ms,
+      width cubic-bezier(0.34, 0.69, 0.1, 1) 300ms;
 
     > path.blocklyFlyoutBackground {
       fill: var(--color-bg-2);
@@ -196,7 +196,7 @@ div.injectionDiv {
     }
 
     > g > g > g {
-      fill: rgb(var(--primary-6));
+      fill: rgb(var(--primary-5));
       > rect.blocklyFlyoutButtonShadow {
         display: none;
       }

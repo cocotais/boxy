@@ -9,7 +9,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 export default defineConfig({
   plugins: [
     vue(),
-    vitePluginForArco({ style: true }),
+    vitePluginForArco({ theme: '@arco-themes/vue-boxy', style: true }),
     copy({
       targets: [
         { src: './src/assets/boxy.svg', dest: './dist' },

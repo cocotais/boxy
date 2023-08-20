@@ -9,11 +9,14 @@ class CustomConstantsProvider extends Blockly.zelos.ConstantProvider {
 
     this.CORNER_RADIUS = 4
 
-    this.FIELD_TEXT_FONTSIZE = 13
+    this.FIELD_TEXT_FONTSIZE = 14
     this.FIELD_TEXT_FONTWEIGHT = '500'
 
     this.TOP_ROW_MIN_HEIGHT = 2
     this.BOTTOM_ROW_MIN_HEIGHT = 2
+
+    this.SELECTED_GLOW_COLOUR = '#4062f6'
+    this.REPLACEMENT_GLOW_COLOUR = '#4062f6';
   }
 
   /**

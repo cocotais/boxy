@@ -102,8 +102,8 @@ onMounted(() => {
     margin-top: -42px;
 
     transition:
-      transform 0.3s cubic-bezier(0.1, 1, 0.5, 1),
-      opacity 0.3s cubic-bezier(0.1, 1, 0.5, 1);
+      transform cubic-bezier(0.34, 0.69, 0.1, 1) 300ms,
+      opacity cubic-bezier(0.34, 0.69, 0.1, 1) 300ms;
   }
 
   > img:nth-child(2) {
