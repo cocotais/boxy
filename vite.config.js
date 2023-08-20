@@ -1,93 +1,74 @@
-/**
- * Vite配置文件
- */
-
-import vue from "@vitejs/plugin-vue";
-import { fileURLToPath, URL } from "url";
-import { defineConfig } from "vite";
-import { VitePWA } from "vite-plugin-pwa";
-import { viteStaticCopy } from "vite-plugin-static-copy";
+import { vitePluginForArco } from '@arco-plugins/vite-vue'
+import vue from '@vitejs/plugin-vue'
+import copy from 'rollup-plugin-copy'
+import visualizer from 'rollup-plugin-visualizer'
+import { defineConfig } from 'vite'
+import viteCompression from 'vite-plugin-compression'
+import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
-  // 插件引入
   plugins: [
-    // 简单配置Vue当中的设置
-    vue({
-      template: {
-        compilerOptions: {
-          // 添加自定义html标签，这些标签在解析的时候不会作为Vue标签解析
-          isCustomElement: (tag) =>
-            ["field", "block", "category", "xml", "mutation", "value", "sep", "shadow", "iconpark-icon"].includes(tag),
-        },
-      },
-    }),
-    // 部分静态文件复制
-    viteStaticCopy({
+    vue(),
+    vitePluginForArco({ theme: '@arco-themes/vue-boxy', style: true }),
+    copy({
       targets: [
-        {
-          src: fileURLToPath(new URL("./src/icon/logo/boxy.svg", import.meta.url)),
-          dest: "./",
-        },
-        {
-          src: fileURLToPath(new URL("./src/icon/logo/favicon.ico", import.meta.url)),
-          dest: "./",
-        },
-        {
-          src: fileURLToPath(new URL("./node_modules/blockly/media/*", import.meta.url)),
-          dest: "media",
-        },
+        { src: './src/assets/boxy.svg', dest: './dist' },
+        { src: './src/assets/favicon.ico', dest: './dist' },
+        { src: './src/assets/boxy.png', dest: './dist' },
+        { src: './node_modules/blockly/media/*', dest: './dist/media' }
       ],
+      hook: 'writeBundle'
     }),
-    // vite-plugin-pwa配置，可以查看 https://vite-pwa-org.netlify.app/guide/ 获得配置详情
     VitePWA({
-      mode: "production",
-      base: "/",
-      registerType: "autoUpdate",
-      injectRegister: "auto",
-      // 配置Service Worker当中的Workbox
+      mode: 'production',
+      base: '/',
+      registerType: 'autoUpdate',
+      injectRegister: 'auto',
       workbox: {
         runtimeCaching: [
           {
-            // 根据正则表达式进行缓存
             urlPattern: /.*/i,
-            handler: "NetworkFirst",
+            handler: 'NetworkFirst',
             options: {
-              cacheName: "boxy-cache",
+              cacheName: 'boxy-cache',
               expiration: {
                 maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 1.5,
+                maxAgeSeconds: 60 * 60 * 24 * 30
               },
               cacheableResponse: {
-                statuses: [0, 200],
-              },
-            },
-          },
-        ],
+                statuses: [0, 200]
+              }
+            }
+          }
+        ]
       },
-      // 设置manifest.json文件，PWA简介
       manifest: {
-        name: "Boxy",
-        short_name: "Boxy",
-        description: "Basic available instance built on Google Blockly.",
-        theme_color: "#4062f6",
-        start_url: "/",
-        id: "boxy",
+        name: 'Boxy',
+        short_name: 'Boxy',
+        description: 'Basic available instance built on Google Blockly.',
+        theme_color: '#4062f6',
+        start_url: '/',
+        id: 'boxy',
         icons: [
           {
-            src: "boxy.svg",
-            sizes: "150x150",
+            src: 'boxy.svg',
+            sizes: '150x150',
+            purpose: 'any maskable'
           },
           {
-            src: "favicon.ico",
-            sizes: "256x256",
+            src: 'favicon.ico',
+            sizes: '256x256'
           },
-        ],
-      },
+          {
+            src: 'boxy.png',
+            sizes: '650x650'
+          }
+        ]
+      }
     }),
-  ],
-  resolve: {
-    alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url)),
-    },
-  },
-});
+    viteCompression({
+      threshold: 1024 * 1024
+    }),
+    visualizer()
+  ]
+})

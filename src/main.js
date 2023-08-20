@@ -1,78 +1,47 @@
-/**
- * 主文件
- */
-import "./codespace/codespace.less";
-import "./toolbox/toolbox.less";
-import "./workspace/workspace.less";
-import "./theme/theme.less";
-import "./search/search.less";
-import "./trashcan/trashcan.less";
-import "./zoomBox/zoomBox.less";
-import "./theme/codemao.theme";
-import "./theme/codemao.renderer";
-import "./icon/category/category";
-import "./toolbox/toolbox";
-import "./blocks/boxy";
-import "./blocks/patch";
-import "@arco-design/web-vue/dist/arco.css";
-import "@blockly/block-plus-minus";
-import "./dialog/dialog.vue";
-import "highlight.js/styles/atom-one-dark.css";
-import "highlight.js/lib/common";
-import "@arco-themes/vue-boxy/index.less";
+import '@arco-design/web-vue/dist/arco.css'
+import 'highlight.js/styles/atom-one-dark.css'
 
-import ArcoVue from "@arco-design/web-vue";
-import hljsVuePlugin from "@highlightjs/vue-plugin";
-import { registerSW } from "virtual:pwa-register";
-import { createApp } from "vue";
+import highlight from '@highlightjs/vue-plugin'
+import hljs from 'highlight.js/lib/core'
+import javascript from 'highlight.js/lib/languages/javascript'
+import { createPinia } from 'pinia'
+import { registerSW } from 'virtual:pwa-register'
+import { createApp } from 'vue'
 
-import App from "./App.vue";
-import trashcan from "./trashcan/trashcan";
-import observer from "./utils/observer";
+import App from './App.vue'
+import Cookies from './utils/cookies'
+import observer from './utils/observer'
+import { useStore } from './utils/store'
 
-const app = createApp(App);
-app.use(ArcoVue);
-app.use(hljsVuePlugin);
-app.mount("#app");
+hljs.registerLanguage('javascript', javascript)
 
-/**
- * 设置Flyout鼠标移入事件
- */
-document.querySelector(".blocklyFlyout").addEventListener("mouseenter", function () {
-  if (this.getBoundingClientRect().width < this.getAttribute("width")) {
-    this.style.width = this.getAttribute("width");
+const app = createApp(App)
+const pinia = createPinia()
+app.use(highlight)
+app.use(pinia)
+app.mount('#app')
+
+const store = useStore()
+
+observer(
+  '#app > section > main > div.blocklyDiv > div > svg.blocklyFlyout',
+  ['style'],
+  (element) => {
+    const elementWidth = element.getAttribute('width')
+    element.style.width = elementWidth + 'px'
+    if (element.style.display === 'block') {
+      element.style.transform = 'translate(60px,0px)'
+    } else {
+      const retractedLength = -(Cookies.get('flyout') === 'full' ? elementWidth || 320 : 320) + 60
+      element.style.transform = `translate(${retractedLength}px,0px)`
+    }
   }
-});
-/**
- * 设置Flyout鼠标移出事件
- */
-document.querySelector(".blocklyFlyout").addEventListener("mouseleave", function () {
-  this.style.width = localStorage.getItem("block_all_shown") ? "" : "320px";
-});
-/**
- * 监听Flyout属性变化
- */
-observer("#boxy > .blocklyDiv > div > svg.blocklyFlyout", ["style", "width"], function (element) {
-  if (element.style.display === "block") {
-    element.style.transform = "translate(60px,0px)";
-  } else {
-    element.style.transform = `translate(${
-      -(localStorage.getItem("block_all_shown") ? element.getAttribute("width") || 320 : 320) + 60
-    }px,0px)`;
-  }
-});
-/**
- * 监听Toolbox属性变化
- */
-observer("#boxy > .blocklyDiv > div >  div.blocklyToolboxDiv.blocklyNonSelectable", ["class"], function (element) {
-  if (element.classList.contains("blocklyToolboxDelete")) {
-    trashcan.coverOn();
-  } else {
-    trashcan.coverOff();
-  }
-});
+)
 
-if ("serviceWorker" in navigator) {
-  // && !/localhost/.test(window.location)) {
-  registerSW();
+observer('#app > section > main > div.blocklyDiv > div > div', ['class'], (element) => {
+  store.trashcanOpen = element.classList.contains('blocklyToolboxDelete')
+})
+
+if ('serviceWorker' in navigator) {
+  registerSW()
 }
