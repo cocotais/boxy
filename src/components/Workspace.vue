@@ -7,10 +7,11 @@ import '@blockly/block-plus-minus'
 
 import { WorkspaceSearch } from '@blockly/plugin-workspace-search'
 import Blockly from 'blockly'
-import * as zh from 'blockly/msg/zh-hans'
 import { onMounted, ref } from 'vue'
 
 import toolboxConfig from '../assets/toolbox.json'
+import { block_style } from '../blocks/patch'
+import * as zh from '../msg/zh.json'
 import { useStore } from '../store/store'
 
 Blockly.setLocale(zh)
@@ -20,12 +21,12 @@ Blockly.FlyoutButton.BORDER_RADIUS = 8
 Blockly.FlyoutButton.TEXT_MARGIN_X = 10
 Blockly.FlyoutButton.TEXT_MARGIN_Y = 10
 
-Blockly.Msg['CONTROLS_REPEAT_INPUT_DO'] = ''
-Blockly.Msg['CONTROLS_IF_MSG_THEN'] = ''
-Blockly.Msg['CONTROLS_IF_MSG_ELSE'] = ''
-Blockly.Msg['LOGIC_BOOLEAN_TRUE'] = '真'
-Blockly.Msg['LOGIC_BOOLEAN_FALSE'] = '假'
-Blockly.Msg['NEW_VARIABLE'] = '创建变量'
+block_style('lists_create_with', 'list')
+block_style('procedures_defnoreturn', 'function')
+block_style('procedures_defreturn', 'function')
+block_style('procedures_ifreturn', 'function')
+block_style('procedures_callnoreturn', 'function')
+block_style('procedures_callreturn', 'function')
 
 const blocklyDiv = ref()
 const store = useStore()

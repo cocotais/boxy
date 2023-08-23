@@ -8,22 +8,7 @@
       "contents": [
         {
           "kind": "block",
-          "type": "controls_if"
-        },
-        {
-          "kind": "block",
-          "type": "controls_if",
-          "extraState": {
-            "hasElse": true
-          }
-        },
-        {
-          "kind": "sep",
-          "gap": "64"
-        },
-        {
-          "kind": "block",
-          "type": "controls_whileUntil"
+          "type": "controls_forever"
         },
         {
           "kind": "block",
@@ -38,10 +23,6 @@
               }
             }
           }
-        },
-        {
-          "kind": "block",
-          "type": "controls_forever"
         },
         {
           "kind": "block",
@@ -75,6 +56,14 @@
         },
         {
           "kind": "block",
+          "type": "controls_forEach"
+        },
+        {
+          "kind": "block",
+          "type": "controls_whileUntil"
+        },
+        {
+          "kind": "block",
           "type": "controls_flow_statements"
         },
         {
@@ -83,13 +72,29 @@
         },
         {
           "kind": "block",
-          "type": "logic_ternary"
+          "type": "controls_if"
+        },
+        {
+          "kind": "block",
+          "type": "controls_if",
+          "extraState": {
+            "hasElse": true
+          }
+        },
+        {
+          "kind": "sep",
+          "gap": "64"
+        },
+        {
+          "kind": "block",
+          "type": "logic_ternary",
+          "inline": "true"
         }
       ]
     },
     {
       "kind": "category",
-      "name": "逻辑",
+      "name": "运算",
       "categorystyle": "calculation",
       "contents": [
         {
@@ -149,23 +154,31 @@
         },
         {
           "kind": "block",
-          "type": "math_round"
+          "type": "logic_boolean"
         },
         {
           "kind": "block",
-          "type": "math_single"
+          "type": "logic_compare"
         },
         {
           "kind": "block",
-          "type": "math_modulo"
+          "type": "logic_operation"
         },
         {
           "kind": "block",
-          "type": "math_trig"
+          "type": "logic_negate"
         },
         {
           "kind": "sep",
           "gap": "64"
+        },
+        {
+          "kind": "block",
+          "type": "math_round"
+        },
+        {
+          "kind": "block",
+          "type": "math_modulo"
         },
         {
           "kind": "block",
@@ -194,24 +207,68 @@
           "type": "math_number_property"
         },
         {
+          "kind": "block",
+          "type": "math_trig"
+        },
+        {
+          "kind": "block",
+          "type": "math_single"
+        },
+        {
           "kind": "sep",
           "gap": "64"
         },
         {
           "kind": "block",
-          "type": "logic_compare"
+          "type": "text"
         },
         {
           "kind": "block",
-          "type": "logic_operation"
+          "type": "text_join",
+          "inline": "true",
+          "extraState": {
+            "itemCount": 2
+          }
         },
         {
           "kind": "block",
-          "type": "logic_negate"
+          "type": "lists_split"
         },
         {
           "kind": "block",
-          "type": "logic_boolean"
+          "type": "text_indexOf"
+        },
+        {
+          "kind": "block",
+          "type": "text_charAt"
+        },
+        {
+          "kind": "block",
+          "type": "text_getSubstring"
+        },
+        {
+          "kind": "block",
+          "type": "text_replace"
+        },
+        {
+          "kind": "block",
+          "type": "text_count"
+        },
+        {
+          "kind": "block",
+          "type": "text_length"
+        },
+        {
+          "kind": "block",
+          "type": "text_changeCase"
+        },
+        {
+          "kind": "block",
+          "type": "text_trim"
+        },
+        {
+          "kind": "block",
+          "type": "math_types"
         }
       ]
     },
@@ -232,6 +289,77 @@
         {
           "kind": "block",
           "type": "variables_get"
+        }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "列表",
+      "categorystyle": "list",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "lists_create_empty"
+        },
+        {
+          "kind": "block",
+          "type": "lists_create_with",
+          "inline": "true",
+          "extraState": {
+            "itemCount": 1
+          }
+        },
+        {
+          "kind": "block",
+          "type": "lists_push"
+        },
+        {
+          "kind": "block",
+          "type": "lists_insert"
+        },
+        {
+          "kind": "block",
+          "type": "lists_delete"
+        },
+        {
+          "kind": "block",
+          "type": "lists_set"
+        },
+        {
+          "kind": "sep",
+          "gap": "64"
+        },
+        {
+          "kind": "block",
+          "type": "lists_get"
+        },
+        {
+          "kind": "block",
+          "type": "lists_length"
+        },
+        {
+          "kind": "block",
+          "type": "lists_index"
+        },
+        {
+          "kind": "block",
+          "type": "lists_includes"
+        }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "函数",
+      "categorystyle": "function",
+      "custom": "PROCEDURE",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "procedures_defnoreturn"
+        },
+        {
+          "kind": "block",
+          "type": "procedures_defreturn"
         }
       ]
     }
