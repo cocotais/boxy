@@ -41,13 +41,13 @@
 
 <script setup>
 import { IconAuto, IconDark, IconLight } from '@arco-iconbox/vue-boxy'
+import { useCookies } from '@vueuse/integrations/useCookies'
 import { onMounted, ref } from 'vue'
 
-import Cookies from '../utils/cookies'
-
+const cookies = useCookies(['flyout', 'theme'])
 const visible = ref(false)
-const flyoutMode = ref(Cookies.get('flyout') || 'full')
-const themeMode = ref(Cookies.get('theme') || 'auto')
+const flyoutMode = ref(cookies.get('flyout') || 'full')
+const themeMode = ref(cookies.get('theme') || 'auto')
 
 function handleClick() {
   visible.value = true
@@ -64,7 +64,7 @@ function handleFlyoutChange(value) {
     }
   }
   flyoutMode.value = value
-  Cookies.set('flyout', flyoutMode.value)
+  cookies.set('flyout', flyoutMode.value)
 }
 
 function setTheme(value) {
@@ -82,7 +82,7 @@ function handleThemeChange(value) {
     setTheme(value)
   }
   themeMode.value = value
-  Cookies.set('theme', themeMode.value)
+  cookies.set('theme', themeMode.value)
 }
 
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (event) {

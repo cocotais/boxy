@@ -11,7 +11,7 @@ import * as zh from 'blockly/msg/zh-hans'
 import { onMounted, ref } from 'vue'
 
 import toolboxConfig from '../assets/toolbox.json'
-import { useStore } from '../utils/store'
+import { useStore } from '../store/store'
 
 Blockly.setLocale(zh)
 
@@ -50,10 +50,10 @@ const options = {
 }
 
 onMounted(() => {
-  store.workspace = Blockly.inject(blocklyDiv.value, options)
-  store.search = new WorkspaceSearch(store.workspace)
-  store.search.setSearchPlaceholder('搜索作品中的积木')
-  store.search.init()
+  store.workspaceSvg = Blockly.inject(blocklyDiv.value, options)
+  store.searchPlugin = new WorkspaceSearch(store.workspaceSvg)
+  store.searchPlugin.setSearchPlaceholder('搜索作品中的积木')
+  store.searchPlugin.init()
 })
 </script>
 

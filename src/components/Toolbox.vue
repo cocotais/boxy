@@ -1,5 +1,8 @@
-<script>
+<script setup>
+import { useMutationObserver } from '@vueuse/core'
+import { useCookies } from '@vueuse/integrations/useCookies'
 import Blockly from 'blockly'
+import { onMounted } from 'vue'
 
 import superellipse from '../assets/superellipse.svg'
 
@@ -126,6 +129,29 @@ Blockly.VerticalFlyout.prototype['reflowInternal_'] = function () {
     this.targetWorkspace.recordDragTargets()
   }
 }
+
+const cookies = useCookies(['flyout'])
+
+onMounted(() => {
+  const flyoutElement = document.querySelector(
+    '#app > section > main > div.blocklyDiv > div > svg.blocklyFlyout'
+  )
+
+  useMutationObserver(
+    flyoutElement,
+    (mutations) => {
+      const element = mutations[0].target
+      const elementWidth = element.getAttribute('width')
+      const isDisplayBlock = element.style.display === 'block'
+      const retractedLength = -(cookies.get('flyout') === 'full' ? elementWidth || 320 : 320) + 60
+      element.style.width = elementWidth + 'px'
+      element.style.transform = isDisplayBlock
+        ? 'translate(60px, 0px)'
+        : 'translate(' + retractedLength + 'px, 0px)'
+    },
+    { attributeFilter: ['style'] }
+  )
+})
 </script>
 
 <style lang="less">

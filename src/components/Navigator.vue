@@ -23,7 +23,7 @@
 import Blockly from 'blockly'
 import { ref } from 'vue'
 
-import { useStore } from '../utils/store'
+import { useStore } from '../store/store'
 import Settings from './Settings.vue'
 
 const visible = ref()
@@ -35,7 +35,7 @@ function handleIconClick() {
 }
 
 function handleSaveClick() {
-  const json = Blockly.serialization.workspaces.save(store.workspace)
+  const json = Blockly.serialization.workspaces.save(store.workspaceSvg)
   const text = JSON.stringify(json)
   const blob = new Blob([text], { type: 'text/plain;charset=utf-8' })
   const url = URL.createObjectURL(blob)
@@ -57,7 +57,7 @@ function handleOpenClick() {
     const reader = new FileReader()
     reader.addEventListener('load', function () {
       const json = JSON.parse(this.result)
-      Blockly.serialization.workspaces.load(json, store.workspace)
+      Blockly.serialization.workspaces.load(json, store.workspaceSvg)
     })
     reader.readAsText(file)
   })
@@ -66,7 +66,7 @@ function handleOpenClick() {
 }
 
 function handleSearchClick() {
-  store.searchOpen = true
+  store.searchVisible = true
   visible.value = false
 }
 

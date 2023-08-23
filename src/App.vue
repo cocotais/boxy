@@ -41,16 +41,16 @@ import Toolbox from './components/Toolbox.vue'
 import Trashcan from './components/Trashcan.vue'
 import Workspace from './components/Workspace.vue'
 import Zoombox from './components/Zoombox.vue'
-import { useStore } from './utils/store'
+import { useStore } from './store/store'
 
-const store = useStore()
+let usedLayoutSider = void 0
 const layoutSider = ref()
-let usedLayoutSider
+const store = useStore()
 
 function handleMoving() {
   for (let i = 0; i < 5; i++) {
     setTimeout(() => {
-      Blockly.svgResize(store.workspace)
+      Blockly.svgResize(store.workspaceSvg)
     }, 100 * i)
   }
 }
