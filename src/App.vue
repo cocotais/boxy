@@ -77,13 +77,6 @@ onMounted(() => {
 </script>
 
 <style>
-* {
-  transition:
-    color ease 50ms,
-    background-color ease 200ms,
-    border ease 300ms;
-}
-
 html,
 body,
 #app {

@@ -47,7 +47,7 @@ import { onMounted, ref } from 'vue'
 const cookies = useCookies(['flyout', 'theme'])
 const visible = ref(false)
 const flyoutMode = ref(cookies.get('flyout') || 'full')
-const themeMode = ref(cookies.get('theme') || 'auto')
+const themeMode = ref(cookies.get('theme') || 'light')
 
 function handleClick() {
   visible.value = true
@@ -59,44 +59,45 @@ function handleFlyoutChange(value) {
     flyout.style.width = '320px'
     if (value === 'full') {
       flyout.classList.remove('blocklyFlyoutFixed')
-    } else {
+    } else if (value === 'fixed') {
       flyout.classList.add('blocklyFlyoutFixed')
     }
   }
   flyoutMode.value = value
-  cookies.set('flyout', flyoutMode.value)
+  cookies.set('flyout', value)
 }
 
 function setTheme(value) {
-  if (value === 'light') {
-    document.body.removeAttribute('arco-theme')
-  } else if (value === 'dark') {
-    document.body.setAttribute('arco-theme', 'dark')
+  let theme = value
+  if (value === 'auto') {
+    theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
   }
+  document.body.setAttribute('arco-theme', theme)
 }
 
 function handleThemeChange(value) {
-  if (value === 'auto') {
-    setTheme(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
-  } else {
-    setTheme(value)
-  }
+  setTheme(value)
   themeMode.value = value
-  cookies.set('theme', themeMode.value)
+  cookies.set('theme', value)
 }
 
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (event) {
-  if (event.matches && themeMode.value === 'auto') {
-    setTheme('dark')
-  } else {
-    setTheme('light')
+  if (themeMode.value === 'auto') {
+    setTheme(event.matches ? 'dark' : 'light')
   }
 })
 
 onMounted(() => {
-  handleFlyoutChange(flyoutMode.value)
   handleThemeChange(themeMode.value)
+  handleFlyoutChange(flyoutMode.value)
+
+  let style = document.createElement('style')
+  style.innerHTML =
+    '* { transition: color ease 50ms, background-color ease 200ms, border ease 300ms; }'
+  document.head.appendChild(style)
 })
+
+setTheme(cookies.get('theme'))
 
 defineExpose({ handleClick })
 </script>
