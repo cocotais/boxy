@@ -12,7 +12,7 @@ export default defineConfig({
     vitePluginForArco({ theme: '@arco-themes/vue-boxy', style: true }),
     copy({
       targets: [
-        { src: './src/assets/boxy.svg', dest: './dist' },
+        { src: './src/assets/boxy.png', dest: './dist' },
         { src: './src/assets/favicon.ico', dest: './dist' },
         { src: './src/assets/boxy.png', dest: './dist' },
         { src: './node_modules/blockly/media/*', dest: './dist/media' }
@@ -51,17 +51,13 @@ export default defineConfig({
         id: 'boxy',
         icons: [
           {
-            src: 'boxy.svg',
-            sizes: '150x150',
+            src: 'boxy.png',
+            sizes: '512x512',
             purpose: 'any maskable'
           },
           {
             src: 'favicon.ico',
             sizes: '256x256'
-          },
-          {
-            src: 'boxy.png',
-            sizes: '650x650'
           }
         ]
       }

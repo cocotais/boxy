@@ -1,7 +1,7 @@
 <template>
   <a-trigger :trigger="['hover', 'click']" position="rt" v-model:popup-visible="visible">
     <div id="logo" @click="handleIconClick">
-      <img alt="Logo" src="../assets/boxy.svg" width="36" height="36" />
+      <img alt="Logo" src="../assets/boxy.png" width="36" height="36" />
     </div>
     <template #content>
       <div class="navigatorMenu">
@@ -110,7 +110,7 @@ function handleAboutClick() {
   border-radius: var(--border-radius-medium);
   box-shadow: 0 -2px 5px rgb(0 0 0 / 10%);
 
-  animation: show-dropdown cubic-bezier(0.3, 1.3, 0.3, 1) 500ms forwards !important;
+  animation: show-dropdown cubic-bezier(0.3, 1.3, 0.3, 1) 400ms forwards !important;
 
   > li {
     -webkit-tap-highlight-color: transparent;

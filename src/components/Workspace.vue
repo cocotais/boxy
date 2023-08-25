@@ -17,7 +17,7 @@ import { useStore } from '../store/store'
 Blockly.setLocale(zh)
 
 Blockly.Scrollbar.scrollbarThickness = 15
-Blockly.FlyoutButton.BORDER_RADIUS = 8
+Blockly.FlyoutButton.BORDER_RADIUS = 4
 Blockly.FlyoutButton.TEXT_MARGIN_X = 10
 Blockly.FlyoutButton.TEXT_MARGIN_Y = 10
 

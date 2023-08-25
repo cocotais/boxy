@@ -222,10 +222,20 @@ div.injectionDiv {
     }
 
     > g > g > g {
-      fill: rgb(var(--primary-5));
+      fill: rgb(var(--primary-6));
+      transition: fill cubic-bezier(0.34, 0.69, 0.1, 1) 300ms;
+
       > rect.blocklyFlyoutButtonShadow {
         display: none;
       }
+    }
+
+    > g > g > g:hover {
+      fill: rgb(var(--primary-5));
+    }
+
+    > g > g > g:active {
+      fill: rgb(var(--primary-7));
     }
   }
 
