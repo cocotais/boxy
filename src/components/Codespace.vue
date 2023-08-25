@@ -16,15 +16,15 @@ import { IconClose } from '@arco-iconbox/vue-boxy'
 import { javascriptGenerator } from 'blockly/javascript'
 import { onMounted, ref } from 'vue'
 
-import { useStore } from '../utils/store'
+import { useStore } from '../store/store'
 
 const defaultContext = '未检测到积木块'
 const code = ref(defaultContext)
 const store = useStore()
 
 onMounted(() => {
-  store.workspace.addChangeListener(() => {
-    code.value = javascriptGenerator.workspaceToCode(store.workspace) || defaultContext
+  store.workspaceSvg.addChangeListener(() => {
+    code.value = javascriptGenerator.workspaceToCode(store.workspaceSvg) || defaultContext
   })
 })
 

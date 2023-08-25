@@ -6,9 +6,10 @@
 </template>
 
 <script setup>
+import { useMutationObserver } from '@vueuse/core'
 import { onMounted, ref, watch } from 'vue'
 
-import { useStore } from '../utils/store'
+import { useStore } from '../store/store'
 
 const store = useStore()
 const trashcan = ref()
@@ -42,7 +43,14 @@ function close() {
 }
 
 onMounted(() => {
-  store.workspace.addChangeListener((event) => {
+  useMutationObserver(
+    document.querySelector('#app > section > main > div.blocklyDiv > div > div'),
+    (mutations) => {
+      store.trashcanOpen = mutations[0].target.classList.contains('blocklyToolboxDelete')
+    },
+    { attributeFilter: ['class'] }
+  )
+  store.workspaceSvg.addChangeListener((event) => {
     if (event.type === 'drag') {
       show()
     } else if (event.type === 'move') {

@@ -46,13 +46,13 @@
 import { IconBigger, IconCleanup, IconCode, IconSmaller } from '@arco-iconbox/vue-boxy'
 import { onMounted, ref } from 'vue'
 
-import { useStore } from '../utils/store'
+import { useStore } from '../store/store'
 
 const scale = ref()
 const store = useStore()
 
 function handleCleanUpClick() {
-  store.workspace.cleanUp()
+  store.workspaceSvg.cleanUp()
 }
 
 function handleCodespace() {
@@ -60,9 +60,9 @@ function handleCodespace() {
 }
 
 function handleSmallerClick() {
-  let speed = store.workspace.options.zoomOptions.scaleSpeed
-  let scale = store.workspace.scale
-  store.workspace.zoom(0, 0, Math.log((scale - 0.15) / scale) / Math.log(speed))
+  let speed = store.workspaceSvg.options.zoomOptions.scaleSpeed
+  let scale = store.workspaceSvg.scale
+  store.workspaceSvg.zoom(0, 0, Math.log((scale - 0.15) / scale) / Math.log(speed))
 }
 
 function handleResetClick() {
@@ -70,14 +70,14 @@ function handleResetClick() {
 }
 
 function handleBiggerClick() {
-  let speed = store.workspace.options.zoomOptions.scaleSpeed
-  let scale = store.workspace.scale
-  store.workspace.zoom(0, 0, Math.log((scale + 0.15) / scale) / Math.log(speed))
+  let speed = store.workspaceSvg.options.zoomOptions.scaleSpeed
+  let scale = store.workspaceSvg.scale
+  store.workspaceSvg.zoom(0, 0, Math.log((scale + 0.15) / scale) / Math.log(speed))
 }
 
 onMounted(() => {
-  store.workspace.addChangeListener(() => {
-    scale.value.innerHTML = Math.floor((store.workspace.scale * (5 / 3) - 1 / 3) * 100) + '%'
+  store.workspaceSvg.addChangeListener(() => {
+    scale.value.innerHTML = Math.floor((store.workspaceSvg.scale * (5 / 3) - 1 / 3) * 100) + '%'
   })
 })
 </script>

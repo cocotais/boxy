@@ -7,12 +7,13 @@ import toolboxConfig from '../assets/toolbox.json'
  * @param name 积木名称。
  * @param style 想要改成的样式。
  */
-function block_style(name, style) {
+export function block_style(name, style) {
   // https://groups.google.com/g/blockly/c/byDoKnftEcc/m/qbaF9M8vBAAJ
   const savedIfInit = Blockly.Blocks[name].init
   Blockly.Blocks[name].init = function () {
     savedIfInit.bind(this)()
     this.setStyle(style)
+    this.inputsInline = true
   }
 }
 

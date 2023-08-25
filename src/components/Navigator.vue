@@ -1,7 +1,7 @@
 <template>
   <a-trigger :trigger="['hover', 'click']" position="rt" v-model:popup-visible="visible">
     <div id="logo" @click="handleIconClick">
-      <img alt="Logo" src="../assets/boxy.svg" width="36" height="36" />
+      <img alt="Logo" src="../assets/boxy.png" width="36" height="36" />
     </div>
     <template #content>
       <div class="navigatorMenu">
@@ -23,7 +23,7 @@
 import Blockly from 'blockly'
 import { ref } from 'vue'
 
-import { useStore } from '../utils/store'
+import { useStore } from '../store/store'
 import Settings from './Settings.vue'
 
 const visible = ref()
@@ -35,7 +35,7 @@ function handleIconClick() {
 }
 
 function handleSaveClick() {
-  const json = Blockly.serialization.workspaces.save(store.workspace)
+  const json = Blockly.serialization.workspaces.save(store.workspaceSvg)
   const text = JSON.stringify(json)
   const blob = new Blob([text], { type: 'text/plain;charset=utf-8' })
   const url = URL.createObjectURL(blob)
@@ -57,7 +57,7 @@ function handleOpenClick() {
     const reader = new FileReader()
     reader.addEventListener('load', function () {
       const json = JSON.parse(this.result)
-      Blockly.serialization.workspaces.load(json, store.workspace)
+      Blockly.serialization.workspaces.load(json, store.workspaceSvg)
     })
     reader.readAsText(file)
   })
@@ -66,7 +66,7 @@ function handleOpenClick() {
 }
 
 function handleSearchClick() {
-  store.searchOpen = true
+  store.searchVisible = true
   visible.value = false
 }
 
@@ -110,7 +110,7 @@ function handleAboutClick() {
   border-radius: var(--border-radius-medium);
   box-shadow: 0 -2px 5px rgb(0 0 0 / 10%);
 
-  animation: show-dropdown cubic-bezier(0.3, 1.3, 0.3, 1) 500ms forwards !important;
+  animation: show-dropdown cubic-bezier(0.3, 1.3, 0.3, 1) 400ms forwards !important;
 
   > li {
     -webkit-tap-highlight-color: transparent;
