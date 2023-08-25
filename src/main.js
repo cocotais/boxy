@@ -1,7 +1,7 @@
 import '@arco-design/web-vue/dist/arco.css'
 import 'highlight.js/styles/atom-one-dark.css'
 
-import  {Modal} from "@arco-design/web-vue";
+import { Modal } from '@arco-design/web-vue'
 import highlight from '@highlightjs/vue-plugin'
 import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'

@@ -16,7 +16,7 @@ class CustomConstantsProvider extends Blockly.zelos.ConstantProvider {
     this.BOTTOM_ROW_MIN_HEIGHT = 2
 
     this.SELECTED_GLOW_COLOUR = '#4062f6'
-    this.REPLACEMENT_GLOW_COLOUR = '#4062f6';
+    this.REPLACEMENT_GLOW_COLOUR = '#4062f6'
   }
 
   /**
