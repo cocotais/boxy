@@ -139,18 +139,29 @@ onMounted(() => {
 
   useMutationObserver(
     flyoutElement,
-    (mutations) => {
-      const element = mutations[0].target
-      const elementWidth = element.getAttribute('width')
-      const isDisplayBlock = element.style.display === 'block'
-      const retractedLength = -(cookies.get('flyout') === 'full' ? elementWidth || 320 : 320) + 60
-      element.style.width = elementWidth + 'px'
-      element.style.transform = isDisplayBlock
+    () => {
+      const flyout = cookies.get('flyout')
+      const flyoutElementWidth = Math.max(parseInt(flyoutElement.getAttribute('width')), 320)
+      const displayBlock = flyoutElement.style.display === 'block'
+      flyoutElement.style.width = flyout === 'fixed' || !displayBlock ? '320px' : `${flyoutElementWidth}px`
+      flyoutElement.style.transform = displayBlock
         ? 'translate(60px, 0px)'
-        : 'translate(' + retractedLength + 'px, 0px)'
+        : `translate(${60 - (flyout === 'full' ? flyoutElementWidth : 320)}px, 0px)`
     },
     { attributeFilter: ['style'] }
   )
+
+  flyoutElement.addEventListener('mouseenter', () => {
+    if (cookies.get('flyout') === 'fixed') {
+      flyoutElement.style.minWidth = flyoutElement.getAttribute('width') + 'px'
+    }
+  })
+
+  flyoutElement.addEventListener('mouseleave', () => {
+    if (cookies.get('flyout') === 'fixed') {
+      flyoutElement.style.minWidth = '320px'
+    }
+  })
 })
 </script>
 
@@ -161,7 +172,7 @@ div.injectionDiv {
     top: 60px;
 
     width: 60px;
-    height: calc(100vh - 60px) !important;
+    height: calc(100% - 60px) !important;
     padding: 0;
 
     background: var(--color-bg-2);
@@ -207,14 +218,16 @@ div.injectionDiv {
     display: block !important;
 
     width: 320px;
-    height: 100vh;
+    height: 100%;
+    min-width: 320px;
 
     background: var(--color-bg-2);
     border-right: 1px solid var(--color-border);
 
     transition:
-      transform cubic-bezier(0.34, 0.69, 0.1, 1) 300ms,
-      width cubic-bezier(0.34, 0.69, 0.1, 1) 300ms;
+      width cubic-bezier(0.34, 0.69, 0.1, 1) 300ms,
+      min-width cubic-bezier(0.34, 0.69, 0.1, 1) 300ms,
+      transform cubic-bezier(0.34, 0.69, 0.1, 1) 300ms;
 
     > path.blocklyFlyoutBackground {
       fill: var(--color-bg-2);
@@ -237,16 +250,6 @@ div.injectionDiv {
     > g > g > g:active {
       fill: rgb(var(--primary-7));
     }
-  }
-
-  @media (any-hover: hover) {
-    > svg.blocklyFlyout:hover {
-      overflow: visible;
-    }
-  }
-
-  > svg.blocklyFlyout.blocklyFlyoutFixed {
-    width: 320px !important;
   }
 
   > svg.blocklyScrollbarVertical.blocklyFlyoutScrollbar {

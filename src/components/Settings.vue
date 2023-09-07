@@ -47,22 +47,21 @@ import { onMounted, ref } from 'vue'
 const cookies = useCookies(['flyout', 'theme'])
 const visible = ref(false)
 const flyoutMode = ref(cookies.get('flyout') || 'full')
-const themeMode = ref(cookies.get('theme') || 'light')
+const themeMode = ref(cookies.get('theme') || 'auto')
 
 function handleClick() {
   visible.value = true
 }
 
-function handleFlyoutChange(value) {
+function setFlyout() {
   const flyout = document.querySelector('div.injectionDiv > svg.blocklyFlyout')
   if (flyout) {
     flyout.style.width = '320px'
-    if (value === 'full') {
-      flyout.classList.remove('blocklyFlyoutFixed')
-    } else if (value === 'fixed') {
-      flyout.classList.add('blocklyFlyoutFixed')
-    }
   }
+}
+
+function handleFlyoutChange(value) {
+  setFlyout()
   flyoutMode.value = value
   cookies.set('flyout', value)
 }
@@ -88,16 +87,13 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', fun
 })
 
 onMounted(() => {
-  handleThemeChange(themeMode.value)
-  handleFlyoutChange(flyoutMode.value)
-
   let style = document.createElement('style')
   style.innerHTML =
     '* { transition: color ease 50ms, background-color ease 200ms, border ease 300ms; }'
   document.head.appendChild(style)
 })
 
-setTheme(cookies.get('theme'))
+setTheme(cookies.get('theme') || 'auto')
 
 defineExpose({ handleClick })
 </script>
