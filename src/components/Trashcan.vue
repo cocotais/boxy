@@ -7,7 +7,7 @@
 
 <script setup>
 import { useMutationObserver } from '@vueuse/core'
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, ref } from 'vue'
 
 import { useStore } from '../store/store'
 
@@ -46,7 +46,11 @@ onMounted(() => {
   useMutationObserver(
     document.querySelector('#app > section > main > div.blocklyDiv > div > div'),
     (mutations) => {
-      store.trashcanOpen = mutations[0].target.classList.contains('blocklyToolboxDelete')
+      if (mutations[0].target.classList.contains('blocklyToolboxDelete')) {
+        open()
+      } else {
+        close()
+      }
     },
     { attributeFilter: ['class'] }
   )
@@ -59,18 +63,6 @@ onMounted(() => {
       }
     }
   })
-
-  watch(
-    store.$state,
-    (state) => {
-      if (state.trashcanOpen) {
-        open()
-      } else {
-        close()
-      }
-    },
-    { deep: true }
-  )
 })
 </script>
 

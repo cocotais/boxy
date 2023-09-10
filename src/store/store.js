@@ -6,8 +6,7 @@ export const useStore = defineStore('main', () => {
   const searchPlugin = shallowRef(null)
 
   const hasLayoutSider = ref(false)
-  const trashcanOpen = ref(false)
   const searchVisible = ref(false)
 
-  return { workspaceSvg, searchPlugin, hasLayoutSider, trashcanOpen, searchVisible }
+  return { workspaceSvg, searchPlugin, hasLayoutSider, searchVisible }
 })
