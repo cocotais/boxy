@@ -9,9 +9,9 @@
 </template>
 
 <script setup>
-import { IconDownload } from '@arco-iconbox/vue-boxy'
+import {IconDownload} from '@arco-iconbox/vue-boxy'
 import Blockly from 'blockly'
-import { onMounted, ref } from 'vue'
+import {onMounted, ref} from 'vue'
 
 const src = ref()
 const visible = ref()
@@ -37,8 +37,7 @@ function showSvg(svg) {
   img.onload = function () {
     context.drawImage(img, 0, 0, svg.width, svg.height, 0, 0, canvas.width, canvas.height)
     try {
-      let dataUrl = canvas.toDataURL('image/png')
-      src.value = dataUrl
+      src.value = canvas.toDataURL('image/png')
       visible.value = true
     } catch (err) {
       console.warn('Error converting the workspace svg to a png.')
@@ -134,13 +133,13 @@ onMounted(() => {
 })
 </script>
 
-<style>
+<style lang="less">
 body
   > div.arco-image-preview
   > div.arco-image-preview-wrapper
   > div.arco-image-preview-img-container {
-  width: 50vw;
-  height: 50vh;
-  margin: 25vh 25vw;
+  width: 50%;
+  height: 50%;
+  margin: 25% 25%;
 }
 </style>

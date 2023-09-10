@@ -51,8 +51,10 @@ const options = {
 }
 
 onMounted(() => {
-  store.workspaceSvg = Blockly.inject(blocklyDiv.value, options)
-  store.searchPlugin = new WorkspaceSearch(store.workspaceSvg)
+  store.$patch((state)=>{
+state.workspaceSvg = Blockly.inject(blocklyDiv.value, options)
+    state.searchPlugin =  new WorkspaceSearch(store.workspaceSvg)
+  })
   store.searchPlugin.setSearchPlaceholder('搜索作品中的积木')
   store.searchPlugin.init()
 })
@@ -60,10 +62,14 @@ onMounted(() => {
 
 <style lang="less">
 #app > section {
+  height: 100%;
+
   > main {
+    height: 100%;
+
     > div.blocklyDiv {
       width: 100%;
-      height: 100vh;
+      height: 100%;
       text-align: left;
 
       > div.injectionDiv {
