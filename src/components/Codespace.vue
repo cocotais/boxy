@@ -63,13 +63,15 @@ function handleCloseClick() {
   }
 
   > div > div > div {
+    height: 100%;
+
     > div.arco-scrollbar-container {
       padding: 1em;
-      height: calc(100vh - 2em);
+      height: calc(100% - 2em);
     }
 
     > div.arco-scrollbar-track > div > div {
-      background: --color-fill-4 !important;
+      background: var(--color-fill-4) !important;
     }
   }
 }
