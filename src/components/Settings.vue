@@ -1,5 +1,5 @@
 <template>
-  <a-modal v-model:visible="visible" width="auto" footer="false">
+  <a-modal v-model:visible="visible" width="auto" :footer=false>
     <template #title>设置</template>
     <div id="modal-content">
       <a-space>
