@@ -7,7 +7,7 @@
 
 <script setup>
 import { useMutationObserver } from '@vueuse/core'
-import { onMounted, ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 
 import { useStore } from '../store/store'
 
@@ -15,6 +15,7 @@ const store = useStore()
 const trashcan = ref()
 const trashcanLid = ref()
 const trashcanBody = ref()
+let workspace
 
 function show() {
   trashcan.value.style.zIndex = 6
@@ -42,9 +43,19 @@ function close() {
   trashcanLid.value.style.transform = 'translate(0px, 0px) rotate(0deg)'
 }
 
+function handleWorkspaceChange(event) {
+  if (event.type === 'drag') {
+    if (event.isStart) show()
+    else hide()
+  } else if (event.type === 'move' && event.oldCoordinate !== undefined) {
+    hide()
+  }
+}
+
 onMounted(() => {
+  workspace = store.workspaceSvg
   useMutationObserver(
-    document.querySelector('#app > section > main > div.blocklyDiv > div > div'),
+    workspace.getToolbox().HtmlDiv,
     (mutations) => {
       if (mutations[0].target.classList.contains('blocklyToolboxDelete')) {
         open()
@@ -54,16 +65,10 @@ onMounted(() => {
     },
     { attributeFilter: ['class'] }
   )
-  store.workspaceSvg.addChangeListener((event) => {
-    if (event.type === 'drag') {
-      show()
-    } else if (event.type === 'move') {
-      if (event.oldCoordinate !== undefined) {
-        hide()
-      }
-    }
-  })
+  workspace.addChangeListener(handleWorkspaceChange)
 })
+
+onBeforeUnmount(() => workspace?.removeChangeListener(handleWorkspaceChange))
 </script>
 
 <style lang="less">
@@ -71,12 +76,12 @@ onMounted(() => {
   position: absolute;
   z-index: 0;
   top: 0;
-  opacity: 0;
 
   width: 60px;
   height: 100%;
 
-  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  background-color: rgb(0 0 0 / 30%);
   backdrop-filter: blur(12px) saturate(145%);
 
   transition:

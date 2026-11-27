@@ -1,0 +1,27 @@
+{
+  "controller": {
+    "viewBox": "0 0 72 72",
+    "fill": "none",
+    "content": "<g><defs><clipPath id=\"a\"><rect width=\"72\" height=\"72\" rx=\"25\"/></clipPath></defs><g clip-path=\"url(#a)\" fill-rule=\"evenodd\" fill=\"#000\"><path data-follow-fill=\"currentColor\" style=\"mix-blend-mode:passthrough\" d=\"M21 43a3 3 0 0 1 6 0v11a3 3 0 1 1-6 0V43Zm0-25a3 3 0 0 1 6 0v11a3 3 0 1 1-6 0V18Z\" fill=\"currentColor\"/><path data-follow-fill=\"currentColor\" style=\"mix-blend-mode:passthrough\" d=\"M33 36a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-5 0q0-1.657-1.172-2.828Q25.657 32 24 32q-1.657 0-2.828 1.172Q20 34.343 20 36q0 1.657 1.172 2.828Q22.343 40 24 40q1.657 0 2.828-1.172Q28 37.657 28 36Zm16 2a3 3 0 0 1 6 0v16a3 3 0 1 1-6 0V38Zm0-20a3 3 0 0 1 6 0v6a3 3 0 1 1-6 0v-6Z\" fill=\"currentColor\"/><path data-follow-fill=\"currentColor\" style=\"mix-blend-mode:passthrough\" d=\"M56 31a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-5 0q0-1.657-1.172-2.828Q48.657 27 47 27q-1.657 0-2.828 1.172Q43 29.343 43 31q0 1.657 1.172 2.828Q45.343 35 47 35q1.657 0 2.828-1.172Q51 32.657 51 31Z\" fill=\"currentColor\"/></g></g>"
+  },
+  "calculation": {
+    "viewBox": "0 0 72 72",
+    "fill": "none",
+    "content": "<g><defs><clipPath id=\"a\"><rect width=\"72\" height=\"72\" rx=\"0\"/></clipPath></defs><g clip-path=\"url(#a)\"><path data-follow-fill=\"currentColor\" style=\"mix-blend-mode:passthrough\" d=\"M21 25h30a3 3 0 1 1 0 6H21a3 3 0 0 1 0-6Zm0 15h30a3 3 0 1 1 0 6H21a3 3 0 0 1 0-6Z\" fill-rule=\"evenodd\" fill=\"currentColor\"/></g></g>"
+  },
+  "variable": {
+    "viewBox": "0 0 72 72",
+    "fill": "none",
+    "content": "<g><defs><clipPath id=\"a\"><rect rx=\"0\" height=\"72\" width=\"72\"/></clipPath></defs><g clip-path=\"url(#a)\"><path fill=\"currentColor\" fill-rule=\"evenodd\" d=\"M53.827 16.766H97.09a3 3 0 0 1 0 6H53.827a3 3 0 0 1 0-6Z\" transform=\"matrix(-.7071 .7071 .7674 .64117 73.901 -29.924)\" style=\"mix-blend-mode:passthrough\" data-follow-fill=\"currentColor\"/><path fill=\"currentColor\" fill-rule=\"evenodd\" d=\"m71.443 16.693 1.118 7.864q.282 1.982-1.136 3.396-1.418 1.413-3.4 1.125L34.75 24.245l.761 4.825a3 3 0 1 1-5.926.935L28.399 22.5q-.153-.97.158-1.896.295-.878.947-1.539.653-.66 1.527-.966.923-.322 1.894-.181l33.32 4.84-.742-5.22v-.003a3 3 0 0 1 5.94-.844v.003Z\" transform=\"matrix(.67663 .73632 -.79378 .6082 20.369 -15.345)\" style=\"mix-blend-mode:passthrough\" data-follow-fill=\"currentColor\"/></g></g>"
+  },
+  "function": {
+    "viewBox": "0 0 72 72",
+    "fill": "none",
+    "content": "<g><defs><clipPath id=\"a\"><rect width=\"72\" height=\"72\" rx=\"0\"/></clipPath></defs><g clip-path=\"url(#a)\" fill-rule=\"evenodd\" fill=\"#000\"><path data-follow-fill=\"currentColor\" d=\"M23.812 20.154 20.48 51.846c-.174 1.657-1.659 3-3.316 3-1.657 0-2.858-1.343-2.684-3l3.33-31.692c.175-1.657 1.659-3 3.316-3 1.657 0 2.859 1.343 2.685 3Z\" fill=\"currentColor\"/><path data-follow-fill=\"currentColor\" d=\"M21.122 17.154h17.334c1.657 0 2.859 1.343 2.685 3-.174 1.657-1.659 3-3.316 3H20.491c-1.656 0-2.858-1.343-2.684-3 .174-1.657 1.658-3 3.315-3ZM19.51 32.49h15.25c1.656 0 2.858 1.343 2.684 3-.174 1.657-1.659 3-3.315 3h-15.25c-1.656 0-2.858-1.343-2.684-3 .174-1.657 1.658-3 3.315-3Zm38.195 17.36L42.947 27.435l-.006-.01c-.872-1.313-2.73-1.559-4.15-.549-1.415 1.008-1.861 2.885-.996 4.199l.005.008L52.558 53.5l.006.009c.872 1.313 2.73 1.56 4.15.55 1.415-1.008 1.861-2.886.996-4.2l-.005-.008Z\" fill=\"currentColor\"/><path data-follow-fill=\"currentColor\" d=\"m35.828 49.85 19.47-22.415.007-.01c1.148-1.313 3.058-1.559 4.265-.549 1.204 1.008 1.256 2.885.115 4.199l-.008.008L40.207 53.5l-.007.009c-1.148 1.313-3.058 1.56-4.265.55-1.204-1.008-1.256-2.886-.114-4.2l.007-.008Z\" fill=\"currentColor\"/></g></g>"
+  },
+  "list": {
+    "viewBox": "0 0 72 72",
+    "fill": "none",
+    "content": "<g><defs><clipPath id=\"a\"><rect width=\"72\" height=\"72\" rx=\"0\"/></clipPath></defs><g clip-path=\"url(#a)\"><path data-follow-fill=\"currentColor\" d=\"M36 39h20a3 3 0 1 0 0-6H36a3 3 0 0 0 0 6ZM18 53h38a3 3 0 1 0 0-6H18a3 3 0 0 0 0 6Zm18-28h20a3 3 0 1 0 0-6H36a3 3 0 0 0 0 6Zm-5 4a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-5 0q0-1.657-1.172-2.828Q23.657 25 22 25q-1.657 0-2.828 1.172Q18 27.343 18 29q0 1.657 1.172 2.828Q20.343 33 22 33q1.657 0 2.828-1.172Q26 30.657 26 29Z\" fill-rule=\"evenodd\" fill=\"currentColor\"/></g></g>"
+  }
+}

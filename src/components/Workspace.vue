@@ -3,41 +3,40 @@
 </template>
 
 <script setup>
-import '@blockly/block-plus-minus'
-
 import { WorkspaceSearch } from '@blockly/plugin-workspace-search'
-import Blockly from 'blockly'
-import { onMounted, ref } from 'vue'
+import { useCookies } from '@vueuse/integrations/useCookies'
+import * as Blockly from 'blockly'
+import * as zhHans from 'blockly/msg/zh-hans'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 
 import toolboxConfig from '../assets/toolbox.json'
-import { block_style } from '../blocks/patch'
-import * as zh from '../msg/zh.json'
+import { registerVariableToolbox } from '../blocks/toolbox'
+import zh from '../msg/zh.json'
 import { useStore } from '../store/store'
+import { CodemaoDragger } from '../theme/codemao.dragging.js'
 
-Blockly.setLocale(zh)
+Blockly.setLocale({ ...zhHans, ...zh })
 
 Blockly.Scrollbar.scrollbarThickness = 15
 Blockly.FlyoutButton.BORDER_RADIUS = 4
 Blockly.FlyoutButton.TEXT_MARGIN_X = 10
 Blockly.FlyoutButton.TEXT_MARGIN_Y = 10
 
-block_style('lists_create_with', 'list')
-block_style('procedures_defnoreturn', 'function')
-block_style('procedures_defreturn', 'function')
-block_style('procedures_ifreturn', 'function')
-block_style('procedures_callnoreturn', 'function')
-block_style('procedures_callreturn', 'function')
-
 const blocklyDiv = ref()
 const store = useStore()
+const cookies = useCookies(['compactFlyout'])
 const options = {
+  plugins: {
+    [Blockly.registry.Type.FLYOUTS_VERTICAL_TOOLBOX]: 'codemaoFlyout',
+    [Blockly.registry.Type.BLOCK_DRAGGER]: CodemaoDragger
+  },
   toolbox: toolboxConfig,
   media: '/media',
   trashcan: false,
   zoom: {
     controls: true,
     wheel: true,
-    startScale: 0.8,
+    startScale: 1,
     maxScale: 1.4,
     minScale: 0.5
   },
@@ -51,12 +50,19 @@ const options = {
 }
 
 onMounted(() => {
-  store.$patch((state)=>{
-state.workspaceSvg = Blockly.inject(blocklyDiv.value, options)
-    state.searchPlugin =  new WorkspaceSearch(store.workspaceSvg)
+  store.$patch((state) => {
+    state.workspaceSvg = Blockly.inject(blocklyDiv.value, options)
+    state.workspaceSvg.boxyCompactFlyout = cookies.get('compactFlyout') !== false
+    registerVariableToolbox(state.workspaceSvg)
+    state.searchPlugin = new WorkspaceSearch(store.workspaceSvg)
   })
   store.searchPlugin.setSearchPlaceholder('搜索作品中的积木')
   store.searchPlugin.init()
+})
+
+onBeforeUnmount(() => {
+  store.searchPlugin?.dispose()
+  store.workspaceSvg?.dispose()
 })
 </script>
 
@@ -114,56 +120,11 @@ state.workspaceSvg = Blockly.inject(blocklyDiv.value, options)
   }
 }
 
-div.blocklyWidgetDiv {
-  > div.blocklyMenu {
-    padding: 4px 0;
-    background-color: var(--color-bg-popup);
-    border: 1px solid var(--color-fill-3);
-    border-radius: var(--border-radius-medium);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-
-    > div.blocklyMenuItem {
-      color: var(--color-text-1);
-      padding: 0 12px;
-      font-size: 14px;
-      line-height: 36px;
-      text-align: left;
-      background-color: transparent;
-
-      > div.blocklyMenuItemContent {
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-      }
-    }
-
-    > div.blocklyMenuItem.blocklyMenuItemDisabled {
-      color: var(--color-text-4);
-    }
-
-    > div.blocklyMenuItem:not(.blocklyMenuItemDisabled):hover {
-      background: var(--color-fill-2);
-    }
-  }
-
-  > div.blocklyMenu.blocklyFocused {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-}
-
 body {
-  > div.blocklyDropDownDiv {
-    border: 1px solid var(--color-fill-3);
-    border-radius: var(--border-radius-medium);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-
-    > div.blocklyDropDownContent > div.blocklyMenu > div.blocklyMenuItem {
-      border-radius: var(--border-radius-medium);
-    }
-  }
-
-  > div.blocklyDropDownDiv.blocklyFocused {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  .blocklyWidgetDiv .blocklyHtmlInput {
+    border: 0;
+    color: #344265;
+    background: #fff;
   }
 }
 </style>

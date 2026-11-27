@@ -28,7 +28,7 @@
       </a-tooltip>
       <a-tooltip content="恢复为100%" position="top" mini>
         <a-button type="text" @click="handleResetClick" aria-label="恢复为100%">
-          <span ref="scale">100%</span>
+          <span>{{ scale }}</span>
         </a-button>
       </a-tooltip>
       <a-tooltip content="放大" position="top" mini>
@@ -44,11 +44,11 @@
 
 <script setup>
 import { IconBigger, IconCleanup, IconCode, IconSmaller } from '@arco-iconbox/vue-boxy'
-import { onMounted, ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 
 import { useStore } from '../store/store'
 
-const scale = ref()
+const scale = ref('100%')
 const store = useStore()
 
 function handleCleanUpClick() {
@@ -66,7 +66,8 @@ function handleSmallerClick() {
 }
 
 function handleResetClick() {
-  document.getElementsByClassName('blocklyZoom')[2].dispatchEvent(new PointerEvent('pointerdown'))
+  store.workspaceSvg.setScale(store.workspaceSvg.options.zoomOptions.startScale)
+  store.workspaceSvg.scrollCenter()
 }
 
 function handleBiggerClick() {
@@ -75,11 +76,17 @@ function handleBiggerClick() {
   store.workspaceSvg.zoom(0, 0, Math.log((scale + 0.15) / scale) / Math.log(speed))
 }
 
+function updateScale() {
+  const workspace = store.workspaceSvg
+  scale.value = Math.round((workspace.scale / workspace.options.zoomOptions.startScale) * 100) + '%'
+}
+
 onMounted(() => {
-  store.workspaceSvg.addChangeListener(() => {
-    scale.value.innerHTML = Math.floor((store.workspaceSvg.scale * (5 / 3) - 1 / 3) * 100) + '%'
-  })
+  store.workspaceSvg.addChangeListener(updateScale)
+  updateScale()
 })
+
+onBeforeUnmount(() => store.workspaceSvg?.removeChangeListener(updateScale))
 </script>
 
 <style>
@@ -107,10 +114,10 @@ onMounted(() => {
     justify-content: space-evenly;
 
     margin-right: 10px;
-
-    background-color: var(--color-bg-2);
     border: var(--color-border-2) solid 1px;
     border-radius: var(--border-radius-medium);
+
+    background-color: var(--color-bg-2);
 
     > div {
       margin: 0 !important;
@@ -125,6 +132,7 @@ onMounted(() => {
     margin-right: 0;
 
     > div:nth-child(2) > button {
+      width: 50px;
       padding: 0 5px;
     }
   }
@@ -134,7 +142,6 @@ div.arco-trigger-popup.arco-trigger-position-top.arco-tooltip {
   visibility: hidden;
 }
 
-arco-btn-text,
 .arco-btn-text[type='button'],
 .arco-btn-text[type='submit'] {
   background: transparent !important;
@@ -142,7 +149,6 @@ arco-btn-text,
   -webkit-tap-highlight-color: transparent;
 }
 
-arco-btn-text:active,
 .arco-btn-text[type='button']:active,
 .arco-btn-text[type='submit']:active {
   background: var(--color-fill-3) !important;
@@ -153,7 +159,6 @@ arco-btn-text:active,
     visibility: visible;
   }
 
-  arco-btn-text:hover,
   .arco-btn-text[type='button']:hover,
   .arco-btn-text[type='submit']:hover {
     background: var(--color-fill-2) !important;

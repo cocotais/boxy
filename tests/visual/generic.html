@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Boxy structural rendering</title>
+  </head>
+  <body style="min-width: 1510px">
+    <nav style="height: 40px; display: flex; gap: 8px; align-items: center">
+      <button id="workspace">workspace pairs</button>
+      <button id="flyout">flyout pairs</button>
+      <span>每对先显示原积木，再显示新定义；两者应有相同外观。</span>
+    </nav>
+    <div id="app" style="position: absolute; top: 40px; width: 1510px; height: 2600px"></div>
+    <script type="module" src="./generic.js"></script>
+  </body>
+</html>

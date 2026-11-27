@@ -1,5 +1,6 @@
 import '@arco-design/web-vue/dist/arco.css'
 import 'highlight.js/styles/atom-one-dark.css'
+import './theme/codemao.menus.css'
 
 import { Modal } from '@arco-design/web-vue'
 import highlight from '@highlightjs/vue-plugin'

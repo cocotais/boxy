@@ -1,0 +1,116 @@
+/* Keep Blockly's menu actions, positioning and keyboard navigation while using
+   the same surface and state tokens as the site's Arco Dropdown. */
+div.blocklyWidgetDiv > div.blocklyMenu,
+body div.blocklyDropDownDiv {
+  box-sizing: border-box;
+  padding: 4px 0;
+  border: 1px solid var(--color-fill-3);
+  border-radius: var(--border-radius-medium);
+
+  background-color: var(--color-bg-popup);
+  box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+}
+
+div.blocklyWidgetDiv > div.blocklyMenu:focus,
+div.blocklyWidgetDiv > div.blocklyMenu:focus-visible,
+div.blocklyWidgetDiv > div.blocklyMenu.blocklyFocused {
+  outline: none;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+}
+
+div.blocklyWidgetDiv > div.blocklyContextMenu {
+  /* Blockly sizes the widget from scrollHeight, which excludes the border.
+     Preserve its content-box contract so the border cannot create overflow. */
+  box-sizing: content-box;
+  min-width: 200px;
+  max-width: calc(100vw - 16px);
+  font-family: inherit;
+}
+
+div.blocklyWidgetDiv > div.blocklyMenu > div.blocklyMenuItem,
+body div.blocklyDropDownContent > div.blocklyMenu > div.blocklyMenuItem {
+  box-sizing: border-box;
+  min-height: 36px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 0;
+
+  font-size: 14px;
+  line-height: 36px;
+  color: var(--color-text-1);
+  text-align: start;
+
+  background-color: transparent;
+}
+
+.blocklyWidgetDiv .blocklyMenu > .blocklyMenuItem > .blocklyMenuItemContent,
+.blocklyDropDownDiv .blocklyMenu > .blocklyMenuItem > .blocklyMenuItemContent {
+  overflow: hidden;
+  color: inherit;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.blocklyMenu > .blocklyMenuItemSelected {
+  font-weight: 500;
+}
+
+div.blocklyWidgetDiv > div.blocklyMenu > div.blocklyMenuItemDisabled,
+body div.blocklyDropDownContent > div.blocklyMenu > div.blocklyMenuItemDisabled {
+  cursor: not-allowed;
+  color: var(--color-text-4);
+}
+
+div.blocklyMenu > div.blocklyMenuItem:not(.blocklyMenuItemDisabled):hover,
+div.blocklyMenu > div.blocklyMenuItem.blocklyMenuItemHighlight:not(.blocklyMenuItemDisabled) {
+  background-color: var(--color-fill-2);
+  box-shadow: none;
+  transition: background-color 0.1s linear;
+}
+
+.blocklyContextMenu .blocklyMenuItemContent .blocklyShortcutContainer {
+  gap: 24px;
+  align-items: center;
+}
+
+.blocklyContextMenu .blocklyMenuItemContent .blocklyShortcutContainer .blocklyShortcut {
+  flex-shrink: 0;
+  font-size: 12px;
+  color: var(--color-text-3);
+}
+
+.blocklyContextMenu .blocklyMenuItemDisabled .blocklyShortcutContainer .blocklyShortcut {
+  color: inherit;
+}
+
+.blocklyMenu > .blocklyMenuSeparator {
+  height: 1px;
+  margin: 4px 12px;
+  border: 0;
+  background-color: var(--color-fill-3);
+}
+
+body div.blocklyDropDownDiv {
+  overflow: hidden;
+}
+
+.blocklyDropDownDiv > .blocklyDropDownArrow {
+  display: none;
+}
+
+body div.blocklyDropDownDiv > div.blocklyDropDownContent {
+  padding: 0;
+}
+
+body div.blocklyDropDownContent > div.blocklyMenu {
+  min-width: 160px;
+  height: auto;
+  padding: 0;
+  border: 0;
+
+  background: transparent;
+}
+
+.blocklyDropDownContent > .blocklyMenu .blocklyMenuItemCheckbox {
+  display: none;
+}

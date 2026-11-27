@@ -1,13 +1,14 @@
 <template>
-  <a-modal v-model:visible="visible" width="auto" :footer=false>
+  <a-modal v-model:visible="visible" width="auto" :footer="false">
     <template #title>设置</template>
     <div id="modal-content">
       <a-space>
-        <p>积木盒宽度</p>
-        <a-radio-group :model-value="flyoutMode" @change="handleFlyoutChange" type="button">
-          <a-radio value="full">适应</a-radio>
-          <a-radio value="fixed">固定</a-radio>
-        </a-radio-group>
+        <p id="compact-flyout-label">短积木模式</p>
+        <a-switch
+          :model-value="compactFlyout"
+          aria-labelledby="compact-flyout-label"
+          @change="handleCompactFlyoutChange"
+        />
       </a-space>
       <a-space>
         <p>主题</p>
@@ -42,34 +43,36 @@
 <script setup>
 import { IconAuto, IconDark, IconLight } from '@arco-iconbox/vue-boxy'
 import { useCookies } from '@vueuse/integrations/useCookies'
-import { onMounted, ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 
-const cookies = useCookies(['flyout', 'theme'])
+import { useStore } from '../store/store'
+
+const store = useStore()
+const cookies = useCookies(['theme', 'compactFlyout'])
 const visible = ref(false)
-const flyoutMode = ref(cookies.get('flyout') || 'full')
 const themeMode = ref(cookies.get('theme') || 'auto')
+const compactFlyout = ref(cookies.get('compactFlyout') !== false)
+const colorScheme = window.matchMedia('(prefers-color-scheme: dark)')
 
 function handleClick() {
   visible.value = true
 }
 
-function setFlyout() {
-  const flyout = document.querySelector('div.injectionDiv > svg.blocklyFlyout')
-  if (flyout) {
-    flyout.style.width = '320px'
-  }
-}
-
-function handleFlyoutChange(value) {
-  setFlyout()
-  flyoutMode.value = value
-  cookies.set('flyout', value)
+function handleCompactFlyoutChange(value) {
+  compactFlyout.value = value
+  cookies.set('compactFlyout', value, { path: '/', maxAge: 31536000, sameSite: 'lax' })
+  const workspace = store.workspaceSvg
+  if (!workspace) return
+  workspace.boxyCompactFlyout = value
+  // Recreate the selected category from its definitions. Compact previews hide
+  // fields, so a fresh flyout restores the complete model without touching code.
+  workspace.refreshToolboxSelection()
 }
 
 function setTheme(value) {
   let theme = value
   if (value === 'auto') {
-    theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    theme = colorScheme.matches ? 'dark' : 'light'
   }
   document.body.setAttribute('arco-theme', theme)
 }
@@ -80,18 +83,14 @@ function handleThemeChange(value) {
   cookies.set('theme', value)
 }
 
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (event) {
+function handleColorSchemeChange(event) {
   if (themeMode.value === 'auto') {
     setTheme(event.matches ? 'dark' : 'light')
   }
-})
+}
 
-onMounted(() => {
-  let style = document.createElement('style')
-  style.innerHTML =
-    '* { transition: color ease 50ms, background-color ease 200ms, border ease 300ms; }'
-  document.head.appendChild(style)
-})
+onMounted(() => colorScheme.addEventListener('change', handleColorSchemeChange))
+onBeforeUnmount(() => colorScheme.removeEventListener('change', handleColorSchemeChange))
 
 setTheme(cookies.get('theme') || 'auto')
 

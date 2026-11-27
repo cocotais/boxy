@@ -1,23 +1,21 @@
 import { vitePluginForArco } from '@arco-plugins/vite-vue'
 import vue from '@vitejs/plugin-vue'
-import copy from 'rollup-plugin-copy'
-import visualizer from 'rollup-plugin-visualizer'
+import { visualizer } from 'rollup-plugin-visualizer'
 import { defineConfig } from 'vite'
 import viteCompression from 'vite-plugin-compression'
 import { VitePWA } from 'vite-plugin-pwa'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 export default defineConfig({
   plugins: [
     vue(),
     vitePluginForArco({ theme: '@arco-themes/vue-boxy', style: true }),
-    copy({
+    viteStaticCopy({
       targets: [
-        { src: './src/assets/boxy.png', dest: './dist' },
-        { src: './src/assets/favicon.ico', dest: './dist' },
-        { src: './src/assets/boxy.png', dest: './dist' },
-        { src: './node_modules/blockly/media/*', dest: './dist/media' }
-      ],
-      hook: 'writeBundle'
+        { src: './src/assets/boxy.png', dest: '.', rename: { stripBase: true } },
+        { src: './src/assets/favicon.ico', dest: '.', rename: { stripBase: true } },
+        { src: './node_modules/blockly/media/*', dest: 'media', rename: { stripBase: true } }
+      ]
     }),
     VitePWA({
       mode: 'production',

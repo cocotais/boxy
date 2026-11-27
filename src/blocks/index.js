@@ -1,0 +1,10 @@
+// Register the built-in blocks before plugins replace their mutators.
+import 'blockly'
+import '@blockly/block-plus-minus'
+import './fields.js'
+import './boxy.js'
+import './parameters.js'
+import './procedures.js'
+import './returns.js'
+import './variables.js'
+import './definitions.js'

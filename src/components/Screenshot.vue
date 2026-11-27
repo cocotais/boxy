@@ -9,9 +9,9 @@
 </template>
 
 <script setup>
-import {IconDownload} from '@arco-iconbox/vue-boxy'
-import Blockly from 'blockly'
-import {onMounted, ref} from 'vue'
+import { IconDownload } from '@arco-iconbox/vue-boxy'
+import * as Blockly from 'blockly'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 
 const src = ref()
 const visible = ref()
@@ -39,7 +39,7 @@ function showSvg(svg) {
     try {
       src.value = canvas.toDataURL('image/png')
       visible.value = true
-    } catch (err) {
+    } catch {
       console.warn('Error converting the workspace svg to a png.')
     }
   }
@@ -80,7 +80,11 @@ function workspaceToSvg(workspace, customCss) {
 
   const css = [].slice
     .call(document.head.querySelectorAll('style'))
-    .filter((el) => /\.blocklySvg/.test(el.innerText) || el.id.indexOf('blockly-') === 0)
+    .filter(
+      (el) =>
+        /\.blocklySvg|\.codemao-(renderer|theme)/.test(el.innerText) ||
+        el.id.indexOf('blockly-') === 0
+    )
     .map((el) => el.innerText)
     .join('\n')
   const style = document.createElement('style')
@@ -96,9 +100,16 @@ function workspaceToSvg(workspace, customCss) {
 
 function createBlockArea(scope) {
   const div = document.createElement('div')
-  const head = { blocks: { languageVersion: 0, blocks: [scope.block.toCopyData().saveInfo] } }
+  const head = {
+    blocks: {
+      languageVersion: 0,
+      blocks: [Blockly.serialization.blocks.save(scope.block, { addNextBlocks: false })]
+    }
+  }
   const blockArea = Blockly.inject(div, {
     readOnly: true,
+    media: '/media/',
+    sounds: false,
     theme: 'codemao',
     renderer: 'codemao'
   })
@@ -109,7 +120,12 @@ function createBlockArea(scope) {
 onMounted(() => {
   Blockly.ContextMenuRegistry.registry.register({
     callback: function (scope) {
-      showSvg(workspaceToSvg(createBlockArea(scope)))
+      const blockArea = createBlockArea(scope)
+      try {
+        showSvg(workspaceToSvg(blockArea))
+      } finally {
+        blockArea.dispose()
+      }
     },
     scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
     displayText: '生成积木图片',
@@ -126,10 +142,15 @@ onMounted(() => {
     scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,
     displayText: '全局预览',
     preconditionFn: function (scope) {
-      return scope.workspace.blockDB.size ? 'enabled' : 'disabled'
+      return scope.workspace.getAllBlocks(false).length ? 'enabled' : 'disabled'
     },
     id: 'WorkspaceImage'
   })
+})
+
+onBeforeUnmount(() => {
+  Blockly.ContextMenuRegistry.registry.unregister('BlcokImage')
+  Blockly.ContextMenuRegistry.registry.unregister('WorkspaceImage')
 })
 </script>
 

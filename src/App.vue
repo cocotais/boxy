@@ -23,14 +23,13 @@
 
 <script setup>
 import './assets/categories'
-import './blocks/boxy'
-import './blocks/patch'
+import './blocks/index'
 import './theme/codemao.theme'
 import './theme/codemao.renderer'
 import './generators/javascript'
 
-import Blockly from 'blockly'
-import { onMounted, ref, watch } from 'vue'
+import * as Blockly from 'blockly'
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
 import Codespace from './components/Codespace.vue'
 import Dialog from './components/Dialog.vue'
@@ -43,15 +42,23 @@ import Workspace from './components/Workspace.vue'
 import Zoombox from './components/Zoombox.vue'
 import { useStore } from './store/store'
 
-let usedLayoutSider = void 0
 const layoutSider = ref()
 const store = useStore()
+let resizeTimers = []
+
+function cancelResizeTimers() {
+  for (const timer of resizeTimers) clearTimeout(timer)
+  resizeTimers = []
+}
 
 function handleMoving() {
+  cancelResizeTimers()
   for (let i = 0; i < 5; i++) {
-    setTimeout(() => {
-      Blockly.svgResize(store.workspaceSvg)
-    }, 100 * i)
+    resizeTimers.push(
+      setTimeout(() => {
+        Blockly.svgResize(store.workspaceSvg)
+      }, 100 * i)
+    )
   }
 }
 
@@ -60,23 +67,19 @@ function setLayoutSider(isOpen = false) {
   handleMoving()
 }
 
-onMounted(() => {
-  watch(
-    store.$state,
-    (state) => {
-      if (state.hasLayoutSider !== usedLayoutSider) {
-        setLayoutSider(state.hasLayoutSider)
-        usedLayoutSider = state.hasLayoutSider
-      }
-    },
-    { deep: true }
-  )
-  handleMoving()
-  setLayoutSider()
-})
+watch(() => store.hasLayoutSider, setLayoutSider)
+onMounted(() => setLayoutSider(store.hasLayoutSider))
+onBeforeUnmount(cancelResizeTimers)
 </script>
 
 <style>
+* {
+  transition:
+    color ease 50ms,
+    background-color ease 200ms,
+    border ease 300ms;
+}
+
 html,
 body,
 #app {
@@ -84,9 +87,9 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
+  border: 0;
 
   background: var(--color-bg-1);
-  border: 0;
 }
 
 ::selection {

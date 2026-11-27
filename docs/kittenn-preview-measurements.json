@@ -1,0 +1,206 @@
+{
+  "reference": "https://kn.codemao.cn/editor/?workId=337980543",
+  "date": "2026-11-26",
+  "scale": 1,
+  "tolerancePx": 0.1,
+  "previews": [
+    {
+      "type": "controls_forever",
+      "referenceWidth": 104.1875,
+      "width": 104.1875,
+      "difference": 0
+    },
+    {
+      "type": "controls_repeat_ext",
+      "referenceWidth": 120,
+      "width": 120,
+      "difference": 0
+    },
+    {
+      "type": "controls_for",
+      "referenceWidth": 155.53125,
+      "width": 155.53125,
+      "difference": 0
+    },
+    {
+      "type": "controls_whileUntil",
+      "referenceWidth": 150.723388671875,
+      "width": 150.72340393066406,
+      "difference": 0
+    },
+    {
+      "type": "controls_flow_statements",
+      "referenceWidth": 104.1875,
+      "width": 104.1875,
+      "difference": 0
+    },
+    {
+      "type": "controls_if",
+      "referenceWidth": 114.535888671875,
+      "width": 114.535888671875,
+      "difference": 0
+    },
+    {
+      "type": "math_arithmetic",
+      "referenceWidth": 56,
+      "width": 56,
+      "difference": 0
+    },
+    {
+      "type": "math_random_int",
+      "referenceWidth": 128,
+      "width": 128,
+      "difference": 0
+    },
+    {
+      "type": "logic_compare",
+      "referenceWidth": 62.53594970703125,
+      "width": 62.53589630126953,
+      "difference": 0
+    },
+    {
+      "type": "logic_operation",
+      "referenceWidth": 62.53594970703125,
+      "width": 62.53589630126953,
+      "difference": 0
+    },
+    {
+      "type": "logic_negate",
+      "referenceWidth": 137.075927734375,
+      "width": 137.07179260253906,
+      "difference": 0
+    },
+    {
+      "type": "logic_boolean",
+      "referenceWidth": 78.53594970703125,
+      "width": 78.5359115600586,
+      "difference": 0
+    },
+    {
+      "type": "math_round",
+      "referenceWidth": 151.96875,
+      "width": 151.96875,
+      "difference": 0
+    },
+    {
+      "type": "math_modulo",
+      "referenceWidth": 177.0625,
+      "width": 177.0625,
+      "difference": 0
+    },
+    {
+      "type": "math_evenly_divisible",
+      "referenceWidth": 166.53594970703125,
+      "width": 166.535888671875,
+      "difference": 0
+    },
+    {
+      "type": "math_number_property",
+      "referenceWidth": 130.53594970703125,
+      "width": 130.535888671875,
+      "difference": 0
+    },
+    {
+      "type": "math_trig",
+      "referenceWidth": 124.2578125,
+      "width": 124.2578125,
+      "difference": 0
+    },
+    {
+      "type": "text_join",
+      "referenceWidth": 134.03125,
+      "width": 134.03125,
+      "difference": 0
+    },
+    {
+      "type": "text_charAt",
+      "referenceWidth": 194.671875,
+      "width": 194.671875,
+      "difference": 0
+    },
+    {
+      "type": "text_length",
+      "referenceWidth": 162.859375,
+      "width": 162.859375,
+      "difference": 0
+    },
+    {
+      "type": "lists_split",
+      "referenceWidth": 150.671875,
+      "width": 150.671875,
+      "difference": 0
+    },
+    {
+      "type": "math_types",
+      "referenceWidth": 132,
+      "width": 132,
+      "difference": 0
+    },
+    {
+      "type": "variables_set",
+      "referenceWidth": 116,
+      "width": 116,
+      "difference": 0
+    },
+    {
+      "type": "variables_get",
+      "referenceWidth": 68,
+      "width": 68,
+      "difference": 0
+    },
+    {
+      "type": "lists_push",
+      "referenceWidth": 136.1875,
+      "width": 136.1875,
+      "difference": 0
+    },
+    {
+      "type": "lists_insert",
+      "referenceWidth": 172.1875,
+      "width": 172.1875,
+      "difference": 0
+    },
+    {
+      "type": "lists_delete",
+      "referenceWidth": 84,
+      "width": 84,
+      "difference": 0
+    },
+    {
+      "type": "lists_set",
+      "referenceWidth": 84,
+      "width": 84,
+      "difference": 0
+    },
+    {
+      "type": "lists_get",
+      "referenceWidth": 100,
+      "width": 100,
+      "difference": 0
+    },
+    {
+      "type": "lists_length",
+      "referenceWidth": 116,
+      "width": 116,
+      "difference": 0
+    },
+    {
+      "type": "lists_index",
+      "referenceWidth": 152,
+      "width": 152,
+      "difference": 0
+    },
+    {
+      "type": "lists_includes",
+      "referenceWidth": 98.535888671875,
+      "width": 98.53589630126952,
+      "difference": 0
+    },
+    {
+      "type": "lists_create_with",
+      "referenceWidth": 104.1875,
+      "width": 104.1875,
+      "difference": 0
+    }
+  ]
+}

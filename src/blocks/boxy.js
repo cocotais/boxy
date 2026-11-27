@@ -1,4 +1,9 @@
-import Blockly from 'blockly'
+import * as Blockly from 'blockly'
+
+// These definitions intentionally replace Blockly's built-in text/list blocks.
+for (const type of ['lists_split', 'text_charAt']) {
+  delete Blockly.Blocks[type]
+}
 
 Blockly.defineBlocksWithJsonArray([
   {
@@ -45,34 +50,26 @@ Blockly.defineBlocksWithJsonArray([
   },
   {
     type: 'lists_split',
-    message0: '把 %1 按 %2 %3',
+    message0: '把 %1 按 %2 分开成列表',
     args0: [
       {
         type: 'input_value',
         name: 'INPUT',
-        check: ['String', 'Array']
+        check: 'String'
       },
       {
         type: 'input_value',
         name: 'DELIM',
         check: 'String'
-      },
-      {
-        type: 'field_dropdown',
-        name: 'MODE',
-        options: [
-          ['分开成列表', 'SPLIT'],
-          ['合并为文本', 'JOIN']
-        ]
       }
     ],
-    output: ['String', 'Array'],
+    output: 'Array',
     style: 'calculation',
-    tooltip: '将文本分开成列表或将列表合并为文本。'
+    tooltip: '按分隔符将文本分开成列表。'
   },
   {
     type: 'text_charAt',
-    message0: '取 %1 %2 第 %3 个字符',
+    message0: '%1 的 %2 %3 个字符',
     args0: [
       {
         type: 'input_value',
@@ -83,8 +80,8 @@ Blockly.defineBlocksWithJsonArray([
         type: 'field_dropdown',
         name: 'WHERE',
         options: [
-          ['正数', 'FROM_START'],
-          ['倒数', 'FROM_END']
+          ['第', 'FROM_START'],
+          ['倒数第', 'FROM_END']
         ]
       },
       {
@@ -98,8 +95,8 @@ Blockly.defineBlocksWithJsonArray([
     tooltip: '取文本指定位置的字符。'
   },
   {
-    type: 'text_getSubstring',
-    message0: '取 %1 %2 第 %3 到 %4 第 %5 个字符',
+    type: 'text_contains',
+    message0: '%1 包含 %2',
     args0: [
       {
         type: 'input_value',
@@ -107,35 +104,14 @@ Blockly.defineBlocksWithJsonArray([
         check: 'String'
       },
       {
-        type: 'field_dropdown',
-        name: 'WHERE1',
-        options: [
-          ['正数', 'FROM_START'],
-          ['倒数', 'FROM_END']
-        ]
-      },
-      {
         type: 'input_value',
-        name: 'INDEX1',
-        check: 'Number'
-      },
-      {
-        type: 'field_dropdown',
-        name: 'WHERE2',
-        options: [
-          ['正数', 'FROM_START'],
-          ['倒数', 'FROM_END']
-        ]
-      },
-      {
-        type: 'input_value',
-        name: 'INDEX2',
-        check: 'Number'
+        name: 'FIND',
+        check: 'String'
       }
     ],
-    output: 'String',
+    output: 'Boolean',
     style: 'calculation',
-    tooltip: '取文本指定位置的字符。'
+    tooltip: '判断文本是否包含指定内容。'
   },
   {
     type: 'math_types',
@@ -155,9 +131,21 @@ Blockly.defineBlocksWithJsonArray([
         ]
       }
     ],
-    output: 'String',
+    output: null,
     style: 'calculation',
     tooltip: '将对象转换为指定类型。'
+  },
+  {
+    type: 'lists_copy',
+    message0: '复制 %1 到 %2',
+    args0: [
+      { type: 'input_value', name: 'SOURCE', check: 'Array' },
+      { type: 'input_value', name: 'TARGET', check: 'Array' }
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    style: 'list',
+    tooltip: '用源列表的内容替换目标列表，保留目标列表的引用。'
   },
   {
     type: 'lists_push',
@@ -176,12 +164,12 @@ Blockly.defineBlocksWithJsonArray([
     ],
     previousStatement: null,
     nextStatement: null,
-    style: 'lists',
+    style: 'list',
     tooltip: '添加值到列表的末尾。'
   },
   {
     type: 'lists_insert',
-    message0: '插入 %1 到 %2 %3 第 %4 项后面',
+    message0: '插入 %1 到 %2 %3 %4 项',
     args0: [
       {
         type: 'input_value',
@@ -196,8 +184,8 @@ Blockly.defineBlocksWithJsonArray([
         type: 'field_dropdown',
         name: 'WHERE',
         options: [
-          ['正数', 'FROM_START'],
-          ['倒数', 'FROM_END']
+          ['的第', 'FROM_START'],
+          ['的倒数第', 'FROM_END']
         ]
       },
       {
@@ -208,12 +196,12 @@ Blockly.defineBlocksWithJsonArray([
     ],
     previousStatement: null,
     nextStatement: null,
-    style: 'lists',
+    style: 'list',
     tooltip: '添加值到列表的末尾。'
   },
   {
     type: 'lists_delete',
-    message0: '删除 %1 %2 第 %3 项',
+    message0: '删除 %1 %2 %3 项',
     args0: [
       {
         type: 'input_value',
@@ -236,12 +224,12 @@ Blockly.defineBlocksWithJsonArray([
     ],
     previousStatement: null,
     nextStatement: null,
-    style: 'lists_delete',
+    style: 'list',
     tooltip: '删除列表的指定项。'
   },
   {
     type: 'lists_set',
-    message0: '替换 %1 %2 第 %3 项为 %4',
+    message0: '替换 %1 %2 %3 项 为 %4',
     args0: [
       {
         type: 'input_value',
@@ -268,12 +256,12 @@ Blockly.defineBlocksWithJsonArray([
     ],
     previousStatement: null,
     nextStatement: null,
-    style: 'lists',
+    style: 'list',
     tooltip: '替换列表的指定项。'
   },
   {
     type: 'lists_get',
-    message0: '%1 %2 第 %3 项',
+    message0: '%1 %2 %3 项',
     args0: [
       {
         type: 'input_value',
@@ -295,12 +283,12 @@ Blockly.defineBlocksWithJsonArray([
       }
     ],
     output: 'Any',
-    style: 'lists',
+    style: 'list',
     tooltip: '获取列表的指定项。'
   },
   {
     type: 'lists_index',
-    message0: '%1 中 %2 %3 的位置',
+    message0: '%1 %2 %3 的位置',
     args0: [
       {
         type: 'input_value',
@@ -311,8 +299,8 @@ Blockly.defineBlocksWithJsonArray([
         type: 'field_dropdown',
         name: 'WHICH',
         options: [
-          ['第一个', 'FIRST'],
-          ['最后一个', 'LAST']
+          ['中第一个', 'FIRST'],
+          ['中最后一个', 'LAST']
         ]
       },
       {
@@ -321,7 +309,7 @@ Blockly.defineBlocksWithJsonArray([
       }
     ],
     output: 'Number',
-    style: 'lists',
+    style: 'list',
     tooltip: '返回在列表中的第一个/最后一个匹配项的索引值，如果找不到项目则返回列表本身。'
   },
   {
@@ -339,7 +327,7 @@ Blockly.defineBlocksWithJsonArray([
       }
     ],
     output: 'Boolean',
-    style: 'lists',
+    style: 'list',
     tooltip: '列表中是否包含指定项。'
   }
 ])

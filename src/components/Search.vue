@@ -3,12 +3,12 @@
     <a-space :style="{ display: visible ? 'block' : 'none' }">
       <a-input placeholder="搜索作品中的积木" @input="handleInput" @press-enter="handlePressEnter">
         <template #append>
-          <a-button type="text" @click="handleUpClick" aria-label="整理">
+          <a-button type="text" @click="handleUpClick" aria-label="上一个匹配">
             <template #icon>
               <IconUp />
             </template>
           </a-button>
-          <a-button type="text" @click="handleDownClick" aria-label="整理">
+          <a-button type="text" @click="handleDownClick" aria-label="下一个匹配">
             <template #icon>
               <IconDown />
             </template>
@@ -26,21 +26,13 @@
 
 <script setup>
 import { IconClose, IconDown, IconUp } from '@arco-iconbox/vue-boxy'
-import { onMounted, ref, watch } from 'vue'
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
 import { useStore } from '../store/store'
 
-const visible = ref()
+const visible = ref(false)
 const store = useStore()
-
-function open() {
-  visible.value = true
-}
-
-function close() {
-  visible.value = false
-  store.searchPlugin.close()
-}
+const keyEvents = new AbortController()
 
 function handleInput(value) {
   store.searchPlugin.searchAndHighlight(value)
@@ -62,31 +54,37 @@ function handleCloseClick() {
   store.searchVisible = false
 }
 
+function handleKeyDown(event) {
+  if ((event.ctrlKey || event.metaKey) && event.key === 'f') {
+    store.searchVisible = true
+    event.preventDefault()
+    event.stopPropagation()
+  }
+}
+
+watch(
+  () => store.searchVisible,
+  (isVisible, wasVisible) => {
+    visible.value = isVisible
+    if (!isVisible && wasVisible) store.searchPlugin?.close()
+  },
+  { immediate: true }
+)
+
 onMounted(() => {
-  store.workspaceSvg.injectionDiv.addEventListener('keydown', (event) => {
-    if ((event.ctrlKey || event.metaKey) && event.key === 'f') {
-      store.searchVisible = true
-      event.preventDefault()
-      event.stopPropagation()
-    }
+  store.workspaceSvg.getInjectionDiv().addEventListener('keydown', handleKeyDown, {
+    signal: keyEvents.signal
   })
-  watch(store.$state, (state) => {
-    if (state.searchVisible) {
-      open()
-    } else {
-      close()
-    }
-  })
-  close()
 })
+onBeforeUnmount(() => keyEvents.abort())
 </script>
 
 <style lang="less">
 #search {
   position: absolute;
-  right: 40px;
-  top: 40px;
   z-index: 7;
+  top: 40px;
+  right: 40px;
 
   > div > div > span > span.arco-input-append {
     padding: 0 4px;

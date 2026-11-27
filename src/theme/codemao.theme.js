@@ -1,15 +1,21 @@
-import Blockly from 'blockly'
+import * as Blockly from 'blockly'
 
-let codemaoTheme = Blockly.Theme.defineTheme('codemao', {
+import { loopVariableStyle, procedureParameterStyle, scriptVariableStyle } from './codemao.style.js'
+
+const codemaoTheme = Blockly.Theme.defineTheme('codemao', {
   base: Blockly.Themes.Zelos,
   blockStyles: {
+    loop_variable: loopVariableStyle,
+    procedure_parameter: procedureParameterStyle,
     controller: {
       colourPrimary: '#68cdff',
-      colourTertiary: '#5db8e5'
+      colourSecondary: '#3bb1ec',
+      colourTertiary: '#53a2c9'
     },
     calculation: {
       colourPrimary: '#feae8a',
-      colourTertiary: '#e49c7c'
+      colourSecondary: '#eb8b60',
+      colourTertiary: '#e58b63'
     },
     function: {
       colourPrimary: '#f88767',
@@ -19,13 +25,16 @@ let codemaoTheme = Blockly.Theme.defineTheme('codemao', {
       colourPrimary: '#00afc3',
       colourTertiary: '#009daf'
     },
-    variable: {
-      colourPrimary: '#ffbb55',
-      colourTertiary: '#e5a84c'
+    variable: scriptVariableStyle,
+    script_variable_declaration: {
+      colourPrimary: '#fc942c',
+      colourSecondary: '#eb930d',
+      colourTertiary: '#c77422'
     },
     list: {
-      colourPrimary: '#f9cc37',
-      colourTertiary: '#e0b731'
+      colourPrimary: '#f3c220',
+      colourSecondary: '#e8ab00',
+      colourTertiary: '#d1a100'
     },
     dictionary: {
       colourPrimary: '#a073ff',
@@ -50,7 +59,7 @@ let codemaoTheme = Blockly.Theme.defineTheme('codemao', {
       colour: '#5ab45b'
     },
     variable: {
-      colour: '#ffbb55'
+      colour: '#fdab3d'
     },
     list: {
       colour: '#ff9c37'
