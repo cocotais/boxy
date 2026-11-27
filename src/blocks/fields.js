@@ -55,7 +55,7 @@ function appearanceMixin(Base) {
     initView() {
       super.initView()
       if (this.boxyAppearance === 'reporter') {
-        this.fieldGroup_.setAttribute('data-boxy-reporter', this.name)
+        this.fieldGroup_.setAttribute('data-boxy-reporter', '')
       }
     }
 

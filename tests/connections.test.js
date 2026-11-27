@@ -6,9 +6,11 @@ import test from 'node:test'
 
 import * as Blockly from 'blockly'
 
+import { createScriptVariableReporter } from '../src/blocks/variables.js'
 import {
   CodemaoBlockDragStrategy,
   connectionEffect,
+  installFieldReporterDrag,
   useCodemaoDragStrategy
 } from '../src/theme/codemao.dragging.js'
 
@@ -159,4 +161,98 @@ test('theme dragging preserves explicitly installed strategies and handles unfam
   block.setDragStrategy(explicit)
   useCodemaoDragStrategy(block)
   assert.equal(block.dragStrategy, explicit)
+})
+
+test('new reporter fields resolve their live binding when dragged without reloading', () => {
+  const workspace = new Blockly.Workspace()
+  const fieldRoots = new Map()
+  try {
+    const definition = workspace.newBlock('procedures_defnoreturn')
+    const svg = Blockly.utils.xml.textToDom('<svg xmlns="http://www.w3.org/2000/svg"/>')
+    definition.getSvgRoot = () => svg
+    definition.setDragStrategy = (strategy) => (definition.dragStrategy = strategy)
+    const dragged = []
+    installFieldReporterDrag(definition, (block, name) => {
+      dragged.push({ block, name })
+      return null
+    })
+    for (const name of ['first', 'second']) {
+      // Like Blockly's Input.insertFieldAt, create the SVG before the field
+      // has a name, then add the field to an already initialized definition.
+      const target = svg.ownerDocument.createElementNS(svg.namespaceURI, 'g')
+      target.setAttribute('data-boxy-reporter', 'undefined')
+      svg.appendChild(target)
+      const text = svg.ownerDocument.createElementNS(svg.namespaceURI, 'text')
+      target.appendChild(text)
+      definition.addArg_(name)
+      const { argId } = definition.argData_.at(-1)
+      const field = definition.getField(argId)
+      fieldRoots.set(field, field.getSvgRoot)
+      field.getSvgRoot = () => target
+      const event = svg.ownerDocument.createEvent('Event')
+      event.initEvent('pointerdown', true, false)
+      text.dispatchEvent(event)
+      definition.dragStrategy.getTargetBlock()
+      assert.deepEqual(dragged.at(-1), { block: definition, name: argId })
+    }
+    assert.equal(dragged.length, 2)
+    assert.equal(definition.argData_.length, 2)
+    const event = svg.ownerDocument.createEvent('Event')
+    event.initEvent('pointerdown', true, false)
+    svg.dispatchEvent(event)
+    assert.equal(definition.dragStrategy.getTargetBlock(), definition)
+    assert.equal(dragged.length, 2)
+  } finally {
+    for (const [field, getSvgRoot] of fieldRoots) field.getSvgRoot = getSvgRoot
+    workspace.dispose()
+  }
+})
+
+test('script variable fields remain draggable after plus and minus rebuild their inputs', () => {
+  const workspace = new Blockly.Workspace()
+  try {
+    const declaration = workspace.newBlock('boxy_script_variables')
+    const svg = Blockly.utils.xml.textToDom('<svg xmlns="http://www.w3.org/2000/svg"/>')
+    declaration.getSvgRoot = () => svg
+    declaration.setDragStrategy = (strategy) => (declaration.dragStrategy = strategy)
+    const reporters = []
+    installFieldReporterDrag(declaration, (block, id) => {
+      reporters.push(createScriptVariableReporter(block, id))
+      return null
+    })
+    for (const action of ['PLUS', 'MINUS', 'PLUS']) {
+      const previousFields = declaration.scriptVariables_.map(({ id }) => declaration.getField(id))
+      declaration.getField(action).showEditor_()
+      assert.ok(
+        previousFields.every(
+          (field) => !declaration.inputList.some((input) => input.fieldRow.includes(field))
+        )
+      )
+      for (const variable of declaration.scriptVariables_) {
+        const field = declaration.getField(variable.id)
+        const getSvgRoot = field.getSvgRoot
+        const target = svg.ownerDocument.createElementNS(svg.namespaceURI, 'g')
+        target.setAttribute('data-boxy-reporter', 'undefined')
+        svg.appendChild(target)
+        field.getSvgRoot = () => target
+        try {
+          const event = svg.ownerDocument.createEvent('Event')
+          event.initEvent('pointerdown', true, false)
+          target.dispatchEvent(event)
+          declaration.dragStrategy.getTargetBlock()
+          const reporter = reporters.at(-1)
+          assert.equal(reporter.variableId_, variable.id)
+          assert.equal(reporter.getFieldValue('NAME'), field.getValue())
+          assert.equal(declaration.getField(variable.id), field)
+        } finally {
+          field.getSvgRoot = getSvgRoot
+          target.remove()
+        }
+      }
+    }
+    assert.equal(reporters.length, 5)
+    assert.deepEqual(workspace.getVariableMap().getAllVariables(), [])
+  } finally {
+    workspace.dispose()
+  }
 })

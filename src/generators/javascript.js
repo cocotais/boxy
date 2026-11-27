@@ -10,6 +10,37 @@ function scriptVariableName(binding, generator) {
   )
 }
 
+function parameterName(definition, parameter, generator) {
+  return generator.nameDB_.getName(parameter.model.getName(), `parameter:${definition.id}`)
+}
+
+javascriptGenerator.forBlock.procedures_defnoreturn = (block, generator) => {
+  const name = generator.getProcedureName(block.getFieldValue('NAME'))
+  const parameters = block.argData_.map((parameter) => parameterName(block, parameter, generator))
+  const instrumentation = [generator.STATEMENT_PREFIX, generator.STATEMENT_SUFFIX]
+    .filter(Boolean)
+    .map((code) => generator.injectId(code, block))
+    .join('')
+  const prefix = instrumentation ? generator.prefixLines(instrumentation, generator.INDENT) : ''
+  const trap = generator.INFINITE_LOOP_TRAP
+    ? generator.prefixLines(
+        generator.injectId(generator.INFINITE_LOOP_TRAP, block),
+        generator.INDENT
+      )
+    : ''
+  const body = generator.statementToCode(block, 'STACK')
+  generator.definitions_[`%${name}`] = generator.scrub_(
+    block,
+    `function ${name}(${parameters.join(', ')}) {\n${prefix}${trap}${body}}`
+  )
+  return null
+}
+
+javascriptGenerator.forBlock.procedures_callreturn = (block, generator) => [
+  `${generator.getProcedureName(block.getProcedureCall())}(${block.arguments_.map((_, index) => generator.valueToCode(block, `ARG${index}`, Order.NONE) || 'null').join(', ')})`,
+  Order.FUNCTION_CALL
+]
+
 javascriptGenerator.forBlock.boxy_script_variables = (block, generator) =>
   `let ${block.scriptVariables_.map((variable) => `${scriptVariableName({ declaration: block, variable }, generator)} = 0`).join(', ')};\n`
 
@@ -77,7 +108,7 @@ javascriptGenerator.forBlock.boxy_return = (block, generator) =>
 javascriptGenerator.forBlock.boxy_parameter = (block, generator) => {
   const binding = resolveParameter(block)
   return [
-    binding ? generator.getVariableName(binding.parameter.model.getId()) : 'null',
+    binding ? parameterName(binding.definition, binding.parameter, generator) : 'null',
     Order.ATOMIC
   ]
 }

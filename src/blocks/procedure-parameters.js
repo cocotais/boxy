@@ -42,10 +42,6 @@ Blockly.Blocks.boxy_parameter = {
     this.setFieldValue(state.name ?? '参数', 'NAME')
     this.refreshParameter_()
   },
-  getVarModels() {
-    const binding = resolveParameter(this)
-    return binding ? [binding.parameter.model] : []
-  },
   refreshParameter_() {
     const binding = resolveParameter(this)
     if (binding) {

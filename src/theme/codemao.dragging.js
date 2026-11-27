@@ -102,9 +102,15 @@ export function installFieldReporterDrag(block, createReporter) {
   const strategy = new FieldReporterDragStrategy(block, createReporter)
   block.setDragStrategy(strategy)
   block.getSvgRoot().addEventListener('pointerdown', (event) => {
-    strategy.fieldName = event.target
-      .closest('[data-boxy-reporter]')
-      ?.getAttribute('data-boxy-reporter')
+    const target = event.target.closest('[data-boxy-reporter]')
+    // Blockly initializes a newly appended field's SVG before assigning its
+    // name. Resolve the live field on pointerdown instead of caching that name.
+    const field =
+      target &&
+      block.inputList
+        .flatMap((input) => input.fieldRow)
+        .find((field) => field.getSvgRoot() === target)
+    strategy.fieldName = field?.name ?? null
   })
 }
 

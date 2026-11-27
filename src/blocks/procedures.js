@@ -14,6 +14,60 @@ Blockly.Blocks.procedures_callreturn.defType_ = 'procedures_defnoreturn'
 
 for (const type of ['procedures_callnoreturn', 'procedures_callreturn']) {
   const caller = Blockly.Blocks[type]
+  // Calls keep names and stable parameter IDs, never workspace variables.
+  caller.setProcedureParameters_ = function (names, ids) {
+    if (names.length !== ids.length) throw new RangeError('Parameter names and IDs must match')
+    if (JSON.stringify(names) === JSON.stringify(this.arguments_)) {
+      this.quarkIds_ = [...ids]
+      return
+    }
+    const connections = this.arguments_.map((name, index) => ({
+      name,
+      id: this.quarkIds_?.[index],
+      connection: this.getInput(`ARG${index}`)?.connection.targetConnection
+    }))
+    for (const { connection } of connections) connection?.disconnect()
+    this.arguments_ = [...names]
+    this.argumentVarModels_ = []
+    this.quarkIds_ = [...ids]
+    this.updateShape_()
+    for (let index = 0; index < names.length; index++) {
+      const previous =
+        connections.find((item) => ids[index] && item.id === ids[index]) ??
+        connections.find((item) => item.name === names[index]) ??
+        (ids[index] == null || connections[index]?.id == null ? connections[index] : null)
+      previous?.connection?.reconnect(this, `ARG${index}`)
+    }
+  }
+  const onchange = caller.onchange
+  caller.onchange = function (event) {
+    if (
+      this.workspace &&
+      !this.workspace.isFlyout &&
+      event.recordUndo &&
+      event.type === Blockly.Events.BLOCK_CREATE &&
+      event.ids.includes(this.id)
+    ) {
+      const definition = Blockly.Procedures.getDefinition(this.getProcedureCall(), this.workspace)
+      if (
+        definition?.type === this.defType_ &&
+        JSON.stringify(definition.getProcedureDef()[1]) === JSON.stringify(this.arguments_)
+      ) {
+        const disabled = !definition.isEnabled()
+        this.setDisabledReason(disabled, 'DISABLED_PROCEDURE_DEFINITION')
+        this.setWarningText(
+          disabled
+            ? Blockly.Msg.PROCEDURES_CALL_DISABLED_DEF_WARNING.replace(
+                '%1',
+                this.getProcedureCall()
+              )
+            : null
+        )
+        return
+      }
+    }
+    onchange.call(this, event)
+  }
   const updateShape = caller.updateShape_
   caller.updateShape_ = function () {
     updateShape.call(this)
@@ -64,23 +118,20 @@ function promptParameterName(block, parameterId = null) {
   prompt(parameterId ? block.getFieldValue(parameterId) : '')
 }
 
-function finishParameterEditing() {
+function validateParameterName(value) {
   const block = this.getSourceBlock()
   const parameter = block.argData_.find(({ argId }) => argId === this.name)
-  if (!parameter) return
-  const variables = block.workspace.getVariableMap()
-  const obsolete = new Set([...this.varIdsToDelete_, this.preEditVarModel_?.getId()])
-  for (const id of obsolete) {
-    const variable = variables.getVariableById(id)
-    if (
-      variable &&
-      id !== parameter.model.getId() &&
-      !Blockly.Variables.getVariableUsesById(block.workspace, id).length
+  const name = value.replace(/[\s\xa0]+/g, ' ').trim()
+  if (
+    !name ||
+    block.argData_.some(
+      (arg) => arg !== parameter && arg.model.getName().toLowerCase() === name.toLowerCase()
     )
-      variables.deleteVariable(variable)
-  }
-  this.varIdsToDelete_.length = 0
-  this.preEditVarModel_ = null
+  )
+    return null
+  parameter?.model.setName(name)
+  Blockly.Procedures.mutateCallers(block)
+  return name
 }
 
 function updateParameterButtons() {
@@ -101,8 +152,8 @@ function updateParameterButtons() {
   this.moveInputBefore(BUTTONS, body?.name ?? null)
 }
 
-// Retain the plugin's parameter models, validators, caller synchronization and
-// serialization. Present its arguments as draggable reporter fields.
+// Keep the plugin's serialization and shape updates. Parameter models belong
+// to their definition, so global-variable APIs must not enumerate them.
 const definition = Blockly.Blocks.procedures_defnoreturn
 const initSvg = definition.initSvg ?? Blockly.BlockSvg.prototype.initSvg
 definition.initSvg = function () {
@@ -116,24 +167,52 @@ definition.init = function () {
   initStartHat(this, { body: 'STACK', icon: categoryIcons.function })
   this.getInput('TOP').removeField('PLUS', true)
   this.updateParameterButtons_ = updateParameterButtons
+  this.getVarModels = () => []
+  this.getVars = () => []
+  this.validator_ = validateParameterName
+  const customContextMenu = this.customContextMenu
+  this.customContextMenu = function (options) {
+    customContextMenu.call(this, options)
+    if (this.isInFlyout || this.isCollapsed()) return
+    for (const { model, argId } of this.argData_) {
+      options.push({
+        enabled: true,
+        text: Blockly.Msg.VARIABLES_SET_CREATE_GET.replace('%1', model.getName()),
+        callback: Blockly.ContextMenu.callbackFactory(this, {
+          type: 'boxy_parameter',
+          extraState: { definitionId: this.id, parameterId: argId, name: model.getName() }
+        })
+      })
+    }
+  }
+
+  this.addArg_ = function (name, id, argId) {
+    argId ||= Blockly.utils.idGenerator.genUid()
+    name ||= Blockly.Variables.generateUniqueNameFromOptions(
+      Blockly.Procedures.DEFAULT_ARG,
+      this.argData_.map(({ model }) => model.getName())
+    )
+    if (!this.argData_.length) this.getInput('TOP').appendField('', 'WITH')
+    // A model provides the plugin's name/ID interface without registering it
+    // with VariableMap or creating a global-variable event.
+    const model = new Blockly.VariableModel(this.workspace, name, '', id ?? argId)
+    this.addVarInput_(name, argId)
+    this.moveInputBefore(argId, 'STACK')
+    this.argData_.push({ model, argId })
+    this.updateParameterButtons_()
+  }
 
   this.addVarInput_ = function (name, argId) {
     const field = new ParameterField(name, argId, this.validator_, () =>
       promptParameterName(this, argId)
     )
-    field.varIdsToDelete_ = []
-    field.preEditVarModel_ = null
-    // The plugin's cleanup still calls the removed workspace.deleteVariableById API.
-    field.onFinishEditing_ = finishParameterEditing.bind(field)
     this.appendDummyInput(argId).setAlign(Blockly.inputs.Align.RIGHT).appendField(field, argId)
   }
 
-  for (const method of ['addArg_', 'removeArg_']) {
-    const original = this[method]
-    this[method] = function (...args) {
-      original.apply(this, args)
-      this.updateParameterButtons_()
-    }
+  const removeArg = this.removeArg_
+  this.removeArg_ = function (argId) {
+    removeArg.call(this, argId)
+    this.updateParameterButtons_()
   }
   this.updateParameterButtons_()
 }
