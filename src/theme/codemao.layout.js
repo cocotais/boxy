@@ -25,6 +25,10 @@ export const visibleInputs = (block) => block.inputList.filter((input) => input.
 export const visibleFields = (block) =>
   visibleInputs(block).flatMap((input) => input.fieldRow.filter((field) => field.isVisible()))
 
+export const isValueContainer = (block, inputs) =>
+  !!block?.outputConnection &&
+  (inputs ?? visibleInputs(block)).some((input) => input.type === inputTypes.STATEMENT)
+
 export function isLiteral(block) {
   if (!block?.outputConnection) return false
   const inputs = visibleInputs(block)
@@ -47,6 +51,8 @@ export function describeBlock(block) {
   const values = inputs.filter((input) => input.type === inputTypes.VALUE)
   const marker = block.isInsertionMarker()
   const lastStatement = inputs.findLastIndex((input) => input.type === inputTypes.STATEMENT)
+  const valueContainer = isValueContainer(block, inputs)
+  const statementLayout = !block.outputConnection || valueContainer
   const boolean = block.outputConnection?.getCheck()?.includes('Boolean') ?? false
   const hat = !block.previousConnection && !block.outputConnection ? block.boxyHat : null
   const tail = hat
@@ -69,6 +75,8 @@ export function describeBlock(block) {
     hat,
     tail,
     terminal,
+    valueContainer,
+    statementLayout,
     preview,
     shadow,
     metrics,
@@ -77,7 +85,7 @@ export function describeBlock(block) {
         ? (METRICS.statementHeight - metrics.reporterHeight) / 2
         : METRICS.rowInset,
     headerInputs: hat ? (tail ? inputs.slice(0, inputs.indexOf(tail)) : inputs) : [],
-    minimumWidth: !block.outputConnection && (!preview || terminal) ? METRICS.statementMin : 0,
+    minimumWidth: statementLayout && (!preview || terminal) ? METRICS.statementMin : 0,
     rowHeight: shadow ? metrics.fieldHeight : METRICS.rowHeight,
     reporterInset: shadow ? 0 : METRICS.corner,
     armWidth: footer ? metrics.actionArmWidth : metrics.armWidth,

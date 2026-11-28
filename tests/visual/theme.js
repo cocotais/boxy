@@ -3,9 +3,16 @@
 import '../../src/main.js'
 
 import * as Blockly from 'blockly'
+import { javascriptGenerator, Order } from 'blockly/javascript'
 
 import toolbox from '../../src/assets/toolbox.json'
 import { useStore } from '../../src/store/store.js'
+import { valueContainerDefinitions } from '../fixtures/value-containers.js'
+
+Blockly.defineBlocksWithJsonArray(valueContainerDefinitions)
+// The fixture only specifies rendering and connections, not execution semantics.
+for (const { type, output } of valueContainerDefinitions)
+  javascriptGenerator.forBlock[type] = () => (output ? ['[]', Order.ATOMIC] : '')
 
 const variables = [
   { name: 'a', id: 'short' },
@@ -131,11 +138,67 @@ scenes.scriptVariables = [
   }
 ]
 
+scenes.valueContainers = [
+  { type: 'blocks_group' },
+  {
+    type: 'blocks_group',
+    inputs: {
+      BLOCK: {
+        block: {
+          type: 'variables_set',
+          fields: { VAR: { id: 'short' } },
+          next: { block: { type: 'math_change', fields: { VAR: { id: 'short' } } } }
+        }
+      }
+    }
+  },
+  {
+    type: 'variables_set',
+    fields: { VAR: { id: 'short' } },
+    inputs: {
+      VALUE: {
+        block: {
+          type: 'blocks_group',
+          inputs: { BLOCK: { block: { type: 'controls_forever' } } }
+        }
+      }
+    }
+  },
+  { type: 'specimen_value_branches' },
+  {
+    type: 'blocks_group',
+    inputs: {
+      BLOCK: {
+        block: {
+          type: 'variables_set',
+          fields: { VAR: { id: 'short' } },
+          inputs: { VALUE: { block: { type: 'blocks_group' } } }
+        }
+      }
+    }
+  },
+  { type: 'specimen_value_consumer' }
+]
+
 for (const [name, blocks] of Object.entries(scenes)) {
   const button = document.createElement('button')
   button.textContent = name
   button.onclick = () => {
     const workspace = useStore().workspaceSvg
+    if (name === 'valueContainers') {
+      workspace.updateToolbox({
+        ...toolbox,
+        contents: [
+          {
+            kind: 'category',
+            name: '容器样式',
+            categorystyle: 'controller',
+            contents: valueContainerDefinitions.map(({ type }) => ({ kind: 'block', type }))
+          },
+          ...toolbox.contents
+        ]
+      })
+    }
     workspace.getToolbox().clearSelection()
     const columns = name === 'calculation' ? 3 : 2
     const rowHeight = name === 'dynamic' ? 270 : 180

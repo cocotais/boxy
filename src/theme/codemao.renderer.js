@@ -1,9 +1,12 @@
 import * as Blockly from 'blockly'
 
 import { installEffects, themeCSS } from './codemao.effects.js'
-import { describeBlock } from './codemao.layout.js'
+import { describeBlock, isValueContainer } from './codemao.layout.js'
 import {
   capsulePath,
+  containerCapPath,
+  containerRadius,
+  containerSocketPath,
   iconDataUrl,
   measureFieldText,
   METRICS,
@@ -68,6 +71,30 @@ export class CustomConstantsProvider extends Blockly.zelos.ConstantProvider {
     return shape
   }
 
+  shapeFor(connection) {
+    const shape = super.shapeFor(connection)
+    const { INPUT_VALUE, OUTPUT_VALUE } = Blockly.ConnectionType
+    const block =
+      connection.type === OUTPUT_VALUE
+        ? connection.getSourceBlock()
+        : connection.type === INPUT_VALUE
+          ? connection.targetBlock()
+          : null
+    if (!isValueContainer(block)) return shape
+    // Both ends of a value connection share the same geometry and anchor.
+    // Copy rather than changing Zelos's shared shape for ordinary reporters.
+    return {
+      ...shape,
+      valueContainer: true,
+      connectionOffsetY: () => 0,
+      ...(shape.type === this.SHAPES.ROUND && {
+        width: containerRadius,
+        pathDown: (height) => containerCapPath(height),
+        pathUp: (height) => containerCapPath(height, true)
+      })
+    }
+  }
+
   createDom(svg, selector, injectionDiv) {
     super.createDom(svg, selector, injectionDiv)
     installEffects(svg, this.randomIdentifier, injectionDiv ?? svg)
@@ -88,7 +115,7 @@ class CustomRenderInfo extends Blockly.zelos.RenderInfo {
     super.populateTopRow_()
     if (this.layout.preview) this.topRow.minHeight = this.layout.headerInset
     if (this.layout.hat) this.topRow.minHeight = METRICS.rowInset
-    if (this.outputConnection) {
+    if (!this.layout.statementLayout) {
       this.topRow.minHeight = this.layout.reporterInset
       for (const element of this.topRow.elements) element.width = 0
     }
@@ -103,7 +130,7 @@ class CustomRenderInfo extends Blockly.zelos.RenderInfo {
       if (!this.bottomRow.minHeight) {
         for (const element of this.bottomRow.elements) element.height = 0
       }
-    } else if (this.outputConnection) {
+    } else if (!this.layout.statementLayout) {
       this.bottomRow.minHeight = this.layout.reporterInset
       for (const element of this.bottomRow.elements) element.width = 0
     } else if (
@@ -137,7 +164,7 @@ class CustomRenderInfo extends Blockly.zelos.RenderInfo {
         }
       }
     }
-    if (this.outputConnection) {
+    if (!this.layout.statementLayout) {
       for (const row of this.inputRows) {
         row.minHeight = this.layout.shadow
           ? this.layout.rowHeight
@@ -207,7 +234,7 @@ class CustomRenderInfo extends Blockly.zelos.RenderInfo {
       if (Types.isTopRow(prev) || Types.isBottomRow(next)) return 0
       if (prev.hasStatement || next.hasStatement) return METRICS.rowInset
     }
-    if (this.outputConnection) return super.getSpacerRowHeight_(prev, next)
+    if (!this.layout.statementLayout) return super.getSpacerRowHeight_(prev, next)
     if (prev.hasStatement && next.hasStatement) return METRICS.statementHeight
     if (
       prev.hasStatement &&
@@ -244,6 +271,16 @@ class CustomRenderInfo extends Blockly.zelos.RenderInfo {
   }
 
   getInRowSpacing_(prev, next) {
+    if (this.layout.valueContainer && (!prev || !next)) {
+      if (!prev) {
+        return next?.parentInput === this.layout.footer
+          ? this.layout.metrics.actionPadding - this.outputConnection.shape.width(METRICS.reporter)
+          : 0
+      }
+      return prev.parentInput === this.layout.footer
+        ? this.layout.metrics.actionPadding
+        : this.layout.metrics.endPadding
+    }
     if (this.layout.hat) {
       if ((prev && Types.isStatementInput(prev)) || (next && Types.isStatementInput(next))) return 0
       if (!prev && this.layout.headerInputs.includes(next?.parentInput))
@@ -281,6 +318,11 @@ class CustomRenderInfo extends Blockly.zelos.RenderInfo {
   finalize_() {
     super.finalize_()
     if (this.layout.hat) return
+    if (this.layout.valueContainer) {
+      for (const row of this.inputRows) {
+        if (row.hasStatement) row.statementEdge = METRICS.statementPadding - this.startX
+      }
+    }
     if (this.layout.minimumWidth) {
       this.width = Math.max(this.width, this.layout.minimumWidth)
       this.widthWithChildren = Math.max(this.widthWithChildren, this.width)
@@ -313,6 +355,40 @@ class CustomRenderInfo extends Blockly.zelos.RenderInfo {
 }
 
 class CustomDrawer extends Blockly.zelos.Drawer {
+  drawInlineInput_(input) {
+    super.drawInlineInput_(input)
+    // Keep the native dark socket behind a value container. Its open statement
+    // cavity exposes the socket colour; its corners stay fixed as the body grows.
+    if (this.info_.isInsertionMarker || !input.shape.valueContainer) return
+    this.block_.pathObject.setOutlinePath(
+      input.input.name,
+      containerSocketPath(
+        input.xPos,
+        input.centerline - input.height / 2,
+        input.width,
+        input.height
+      )
+    )
+  }
+
+  drawConnectionHighlightPath(measurable) {
+    if (!measurable.shape.valueContainer) return super.drawConnectionHighlightPath(measurable)
+    // Zelos normally draws value highlights relative to a middle anchor.
+    // Both sides of a container connection instead use its upper corner.
+    const path =
+      measurable.connectionModel.type === Blockly.ConnectionType.OUTPUT_VALUE
+        ? `M ${measurable.width},0 ${measurable.shape.pathDown(measurable.height)}`
+        : containerSocketPath(0, 0, measurable.width, measurable.height)
+    const connection = measurable.connectionModel
+    const block = connection.getSourceBlock()
+    return block.pathObject.addConnectionHighlight?.(
+      connection,
+      path,
+      connection.getOffsetInBlock(),
+      block.RTL
+    )
+  }
+
   drawOutline_() {
     if (this.info_.layout.hat) {
       this.drawStartHat_()
@@ -325,7 +401,7 @@ class CustomDrawer extends Blockly.zelos.Drawer {
     }
     // Zelos supplies capsule reporters and hexagonal Boolean sockets.
     // Expanded function definitions may have external inputs; retain their drawer.
-    if (this.info_.outputConnection || this.info_.rows.some((row) => row.hasExternalInput)) {
+    if (!this.info_.layout.statementLayout || this.info_.rows.some((row) => row.hasExternalInput)) {
       super.drawOutline_()
       return
     }
@@ -338,13 +414,16 @@ class CustomDrawer extends Blockly.zelos.Drawer {
     let segmentTop = top
     this.positionPreviousConnection_()
     this.positionNextConnection_()
-    this.outlinePath_ = `M ${left + corner},${top}`
+    this.outlinePath_ = `M ${left + (info.outputConnection ? 0 : corner)},${top}`
     for (const row of statements) {
-      const header = info.inputRows.findLast(
+      const headers = info.inputRows.filter(
         (candidate) =>
           !candidate.hasStatement && candidate.yPos >= segmentTop && candidate.yPos < row.yPos
       )
-      const width = Math.max(info.layout.metrics.controlMin, header?.boxyNaturalWidth ?? info.width)
+      const width = Math.max(
+        info.layout.metrics.controlMin,
+        ...headers.map((row) => left + row.boxyNaturalWidth)
+      )
       this.drawRoundedEnd_(width, segmentTop, row.yPos)
       const innerLeft = row.xPos + row.statementEdge
       const cavityBottom = row.yPos + row.height
@@ -366,6 +445,11 @@ class CustomDrawer extends Blockly.zelos.Drawer {
         ? statements.at(-1).xPos + statements.at(-1).statementEdge + info.layout.armWidth
         : info.width
     this.drawRoundedEnd_(finalRight, segmentTop, bottom)
+    if (info.outputConnection) {
+      this.positionOutputConnection_()
+      this.outlinePath_ += ` H ${left} ${info.outputConnection.shape.pathUp(info.outputConnection.height)} Z`
+      return
+    }
     const lowerCorner = info.layout.terminal ? METRICS.terminalCorner : corner
     this.outlinePath_ += info.layout.terminal
       ? ` H ${left + lowerCorner} A ${lowerCorner},${lowerCorner} 0 0 1 ${left},${bottom - lowerCorner}`
@@ -454,7 +538,11 @@ class CustomPathObject extends Blockly.zelos.PathObject {
 
   setOutlinePath(name, path) {
     super.setOutlinePath(name, path)
-    this.getOutlinePath(name).setAttribute('fill', this.style.colourSecondary)
+    const outline = this.getOutlinePath(name)
+    outline.setAttribute('fill', this.style.colourSecondary)
+    // Connected containers can expose their socket. Keep that background below
+    // fields and child blocks even when it is first created after the children.
+    this.svgRoot.insertBefore(outline, this.svgPath.nextSibling)
   }
 }
 

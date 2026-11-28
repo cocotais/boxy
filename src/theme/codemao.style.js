@@ -140,6 +140,30 @@ export function capsulePath(width, height) {
   return `M ${radius},0 H ${width - radius} A ${radius},${radius} 0 0 1 ${width - radius},${height} H ${radius} A ${radius},${radius} 0 0 1 ${radius},0 Z`
 }
 
+// A tall value container keeps the cap of a normal reporter. Only its spine
+// grows with the statement stack; the left curve must not widen with it.
+export const containerRadius = (height, width = Infinity) =>
+  Math.min(METRICS.reporter / 2, height / 2, width / 2)
+
+export function containerCapPath(height, up = false) {
+  const radius = containerRadius(height)
+  const direction = up ? -1 : 1
+  return `a ${radius},${radius} 0 0 ${up ? 1 : 0} ${-radius},${direction * radius}
+    v ${direction * (height - radius * 2)}
+    a ${radius},${radius} 0 0 ${up ? 1 : 0} ${radius},${direction * radius}`
+}
+
+export function containerSocketPath(x, y, width, height) {
+  const radius = containerRadius(height, width)
+  const right = x + width
+  const bottom = y + height
+  return `M ${x + radius},${y} H ${right - radius}
+    A ${radius},${radius} 0 0 1 ${right},${y + radius} V ${bottom - radius}
+    A ${radius},${radius} 0 0 1 ${right - radius},${bottom} H ${x + radius}
+    A ${radius},${radius} 0 0 1 ${x},${bottom - radius} V ${y + radius}
+    A ${radius},${radius} 0 0 1 ${x + radius},${y} Z`
+}
+
 export function startHatPath(width, height) {
   // The body starts at (0, 0). Its badge protrudes 24px left and 8px up;
   // the following statement connects at (0, height), not at the badge edge.
